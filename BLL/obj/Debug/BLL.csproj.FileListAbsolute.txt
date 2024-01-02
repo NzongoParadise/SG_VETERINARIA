@@ -1,0 +1,42 @@
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\BLL.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\BLL.pdb
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\DAL.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Ferramentas.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Modelo.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\DAL.pdb
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Ferramentas.pdb
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Modelo.pdb
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.pdb
+E:\SG_VTNR\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\SG_VTNR\BLL\obj\Debug\BLL.dll
+E:\SG_VTNR\BLL\obj\Debug\BLL.pdb
+E:\SG_VTNR\BLL\bin\Debug\BLL.dll
+E:\SG_VTNR\BLL\bin\Debug\BLL.pdb
+E:\SG_VTNR\BLL\bin\Debug\DAL.dll
+E:\SG_VTNR\BLL\bin\Debug\Ferramentas.dll
+E:\SG_VTNR\BLL\bin\Debug\Modelo.dll
+E:\SG_VTNR\BLL\bin\Debug\DAL.pdb
+E:\SG_VTNR\BLL\bin\Debug\Ferramentas.pdb
+E:\SG_VTNR\BLL\bin\Debug\Modelo.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\BLL.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\BLL.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\DAL.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Ferramentas.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Modelo.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\DAL.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Ferramentas.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\bin\Debug\Modelo.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\BLL\obj\Debug\BLL.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\BLL.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\BLL.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\DAL.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\Modelo.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\DAL.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\bin\Debug\Modelo.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\obj\Debug\BLL.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\BLL\obj\Debug\BLL.pdb

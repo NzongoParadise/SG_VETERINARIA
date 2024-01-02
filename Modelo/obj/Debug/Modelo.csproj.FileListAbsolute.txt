@@ -1,0 +1,18 @@
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\Modelo\bin\Debug\Modelo.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\Modelo\obj\Debug\Modelo.dll
+C:\Users\Paradise\documents\visual studio 2015\Projects\SG_VTNR\Modelo\obj\Debug\Modelo.pdb
+C:\Users\Paradise\Documents\Visual Studio 2015\Projects\SG_VTNR\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+E:\SG_VTNR\Modelo\bin\Debug\Modelo.dll
+E:\SG_VTNR\Modelo\bin\Debug\Modelo.pdb
+E:\SG_VTNR\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+E:\SG_VTNR\Modelo\obj\Debug\Modelo.dll
+E:\SG_VTNR\Modelo\obj\Debug\Modelo.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\Modelo\bin\Debug\Modelo.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\Modelo\obj\Debug\Modelo.dll
+C:\Users\Mauro Genuíno\Documents\Visual Studio 2015\Projects\SG_VTNR\Modelo\obj\Debug\Modelo.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\bin\Debug\Modelo.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\obj\Debug\Modelo.dll
+C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\obj\Debug\Modelo.pdb

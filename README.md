@@ -1,5 +1,4 @@
 # SG_VETERINARIA
-# SG_VETERINARIA
 
 ## Descrição
 SG_VETERINARIA é um sistema de gestão para clínicas veterinárias, projetado para facilitar o gerenciamento de pacientes, consultas, medicamentos e outros aspectos importantes do ambiente veterinário.

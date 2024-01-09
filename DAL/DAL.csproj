@@ -48,6 +48,7 @@
     <Compile Include="DALEntradasEstoque.cs" />
     <Compile Include="DALExame.cs" />
     <Compile Include="DALFornecedor.cs" />
+    <Compile Include="DALFuncionario.cs" />
     <Compile Include="DALItem_Exame.cs" />
     <Compile Include="DALLAnimal.cs" />
     <Compile Include="DALMedicamento.cs" />

@@ -24,12 +24,14 @@ namespace DAL
             cmd.Connection = conexao.ObjectoConexao;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "insert_procedure_Usuario";
-            cmd.Parameters.AddWithValue("@NomeUsuario", modelo.Usuario);
+            cmd.Parameters.AddWithValue("@NomeUsuario", modelo.NomeUsuario);
             cmd.Parameters.AddWithValue("@Senha", modelo.Senha);
             cmd.Parameters.AddWithValue("@Perfil", modelo.Perfil);
+            cmd.Parameters.AddWithValue("FuncionarioID", modelo.FuncionarioID);
+            cmd.Parameters.AddWithValue("NomeFuncionario", modelo.NomeFuncionario);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
-            modelo.Id = Convert.ToInt16(cmd.ExecuteScalar());
+            modelo.UsuarioID = Convert.ToInt16(cmd.ExecuteScalar());
             conexao.Desconectar();
 
         }
@@ -38,10 +40,23 @@ namespace DAL
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandText = "insert _Procedure_Usuario";
-            cmd.Parameters.AddWithValue("@NomeUsuario", modelo.Usuario);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Atualizar_procedure_Usuario";
+            //cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
+            if (modelo.UsuarioID > 0) // Verifica se o UsuarioID é maior que zero (ou outro critério para um valor válido)
+            {
+                cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
+            }
+            else
+            {
+                throw new ArgumentException("O campo UsuarioID é inválido ou não foi definido corretamente!");
+            }
+
+            cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
+            cmd.Parameters.AddWithValue("@NomeUsuario", modelo.NomeUsuario);
             cmd.Parameters.AddWithValue("@senha", modelo.Senha);
             cmd.Parameters.AddWithValue("@perfil", modelo.Perfil);
+            cmd.Parameters.AddWithValue("@NomeFuncionario", modelo.NomeFuncionario);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
@@ -50,7 +65,7 @@ namespace DAL
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandText = "delete from usuarios where UsuarioID=@UsuarioID";
+            cmd.CommandText = "delete from Usuario where UsuarioID=@UsuarioID";
             cmd.Parameters.AddWithValue("@UsuarioID", codigo);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -67,7 +82,7 @@ namespace DAL
             if (registro.HasRows)
             {
                 registro.Read();
-                modelo.Id = Convert.ToInt16(registro["usu_id"]);
+                modelo.UsuarioID= Convert.ToInt16(registro["usu_id"]);
                 modelo.Senha = Convert.ToString(registro["senha"]);
                 modelo.Perfil = Convert.ToString(registro["perfil"]);
             }
@@ -92,5 +107,7 @@ namespace DAL
             da.Dispose();
             return dt;
         }
+       
+
     }
 }

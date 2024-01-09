@@ -137,5 +137,14 @@ namespace SG_VTNR
             }
             
         }
+
+        private void guna2Button15_Click(object sender, EventArgs e)
+        {
+            if (pnlMenu.Visible == true)
+            {
+                pnlMenu.Visible = false;
+                container(new frmUsuario());
+            }
+        }
     }
 }

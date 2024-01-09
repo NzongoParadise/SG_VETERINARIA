@@ -22,7 +22,7 @@ namespace DAL
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjectoConexao;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Inserir_procedure_Endereco";
+            cmd.CommandText = "Insert_procedure_Endereco";
             cmd.Parameters.AddWithValue("@Bairro", modelo.Bairro1);
             cmd.Parameters.AddWithValue("@Cidade", modelo.Cidade1);
             cmd.Parameters.AddWithValue("@Rua", modelo.Rua1);

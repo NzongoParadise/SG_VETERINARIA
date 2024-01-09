@@ -44,6 +44,7 @@
     <Compile Include="BLLConsulta.cs" />
     <Compile Include="BLLEndereco.cs" />
     <Compile Include="BLLFornecedor.cs" />
+    <Compile Include="BLLFuncionario.cs" />
     <Compile Include="BLLMedicamento.cs" />
     <Compile Include="BLLProprietario.cs" />
     <Compile Include="BLLUsuario.cs" />

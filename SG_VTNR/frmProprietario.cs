@@ -22,7 +22,7 @@ namespace SG_VTNR
             exibir();
             exibirEndereco();
         }
-
+        #region permicao de ativar os botoes
         Boolean perInserir = false; Boolean perAlterar = false; Boolean perExcluir = false; Boolean perImprimir = false;
         public void alteraBotoes(int op, Boolean perInserir, Boolean perAlterar, Boolean perExcluir, Boolean perImprimir)
         {
@@ -30,13 +30,13 @@ namespace SG_VTNR
             btnEditar.Enabled = false;
             btnCancelar.Enabled = false;
 
-
             if (op == 1)
             {
                 btnGuardar.Enabled = perInserir;
                 btnEditar.Enabled = false;
                 btnCancelar.Enabled = false;
                 btnNovo.Enabled = true;
+
                 txtNome.Enabled = false;
                 txtSobrenome.Enabled = false;
                 cbmGenero.Enabled = false;
@@ -48,8 +48,8 @@ namespace SG_VTNR
                 txtMostrarEndereco.Enabled = false;
                 txtApelido.Enabled = false;
                 txtCodigo.Enabled = false;
-                txtComuna.Enabled = false;
-                txtMunicipio.Enabled = false;
+                //txtComuna.Enabled = false;
+                //txtMunicipio.Enabled = false;
                 txtNomePia.Enabled = false;
                 txtObs.Enabled = false;
                 txtNomeMae.Enabled = false;
@@ -79,8 +79,8 @@ namespace SG_VTNR
                 txtMostrarEndereco.Enabled = true;
                 txtApelido.Enabled = true;
                 txtCodigo.Enabled = false;
-                txtComuna.Enabled = true;
-                txtMunicipio.Enabled = true;
+                //txtComuna.Enabled = true;
+                //txtMunicipio.Enabled = true;
                 txtNomePia.Enabled = true;
                 txtObs.Enabled = true;
                 txtNomeMae.Enabled = true;
@@ -109,8 +109,8 @@ namespace SG_VTNR
                 txtMostrarEndereco.Enabled = true;
                 txtApelido.Enabled = true;
                 txtCodigo.Enabled = false;
-                txtComuna.Enabled = true;
-                txtMunicipio.Enabled = true;
+                //txtComuna.Enabled = true;
+                //txtMunicipio.Enabled = true;
                 txtNomePia.Enabled = true;
                 txtObs.Enabled = true;
                 txtNomeMae.Enabled = true;
@@ -122,11 +122,15 @@ namespace SG_VTNR
             }
 
         }
+        #endregion fim permicao activar botos
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (pnlCadastrar.Visible == false)
             {
                 pnlCadastrar.Visible = true;
+                //guna2Button1.Enabled = false;
+                //dgvDados.Enabled = false;
+                //txtPesquisar.Enabled = false;
             }
         }
 
@@ -148,13 +152,17 @@ namespace SG_VTNR
             txtCodigo.Clear();
             txtApelido.Clear();
             txtCodigo.Clear();
-            txtComuna.Clear();
-            txtMunicipio.Clear();
+            //txtComuna.Clear();
+            //txtMunicipio.Clear();
             txtNomePia.Clear();
             txtObs.Clear();
             txtNomeMae.Clear();
             txtCodeEndereco.Clear();
             txtNacionalidade.Clear();
+            txtNome.Clear();
+            txtNumIdentificacao.Clear();
+            txtSobrenome.Clear();
+            txtMostrarEndereco.Clear();
         }
         private void frmProprietario_Load(object sender, EventArgs e)
         {
@@ -170,8 +178,7 @@ namespace SG_VTNR
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLProprietario bll = new BLLProprietario(cx);
             dgvDados.DataSource = bll.Localizar(txtPesquisar.Text);
-            //CarregarTituloDgv();
-            //FormatandoDGV.
+           
         }
         public void exibirEndereco()
         {
@@ -244,17 +251,16 @@ namespace SG_VTNR
                 modelo.EnderecoID = Convert.ToInt32(txtCodeEndereco.Text);
                 modelo.NomeMae = txtNomeMae.Text;
                 modelo.NumIdnt= txtNumIdentificacao.Text;
-                modelo.Tipodocumento = Convert.ToString((cmbTipoDoc.SelectedValue));
+                modelo.Tipodocumento = cmbTipoDoc.Text;
                 modelo.Descricao = txtObs.Text;
                 modelo.DataEmissao = Convert.ToDateTime(dataEmissao.Text);
                 modelo.Datanascimento = Convert.ToDateTime(dataNascimento.Text);
-                modelo.Genero=  cbmGenero.Text;
-                //modelo.Municipio = txtMunicipio.Text;
+                modelo.Sexo = cbmGenero.Text;
                 modelo.Nacionalidade = txtNacionalidade.Text;
 
                 DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                 BLLProprietario bll = new BLLProprietario(cx);
-                //inserir os dados
+                //chamada de inserir os dados
                 bll.Incluir(modelo);
                 MessageBox.Show(modelo.PropietarioId.ToString()+ "\n Proprietário Cadastrado com Sucesso!");
                 //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
@@ -308,6 +314,7 @@ namespace SG_VTNR
 
         private void btnNovo_Click_1(object sender, EventArgs e)
         {
+           
             alteraBotoes(2, perInserir, perAlterar, perExcluir, perImprimir);
             LimparTela();
         }
@@ -369,6 +376,16 @@ namespace SG_VTNR
             {
                 pnlEndereco.Visible = false;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimparTela();
+        }
+
+        private void txtCodeEndereco_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

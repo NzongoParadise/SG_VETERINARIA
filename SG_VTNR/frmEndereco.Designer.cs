@@ -38,6 +38,9 @@
             this.guna2ShadowPanel6 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -62,9 +65,6 @@
             this.btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
             this.txtEnderecoID = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.guna2ShadowPanel6.SuspendLayout();
             this.pnlCadastrar.SuspendLayout();
@@ -100,11 +100,13 @@
             this.dgvDados.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDados.EnableHeadersVisualStyles = false;
             this.dgvDados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvDados.Location = new System.Drawing.Point(9, 138);
+            this.dgvDados.Location = new System.Drawing.Point(14, 212);
+            this.dgvDados.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDados.Name = "dgvDados";
             this.dgvDados.RowHeadersVisible = false;
+            this.dgvDados.RowHeadersWidth = 62;
             this.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDados.Size = new System.Drawing.Size(640, 212);
+            this.dgvDados.Size = new System.Drawing.Size(960, 326);
             this.dgvDados.TabIndex = 1;
             this.dgvDados.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvDados.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -139,10 +141,11 @@
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Location = new System.Drawing.Point(9, 83);
+            this.guna2Button1.Location = new System.Drawing.Point(14, 128);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(103, 36);
+            this.guna2Button1.Size = new System.Drawing.Size(154, 55);
             this.guna2Button1.TabIndex = 2;
             this.guna2Button1.Text = "adicionar";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -163,14 +166,14 @@
             this.txtPesquisar.FocusedState.Parent = this.txtPesquisar;
             this.txtPesquisar.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPesquisar.HoverState.Parent = this.txtPesquisar;
-            this.txtPesquisar.Location = new System.Drawing.Point(437, 83);
-            this.txtPesquisar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPesquisar.Location = new System.Drawing.Point(656, 128);
+            this.txtPesquisar.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.PasswordChar = '\0';
             this.txtPesquisar.PlaceholderText = "";
             this.txtPesquisar.SelectedText = "";
             this.txtPesquisar.ShadowDecoration.Parent = this.txtPesquisar;
-            this.txtPesquisar.Size = new System.Drawing.Size(212, 36);
+            this.txtPesquisar.Size = new System.Drawing.Size(318, 55);
             this.txtPesquisar.TabIndex = 10;
             this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
             // 
@@ -181,11 +184,12 @@
             this.guna2ShadowPanel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2ShadowPanel6.FillColor = System.Drawing.Color.White;
             this.guna2ShadowPanel6.Location = new System.Drawing.Point(0, 0);
+            this.guna2ShadowPanel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2ShadowPanel6.Name = "guna2ShadowPanel6";
             this.guna2ShadowPanel6.Radius = 2;
             this.guna2ShadowPanel6.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel6.ShadowDepth = 50;
-            this.guna2ShadowPanel6.Size = new System.Drawing.Size(657, 44);
+            this.guna2ShadowPanel6.Size = new System.Drawing.Size(986, 68);
             this.guna2ShadowPanel6.TabIndex = 56;
             // 
             // guna2Button2
@@ -197,10 +201,11 @@
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button2.ForeColor = System.Drawing.Color.DimGray;
             this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Location = new System.Drawing.Point(621, 9);
+            this.guna2Button2.Location = new System.Drawing.Point(932, 14);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(28, 27);
+            this.guna2Button2.Size = new System.Drawing.Size(42, 42);
             this.guna2Button2.TabIndex = 63;
             this.guna2Button2.Text = "X";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
@@ -234,20 +239,73 @@
             this.pnlCadastrar.Controls.Add(this.btnEditar);
             this.pnlCadastrar.Controls.Add(this.txtEnderecoID);
             this.pnlCadastrar.FillColor = System.Drawing.Color.White;
-            this.pnlCadastrar.Location = new System.Drawing.Point(35, 50);
+            this.pnlCadastrar.Location = new System.Drawing.Point(52, 77);
+            this.pnlCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCadastrar.Name = "pnlCadastrar";
             this.pnlCadastrar.Radius = 2;
             this.pnlCadastrar.ShadowColor = System.Drawing.Color.Black;
             this.pnlCadastrar.ShadowDepth = 50;
-            this.pnlCadastrar.Size = new System.Drawing.Size(587, 300);
+            this.pnlCadastrar.Size = new System.Drawing.Size(880, 462);
             this.pnlCadastrar.TabIndex = 57;
+            // 
+            // guna2ShadowPanel1
+            // 
+            this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.guna2Button3);
+            this.guna2ShadowPanel1.Controls.Add(this.guna2Button7);
+            this.guna2ShadowPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
+            this.guna2ShadowPanel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
+            this.guna2ShadowPanel1.Radius = 2;
+            this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.guna2ShadowPanel1.ShadowDepth = 50;
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(880, 68);
+            this.guna2ShadowPanel1.TabIndex = 63;
+            // 
+            // guna2Button3
+            // 
+            this.guna2Button3.BorderRadius = 5;
+            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
+            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
+            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button3.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button3.HoverState.Parent = this.guna2Button3;
+            this.guna2Button3.Location = new System.Drawing.Point(932, 14);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
+            this.guna2Button3.Size = new System.Drawing.Size(42, 42);
+            this.guna2Button3.TabIndex = 63;
+            this.guna2Button3.Text = "X";
+            // 
+            // guna2Button7
+            // 
+            this.guna2Button7.BorderRadius = 5;
+            this.guna2Button7.CheckedState.Parent = this.guna2Button7;
+            this.guna2Button7.CustomImages.Parent = this.guna2Button7;
+            this.guna2Button7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button7.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button7.HoverState.Parent = this.guna2Button7;
+            this.guna2Button7.Location = new System.Drawing.Point(814, 14);
+            this.guna2Button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button7.Name = "guna2Button7";
+            this.guna2Button7.ShadowDecoration.Parent = this.guna2Button7;
+            this.guna2Button7.Size = new System.Drawing.Size(42, 42);
+            this.guna2Button7.TabIndex = 54;
+            this.guna2Button7.Text = "X";
+            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(143, 111);
+            this.label8.Location = new System.Drawing.Point(214, 171);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.Size = new System.Drawing.Size(75, 20);
             this.label8.TabIndex = 62;
             this.label8.Text = "Município";
             this.label8.Click += new System.EventHandler(this.label8_Click);
@@ -255,81 +313,90 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(254, 111);
+            this.label7.Location = new System.Drawing.Point(381, 171);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 62;
             this.label7.Text = "Comuna";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 111);
+            this.label10.Location = new System.Drawing.Point(42, 171);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.Size = new System.Drawing.Size(72, 20);
             this.label10.TabIndex = 62;
             this.label10.Text = "Provincia";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(284, 170);
+            this.label5.Location = new System.Drawing.Point(426, 262);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(84, 20);
             this.label5.TabIndex = 62;
             this.label5.Text = "Telafone 2";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(146, 170);
+            this.label4.Location = new System.Drawing.Point(219, 262);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.Size = new System.Drawing.Size(84, 20);
             this.label4.TabIndex = 62;
             this.label4.Text = "Telefone 1";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(398, 170);
+            this.label3.Location = new System.Drawing.Point(597, 262);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.Size = new System.Drawing.Size(48, 20);
             this.label3.TabIndex = 62;
             this.label3.Text = "Email";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 170);
+            this.label2.Location = new System.Drawing.Point(42, 262);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(43, 20);
             this.label2.TabIndex = 62;
             this.label2.Text = "Rua ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(366, 111);
+            this.label1.Location = new System.Drawing.Point(549, 171);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(59, 20);
             this.label1.TabIndex = 62;
             this.label1.Text = "Cidade";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 52);
+            this.label9.Location = new System.Drawing.Point(42, 80);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(18, 13);
+            this.label9.Size = new System.Drawing.Size(26, 20);
             this.label9.TabIndex = 62;
             this.label9.Text = "ID";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(478, 111);
+            this.label6.Location = new System.Drawing.Point(717, 171);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.Size = new System.Drawing.Size(51, 20);
             this.label6.TabIndex = 62;
             this.label6.Text = "Bairro";
             // 
@@ -350,14 +417,14 @@
             this.txtTelefone1.FocusedState.Parent = this.txtTelefone1;
             this.txtTelefone1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTelefone1.HoverState.Parent = this.txtTelefone1;
-            this.txtTelefone1.Location = new System.Drawing.Point(127, 185);
-            this.txtTelefone1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTelefone1.Location = new System.Drawing.Point(190, 285);
+            this.txtTelefone1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtTelefone1.Name = "txtTelefone1";
             this.txtTelefone1.PasswordChar = '\0';
             this.txtTelefone1.PlaceholderText = "";
             this.txtTelefone1.SelectedText = "";
             this.txtTelefone1.ShadowDecoration.Parent = this.txtTelefone1;
-            this.txtTelefone1.Size = new System.Drawing.Size(114, 33);
+            this.txtTelefone1.Size = new System.Drawing.Size(171, 51);
             this.txtTelefone1.TabIndex = 61;
             // 
             // txtMunicipio
@@ -377,14 +444,14 @@
             this.txtMunicipio.FocusedState.Parent = this.txtMunicipio;
             this.txtMunicipio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMunicipio.HoverState.Parent = this.txtMunicipio;
-            this.txtMunicipio.Location = new System.Drawing.Point(238, 126);
-            this.txtMunicipio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMunicipio.Location = new System.Drawing.Point(357, 194);
+            this.txtMunicipio.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtMunicipio.Name = "txtMunicipio";
             this.txtMunicipio.PasswordChar = '\0';
             this.txtMunicipio.PlaceholderText = "";
             this.txtMunicipio.SelectedText = "";
             this.txtMunicipio.ShadowDecoration.Parent = this.txtMunicipio;
-            this.txtMunicipio.Size = new System.Drawing.Size(108, 36);
+            this.txtMunicipio.Size = new System.Drawing.Size(162, 55);
             this.txtMunicipio.TabIndex = 61;
             this.txtMunicipio.TextChanged += new System.EventHandler(this.txtMunicipio_TextChanged);
             // 
@@ -405,14 +472,14 @@
             this.txtComuna.FocusedState.Parent = this.txtComuna;
             this.txtComuna.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtComuna.HoverState.Parent = this.txtComuna;
-            this.txtComuna.Location = new System.Drawing.Point(130, 126);
-            this.txtComuna.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtComuna.Location = new System.Drawing.Point(195, 194);
+            this.txtComuna.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtComuna.Name = "txtComuna";
             this.txtComuna.PasswordChar = '\0';
             this.txtComuna.PlaceholderText = "";
             this.txtComuna.SelectedText = "";
             this.txtComuna.ShadowDecoration.Parent = this.txtComuna;
-            this.txtComuna.Size = new System.Drawing.Size(104, 36);
+            this.txtComuna.Size = new System.Drawing.Size(156, 55);
             this.txtComuna.TabIndex = 61;
             // 
             // txtProvincia
@@ -432,14 +499,14 @@
             this.txtProvincia.FocusedState.Parent = this.txtProvincia;
             this.txtProvincia.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtProvincia.HoverState.Parent = this.txtProvincia;
-            this.txtProvincia.Location = new System.Drawing.Point(19, 126);
-            this.txtProvincia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtProvincia.Location = new System.Drawing.Point(28, 194);
+            this.txtProvincia.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.PasswordChar = '\0';
             this.txtProvincia.PlaceholderText = "";
             this.txtProvincia.SelectedText = "";
             this.txtProvincia.ShadowDecoration.Parent = this.txtProvincia;
-            this.txtProvincia.Size = new System.Drawing.Size(104, 36);
+            this.txtProvincia.Size = new System.Drawing.Size(156, 55);
             this.txtProvincia.TabIndex = 61;
             this.txtProvincia.TextChanged += new System.EventHandler(this.guna2TextBox5_TextChanged);
             // 
@@ -460,14 +527,14 @@
             this.txtTelfone2.FocusedState.Parent = this.txtTelfone2;
             this.txtTelfone2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTelfone2.HoverState.Parent = this.txtTelfone2;
-            this.txtTelfone2.Location = new System.Drawing.Point(249, 185);
-            this.txtTelfone2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTelfone2.Location = new System.Drawing.Point(374, 285);
+            this.txtTelfone2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtTelfone2.Name = "txtTelfone2";
             this.txtTelfone2.PasswordChar = '\0';
             this.txtTelfone2.PlaceholderText = "";
             this.txtTelfone2.SelectedText = "";
             this.txtTelfone2.ShadowDecoration.Parent = this.txtTelfone2;
-            this.txtTelfone2.Size = new System.Drawing.Size(120, 33);
+            this.txtTelfone2.Size = new System.Drawing.Size(180, 51);
             this.txtTelfone2.TabIndex = 61;
             this.txtTelfone2.TextChanged += new System.EventHandler(this.guna2TextBox5_TextChanged);
             // 
@@ -488,14 +555,14 @@
             this.txtEmail.FocusedState.Parent = this.txtEmail;
             this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEmail.HoverState.Parent = this.txtEmail;
-            this.txtEmail.Location = new System.Drawing.Point(375, 185);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEmail.Location = new System.Drawing.Point(562, 285);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PasswordChar = '\0';
             this.txtEmail.PlaceholderText = "";
             this.txtEmail.SelectedText = "";
             this.txtEmail.ShadowDecoration.Parent = this.txtEmail;
-            this.txtEmail.Size = new System.Drawing.Size(196, 33);
+            this.txtEmail.Size = new System.Drawing.Size(294, 51);
             this.txtEmail.TabIndex = 61;
             // 
             // txtRua
@@ -515,14 +582,14 @@
             this.txtRua.FocusedState.Parent = this.txtRua;
             this.txtRua.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtRua.HoverState.Parent = this.txtRua;
-            this.txtRua.Location = new System.Drawing.Point(20, 185);
-            this.txtRua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRua.Location = new System.Drawing.Point(30, 285);
+            this.txtRua.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtRua.Name = "txtRua";
             this.txtRua.PasswordChar = '\0';
             this.txtRua.PlaceholderText = "";
             this.txtRua.SelectedText = "";
             this.txtRua.ShadowDecoration.Parent = this.txtRua;
-            this.txtRua.Size = new System.Drawing.Size(103, 33);
+            this.txtRua.Size = new System.Drawing.Size(154, 51);
             this.txtRua.TabIndex = 61;
             // 
             // txtCidade
@@ -542,14 +609,14 @@
             this.txtCidade.FocusedState.Parent = this.txtCidade;
             this.txtCidade.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCidade.HoverState.Parent = this.txtCidade;
-            this.txtCidade.Location = new System.Drawing.Point(350, 126);
-            this.txtCidade.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCidade.Location = new System.Drawing.Point(525, 194);
+            this.txtCidade.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.PasswordChar = '\0';
             this.txtCidade.PlaceholderText = "";
             this.txtCidade.SelectedText = "";
             this.txtCidade.ShadowDecoration.Parent = this.txtCidade;
-            this.txtCidade.Size = new System.Drawing.Size(114, 36);
+            this.txtCidade.Size = new System.Drawing.Size(171, 55);
             this.txtCidade.TabIndex = 61;
             // 
             // txtBairro
@@ -569,14 +636,14 @@
             this.txtBairro.FocusedState.Parent = this.txtBairro;
             this.txtBairro.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBairro.HoverState.Parent = this.txtBairro;
-            this.txtBairro.Location = new System.Drawing.Point(472, 126);
-            this.txtBairro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBairro.Location = new System.Drawing.Point(708, 194);
+            this.txtBairro.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.PasswordChar = '\0';
             this.txtBairro.PlaceholderText = "";
             this.txtBairro.SelectedText = "";
             this.txtBairro.ShadowDecoration.Parent = this.txtBairro;
-            this.txtBairro.Size = new System.Drawing.Size(99, 36);
+            this.txtBairro.Size = new System.Drawing.Size(148, 55);
             this.txtBairro.TabIndex = 61;
             // 
             // btnGuardar
@@ -590,10 +657,11 @@
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.HoverState.Parent = this.btnGuardar;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(291, 243);
+            this.btnGuardar.Location = new System.Drawing.Point(436, 374);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.ShadowDecoration.Parent = this.btnGuardar;
-            this.btnGuardar.Size = new System.Drawing.Size(115, 32);
+            this.btnGuardar.Size = new System.Drawing.Size(172, 49);
             this.btnGuardar.TabIndex = 60;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -608,10 +676,11 @@
             this.btnNovo.ForeColor = System.Drawing.Color.White;
             this.btnNovo.HoverState.Parent = this.btnNovo;
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.Location = new System.Drawing.Point(49, 243);
+            this.btnNovo.Location = new System.Drawing.Point(74, 374);
+            this.btnNovo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.ShadowDecoration.Parent = this.btnNovo;
-            this.btnNovo.Size = new System.Drawing.Size(115, 32);
+            this.btnNovo.Size = new System.Drawing.Size(172, 49);
             this.btnNovo.TabIndex = 57;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
@@ -626,10 +695,11 @@
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.HoverState.Parent = this.btnCancelar;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(412, 243);
+            this.btnCancelar.Location = new System.Drawing.Point(618, 374);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.ShadowDecoration.Parent = this.btnCancelar;
-            this.btnCancelar.Size = new System.Drawing.Size(115, 32);
+            this.btnCancelar.Size = new System.Drawing.Size(172, 49);
             this.btnCancelar.TabIndex = 59;
             this.btnCancelar.Text = "Cancelar";
             // 
@@ -644,10 +714,11 @@
             this.btnEditar.ForeColor = System.Drawing.Color.White;
             this.btnEditar.HoverState.Parent = this.btnEditar;
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(169, 243);
+            this.btnEditar.Location = new System.Drawing.Point(254, 374);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.ShadowDecoration.Parent = this.btnEditar;
-            this.btnEditar.Size = new System.Drawing.Size(115, 32);
+            this.btnEditar.Size = new System.Drawing.Size(172, 49);
             this.btnEditar.TabIndex = 58;
             this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -669,76 +740,27 @@
             this.txtEnderecoID.FocusedState.Parent = this.txtEnderecoID;
             this.txtEnderecoID.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEnderecoID.HoverState.Parent = this.txtEnderecoID;
-            this.txtEnderecoID.Location = new System.Drawing.Point(20, 70);
-            this.txtEnderecoID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEnderecoID.Location = new System.Drawing.Point(30, 108);
+            this.txtEnderecoID.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtEnderecoID.Name = "txtEnderecoID";
             this.txtEnderecoID.PasswordChar = '\0';
             this.txtEnderecoID.PlaceholderText = "";
             this.txtEnderecoID.SelectedText = "";
             this.txtEnderecoID.ShadowDecoration.Parent = this.txtEnderecoID;
-            this.txtEnderecoID.Size = new System.Drawing.Size(65, 36);
+            this.txtEnderecoID.Size = new System.Drawing.Size(98, 55);
             this.txtEnderecoID.TabIndex = 55;
-            // 
-            // guna2Button7
-            // 
-            this.guna2Button7.BorderRadius = 5;
-            this.guna2Button7.CheckedState.Parent = this.guna2Button7;
-            this.guna2Button7.CustomImages.Parent = this.guna2Button7;
-            this.guna2Button7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
-            this.guna2Button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button7.ForeColor = System.Drawing.Color.DimGray;
-            this.guna2Button7.HoverState.Parent = this.guna2Button7;
-            this.guna2Button7.Location = new System.Drawing.Point(543, 9);
-            this.guna2Button7.Name = "guna2Button7";
-            this.guna2Button7.ShadowDecoration.Parent = this.guna2Button7;
-            this.guna2Button7.Size = new System.Drawing.Size(28, 27);
-            this.guna2Button7.TabIndex = 54;
-            this.guna2Button7.Text = "X";
-            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
-            // 
-            // guna2ShadowPanel1
-            // 
-            this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel1.Controls.Add(this.guna2Button3);
-            this.guna2ShadowPanel1.Controls.Add(this.guna2Button7);
-            this.guna2ShadowPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
-            this.guna2ShadowPanel1.Radius = 2;
-            this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel1.ShadowDepth = 50;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(587, 44);
-            this.guna2ShadowPanel1.TabIndex = 63;
-            // 
-            // guna2Button3
-            // 
-            this.guna2Button3.BorderRadius = 5;
-            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
-            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
-            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.DimGray;
-            this.guna2Button3.HoverState.Parent = this.guna2Button3;
-            this.guna2Button3.Location = new System.Drawing.Point(621, 9);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
-            this.guna2Button3.Size = new System.Drawing.Size(28, 27);
-            this.guna2Button3.TabIndex = 63;
-            this.guna2Button3.Text = "X";
             // 
             // frmEndereco
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 365);
+            this.ClientSize = new System.Drawing.Size(986, 562);
             this.Controls.Add(this.pnlCadastrar);
             this.Controls.Add(this.guna2ShadowPanel6);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.dgvDados);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmEndereco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEndereco";

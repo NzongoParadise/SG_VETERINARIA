@@ -85,6 +85,7 @@ CREATE TABLE proprietario (
     descricao VARCHAR(MAX),
 	constraint fk_EnderecoID_ProprietarioID foreign key(EnderecoID) references Endereco(EnderecoID)
 );
+
 GO
 CREATE PROCEDURE procedure_Atualizar_Proprietario
     @ProprietarioID INT,
@@ -1273,7 +1274,67 @@ BEGIN
     VALUES (@Quantidade, @CompraID, @NomedoProduto, @MedicamentoID, @FuncionarioID);
 END;
 
+create table Usuario(
+UsuarioID int primary key not null identity (1,1),
+FuncionarioID int,
+NomeFuncionario varchar(50),
+NomeUsuario VARCHAR (20),
+Senha VARCHAR (20),
+perfil VARCHAR (15),
+CONSTRAINT Usuario_Funcionario FOREIGN key (FuncionarioID) REFERENCES Funcionario(FuncionarioID)
+)
+insert_procedure_Usuario
+CREATE PROCEDURE insert_procedure_Usuario
+    @FuncionarioID INT,
+    @NomeFuncionario VARCHAR(50),
+    @NomeUsuario VARCHAR(20),
+    @Senha VARCHAR(20),
+    @Perfil VARCHAR(15)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Usuario (FuncionarioID, NomeFuncionario, NomeUsuario, Senha, perfil)
+    VALUES (@FuncionarioID, @NomeFuncionario, @NomeUsuario, @Senha, @Perfil);
+END;
+
+
+CREATE PROCEDURE Atualizar_procedure_Usuario
+    @UsuarioID INT,
+    @FuncionarioID INT,
+    @NomeFuncionario VARCHAR(50),
+    @NomeUsuario VARCHAR(20),
+    @Senha VARCHAR(20),
+    @Perfil VARCHAR(15)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Usuario
+    SET FuncionarioID = @FuncionarioID,
+        NomeFuncionario = @NomeFuncionario,
+        NomeUsuario = @NomeUsuario,
+        Senha = @Senha,
+        perfil = @Perfil
+    WHERE UsuarioID = @UsuarioID;
+END;
+
+use BD_Veterinaria
+
+----- criacao de insrt e outros
 
 
 
 
+-- Exemplo de inserção de dados na tabela Funcionario
+INSERT INTO Funcionario (Nome, Sobrenome, Apelido, NomePai, NomeMae, Cargo, Salario, DataContratacao, DataNascimento, TipoDocumento, NumIdentificacao, DataEmissaoBI, DataExpiracaoBI, Nacionalidade, foto, GrauAcademico, EstadoCivil, Observacao, EnderecoID)
+VALUES 
+('João', 'Silva', 'Jão', 'José Silva', 'Maria Souza', 'Analista de Sistemas', 5000.00, '2023-01-15', '1985-05-10', 'RG', '123456789', '2010-08-20', '2030-08-19', 'Brasileiro', NULL, 'Graduação', 'Solteiro', 'Observações sobre o funcionário.', 1),
+('Maria', 'Santos', 'Mary', 'Carlos Santos', 'Ana Oliveira', 'Gerente de Vendas', 7000.00, '2022-11-28', '1980-09-22', 'CPF', '987654321', '2005-06-12', '2035-06-11', 'Brasileira', NULL, 'Pós-Graduação', 'Casado', 'Outras observações.', 2);
+use bd_veterinaria
+select *from Funcionario
+insert into Usuario values('2','mauro','mauro','admin')
+SELECT *from Usuario
+alter table Usuario add NomeFuncionario varchar(50)
+USE 
+select *from proprietario

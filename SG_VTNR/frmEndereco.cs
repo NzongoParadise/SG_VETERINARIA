@@ -124,7 +124,8 @@ namespace SG_VTNR
             txtTelefone1.Clear();
             txtTelfone2.Clear();
             txtMunicipio.Clear();
-           
+            txtProvincia.Clear();
+            txtMunicipio.Clear();
         
         }
         private void frmEndereco_Load(object sender, EventArgs e)

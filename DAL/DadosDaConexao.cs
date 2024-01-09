@@ -12,7 +12,8 @@ namespace DAL
         {
             get
             {
-                return @"Data Source=BDSERVER\SQLEXPRESS;Initial Catalog=BD_Veterinaria;Integrated Security=True";
+                return @"Data Source=MAURICIO-PC\SQLEXPRESS;Initial Catalog=BD_Veterinaria;Integrated Security=True;Encrypt=False";
+                //return @"Data Source=BDSERVER\SQLEXPRESS;Initial Catalog=BD_Veterinaria;Integrated Security=True";
                 //return @"Data Source=tcp:BDSERVER,49500;Initial Catalog=BD_Veterinaria;Integrated Security=True";
             }
         }

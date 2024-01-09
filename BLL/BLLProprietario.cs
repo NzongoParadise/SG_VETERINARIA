@@ -16,11 +16,20 @@ namespace BLL
         {
             this.conexao = cx;
         }
+        #region Regiao incluir proprietario
         public void Incluir(ModeloProprietario modelo)
         {
             if (modelo.Nome.Trim().Length == 0)
             {
                 throw new Exception("O nome do proprietario deve ser informado!!!");
+            }
+            if (modelo.Tipodocumento.Trim().Length == 0)
+            {
+                throw new Exception("o tipo de documento te de ser informado");
+            }
+            if (modelo.Genero.Trim().Length == 0)
+            {
+                throw new Exception("o Genero do proprietario deve ser informado");
             }
             if (modelo.Sobrenome.Trim().Length == 0)
             {
@@ -58,6 +67,9 @@ namespace BLL
             DALProprietario DALobj = new DALProprietario(conexao);
             DALobj.incluirProprietario(modelo);
         }
+        #endregion fim regiao incluir proprietario
+        #region Regiao alterar propriretario
+
         public void Alterar(ModeloProprietario modelo)
         {
             if (modelo.PropietarioId <= 0)
@@ -101,23 +113,34 @@ namespace BLL
             DALProprietario DALobj = new    DALProprietario(conexao);
             DALobj.AlterarProprietario(modelo);
         }
+        #endregion fim alterar proprietario
+        #region Regiao exluir proprietario
+
         public void Excluir(int codigo)
         {
             DALProprietario DALObj = new DALProprietario(conexao);
             DALObj.EliminarProprietario(codigo);
 
         }
+        #endregion fim regiam exluir proprietario
+        public DataTable PesquisarProprietarioComChave(string nome)
+        {
+            DALProprietario DalObj =new DALProprietario(conexao);
+            return DalObj.PesquisarProprietarioComChave(nome);
+        }
         public DataTable Localizar(string nome)
         {
             DALProprietario DALObj = new DALProprietario(conexao);
             return DALObj.Localizar(nome);
         }
+       
 
         public DataTable LocalizarEndereco(string nome)
         {
             DALProprietario DALObj = new DALProprietario(conexao);
             return DALObj.LocalizarEndereco(nome);
         }
+     
 
     }
 }

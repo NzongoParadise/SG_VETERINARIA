@@ -1,9 +1,11 @@
 ﻿using Modelo;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,11 +48,14 @@ namespace DAL
             conexao.Desconectar();
 
         }
+        #region metodo atualizar proprietario
         public void AlterarProprietario(ModeloProprietario modelo)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandText = "Update_procedure_Proprietario";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.CommandText = "procedure_Atualizar_Proprietario";
 
             cmd.Parameters.AddWithValue("@ProprietarioID", modelo.PropietarioId);
             cmd.Parameters.AddWithValue("@Nome", modelo.Nome);
@@ -66,21 +71,12 @@ namespace DAL
             cmd.Parameters.AddWithValue("@NomeMae", modelo.NomeMae);
             cmd.Parameters.AddWithValue("@Nacionalidade", modelo.Nacionalidade);
             cmd.Parameters.AddWithValue("@descricao", modelo.Descricao);
-            #region
-            //cmd.Parameters.AddWithValue("@foto",System.Data.SqlDbType.Image);
-            //if (modelo.Foto==null)
-            //{
-            //    cmd.Parameters.AddWithValue("@foto", DBNull.Value);
-            //}
-            //else
-            //{
-            //    cmd.Parameters.AddWithValue("@foto", modelo.Foto);
-            //}
-            #endregion
+            
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
+        #endregion
         public void EliminarProprietario(int codigo)
         {
             SqlCommand cmd = new SqlCommand();
@@ -90,8 +86,15 @@ namespace DAL
             conexao.Conectar();
             cmd.ExecuteNonQuery();
         }
-  
-        public DataTable Localizar(String nome)
+        public DataTable PesquisarProprietarioComChave( string nome)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select Nome,sobrenome, ProprietarioID from Proprietario where Nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+           return dt;
+        }
+    public DataTable Localizar(String nome)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(" select * from proprietario where Nome like'%" + nome.ToString() + "%'" , conexao.ObjectoConexao);

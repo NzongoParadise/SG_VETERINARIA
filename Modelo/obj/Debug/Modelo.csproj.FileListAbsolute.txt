@@ -16,3 +16,15 @@ C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\bin\Debug\Modelo.dll
 C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\bin\Debug\Modelo.pdb
 C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\obj\Debug\Modelo.dll
 C:\Users\Paradise\3D Objects\SG_VTNR\Modelo\obj\Debug\Modelo.pdb
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\bin\Debug\Modelo.dll
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\bin\Debug\Modelo.pdb
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\obj\Debug\Modelo.csproj.AssemblyReference.cache
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\obj\Debug\Modelo.dll
+C:\Users\MAURICO-PC\Documents\testeGitVS2022\Modelo\obj\Debug\Modelo.pdb
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\bin\Debug\Modelo.dll
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\bin\Debug\Modelo.pdb
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\obj\Debug\Modelo.csproj.AssemblyReference.cache
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\obj\Debug\Modelo.dll
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\Modelo\obj\Debug\Modelo.pdb

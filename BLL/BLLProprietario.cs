@@ -27,7 +27,7 @@ namespace BLL
             {
                 throw new Exception("o tipo de documento te de ser informado");
             }
-            if (modelo.Genero.Trim().Length == 0)
+            if (modelo.Sexo.Trim().Length == 0)
             {
                 throw new Exception("o Genero do proprietario deve ser informado");
             }

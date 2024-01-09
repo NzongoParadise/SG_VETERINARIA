@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,8 @@ namespace Modelo
     {
         private int funcionarioID;
         private string nome;
-        private string nobrenome;
-        private string pelido;
+        private string sobrenome;
+        private string apelido;
         private string nomePai;
         private string nomeMae;
         private string cargo;
@@ -33,8 +34,8 @@ namespace Modelo
         {
             this.funcionarioID = funcionarioID;
             this.nome = nome;
-            this.nobrenome = nobrenome;
-            this.pelido = pelido;
+            this.sobrenome = sobrenome;
+            this.apelido = apelido;
             this.nomePai = nomePai;
             this.nomeMae = nomeMae;
             this.cargo = cargo;
@@ -52,12 +53,12 @@ namespace Modelo
             this.observacao = observacao;
             this.enderecoID = enderecoID;
         }
-        public ModeloFuncionario(int funcionarioID, string nome, string nobrenome, string pelido, string nomePai, string nomeMae, string cargo, decimal salario, DateTime dataContratacao, DateTime dataNascimento, string tipoDocumento, string numIdentificacao, DateTime dataEmissaoBI, DateTime dataExpiracaoBI, string nacionalidade, byte[] foto, string grauAcademico, string estadoCivil, string observacao, int enderecoID)
+        public ModeloFuncionario(int funcionarioID, string nome, string sobrenome, string apelido, string nomePai, string nomeMae, string cargo, decimal salario, DateTime dataContratacao, DateTime dataNascimento, string tipoDocumento, string numIdentificacao, DateTime dataEmissaoBI, DateTime dataExpiracaoBI, string nacionalidade, byte[] foto, string grauAcademico, string estadoCivil, string observacao, int enderecoID)
         {
             this.funcionarioID = funcionarioID;
             this.nome = nome;
-            this.nobrenome = nobrenome;
-            this.pelido = pelido;
+            this.sobrenome = sobrenome;
+            this.apelido = apelido;
             this.nomePai = nomePai;
             this.nomeMae = nomeMae;
             this.cargo = cargo;
@@ -101,29 +102,29 @@ namespace Modelo
             }
         }
 
-        public string Nobrenome
+        public string Sobrenome
         {
             get
             {
-                return nobrenome;
+                return sobrenome;
             }
 
             set
             {
-                nobrenome = value;
+                sobrenome = value;
             }
         }
 
-        public string Pelido
+        public string Apelido
         {
             get
             {
-                return pelido;
+                return apelido;
             }
 
             set
             {
-                pelido = value;
+                apelido = value;
             }
         }
 
@@ -332,6 +333,41 @@ namespace Modelo
             set
             {
                 enderecoID = value;
+            }
+        }
+        public void CarregaImage(String imgCaminho)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(imgCaminho))
+                {
+                    return;
+                    /*
+                     * fornecer priopriedade metodos de instancia para criar, copiar
+                     * excluir, mover, abrir arquivos e  ajuda na criação de objectos FileStream
+                    */
+
+                    FileInfo arqImagem = new FileInfo(imgCaminho);
+                    /*
+                     * Expoe um Stream ao redor de um arquivo de suporte
+                     * síncrono e assíncrono operações de leitura e gravar
+                    */
+                    FileStream fs = new FileStream(imgCaminho, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                    // aloca memória para o vetor
+
+                    this.Foto = new byte[Convert.ToInt32(arqImagem.Length)];
+
+                    //Lê um bloco de bytes do fluxo e grava os dados em buffer fornecido.
+
+                    int iBytesRead = fs.Read(this.Foto, 0, Convert.ToInt32(arqImagem.Length));
+                    fs.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message.ToString());
             }
         }
     }

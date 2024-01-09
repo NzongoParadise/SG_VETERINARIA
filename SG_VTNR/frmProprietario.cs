@@ -155,6 +155,7 @@ namespace SG_VTNR
             //txtComuna.Clear();
             //txtMunicipio.Clear();
             txtNomePia.Clear();
+            
             txtObs.Clear();
             txtNomeMae.Clear();
             txtCodeEndereco.Clear();
@@ -163,6 +164,7 @@ namespace SG_VTNR
             txtNumIdentificacao.Clear();
             txtSobrenome.Clear();
             txtMostrarEndereco.Clear();
+            
         }
         private void frmProprietario_Load(object sender, EventArgs e)
         {

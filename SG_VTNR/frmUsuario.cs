@@ -216,7 +216,7 @@ namespace SG_VTNR
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLFuncionario bll = new BLLFuncionario(cx);
-            dgvFuncionario.DataSource = bll.ExibirFuncionario(txtPesquisarFuncionario.Text);
+            dgvFuncionario.DataSource = bll.PesquisarFuncionariosComChave(txtPesquisarFuncionario.Text);
             //CarregarTituloDgv();
             //FormatandoDGV.
         }

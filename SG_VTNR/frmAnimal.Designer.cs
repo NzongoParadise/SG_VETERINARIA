@@ -39,7 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.pnlFuncionario = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.pnlProprietario = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.dgvMostrarProp = new Guna.UI2.WinForms.Guna2DataGridView();
             this.txtPesquisarProp = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAdcEndereco = new Guna.UI2.WinForms.Guna2Button();
@@ -87,7 +87,7 @@
             this.txtPesquisarAnimal = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel1.SuspendLayout();
             this.pnlCadastrar.SuspendLayout();
-            this.pnlFuncionario.SuspendLayout();
+            this.pnlProprietario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarProp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctAnimal)).BeginInit();
             this.guna2ShadowPanel4.SuspendLayout();
@@ -136,7 +136,7 @@
             // pnlCadastrar
             // 
             this.pnlCadastrar.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCadastrar.Controls.Add(this.pnlFuncionario);
+            this.pnlCadastrar.Controls.Add(this.pnlProprietario);
             this.pnlCadastrar.Controls.Add(this.txtPesquisarProp);
             this.pnlCadastrar.Controls.Add(this.btnAdcEndereco);
             this.pnlCadastrar.Controls.Add(this.txtPeso);
@@ -184,20 +184,20 @@
             this.pnlCadastrar.Visible = false;
             this.pnlCadastrar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCadastrar_Paint);
             // 
-            // pnlFuncionario
+            // pnlProprietario
             // 
-            this.pnlFuncionario.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFuncionario.Controls.Add(this.dgvMostrarProp);
-            this.pnlFuncionario.FillColor = System.Drawing.Color.White;
-            this.pnlFuncionario.Location = new System.Drawing.Point(622, 520);
-            this.pnlFuncionario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlFuncionario.Name = "pnlFuncionario";
-            this.pnlFuncionario.Radius = 2;
-            this.pnlFuncionario.ShadowColor = System.Drawing.Color.Black;
-            this.pnlFuncionario.ShadowDepth = 50;
-            this.pnlFuncionario.Size = new System.Drawing.Size(584, 122);
-            this.pnlFuncionario.TabIndex = 70;
-            this.pnlFuncionario.Visible = false;
+            this.pnlProprietario.BackColor = System.Drawing.Color.Transparent;
+            this.pnlProprietario.Controls.Add(this.dgvMostrarProp);
+            this.pnlProprietario.FillColor = System.Drawing.Color.White;
+            this.pnlProprietario.Location = new System.Drawing.Point(622, 520);
+            this.pnlProprietario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlProprietario.Name = "pnlProprietario";
+            this.pnlProprietario.Radius = 2;
+            this.pnlProprietario.ShadowColor = System.Drawing.Color.Black;
+            this.pnlProprietario.ShadowDepth = 50;
+            this.pnlProprietario.Size = new System.Drawing.Size(584, 122);
+            this.pnlProprietario.TabIndex = 70;
+            this.pnlProprietario.Visible = false;
             // 
             // dgvMostrarProp
             // 
@@ -1112,7 +1112,7 @@
             this.guna2ShadowPanel1.PerformLayout();
             this.pnlCadastrar.ResumeLayout(false);
             this.pnlCadastrar.PerformLayout();
-            this.pnlFuncionario.ResumeLayout(false);
+            this.pnlProprietario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarProp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctAnimal)).EndInit();
             this.guna2ShadowPanel4.ResumeLayout(false);
@@ -1163,7 +1163,7 @@
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Guna.UI2.WinForms.Guna2TextBox txtNomeProp;
-        private Guna.UI2.WinForms.Guna2ShadowPanel pnlFuncionario;
+        private Guna.UI2.WinForms.Guna2ShadowPanel pnlProprietario;
         private Guna.UI2.WinForms.Guna2DataGridView dgvMostrarProp;
         public Guna.UI2.WinForms.Guna2TextBox txtPesquisarProp;
         private Guna.UI2.WinForms.Guna2Button btnAdcEndereco;

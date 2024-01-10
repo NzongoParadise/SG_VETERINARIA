@@ -42,23 +42,31 @@
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowPanel5 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.txtCodeEndereco = new Guna.UI2.WinForms.Guna2TextBox();
-            this.pnlEndereco = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.dgvEndereco = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.txtMostrarEndereco = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pnlMostrarEndereco = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.dgvMostraEndereco = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.txtPesquisarEndereco = new Guna.UI2.WinForms.Guna2TextBox();
+            this.cmbGrauAcademico = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cmbEstadoCivil = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cmbCargo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbTipoDocumento = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtObs = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAdcEndereco = new Guna.UI2.WinForms.Guna2Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtSalario = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNacionalidade = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataExpiracaoBI = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtNumIdentificacao = new Guna.UI2.WinForms.Guna2TextBox();
+            this.dataContratacao = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dataEmissao = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -68,7 +76,7 @@
             this.btnExcluir = new Guna.UI2.WinForms.Guna2Button();
             this.label15 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel3 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.cbmGenero = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbmSexo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -92,18 +100,11 @@
             this.colEditar = new System.Windows.Forms.DataGridViewImageColumn();
             this.colImprimir = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtPesquisarFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbCargo = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtSalario = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.dataContratacao = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.cmbGrauAcademico = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbEstadoCivil = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.pnlCadastrar.SuspendLayout();
             this.guna2ShadowPanel5.SuspendLayout();
-            this.pnlEndereco.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEndereco)).BeginInit();
+            this.pnlMostrarEndereco.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraEndereco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctProprietario)).BeginInit();
             this.guna2ShadowPanel4.SuspendLayout();
             this.guna2ShadowPanel3.SuspendLayout();
@@ -126,7 +127,7 @@
             this.pnlCadastrar.Controls.Add(this.guna2ShadowPanel2);
             this.pnlCadastrar.Controls.Add(this.txtCodigo);
             this.pnlCadastrar.FillColor = System.Drawing.Color.White;
-            this.pnlCadastrar.Location = new System.Drawing.Point(213, 5);
+            this.pnlCadastrar.Location = new System.Drawing.Point(180, 23);
             this.pnlCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCadastrar.Name = "pnlCadastrar";
             this.pnlCadastrar.Radius = 5;
@@ -171,6 +172,7 @@
             this.btnNovo.ShadowDecoration.Parent = this.btnNovo;
             this.btnNovo.Size = new System.Drawing.Size(172, 49);
             this.btnNovo.TabIndex = 53;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnCancelar
             // 
@@ -189,6 +191,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(172, 49);
             this.btnCancelar.TabIndex = 55;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -207,13 +210,14 @@
             this.btnEditar.Size = new System.Drawing.Size(172, 49);
             this.btnEditar.TabIndex = 54;
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // guna2ShadowPanel5
             // 
             this.guna2ShadowPanel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel5.Controls.Add(this.txtCodeEndereco);
-            this.guna2ShadowPanel5.Controls.Add(this.pnlEndereco);
-            this.guna2ShadowPanel5.Controls.Add(this.txtMostrarEndereco);
+            this.guna2ShadowPanel5.Controls.Add(this.pnlMostrarEndereco);
+            this.guna2ShadowPanel5.Controls.Add(this.txtPesquisarEndereco);
             this.guna2ShadowPanel5.Controls.Add(this.cmbGrauAcademico);
             this.guna2ShadowPanel5.Controls.Add(this.cmbEstadoCivil);
             this.guna2ShadowPanel5.Controls.Add(this.cmbCargo);
@@ -275,31 +279,31 @@
             this.txtCodeEndereco.Size = new System.Drawing.Size(98, 57);
             this.txtCodeEndereco.TabIndex = 57;
             // 
-            // pnlEndereco
+            // pnlMostrarEndereco
             // 
-            this.pnlEndereco.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEndereco.Controls.Add(this.dgvEndereco);
-            this.pnlEndereco.FillColor = System.Drawing.Color.White;
-            this.pnlEndereco.Location = new System.Drawing.Point(610, 185);
-            this.pnlEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlEndereco.Name = "pnlEndereco";
-            this.pnlEndereco.Radius = 2;
-            this.pnlEndereco.ShadowColor = System.Drawing.Color.Black;
-            this.pnlEndereco.ShadowDepth = 50;
-            this.pnlEndereco.Size = new System.Drawing.Size(616, 140);
-            this.pnlEndereco.TabIndex = 56;
-            this.pnlEndereco.Visible = false;
+            this.pnlMostrarEndereco.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMostrarEndereco.Controls.Add(this.dgvMostraEndereco);
+            this.pnlMostrarEndereco.FillColor = System.Drawing.Color.White;
+            this.pnlMostrarEndereco.Location = new System.Drawing.Point(610, 185);
+            this.pnlMostrarEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlMostrarEndereco.Name = "pnlMostrarEndereco";
+            this.pnlMostrarEndereco.Radius = 2;
+            this.pnlMostrarEndereco.ShadowColor = System.Drawing.Color.Black;
+            this.pnlMostrarEndereco.ShadowDepth = 50;
+            this.pnlMostrarEndereco.Size = new System.Drawing.Size(616, 140);
+            this.pnlMostrarEndereco.TabIndex = 56;
+            this.pnlMostrarEndereco.Visible = false;
             // 
-            // dgvEndereco
+            // dgvMostraEndereco
             // 
-            this.dgvEndereco.AllowUserToAddRows = false;
+            this.dgvMostraEndereco.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvEndereco.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvEndereco.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEndereco.BackgroundColor = System.Drawing.Color.White;
-            this.dgvEndereco.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvEndereco.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvEndereco.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvMostraEndereco.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMostraEndereco.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMostraEndereco.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMostraEndereco.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostraEndereco.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -307,8 +311,8 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEndereco.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEndereco.ColumnHeadersHeight = 4;
+            this.dgvMostraEndereco.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMostraEndereco.ColumnHeadersHeight = 4;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -316,65 +320,155 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEndereco.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvEndereco.EnableHeadersVisualStyles = false;
-            this.dgvEndereco.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvEndereco.Location = new System.Drawing.Point(9, 12);
-            this.dgvEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvEndereco.Name = "dgvEndereco";
-            this.dgvEndereco.RowHeadersVisible = false;
-            this.dgvEndereco.RowHeadersWidth = 62;
-            this.dgvEndereco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEndereco.Size = new System.Drawing.Size(600, 115);
-            this.dgvEndereco.TabIndex = 56;
-            this.dgvEndereco.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-            this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvEndereco.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvEndereco.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvEndereco.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvEndereco.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvEndereco.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvEndereco.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvEndereco.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvEndereco.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvEndereco.ThemeStyle.ReadOnly = false;
-            this.dgvEndereco.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvEndereco.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvEndereco.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvEndereco.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvEndereco.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvEndereco.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvEndereco.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostraEndereco.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvMostraEndereco.EnableHeadersVisualStyles = false;
+            this.dgvMostraEndereco.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.Location = new System.Drawing.Point(9, 12);
+            this.dgvMostraEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvMostraEndereco.Name = "dgvMostraEndereco";
+            this.dgvMostraEndereco.RowHeadersVisible = false;
+            this.dgvMostraEndereco.RowHeadersWidth = 62;
+            this.dgvMostraEndereco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostraEndereco.Size = new System.Drawing.Size(600, 115);
+            this.dgvMostraEndereco.TabIndex = 56;
+            this.dgvMostraEndereco.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvMostraEndereco.ThemeStyle.ReadOnly = false;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostraEndereco.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostraEndereco_CellContentClick);
             // 
-            // txtMostrarEndereco
+            // txtPesquisarEndereco
             // 
-            this.txtMostrarEndereco.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMostrarEndereco.BorderRadius = 5;
-            this.txtMostrarEndereco.BorderThickness = 2;
-            this.txtMostrarEndereco.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMostrarEndereco.DefaultText = "";
-            this.txtMostrarEndereco.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMostrarEndereco.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMostrarEndereco.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMostrarEndereco.DisabledState.Parent = this.txtMostrarEndereco;
-            this.txtMostrarEndereco.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMostrarEndereco.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMostrarEndereco.FocusedState.Parent = this.txtMostrarEndereco;
-            this.txtMostrarEndereco.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMostrarEndereco.HoverState.Parent = this.txtMostrarEndereco;
-            this.txtMostrarEndereco.Location = new System.Drawing.Point(622, 123);
-            this.txtMostrarEndereco.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtMostrarEndereco.Name = "txtMostrarEndereco";
-            this.txtMostrarEndereco.PasswordChar = '\0';
-            this.txtMostrarEndereco.PlaceholderText = "";
-            this.txtMostrarEndereco.SelectedText = "";
-            this.txtMostrarEndereco.ShadowDecoration.Parent = this.txtMostrarEndereco;
-            this.txtMostrarEndereco.Size = new System.Drawing.Size(507, 57);
-            this.txtMostrarEndereco.TabIndex = 39;
+            this.txtPesquisarEndereco.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPesquisarEndereco.BorderRadius = 5;
+            this.txtPesquisarEndereco.BorderThickness = 2;
+            this.txtPesquisarEndereco.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPesquisarEndereco.DefaultText = "";
+            this.txtPesquisarEndereco.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtPesquisarEndereco.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtPesquisarEndereco.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPesquisarEndereco.DisabledState.Parent = this.txtPesquisarEndereco;
+            this.txtPesquisarEndereco.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPesquisarEndereco.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPesquisarEndereco.FocusedState.Parent = this.txtPesquisarEndereco;
+            this.txtPesquisarEndereco.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPesquisarEndereco.HoverState.Parent = this.txtPesquisarEndereco;
+            this.txtPesquisarEndereco.Location = new System.Drawing.Point(622, 123);
+            this.txtPesquisarEndereco.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.txtPesquisarEndereco.Name = "txtPesquisarEndereco";
+            this.txtPesquisarEndereco.PasswordChar = '\0';
+            this.txtPesquisarEndereco.PlaceholderText = "";
+            this.txtPesquisarEndereco.SelectedText = "";
+            this.txtPesquisarEndereco.ShadowDecoration.Parent = this.txtPesquisarEndereco;
+            this.txtPesquisarEndereco.Size = new System.Drawing.Size(507, 57);
+            this.txtPesquisarEndereco.TabIndex = 39;
+            this.txtPesquisarEndereco.TextChanged += new System.EventHandler(this.txtMostrarEndereco_TextChanged);
+            // 
+            // cmbGrauAcademico
+            // 
+            this.cmbGrauAcademico.BackColor = System.Drawing.Color.Transparent;
+            this.cmbGrauAcademico.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbGrauAcademico.BorderRadius = 5;
+            this.cmbGrauAcademico.BorderThickness = 2;
+            this.cmbGrauAcademico.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbGrauAcademico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrauAcademico.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbGrauAcademico.FocusedState.Parent = this.cmbGrauAcademico;
+            this.cmbGrauAcademico.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbGrauAcademico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbGrauAcademico.FormattingEnabled = true;
+            this.cmbGrauAcademico.HoverState.Parent = this.cmbGrauAcademico;
+            this.cmbGrauAcademico.ItemHeight = 30;
+            this.cmbGrauAcademico.Items.AddRange(new object[] {
+            "Chef do Departamento",
+            "Médico Veterinário",
+            "Administrativo",
+            "Chef Administrativo",
+            "Chef de Área Técnica",
+            "Auxiliar de Limpeza"});
+            this.cmbGrauAcademico.ItemsAppearance.Parent = this.cmbGrauAcademico;
+            this.cmbGrauAcademico.Location = new System.Drawing.Point(9, 197);
+            this.cmbGrauAcademico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbGrauAcademico.Name = "cmbGrauAcademico";
+            this.cmbGrauAcademico.ShadowDecoration.Parent = this.cmbGrauAcademico;
+            this.cmbGrauAcademico.Size = new System.Drawing.Size(235, 36);
+            this.cmbGrauAcademico.TabIndex = 38;
+            // 
+            // cmbEstadoCivil
+            // 
+            this.cmbEstadoCivil.BackColor = System.Drawing.Color.Transparent;
+            this.cmbEstadoCivil.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbEstadoCivil.BorderRadius = 5;
+            this.cmbEstadoCivil.BorderThickness = 2;
+            this.cmbEstadoCivil.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoCivil.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbEstadoCivil.FocusedState.Parent = this.cmbEstadoCivil;
+            this.cmbEstadoCivil.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEstadoCivil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbEstadoCivil.FormattingEnabled = true;
+            this.cmbEstadoCivil.HoverState.Parent = this.cmbEstadoCivil;
+            this.cmbEstadoCivil.ItemHeight = 30;
+            this.cmbEstadoCivil.Items.AddRange(new object[] {
+            "Casado",
+            "Solteiro",
+            "Viúva",
+            "Viúvo"});
+            this.cmbEstadoCivil.ItemsAppearance.Parent = this.cmbEstadoCivil;
+            this.cmbEstadoCivil.Location = new System.Drawing.Point(257, 123);
+            this.cmbEstadoCivil.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
+            this.cmbEstadoCivil.ShadowDecoration.Parent = this.cmbEstadoCivil;
+            this.cmbEstadoCivil.Size = new System.Drawing.Size(235, 36);
+            this.cmbEstadoCivil.TabIndex = 38;
+            // 
+            // cmbCargo
+            // 
+            this.cmbCargo.BackColor = System.Drawing.Color.Transparent;
+            this.cmbCargo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbCargo.BorderRadius = 5;
+            this.cmbCargo.BorderThickness = 2;
+            this.cmbCargo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCargo.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbCargo.FocusedState.Parent = this.cmbCargo;
+            this.cmbCargo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbCargo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbCargo.FormattingEnabled = true;
+            this.cmbCargo.HoverState.Parent = this.cmbCargo;
+            this.cmbCargo.ItemHeight = 30;
+            this.cmbCargo.Items.AddRange(new object[] {
+            "Chef do Departamento",
+            "Médico Veterinário",
+            "Administrativo",
+            "Chef Administrativo",
+            "Chef de Área Técnica",
+            "Auxiliar de Limpeza"});
+            this.cmbCargo.ItemsAppearance.Parent = this.cmbCargo;
+            this.cmbCargo.Location = new System.Drawing.Point(14, 123);
+            this.cmbCargo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbCargo.Name = "cmbCargo";
+            this.cmbCargo.ShadowDecoration.Parent = this.cmbCargo;
+            this.cmbCargo.Size = new System.Drawing.Size(235, 36);
+            this.cmbCargo.TabIndex = 38;
             // 
             // cmbTipoDocumento
             // 
@@ -464,6 +558,27 @@
             this.btnAdcEndereco.Size = new System.Drawing.Size(84, 55);
             this.btnAdcEndereco.TabIndex = 27;
             this.btnAdcEndereco.Text = "adic.";
+            this.btnAdcEndereco.Click += new System.EventHandler(this.btnAdcEndereco_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(446, 185);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(136, 20);
+            this.label21.TabIndex = 31;
+            this.label21.Text = "Data Contratação";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(262, 185);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 20);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Salário";
             // 
             // label7
             // 
@@ -484,6 +599,32 @@
             this.label6.Size = new System.Drawing.Size(108, 20);
             this.label6.TabIndex = 30;
             this.label6.Text = "Ecastado Civil";
+            // 
+            // txtSalario
+            // 
+            this.txtSalario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSalario.BorderRadius = 5;
+            this.txtSalario.BorderThickness = 2;
+            this.txtSalario.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSalario.DefaultText = "";
+            this.txtSalario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSalario.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSalario.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSalario.DisabledState.Parent = this.txtSalario;
+            this.txtSalario.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSalario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSalario.FocusedState.Parent = this.txtSalario;
+            this.txtSalario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSalario.HoverState.Parent = this.txtSalario;
+            this.txtSalario.Location = new System.Drawing.Point(260, 207);
+            this.txtSalario.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.txtSalario.Name = "txtSalario";
+            this.txtSalario.PasswordChar = '\0';
+            this.txtSalario.PlaceholderText = "";
+            this.txtSalario.SelectedText = "";
+            this.txtSalario.ShadowDecoration.Parent = this.txtSalario;
+            this.txtSalario.Size = new System.Drawing.Size(170, 57);
+            this.txtSalario.TabIndex = 28;
             // 
             // label5
             // 
@@ -566,6 +707,25 @@
             this.txtNumIdentificacao.Size = new System.Drawing.Size(250, 57);
             this.txtNumIdentificacao.TabIndex = 18;
             // 
+            // dataContratacao
+            // 
+            this.dataContratacao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.dataContratacao.BorderRadius = 5;
+            this.dataContratacao.BorderThickness = 2;
+            this.dataContratacao.CheckedState.Parent = this.dataContratacao;
+            this.dataContratacao.FillColor = System.Drawing.Color.White;
+            this.dataContratacao.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dataContratacao.HoverState.Parent = this.dataContratacao;
+            this.dataContratacao.Location = new System.Drawing.Point(440, 210);
+            this.dataContratacao.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataContratacao.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dataContratacao.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dataContratacao.Name = "dataContratacao";
+            this.dataContratacao.ShadowDecoration.Parent = this.dataContratacao;
+            this.dataContratacao.Size = new System.Drawing.Size(150, 55);
+            this.dataContratacao.TabIndex = 24;
+            this.dataContratacao.Value = new System.DateTime(2023, 11, 19, 16, 56, 15, 15);
+            // 
             // dataEmissao
             // 
             this.dataEmissao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -604,6 +764,16 @@
             this.label19.Size = new System.Drawing.Size(139, 20);
             this.label19.TabIndex = 23;
             this.label19.Text = "nº de identificação";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(34, 99);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 20);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Cargo";
             // 
             // label14
             // 
@@ -704,7 +874,7 @@
             // guna2ShadowPanel3
             // 
             this.guna2ShadowPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel3.Controls.Add(this.cbmGenero);
+            this.guna2ShadowPanel3.Controls.Add(this.cbmSexo);
             this.guna2ShadowPanel3.Controls.Add(this.label10);
             this.guna2ShadowPanel3.Controls.Add(this.label4);
             this.guna2ShadowPanel3.Controls.Add(this.label11);
@@ -728,31 +898,31 @@
             this.guna2ShadowPanel3.Size = new System.Drawing.Size(1012, 181);
             this.guna2ShadowPanel3.TabIndex = 13;
             // 
-            // cbmGenero
+            // cbmSexo
             // 
-            this.cbmGenero.BackColor = System.Drawing.Color.Transparent;
-            this.cbmGenero.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbmGenero.BorderRadius = 5;
-            this.cbmGenero.BorderThickness = 2;
-            this.cbmGenero.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbmGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbmGenero.FocusedColor = System.Drawing.Color.Empty;
-            this.cbmGenero.FocusedState.Parent = this.cbmGenero;
-            this.cbmGenero.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbmGenero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbmGenero.FormattingEnabled = true;
-            this.cbmGenero.HoverState.Parent = this.cbmGenero;
-            this.cbmGenero.ItemHeight = 30;
-            this.cbmGenero.Items.AddRange(new object[] {
+            this.cbmSexo.BackColor = System.Drawing.Color.Transparent;
+            this.cbmSexo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbmSexo.BorderRadius = 5;
+            this.cbmSexo.BorderThickness = 2;
+            this.cbmSexo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbmSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbmSexo.FocusedColor = System.Drawing.Color.Empty;
+            this.cbmSexo.FocusedState.Parent = this.cbmSexo;
+            this.cbmSexo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbmSexo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbmSexo.FormattingEnabled = true;
+            this.cbmSexo.HoverState.Parent = this.cbmSexo;
+            this.cbmSexo.ItemHeight = 30;
+            this.cbmSexo.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.cbmGenero.ItemsAppearance.Parent = this.cbmGenero;
-            this.cbmGenero.Location = new System.Drawing.Point(834, 109);
-            this.cbmGenero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbmGenero.Name = "cbmGenero";
-            this.cbmGenero.ShadowDecoration.Parent = this.cbmGenero;
-            this.cbmGenero.Size = new System.Drawing.Size(160, 36);
-            this.cbmGenero.TabIndex = 37;
+            this.cbmSexo.ItemsAppearance.Parent = this.cbmSexo;
+            this.cbmSexo.Location = new System.Drawing.Point(834, 109);
+            this.cbmSexo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbmSexo.Name = "cbmSexo";
+            this.cbmSexo.ShadowDecoration.Parent = this.cbmSexo;
+            this.cbmSexo.Size = new System.Drawing.Size(160, 36);
+            this.cbmSexo.TabIndex = 37;
             // 
             // label10
             // 
@@ -1100,7 +1270,7 @@
             this.dgvDadosFuncionario.RowHeadersVisible = false;
             this.dgvDadosFuncionario.RowHeadersWidth = 62;
             this.dgvDadosFuncionario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDadosFuncionario.Size = new System.Drawing.Size(1612, 609);
+            this.dgvDadosFuncionario.Size = new System.Drawing.Size(1840, 609);
             this.dgvDadosFuncionario.TabIndex = 10;
             this.dgvDadosFuncionario.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvDadosFuncionario.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -1124,6 +1294,7 @@
             this.dgvDadosFuncionario.ThemeStyle.RowsStyle.Height = 22;
             this.dgvDadosFuncionario.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDadosFuncionario.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvDadosFuncionario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDadosFuncionario_CellContentClick);
             // 
             // ColDeletar
             // 
@@ -1162,7 +1333,7 @@
             this.txtPesquisarFuncionario.FocusedState.Parent = this.txtPesquisarFuncionario;
             this.txtPesquisarFuncionario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPesquisarFuncionario.HoverState.Parent = this.txtPesquisarFuncionario;
-            this.txtPesquisarFuncionario.Location = new System.Drawing.Point(1312, 88);
+            this.txtPesquisarFuncionario.Location = new System.Drawing.Point(1540, 88);
             this.txtPesquisarFuncionario.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPesquisarFuncionario.Name = "txtPesquisarFuncionario";
             this.txtPesquisarFuncionario.PasswordChar = '\0';
@@ -1171,181 +1342,30 @@
             this.txtPesquisarFuncionario.ShadowDecoration.Parent = this.txtPesquisarFuncionario;
             this.txtPesquisarFuncionario.Size = new System.Drawing.Size(318, 55);
             this.txtPesquisarFuncionario.TabIndex = 12;
+            this.txtPesquisarFuncionario.TextChanged += new System.EventHandler(this.txtPesquisarFuncionario_TextChanged);
             // 
-            // label12
+            // label22
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(34, 99);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 20);
-            this.label12.TabIndex = 18;
-            this.label12.Text = "Cargo";
-            // 
-            // cmbCargo
-            // 
-            this.cmbCargo.BackColor = System.Drawing.Color.Transparent;
-            this.cmbCargo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCargo.BorderRadius = 5;
-            this.cmbCargo.BorderThickness = 2;
-            this.cmbCargo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCargo.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbCargo.FocusedState.Parent = this.cmbCargo;
-            this.cmbCargo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbCargo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cmbCargo.FormattingEnabled = true;
-            this.cmbCargo.HoverState.Parent = this.cmbCargo;
-            this.cmbCargo.ItemHeight = 30;
-            this.cmbCargo.Items.AddRange(new object[] {
-            "Chef do Departamento",
-            "Médico Veterinário",
-            "Administrativo",
-            "Chef Administrativo",
-            "Chef de Área Técnica",
-            "Auxiliar de Limpeza"});
-            this.cmbCargo.ItemsAppearance.Parent = this.cmbCargo;
-            this.cmbCargo.Location = new System.Drawing.Point(14, 123);
-            this.cmbCargo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbCargo.Name = "cmbCargo";
-            this.cmbCargo.ShadowDecoration.Parent = this.cmbCargo;
-            this.cmbCargo.Size = new System.Drawing.Size(235, 36);
-            this.cmbCargo.TabIndex = 38;
-            // 
-            // txtSalario
-            // 
-            this.txtSalario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSalario.BorderRadius = 5;
-            this.txtSalario.BorderThickness = 2;
-            this.txtSalario.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSalario.DefaultText = "";
-            this.txtSalario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSalario.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSalario.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSalario.DisabledState.Parent = this.txtSalario;
-            this.txtSalario.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSalario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSalario.FocusedState.Parent = this.txtSalario;
-            this.txtSalario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSalario.HoverState.Parent = this.txtSalario;
-            this.txtSalario.Location = new System.Drawing.Point(260, 207);
-            this.txtSalario.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtSalario.Name = "txtSalario";
-            this.txtSalario.PasswordChar = '\0';
-            this.txtSalario.PlaceholderText = "";
-            this.txtSalario.SelectedText = "";
-            this.txtSalario.ShadowDecoration.Parent = this.txtSalario;
-            this.txtSalario.Size = new System.Drawing.Size(170, 57);
-            this.txtSalario.TabIndex = 28;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(262, 185);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(58, 20);
-            this.label20.TabIndex = 31;
-            this.label20.Text = "Salário";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(446, 185);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(136, 20);
-            this.label21.TabIndex = 31;
-            this.label21.Text = "Data Contratação";
-            // 
-            // dataContratacao
-            // 
-            this.dataContratacao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.dataContratacao.BorderRadius = 5;
-            this.dataContratacao.BorderThickness = 2;
-            this.dataContratacao.CheckedState.Parent = this.dataContratacao;
-            this.dataContratacao.FillColor = System.Drawing.Color.White;
-            this.dataContratacao.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dataContratacao.HoverState.Parent = this.dataContratacao;
-            this.dataContratacao.Location = new System.Drawing.Point(440, 210);
-            this.dataContratacao.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataContratacao.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dataContratacao.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dataContratacao.Name = "dataContratacao";
-            this.dataContratacao.ShadowDecoration.Parent = this.dataContratacao;
-            this.dataContratacao.Size = new System.Drawing.Size(150, 55);
-            this.dataContratacao.TabIndex = 24;
-            this.dataContratacao.Value = new System.DateTime(2023, 11, 19, 16, 56, 15, 15);
-            // 
-            // cmbGrauAcademico
-            // 
-            this.cmbGrauAcademico.BackColor = System.Drawing.Color.Transparent;
-            this.cmbGrauAcademico.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbGrauAcademico.BorderRadius = 5;
-            this.cmbGrauAcademico.BorderThickness = 2;
-            this.cmbGrauAcademico.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbGrauAcademico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGrauAcademico.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbGrauAcademico.FocusedState.Parent = this.cmbGrauAcademico;
-            this.cmbGrauAcademico.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbGrauAcademico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cmbGrauAcademico.FormattingEnabled = true;
-            this.cmbGrauAcademico.HoverState.Parent = this.cmbGrauAcademico;
-            this.cmbGrauAcademico.ItemHeight = 30;
-            this.cmbGrauAcademico.Items.AddRange(new object[] {
-            "Chef do Departamento",
-            "Médico Veterinário",
-            "Administrativo",
-            "Chef Administrativo",
-            "Chef de Área Técnica",
-            "Auxiliar de Limpeza"});
-            this.cmbGrauAcademico.ItemsAppearance.Parent = this.cmbGrauAcademico;
-            this.cmbGrauAcademico.Location = new System.Drawing.Point(9, 197);
-            this.cmbGrauAcademico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbGrauAcademico.Name = "cmbGrauAcademico";
-            this.cmbGrauAcademico.ShadowDecoration.Parent = this.cmbGrauAcademico;
-            this.cmbGrauAcademico.Size = new System.Drawing.Size(235, 36);
-            this.cmbGrauAcademico.TabIndex = 38;
-            // 
-            // cmbEstadoCivil
-            // 
-            this.cmbEstadoCivil.BackColor = System.Drawing.Color.Transparent;
-            this.cmbEstadoCivil.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbEstadoCivil.BorderRadius = 5;
-            this.cmbEstadoCivil.BorderThickness = 2;
-            this.cmbEstadoCivil.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstadoCivil.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbEstadoCivil.FocusedState.Parent = this.cmbEstadoCivil;
-            this.cmbEstadoCivil.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbEstadoCivil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cmbEstadoCivil.FormattingEnabled = true;
-            this.cmbEstadoCivil.HoverState.Parent = this.cmbEstadoCivil;
-            this.cmbEstadoCivil.ItemHeight = 30;
-            this.cmbEstadoCivil.Items.AddRange(new object[] {
-            "Chef do Departamento",
-            "Médico Veterinário",
-            "Administrativo",
-            "Chef Administrativo",
-            "Chef de Área Técnica",
-            "Auxiliar de Limpeza"});
-            this.cmbEstadoCivil.ItemsAppearance.Parent = this.cmbEstadoCivil;
-            this.cmbEstadoCivil.Location = new System.Drawing.Point(257, 123);
-            this.cmbEstadoCivil.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
-            this.cmbEstadoCivil.ShadowDecoration.Parent = this.cmbEstadoCivil;
-            this.cmbEstadoCivil.Size = new System.Drawing.Size(235, 36);
-            this.cmbEstadoCivil.TabIndex = 38;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.DimGray;
+            this.label22.Location = new System.Drawing.Point(535, 78);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(642, 46);
+            this.label22.TabIndex = 55;
+            this.label22.Text = "FUNCIONÁRIOS CADASTRADOS";
             // 
             // frmFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1648, 788);
+            this.ClientSize = new System.Drawing.Size(1946, 788);
             this.Controls.Add(this.pnlCadastrar);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.dgvDadosFuncionario);
             this.Controls.Add(this.txtPesquisarFuncionario);
+            this.Controls.Add(this.label22);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFuncionario";
             this.Text = "frmFuncionario";
@@ -1354,8 +1374,8 @@
             this.pnlCadastrar.PerformLayout();
             this.guna2ShadowPanel5.ResumeLayout(false);
             this.guna2ShadowPanel5.PerformLayout();
-            this.pnlEndereco.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEndereco)).EndInit();
+            this.pnlMostrarEndereco.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraEndereco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctProprietario)).EndInit();
             this.guna2ShadowPanel4.ResumeLayout(false);
             this.guna2ShadowPanel3.ResumeLayout(false);
@@ -1364,6 +1384,7 @@
             this.guna2ShadowPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDadosFuncionario)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1376,9 +1397,9 @@
         private Guna.UI2.WinForms.Guna2Button btnEditar;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel5;
         public Guna.UI2.WinForms.Guna2TextBox txtCodeEndereco;
-        private Guna.UI2.WinForms.Guna2ShadowPanel pnlEndereco;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvEndereco;
-        public Guna.UI2.WinForms.Guna2TextBox txtMostrarEndereco;
+        private Guna.UI2.WinForms.Guna2ShadowPanel pnlMostrarEndereco;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvMostraEndereco;
+        public Guna.UI2.WinForms.Guna2TextBox txtPesquisarEndereco;
         private Guna.UI2.WinForms.Guna2ComboBox cmbTipoDocumento;
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox txtObs;
@@ -1402,7 +1423,7 @@
         private Guna.UI2.WinForms.Guna2Button btnExcluir;
         private System.Windows.Forms.Label label15;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel3;
-        private Guna.UI2.WinForms.Guna2ComboBox cbmGenero;
+        private Guna.UI2.WinForms.Guna2ComboBox cbmSexo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label11;
@@ -1434,5 +1455,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dataContratacao;
         private Guna.UI2.WinForms.Guna2ComboBox cmbGrauAcademico;
         private Guna.UI2.WinForms.Guna2ComboBox cmbEstadoCivil;
+        private System.Windows.Forms.Label label22;
     }
 }

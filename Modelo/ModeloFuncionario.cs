@@ -13,6 +13,7 @@ namespace Modelo
         private string nome;
         private string sobrenome;
         private string apelido;
+        private string sexo;
         private string nomePai;
         private string nomeMae;
         private string cargo;
@@ -36,6 +37,7 @@ namespace Modelo
             this.nome = nome;
             this.sobrenome = sobrenome;
             this.apelido = apelido;
+            this.sexo = sexo;
             this.nomePai = nomePai;
             this.nomeMae = nomeMae;
             this.cargo = cargo;
@@ -53,12 +55,13 @@ namespace Modelo
             this.observacao = observacao;
             this.enderecoID = enderecoID;
         }
-        public ModeloFuncionario(int funcionarioID, string nome, string sobrenome, string apelido, string nomePai, string nomeMae, string cargo, decimal salario, DateTime dataContratacao, DateTime dataNascimento, string tipoDocumento, string numIdentificacao, DateTime dataEmissaoBI, DateTime dataExpiracaoBI, string nacionalidade, byte[] foto, string grauAcademico, string estadoCivil, string observacao, int enderecoID)
+        public ModeloFuncionario(int funcionarioID, string nome, string sobrenome, string apelido,string sexo, string nomePai, string nomeMae, string cargo, decimal salario, DateTime dataContratacao, DateTime dataNascimento, string tipoDocumento, string numIdentificacao, DateTime dataEmissaoBI, DateTime dataExpiracaoBI, string nacionalidade, byte[] foto, string grauAcademico, string estadoCivil, string observacao, int enderecoID)
         {
             this.funcionarioID = funcionarioID;
             this.nome = nome;
             this.sobrenome = sobrenome;
             this.apelido = apelido;
+            this.sexo = sexo;
             this.nomePai = nomePai;
             this.nomeMae = nomeMae;
             this.cargo = cargo;
@@ -86,6 +89,18 @@ namespace Modelo
             set
             {
                 funcionarioID = value;
+            }
+        }
+        public string Sexo
+        {
+            get
+            {
+                return sexo;
+            }
+
+            set
+            {
+                sexo = value;
             }
         }
 

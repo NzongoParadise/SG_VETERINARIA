@@ -163,12 +163,16 @@ CREATE TABLE Animal (
     observacao varchar(max),
     constraint fk_ProprietarioID_AnimalID foreign key(ProprietarioID) references Proprietario(ProprietarioID)
 );
+select *from animal
+alter table Animal add sexo varchar(10) 
+drop  procedure procedure_Atualizar_Animal
 GO
 CREATE PROCEDURE procedure_Atualizar_Animal
     @AnimalID INT,
     @Nome VARCHAR(50),
     @Especie VARCHAR(50),
     @Raca VARCHAR(50),
+	@sexo VARCHAR(10),
     @Cor VARCHAR(30),
     @Peso DECIMAL(10, 2),
     @Estado VARCHAR(20),
@@ -185,6 +189,7 @@ BEGIN
     SET Nome = @Nome,
         Especie = @Especie,
         Raca = @Raca,
+		sexo = @sexo,
         Cor = @Cor,
         Peso = @Peso,
         Estado = @Estado,
@@ -196,11 +201,12 @@ BEGIN
     WHERE AnimalID = @AnimalID;
 END;
 
-go
+go 
 CREATE PROCEDURE Insert_procedure_Animal
     @Nome varchar(50),
     @Especie varchar(50),
     @Raca varchar(50),
+	@sexo VARCHAR(10),
     @Cor varchar(30),
     @Peso decimal(10, 2),
     @Estado varchar(20),
@@ -213,8 +219,8 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Animal (Nome, Especie, Raca, Cor, Peso, Estado, DataNascimento, Porte, ProprietarioID, foto, observacao)
-    VALUES (@Nome, @Especie, @Raca, @Cor, @Peso, @Estado, @DataNascimento, @Porte, @ProprietarioID, @Foto, @Observacao);
+    INSERT INTO Animal (Nome, Especie, Raca, sexo, Cor, Peso, Estado, DataNascimento, Porte, ProprietarioID, foto, observacao)
+    VALUES (@Nome, @Especie, @Raca,@sexo, @Cor, @Peso, @Estado, @DataNascimento, @Porte, @ProprietarioID, @Foto, @Observacao);
     select @@identity;
 END;
 
@@ -884,13 +890,15 @@ BEGIN
     select @@identity;
 END;
 
-
+alter table funcionario add sexo varchar (10)
+select *from Funcionario
 -- Tabela de Funcion�rios
 CREATE TABLE Funcionario (
     FuncionarioID INT PRIMARY KEY NOT NULL identity(1,1),
     Nome VARCHAR(50),
     Sobrenome VARCHAR(50),
     Apelido VARCHAR(50),
+	sexo varchar (10),
     NomePai VARCHAR(100),
     NomeMae varchar(100),
     Cargo VARCHAR(50),
@@ -909,12 +917,16 @@ CREATE TABLE Funcionario (
 	EnderecoID int,
 	constraint fk_EnderecoID_Funcionario foreign key(EnderecoID) references Endereco(EnderecoID)
 );
+use BD_Veterinaria
+select * from funcionario 
+
 GO 
 CREATE PROCEDURE procedure_Atualizar_Funcionario
     @FuncionarioID INT,
     @Nome VARCHAR(50),
     @Sobrenome VARCHAR(50),
     @Apelido VARCHAR(50),
+	@sexo varchar (10),
     @NomePai VARCHAR(100),
     @NomeMae VARCHAR(100),
     @Cargo VARCHAR(50),
@@ -939,6 +951,7 @@ BEGIN
     SET Nome = @Nome,
         Sobrenome = @Sobrenome,
         Apelido = @Apelido,
+		sexo = @sexo,
         NomePai = @NomePai,
         NomeMae = @NomeMae,
         Cargo = @Cargo,
@@ -963,6 +976,7 @@ CREATE PROCEDURE Insert_procedure_Funcionario
     @Nome VARCHAR(50),
     @Sobrenome VARCHAR(50),
     @Apelido VARCHAR(50),
+	@sexo varchar (10),
     @NomePai VARCHAR(100),
     @NomeMae VARCHAR(100),
     @Cargo VARCHAR(50),
@@ -983,8 +997,8 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Funcionario (Nome, Sobrenome, Apelido, NomePai, NomeMae, Cargo, Salario, DataContratacao, DataNascimento, TipoDocumento, NumIdentificacao, DataEmissaoBI, DataExpiracaoBI, Nacionalidade, foto, GrauAcademico, EstadoCivil, Observacao, EnderecoID)
-    VALUES (@Nome, @Sobrenome, @Apelido, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
+    INSERT INTO Funcionario (Nome, Sobrenome, Apelido, sexo,NomePai, NomeMae, Cargo, Salario, DataContratacao, DataNascimento, TipoDocumento, NumIdentificacao, DataEmissaoBI, DataExpiracaoBI, Nacionalidade, foto, GrauAcademico, EstadoCivil, Observacao, EnderecoID)
+    VALUES (@Nome, @Sobrenome, @Apelido, @sexo, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
     
 
 END
@@ -1336,5 +1350,5 @@ select *from Funcionario
 insert into Usuario values('2','mauro','mauro','admin')
 SELECT *from Usuario
 alter table Usuario add NomeFuncionario varchar(50)
-USE 
-select *from proprietario
+USE BD_Veterinaria
+select *from Funcionario

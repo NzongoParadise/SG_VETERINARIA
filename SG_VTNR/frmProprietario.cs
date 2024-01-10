@@ -94,7 +94,7 @@ namespace SG_VTNR
                 //btnEditar.Enabled = perAlterar;
                 btnEditar.Enabled = true;
                 btnCancelar.Enabled = true;
-                btnNovo.Enabled = false;
+                btnNovo.Enabled = true;
 
                 txtCodigo.Enabled = false;
                 txtNome.Enabled = true;
@@ -128,6 +128,7 @@ namespace SG_VTNR
             if (pnlCadastrar.Visible == false)
             {
                 pnlCadastrar.Visible = true;
+                LimparTela();
                 //guna2Button1.Enabled = false;
                 //dgvDados.Enabled = false;
                 //txtPesquisar.Enabled = false;
@@ -155,7 +156,8 @@ namespace SG_VTNR
             //txtComuna.Clear();
             //txtMunicipio.Clear();
             txtNomePia.Clear();
-            
+            cbmGenero.SelectedValue = "-1";
+            cmbTipoDoc.SelectedValue = "-1";
             txtObs.Clear();
             txtNomeMae.Clear();
             txtCodeEndereco.Clear();
@@ -164,11 +166,11 @@ namespace SG_VTNR
             txtNumIdentificacao.Clear();
             txtSobrenome.Clear();
             txtMostrarEndereco.Clear();
-            
+
         }
         private void frmProprietario_Load(object sender, EventArgs e)
         {
-           
+
             alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
         }
         public void CarregarTituloDgv()
@@ -180,7 +182,7 @@ namespace SG_VTNR
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLProprietario bll = new BLLProprietario(cx);
             dgvDados.DataSource = bll.Localizar(txtPesquisar.Text);
-           
+
         }
         public void exibirEndereco()
         {
@@ -193,7 +195,7 @@ namespace SG_VTNR
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dgvDados.Columns[e.ColumnIndex].Name;
-            if (colName=="colEditar")
+            if (colName == "colEditar")
             {
                 txtCodigo.Text = dgvDados.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString();
                 txtNome.Text = dgvDados.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
@@ -207,22 +209,24 @@ namespace SG_VTNR
                 DataValidade.Text = dgvDados.Rows[e.RowIndex].Cells["DataEmisao"].Value.ToString();
                 //txtMunicipio.Text = dgvDados.Rows[e.RowIndex].Cells["Municipio"].Value.ToString();
                 //txtComuna.Text = dgvDados.Rows[e.RowIndex].Cells["Comuna"].Value.ToString();
-                 txtNomeMae.Text = dgvDados.Rows[e.RowIndex].Cells["NomeMae"].Value.ToString();
+                txtNomeMae.Text = dgvDados.Rows[e.RowIndex].Cells["NomeMae"].Value.ToString();
                 txtNomePia.Text = dgvDados.Rows[e.RowIndex].Cells["NomePai"].Value.ToString();
                 txtNacionalidade.Text = dgvDados.Rows[e.RowIndex].Cells["Nacionalidade"].Value.ToString();
-                txtObs.Text = dgvDados.Rows[e.RowIndex].Cells["descricao"].Value.ToString();               
-                
-                if (pnlCadastrar.Visible==false)
+                txtObs.Text = dgvDados.Rows[e.RowIndex].Cells["descricao"].Value.ToString();
+
+
+                if (pnlCadastrar.Visible == false)
                 {
                     pnlCadastrar.Visible = true;
                     alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
                 }
-            }else if (colName == "ColDeletar")
+            }
+            else if (colName == "ColDeletar")
             {
                 try
                 {
                     DialogResult d = MessageBox.Show("desejas realmente excluir os dados?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                    if (d.ToString()=="Yes")
+                    if (d.ToString() == "Yes")
                     {
                         alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
                         int col = Convert.ToInt32(dgvDados.CurrentRow.Cells["ProprietarioID"].Value);
@@ -247,12 +251,12 @@ namespace SG_VTNR
             {
                 ModeloProprietario modelo = new ModeloProprietario();
                 modelo.Nome = txtNome.Text;
-                modelo.Sobrenome =txtSobrenome.Text;
+                modelo.Sobrenome = txtSobrenome.Text;
                 modelo.Apelido = txtApelido.Text;
-                modelo.NomePai =txtNomePia.Text;
+                modelo.NomePai = txtNomePia.Text;
                 modelo.EnderecoID = Convert.ToInt32(txtCodeEndereco.Text);
                 modelo.NomeMae = txtNomeMae.Text;
-                modelo.NumIdnt= txtNumIdentificacao.Text;
+                modelo.NumIdnt = txtNumIdentificacao.Text;
                 modelo.Tipodocumento = cmbTipoDoc.Text;
                 modelo.Descricao = txtObs.Text;
                 modelo.DataEmissao = Convert.ToDateTime(dataEmissao.Text);
@@ -264,7 +268,7 @@ namespace SG_VTNR
                 BLLProprietario bll = new BLLProprietario(cx);
                 //chamada de inserir os dados
                 bll.Incluir(modelo);
-                MessageBox.Show(modelo.PropietarioId.ToString()+ "\n Proprietário Cadastrado com Sucesso!");
+                MessageBox.Show(modelo.PropietarioId.ToString() + "\n Proprietário Cadastrado com Sucesso!");
                 //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
                 LimparTela();
                 exibir();
@@ -275,37 +279,37 @@ namespace SG_VTNR
                 MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-       
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
             //try
             //{
-                ModeloProprietario modelo = new ModeloProprietario();
+            ModeloProprietario modelo = new ModeloProprietario();
 
-                modelo.PropietarioId = Convert.ToInt32(txtCodigo.Text);
-                modelo.Nome = txtNome.Text;
-                modelo.Sobrenome = txtSobrenome.Text;
-                modelo.Apelido = txtApelido.Text;
-                modelo.NomePai = txtNomePia.Text;
-                modelo.EnderecoID = Convert.ToInt32(txtCodeEndereco.Text);
-                modelo.NomeMae = txtNomeMae.Text;
-                modelo.NumIdnt = txtNumIdentificacao.Text;
-                modelo.Tipodocumento = Convert.ToString(cmbTipoDoc.Text);
-                modelo.Descricao = txtObs.Text;
-                modelo.DataEmissao = Convert.ToDateTime(dataEmissao.Text);
-                modelo.Datanascimento = Convert.ToDateTime(dataNascimento.Text);
-                modelo.Genero = cbmGenero.Text;
-                modelo.Nacionalidade = txtNacionalidade.Text;
+            modelo.PropietarioId = Convert.ToInt32(txtCodigo.Text);
+            modelo.Nome = txtNome.Text;
+            modelo.Sobrenome = txtSobrenome.Text;
+            modelo.Apelido = txtApelido.Text;
+            modelo.NomePai = txtNomePia.Text;
+            modelo.EnderecoID = Convert.ToInt32(txtCodeEndereco.Text);
+            modelo.NomeMae = txtNomeMae.Text;
+            modelo.NumIdnt = txtNumIdentificacao.Text;
+            modelo.Tipodocumento = Convert.ToString(cmbTipoDoc.Text);
+            modelo.Descricao = txtObs.Text;
+            modelo.DataEmissao = Convert.ToDateTime(dataEmissao.Text);
+            modelo.Datanascimento = Convert.ToDateTime(dataNascimento.Text);
+            modelo.Genero = cbmGenero.Text;
+            modelo.Nacionalidade = txtNacionalidade.Text;
 
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                BLLProprietario bll = new BLLProprietario(cx);
-                //Alterar os dados
-                bll.Alterar(modelo);
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLProprietario bll = new BLLProprietario(cx);
+            //Alterar os dados
+            bll.Alterar(modelo);
 
-                MessageBox.Show("alterado com sucesso");
+            MessageBox.Show(" Dados Altedos com sucesso!", modelo.EnderecoID.ToString());
 
-                LimparTela();
-                exibir();
+            LimparTela();
+            exibir();
 
             //}
             //catch (Exception erro)
@@ -316,7 +320,7 @@ namespace SG_VTNR
 
         private void btnNovo_Click_1(object sender, EventArgs e)
         {
-           
+
             alteraBotoes(2, perInserir, perAlterar, perExcluir, perImprimir);
             LimparTela();
         }
@@ -329,7 +333,7 @@ namespace SG_VTNR
         //    {
         //        string caminhodaImagem = openfile.FileName;
         //        pctProprietario.Image = new Bitmap(caminhodaImagem);
-       
+
         //        pctProprietario.SizeMode = PictureBoxSizeMode.Zoom;
         //    }
 
@@ -348,7 +352,8 @@ namespace SG_VTNR
 
         private void btnAdcEndereco_Click(object sender, EventArgs e)
         {
-            frmEndereco frm = new frmEndereco();
+            frmAdicionarEndereco frm = new frmAdicionarEndereco();
+
             frm.ShowDialog();
         }
 
@@ -361,9 +366,10 @@ namespace SG_VTNR
         {
             if (pnlEndereco.Visible == false)
             {
-                pnlEndereco.Visible=true;
+                pnlEndereco.Visible = true;
             }
         }
+
 
         private void txtMostrarEndereco_TextChanged(object sender, EventArgs e)
         {

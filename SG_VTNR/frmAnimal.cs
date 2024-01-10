@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,7 @@ namespace SG_VTNR
                 cbmRaca.Enabled = false;
                 txtPeso.Enabled = false;
                 cbmGenero.Enabled = false;
-                pnlFuncionario.Visible = false;
+                pnlProprietario.Visible = false;
           
                 cbmEspecie.Enabled = false;
                 cbmPorte.Enabled = false;
@@ -121,7 +122,7 @@ namespace SG_VTNR
                 txtPeso.Enabled = true;
                 cbmGenero.Enabled = true;
 
-                pnlFuncionario.Visible = true;
+                pnlProprietario.Visible = true;
 
 
             }
@@ -197,6 +198,7 @@ namespace SG_VTNR
         }
         private void LimparTela()
         { 
+            txtCodigo.Text = "";
             txtNome.Text = "";
             txtNomeProp.Text ="";
             txtPesquisarProp.Text = "";
@@ -336,7 +338,44 @@ namespace SG_VTNR
                 dataNascimento.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["DataNascimento"].Value.ToString();
                 cbmPorte.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Porte"].Value.ToString();
                 txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString();
-                pctAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
+                //pctAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
+                if (dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value != null)
+                {
+                    string imagemString = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
+
+                    byte[] imagemBytes;
+                    try
+                    {
+                        imagemBytes = Convert.FromBase64String(imagemString);
+                    }
+                    catch (FormatException)
+                    {
+                        // Caso a conversão de base64 para bytes falhe, pode tratar aqui, por exemplo, definindo uma imagem padrão ou mostrando uma mensagem de erro.
+                        pctAnimal.Image = null; // Define uma imagem padrão ou limpa o controle PictureBox
+                        //MessageBox.Show("A imagem fornecida é inválida.");
+                        return;
+                    }
+
+                    using (MemoryStream ms = new MemoryStream(imagemBytes))
+                    {
+                        try
+                        {
+                            Image imagem = Image.FromStream(ms);
+                            pctAnimal.Image = imagem;
+                        }
+                        catch (ArgumentException)
+                        {
+                            // Se ocorrer um erro ao tentar criar a imagem a partir do MemoryStream, pode tratar aqui (por exemplo, definir uma imagem padrão ou mostrar uma mensagem de erro).
+                            pctAnimal.Image = null; // Define uma imagem padrão ou limpa o controle PictureBox
+                            //MessageBox.Show("A imagem fornecida é inválida.");
+                        }
+                    }
+                }
+                else
+                {
+                    pctAnimal.Image = null;
+                }
+
                 txtObs.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["observacao"].Value.ToString();
                 cbmGenero.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["sexo"].Value.ToString();
 
@@ -415,6 +454,11 @@ namespace SG_VTNR
         //}
         private void txtPesquisarProp_TextChanged(object sender, EventArgs e)
         {
+            if (pnlProprietario.Visible == false)
+            {
+                pnlProprietario.Visible = true;
+            }
+      
             PesquisarProprietario();
         }
 

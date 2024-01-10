@@ -42,6 +42,10 @@ namespace BLL
             {
                 throw new Exception("O nuemero de telefone 1 deve ser incluido");
             }
+            if (modelo.Comuna1.Trim().Length == 0)
+            {
+                throw new Exception("O nome da comuna deve ser incluido");
+            }
 
             //Passa os dados para fazer a inclusao dos dados no BD
             DALEndereco DALobj = new DALEndereco(conexao);
@@ -49,6 +53,10 @@ namespace BLL
         }
         public void Alterar(ModeloEndereco modelo)
         {
+            if (modelo.EndrecoID1<= 0)
+            {
+                throw new Exception("o codigo do endereco deve ser incluido");
+            }
             if (modelo.Bairro1.Trim().Length == 0)
             {
                 throw new Exception("O nome do Bairro deve ser incluido");
@@ -73,11 +81,19 @@ namespace BLL
             {
                 throw new Exception("O nuemero de telefone 1 deve ser incluido");
             }
+            if (modelo.Comuna1.Trim().Length == 0)
+            {
+                throw new Exception("O nome da comuna deve ser incluido");
+            }
             //Passa os dados para fazer a inclusao dos dados no BD
             DALEndereco DALobj = new DALEndereco(conexao);
             DALobj.AlterarEndereco(modelo);
         }
-
+        public void EliminarEndereco(int cod)
+        {
+            DALEndereco DALobj = new DALEndereco(conexao);
+            DALobj.EliminarEndereco(cod);
+        }
         public DataTable Localizar(string nome)
         {
             DALEndereco DALObj = new DALEndereco(conexao);

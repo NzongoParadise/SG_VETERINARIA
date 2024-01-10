@@ -1,6 +1,6 @@
 ﻿namespace SG_VTNR
 {
-    partial class frmEndereco
+    partial class frmAdicionarEndereco
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEndereco));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdicionarEndereco));
             this.dgvDados = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnDeletar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnImprimir = new System.Windows.Forms.DataGridViewImageColumn();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.txtPesquisar = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel6 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.pnlCadastarEndreco = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
@@ -67,37 +70,41 @@
             this.txtEnderecoID = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.guna2ShadowPanel6.SuspendLayout();
-            this.pnlCadastrar.SuspendLayout();
+            this.pnlCadastarEndreco.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDados
             // 
             this.dgvDados.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDados.BackgroundColor = System.Drawing.Color.White;
             this.dgvDados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvDados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDados.ColumnHeadersHeight = 20;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDados.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btnDeletar,
+            this.btnEdit,
+            this.btnImprimir});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDados.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDados.EnableHeadersVisualStyles = false;
             this.dgvDados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDados.Location = new System.Drawing.Point(14, 212);
@@ -131,7 +138,24 @@
             this.dgvDados.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDados.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellContentClick);
-            this.dgvDados.DoubleClick += new System.EventHandler(this.dgvDados_DoubleClick);
+            // 
+            // btnDeletar
+            // 
+            this.btnDeletar.HeaderText = "DELETAR";
+            this.btnDeletar.MinimumWidth = 8;
+            this.btnDeletar.Name = "btnDeletar";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.HeaderText = "EDITAR";
+            this.btnEdit.MinimumWidth = 8;
+            this.btnEdit.Name = "btnEdit";
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.HeaderText = "IMPRIMIR";
+            this.btnImprimir.MinimumWidth = 8;
+            this.btnImprimir.Name = "btnImprimir";
             // 
             // guna2Button1
             // 
@@ -210,43 +234,43 @@
             this.guna2Button2.Text = "X";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
-            // pnlCadastrar
+            // pnlCadastarEndreco
             // 
-            this.pnlCadastrar.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCadastrar.Controls.Add(this.guna2ShadowPanel1);
-            this.pnlCadastrar.Controls.Add(this.label8);
-            this.pnlCadastrar.Controls.Add(this.label7);
-            this.pnlCadastrar.Controls.Add(this.label10);
-            this.pnlCadastrar.Controls.Add(this.label5);
-            this.pnlCadastrar.Controls.Add(this.label4);
-            this.pnlCadastrar.Controls.Add(this.label3);
-            this.pnlCadastrar.Controls.Add(this.label2);
-            this.pnlCadastrar.Controls.Add(this.label1);
-            this.pnlCadastrar.Controls.Add(this.label9);
-            this.pnlCadastrar.Controls.Add(this.label6);
-            this.pnlCadastrar.Controls.Add(this.txtTelefone1);
-            this.pnlCadastrar.Controls.Add(this.txtMunicipio);
-            this.pnlCadastrar.Controls.Add(this.txtComuna);
-            this.pnlCadastrar.Controls.Add(this.txtProvincia);
-            this.pnlCadastrar.Controls.Add(this.txtTelfone2);
-            this.pnlCadastrar.Controls.Add(this.txtEmail);
-            this.pnlCadastrar.Controls.Add(this.txtRua);
-            this.pnlCadastrar.Controls.Add(this.txtCidade);
-            this.pnlCadastrar.Controls.Add(this.txtBairro);
-            this.pnlCadastrar.Controls.Add(this.btnGuardar);
-            this.pnlCadastrar.Controls.Add(this.btnNovo);
-            this.pnlCadastrar.Controls.Add(this.btnCancelar);
-            this.pnlCadastrar.Controls.Add(this.btnEditar);
-            this.pnlCadastrar.Controls.Add(this.txtEnderecoID);
-            this.pnlCadastrar.FillColor = System.Drawing.Color.White;
-            this.pnlCadastrar.Location = new System.Drawing.Point(52, 77);
-            this.pnlCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlCadastrar.Name = "pnlCadastrar";
-            this.pnlCadastrar.Radius = 2;
-            this.pnlCadastrar.ShadowColor = System.Drawing.Color.Black;
-            this.pnlCadastrar.ShadowDepth = 50;
-            this.pnlCadastrar.Size = new System.Drawing.Size(880, 462);
-            this.pnlCadastrar.TabIndex = 57;
+            this.pnlCadastarEndreco.BackColor = System.Drawing.Color.Transparent;
+            this.pnlCadastarEndreco.Controls.Add(this.guna2ShadowPanel1);
+            this.pnlCadastarEndreco.Controls.Add(this.label8);
+            this.pnlCadastarEndreco.Controls.Add(this.label7);
+            this.pnlCadastarEndreco.Controls.Add(this.label10);
+            this.pnlCadastarEndreco.Controls.Add(this.label5);
+            this.pnlCadastarEndreco.Controls.Add(this.label4);
+            this.pnlCadastarEndreco.Controls.Add(this.label3);
+            this.pnlCadastarEndreco.Controls.Add(this.label2);
+            this.pnlCadastarEndreco.Controls.Add(this.label1);
+            this.pnlCadastarEndreco.Controls.Add(this.label9);
+            this.pnlCadastarEndreco.Controls.Add(this.label6);
+            this.pnlCadastarEndreco.Controls.Add(this.txtTelefone1);
+            this.pnlCadastarEndreco.Controls.Add(this.txtMunicipio);
+            this.pnlCadastarEndreco.Controls.Add(this.txtComuna);
+            this.pnlCadastarEndreco.Controls.Add(this.txtProvincia);
+            this.pnlCadastarEndreco.Controls.Add(this.txtTelfone2);
+            this.pnlCadastarEndreco.Controls.Add(this.txtEmail);
+            this.pnlCadastarEndreco.Controls.Add(this.txtRua);
+            this.pnlCadastarEndreco.Controls.Add(this.txtCidade);
+            this.pnlCadastarEndreco.Controls.Add(this.txtBairro);
+            this.pnlCadastarEndreco.Controls.Add(this.btnGuardar);
+            this.pnlCadastarEndreco.Controls.Add(this.btnNovo);
+            this.pnlCadastarEndreco.Controls.Add(this.btnCancelar);
+            this.pnlCadastarEndreco.Controls.Add(this.btnEditar);
+            this.pnlCadastarEndreco.Controls.Add(this.txtEnderecoID);
+            this.pnlCadastarEndreco.FillColor = System.Drawing.Color.White;
+            this.pnlCadastarEndreco.Location = new System.Drawing.Point(77, 76);
+            this.pnlCadastarEndreco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlCadastarEndreco.Name = "pnlCadastarEndreco";
+            this.pnlCadastarEndreco.Radius = 2;
+            this.pnlCadastarEndreco.ShadowColor = System.Drawing.Color.Black;
+            this.pnlCadastarEndreco.ShadowDepth = 50;
+            this.pnlCadastarEndreco.Size = new System.Drawing.Size(880, 462);
+            this.pnlCadastarEndreco.TabIndex = 57;
             // 
             // guna2ShadowPanel1
             // 
@@ -702,6 +726,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(172, 49);
             this.btnCancelar.TabIndex = 59;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -750,25 +775,25 @@
             this.txtEnderecoID.Size = new System.Drawing.Size(98, 55);
             this.txtEnderecoID.TabIndex = 55;
             // 
-            // frmEndereco
+            // frmAdicionarEndereco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 562);
-            this.Controls.Add(this.pnlCadastrar);
+            this.Controls.Add(this.pnlCadastarEndreco);
             this.Controls.Add(this.guna2ShadowPanel6);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.dgvDados);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmEndereco";
+            this.Name = "frmAdicionarEndereco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEndereco";
             this.Load += new System.EventHandler(this.frmEndereco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.guna2ShadowPanel6.ResumeLayout(false);
-            this.pnlCadastrar.ResumeLayout(false);
-            this.pnlCadastrar.PerformLayout();
+            this.pnlCadastarEndreco.ResumeLayout(false);
+            this.pnlCadastarEndreco.PerformLayout();
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -780,7 +805,7 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisar;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel6;
-        private Guna.UI2.WinForms.Guna2ShadowPanel pnlCadastrar;
+        private Guna.UI2.WinForms.Guna2ShadowPanel pnlCadastarEndreco;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
         private Guna.UI2.WinForms.Guna2TextBox txtEnderecoID;
         private Guna.UI2.WinForms.Guna2TextBox txtTelefone1;
@@ -809,5 +834,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txtProvincia;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private System.Windows.Forms.DataGridViewImageColumn btnDeletar;
+        private System.Windows.Forms.DataGridViewImageColumn btnEdit;
+        private System.Windows.Forms.DataGridViewImageColumn btnImprimir;
     }
 }

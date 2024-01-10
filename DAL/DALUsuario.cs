@@ -69,6 +69,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@UsuarioID", codigo);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
+            conexao.Desconectar();
         }
         public ModeloUsuario CarregarModeloUsuario(int codigo)
         {

@@ -2,7 +2,7 @@
 CREATE DATABASE BD_Veterinaria;
 
 USE BD_Veterinaria;
-
+select *from endereco
 drop DATABASE BD_Veterinaria;
 
 create table Endereco(
@@ -17,6 +17,7 @@ create table Endereco(
     Municipio VARCHAR(15),
     Provincia VARCHAR(15)
 );
+
 go 
 CREATE PROCEDURE procedure_Atualizar_Endereco
     @EnderecoID INT,
@@ -47,7 +48,6 @@ BEGIN
 END;
 
 go
--- Criação do procedimento armazenado para inserção de dados na tabela Endereco
 CREATE PROCEDURE Insert_procedure_Endereco
     @Bairro varchar(15),
     @Cidade varchar(10),
@@ -64,7 +64,7 @@ BEGIN
 
     INSERT INTO Endereco (Bairro, Cidade, Rua, Email, Telefone1, Telefone2, Comuna, Municipio, Provincia)
     VALUES (@Bairro, @Cidade, @Rua, @Email, @Telefone1, @Telefone2, @Comuna, @Municipio, @Provincia);
-    select @@identity;
+    SELECT SCOPE_IDENTITY();
 END;
 
 -- Tabela de PROPRIETARIO
@@ -918,7 +918,9 @@ CREATE TABLE Funcionario (
 	constraint fk_EnderecoID_Funcionario foreign key(EnderecoID) references Endereco(EnderecoID)
 );
 use BD_Veterinaria
-select * from funcionario 
+select * from animal
+
+
 
 GO 
 CREATE PROCEDURE procedure_Atualizar_Funcionario
@@ -1042,22 +1044,30 @@ BEGIN
     VALUES (@NomeUsuario, @Senha, @Perfil);
 END;
 
-
+use BD_Veterinaria
 -- Tabela de Fornecedores de Medicamentos e Vacinas
 CREATE TABLE Fornecedor (
-    FornecedorID INT PRIMARY KEY,
+    FornecedorID INT PRIMARY KEY identity(1,1),
     NomeFornecedor VARCHAR(100),
     TipoServico VARCHAR(50),
 	EnderecoID int,
+	Observacao varchar (MAX),
 	constraint fk_Fornecedor_Endereco foreign key(EnderecoID) references Endereco(EnderecoID)
 );
-go
+
+	select *from Endereco
+sp_help Fornecedor
+USE BD_Veterinaria
+alter table fornecedor add Observacao varchar(MAX)
+select *from Fornecedor
+-- Inserindo registros fictícios para uma clínica veterinária na tabela Fornecedor
 
 CREATE PROCEDURE procedure_Atualizar_Fornecedor
     @FornecedorID INT,
     @NomeFornecedor VARCHAR(100),
     @TipoServico VARCHAR(50),
-    @EnderecoID INT
+    @EnderecoID INT,
+	@Observacao varchar(MAX)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -1065,23 +1075,26 @@ BEGIN
     UPDATE Fornecedor
     SET NomeFornecedor = @NomeFornecedor,
         TipoServico = @TipoServico,
-        EnderecoID = @EnderecoID
+        EnderecoID = @EnderecoID,
+		Observacao = @Observacao
     WHERE FornecedorID = @FornecedorID;
 END;
 
 go 
-CREATE PROCEDURE procedure_Inserir_Fornecedor
-    @FornecedorID INT,
+CREATE PROCEDURE Insert_procedure_Fornecedor
+  
     @NomeFornecedor VARCHAR(100),
     @TipoServico VARCHAR(50),
-    @EnderecoID INT
+    @EnderecoID INT,
+	@Observacao varchar(MAX)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Fornecedor (FornecedorID, NomeFornecedor, TipoServico, EnderecoID)
-    VALUES (@FornecedorID, @NomeFornecedor, @TipoServico, @EnderecoID);
+    INSERT INTO Fornecedor (NomeFornecedor, TipoServico, EnderecoID,Observacao)
+    VALUES (@NomeFornecedor, @TipoServico, @EnderecoID,@Observacao);
 END;
+
 
 
 -- Tabela de Compras de Medicamentos e Vacinas

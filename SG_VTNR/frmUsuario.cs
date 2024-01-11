@@ -123,12 +123,13 @@ namespace SG_VTNR
                         BLLUsuario bll = new BLLUsuario(cx);
                         bll.Excluir(Convert.ToInt32(col));
                         exibir();
+                        
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    MessageBox.Show("Falha na Remoção do Dados"+ ex.Message);
                 }
             }
 

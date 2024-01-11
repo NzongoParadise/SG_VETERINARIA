@@ -155,5 +155,19 @@ namespace SG_VTNR
                 container(new frmFuncionario());
             }
         }
+
+        private void guna2Button12_Click(object sender, EventArgs e)
+        {
+            if (pnlMenu.Visible==true)
+            {
+                pnlMenu.Visible = false;
+                container(new frmFornecedor());
+            }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

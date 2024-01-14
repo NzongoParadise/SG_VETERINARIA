@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,6 +31,23 @@ namespace SG_VTNR
         private void guna2ShadowPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void guna2ShadowPanel3_Paint_1(object sender, PaintEventArgs e)
+        {
+
+
+        }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALLAnimal dall = new DALLAnimal(cx);
+            int tot= dall.ObterTotalAnimaisCadastrados();
+            lbltotalAnimal.Text=tot.ToString();
+            DALProprietario dalp=new DALProprietario(cx);
+            int totprop = dalp.ObterTotalProprietariosCadastrados();
+            lblTotalProprietario.Text=totprop.ToString();
         }
     }
 }

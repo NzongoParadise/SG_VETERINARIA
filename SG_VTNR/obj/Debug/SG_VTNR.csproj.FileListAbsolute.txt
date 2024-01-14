@@ -183,7 +183,6 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.dia.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAnimal.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCompra.resources
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAtendimento.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmExame.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFornecedor.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFuncionario.resources
@@ -203,3 +202,4 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.csproj.CoreCompileInputs.cache
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.csproj.CopyComplete
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAdicionarEndereco.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmServicos.resources

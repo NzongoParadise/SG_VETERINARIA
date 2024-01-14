@@ -121,7 +121,7 @@ namespace SG_VTNR
             if (pnlMenu.Visible == true)
             {
                 pnlMenu.Visible = false;
-                container(new frmAtendimento());
+                container(new frmServicos());
             }
         }
 
@@ -168,6 +168,25 @@ namespace SG_VTNR
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void guna2Button14_Click(object sender, EventArgs e)
+        {
+            if (pnlMenu.Visible==true)
+            {
+                pnlMenu.Visible = false;
+                container(new frmVenda());
+
+            }
+        }
+
+        private void guna2Button16_Click(object sender, EventArgs e)
+        {
+            if (pnlMenu.Visible==true)
+            {
+                pnlMenu.Visible = false;
+                container(new frmCompra());
+            }
         }
     }
 }

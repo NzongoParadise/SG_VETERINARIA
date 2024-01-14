@@ -57,6 +57,9 @@
             this.lblHora = new System.Windows.Forms.Label();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlMenu = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2Button16 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnVenda = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button12 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button15 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
@@ -74,7 +77,6 @@
             this.guna2CircleButton4 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2CircleButton5 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2CircleButton6 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2Button12 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctUser)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -243,7 +245,7 @@
             this.sairToolStripMenuItem1});
             this.ficheiroToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(89, 32);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(89, 29);
             this.ficheiroToolStripMenuItem.Text = "&Ficheiro";
             // 
             // restaurarToolStripMenuItem
@@ -284,7 +286,7 @@
             this.verToolStripMenuItem});
             this.proprietárioToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.proprietárioToolStripMenuItem.Name = "proprietárioToolStripMenuItem";
-            this.proprietárioToolStripMenuItem.Size = new System.Drawing.Size(121, 32);
+            this.proprietárioToolStripMenuItem.Size = new System.Drawing.Size(121, 29);
             this.proprietárioToolStripMenuItem.Text = "&Proprietário";
             // 
             // cadastrarToolStripMenuItem
@@ -306,7 +308,7 @@
             this.verToolStripMenuItem1});
             this.animalToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.animalToolStripMenuItem.Name = "animalToolStripMenuItem";
-            this.animalToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
+            this.animalToolStripMenuItem.Size = new System.Drawing.Size(83, 29);
             this.animalToolStripMenuItem.Text = "&Animal";
             // 
             // cadastrarToolStripMenuItem1
@@ -325,14 +327,14 @@
             // 
             this.ajudaToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(74, 32);
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
             this.ajudaToolStripMenuItem.Text = "&Ajuda";
             // 
             // sobreToolStripMenuItem
             // 
             this.sobreToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(75, 32);
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(75, 29);
             this.sobreToolStripMenuItem.Text = "&Sobre";
             // 
             // lblDia
@@ -379,6 +381,8 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMenu.Controls.Add(this.guna2Button16);
+            this.pnlMenu.Controls.Add(this.btnVenda);
             this.pnlMenu.Controls.Add(this.guna2Button12);
             this.pnlMenu.Controls.Add(this.guna2Button5);
             this.pnlMenu.Controls.Add(this.guna2Button15);
@@ -404,6 +408,51 @@
             this.pnlMenu.TabIndex = 7;
             this.pnlMenu.Visible = false;
             // 
+            // guna2Button16
+            // 
+            this.guna2Button16.CheckedState.Parent = this.guna2Button16;
+            this.guna2Button16.CustomImages.Parent = this.guna2Button16;
+            this.guna2Button16.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button16.ForeColor = System.Drawing.Color.White;
+            this.guna2Button16.HoverState.Parent = this.guna2Button16;
+            this.guna2Button16.Location = new System.Drawing.Point(265, 163);
+            this.guna2Button16.Name = "guna2Button16";
+            this.guna2Button16.ShadowDecoration.Parent = this.guna2Button16;
+            this.guna2Button16.Size = new System.Drawing.Size(236, 61);
+            this.guna2Button16.TabIndex = 14;
+            this.guna2Button16.Text = "Compras";
+            this.guna2Button16.Click += new System.EventHandler(this.guna2Button16_Click);
+            // 
+            // btnVenda
+            // 
+            this.btnVenda.CheckedState.Parent = this.btnVenda;
+            this.btnVenda.CustomImages.Parent = this.btnVenda;
+            this.btnVenda.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnVenda.ForeColor = System.Drawing.Color.White;
+            this.btnVenda.HoverState.Parent = this.btnVenda;
+            this.btnVenda.Location = new System.Drawing.Point(265, 95);
+            this.btnVenda.Name = "btnVenda";
+            this.btnVenda.ShadowDecoration.Parent = this.btnVenda;
+            this.btnVenda.Size = new System.Drawing.Size(236, 61);
+            this.btnVenda.TabIndex = 14;
+            this.btnVenda.Text = "Vendas";
+            this.btnVenda.Click += new System.EventHandler(this.guna2Button14_Click);
+            // 
+            // guna2Button12
+            // 
+            this.guna2Button12.CheckedState.Parent = this.guna2Button12;
+            this.guna2Button12.CustomImages.Parent = this.guna2Button12;
+            this.guna2Button12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button12.ForeColor = System.Drawing.Color.White;
+            this.guna2Button12.HoverState.Parent = this.guna2Button12;
+            this.guna2Button12.Location = new System.Drawing.Point(265, 9);
+            this.guna2Button12.Name = "guna2Button12";
+            this.guna2Button12.ShadowDecoration.Parent = this.guna2Button12;
+            this.guna2Button12.Size = new System.Drawing.Size(236, 80);
+            this.guna2Button12.TabIndex = 13;
+            this.guna2Button12.Text = "Fornecedores";
+            this.guna2Button12.Click += new System.EventHandler(this.guna2Button12_Click);
+            // 
             // guna2Button5
             // 
             this.guna2Button5.BorderRadius = 5;
@@ -418,7 +467,7 @@
             this.guna2Button5.ShadowDecoration.Parent = this.guna2Button5;
             this.guna2Button5.Size = new System.Drawing.Size(254, 62);
             this.guna2Button5.TabIndex = 3;
-            this.guna2Button5.Text = "Atendimento";
+            this.guna2Button5.Text = "Serviços";
             this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
             // 
             // guna2Button15
@@ -678,21 +727,6 @@
             this.guna2CircleButton6.Size = new System.Drawing.Size(57, 49);
             this.guna2CircleButton6.TabIndex = 0;
             // 
-            // guna2Button12
-            // 
-            this.guna2Button12.CheckedState.Parent = this.guna2Button12;
-            this.guna2Button12.CustomImages.Parent = this.guna2Button12;
-            this.guna2Button12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button12.ForeColor = System.Drawing.Color.White;
-            this.guna2Button12.HoverState.Parent = this.guna2Button12;
-            this.guna2Button12.Location = new System.Drawing.Point(265, 9);
-            this.guna2Button12.Name = "guna2Button12";
-            this.guna2Button12.ShadowDecoration.Parent = this.guna2Button12;
-            this.guna2Button12.Size = new System.Drawing.Size(236, 80);
-            this.guna2Button12.TabIndex = 13;
-            this.guna2Button12.Text = "Fornecedores";
-            this.guna2Button12.Click += new System.EventHandler(this.guna2Button12_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -772,5 +806,7 @@
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton5;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton6;
         private Guna.UI2.WinForms.Guna2Button guna2Button12;
+        private Guna.UI2.WinForms.Guna2Button guna2Button16;
+        private Guna.UI2.WinForms.Guna2Button btnVenda;
     }
 }

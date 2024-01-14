@@ -94,5 +94,15 @@ namespace SG_VTNR
         {
 
         }
+
+        private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmVenda_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

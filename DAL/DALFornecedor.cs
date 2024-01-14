@@ -87,5 +87,15 @@ namespace DAL
             da.Dispose();
             return dt;
         }
+        public DataTable PesquisarFornecedorComChavenaCompra(string nome)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select FornecedorID,NomeFornecedor from Fornecedor where NomeFornecedor like '%" + nome + "%' or TipoServico like '%" + nome + "%' or FornecedorID like '%" + nome + "%'", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+        }
+
+        
     }
 }

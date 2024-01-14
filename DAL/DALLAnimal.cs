@@ -115,6 +115,30 @@ namespace DAL
             return dt; 
 
         }
+        public int ObterTotalAnimaisCadastrados()
+        {
+            int totalAnimais = 0;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Animal", conexao.ObjectoConexao))
+                {
+                    conexao.ObjectoConexao.Open();
+                    totalAnimais = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao obter o total de animais cadastrados: " + ex.Message);
+            }
+            finally
+            {
+                conexao.ObjectoConexao.Close();
+            }
+
+            return totalAnimais;
+        }
+
         public DataTable PesquisarAnimalcomChave( string nome)
         {
             DataTable dt = new DataTable();

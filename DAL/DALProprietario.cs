@@ -102,6 +102,34 @@ namespace DAL
             da.Dispose();
             return dt;
         }
+        public int ObterTotalProprietariosCadastrados()
+        {
+            int totalProprietarios = 0;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Proprietario", conexao.ObjectoConexao))
+                {
+                    conexao.ObjectoConexao.Open();
+                    totalProprietarios = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+              
+                Console.WriteLine("Erro ao obter o total de proprietários cadastrados: " + ex.Message);
+            }
+            finally
+            {
+                conexao.ObjectoConexao.Close();
+            }
+
+            return totalProprietarios;
+        }
+
+
+
+
         public DataTable LocalizarEndereco(String nome)
         {
             DataTable dt = new DataTable();

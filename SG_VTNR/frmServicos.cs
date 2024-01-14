@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SG_VTNR
 {
-    public partial class frmAtendimento : Form
+    public partial class frmServicos : Form
     {
-        public frmAtendimento()
+        public frmServicos()
         {
             InitializeComponent();
         }

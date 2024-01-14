@@ -32,6 +32,12 @@ namespace BLL
             DALFornecedor DalObj = new DALFornecedor(conexao);
             return DalObj.CarregarFornecedores();
         }
+        
+             public DataTable PesquisarFornecedorComChavenaCompra(string nome)
+        {
+            DALFornecedor DalObj = new DALFornecedor(conexao);
+            return DalObj.PesquisarFornecedorComChavenaCompra(nome);
+        }
         public DataTable PesquisarFornecedorComChave(string nome)
         {
             DALFornecedor DalObj = new DALFornecedor(conexao);

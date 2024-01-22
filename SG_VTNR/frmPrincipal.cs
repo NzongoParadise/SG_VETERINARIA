@@ -176,6 +176,7 @@ namespace SG_VTNR
             {
                 pnlMenu.Visible = false;
                 container(new frmVenda());
+              
 
             }
         }

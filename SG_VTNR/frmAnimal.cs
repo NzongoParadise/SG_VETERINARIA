@@ -217,11 +217,13 @@ namespace SG_VTNR
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-           
+            
 
             try
             {
                 ModeloAnimal modelo = new ModeloAnimal();
+               
+                
 
                 modelo.Nome1 =(txtNome.Text);
 

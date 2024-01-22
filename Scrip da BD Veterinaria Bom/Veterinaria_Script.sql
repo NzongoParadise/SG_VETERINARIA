@@ -181,6 +181,7 @@ BEGIN
 
 END
 
+
 ----------------------tabelas relacionadas com proprietario e animais------------------------------
 -- Tabela de PROPRIETARIO
 CREATE TABLE proprietario (
@@ -459,8 +460,9 @@ CREATE TABLE Agendamento (
 -- Area de criacao de tabelas de compra e vendas da farmacia----------------------------------------------------------------------------
 
 -- Tabela de Produtos
-CREATE TABLE Produto (
-    IDProduto INT PRIMARY KEY,
+CREATE TABLE Produto(
+    IDProduto INT PRIMARY KEY not null identity(1,1),
+	NomeFornecedor varchar(100),
     IDFornecedor INT,
 	TipoProduto VARCHAR(50),
 	formaFarmaceutica VARCHAR(50),
@@ -475,6 +477,29 @@ CREATE TABLE Produto (
 	descricao VARCHAR(250),
     FOREIGN key (IDFornecedor) REFERENCES Fornecedor (IDFornecedor) 
 );
+
+-- Tabela Compra
+CREATE TABLE Compra (
+    IDCompra INT PRIMARY KEY not null identity(1,1),
+    FornecedorID INT,
+    FuncionarioID INT, -- Adicionada a referência ao Funcionario
+    DataCompra DATE,
+    TotalCompra DECIMAL(10, 2),
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedor(IDFornecedor),
+    FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(IDFuncionario)
+);
+-- Tabela ItemCompraProduto
+CREATE TABLE ItemCompraProduto (
+    IDItemCompraProduto INT PRIMARY KEY not null identity(1,1),
+    CompraID INT,
+    ProdutoID INT,
+    Quantidade INT,
+    PrecoUnitario DECIMAL(10, 2),
+    Total DECIMAL(10, 2),
+    FOREIGN KEY (CompraID) REFERENCES Compra(IDCompra),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
+);
+
 -- Tabela ItemVenda
 CREATE TABLE ItemVenda (
     IDItemVenda INT PRIMARY KEY,
@@ -505,27 +530,6 @@ CREATE TABLE Fornecedor (
 	Observacao varchar (MAX),
 	constraint fk_Fornecedor_Endereco foreign key(EnderecoID) references Endereco(EnderecoID)
 );
--- Tabela Compra
-CREATE TABLE Compra (
-    IDCompra INT PRIMARY KEY,
-    FornecedorID INT,
-    FuncionarioID INT, -- Adicionada a referência ao Funcionario
-    DataCompra DATE,
-    TotalCompra DECIMAL(10, 2),
-    FOREIGN KEY (FornecedorID) REFERENCES Fornecedor(IDFornecedor),
-    FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(IDFuncionario)
-);
--- Tabela ItemCompraProduto
-CREATE TABLE ItemCompraProduto (
-    IDItemCompraProduto INT PRIMARY KEY,
-    CompraID INT,
-    ProdutoID INT,
-    Quantidade INT,
-    PrecoUnitario DECIMAL(10, 2),
-    Total DECIMAL(10, 2),
-    FOREIGN KEY (CompraID) REFERENCES Compra(IDCompra),
-    FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
-);
 --criacao da tabela produto
 CREATE TABLE Produto (
     IDProduto INT PRIMARY KEY,
@@ -545,3 +549,157 @@ CREATE TABLE Produto (
 );
 ------------------------------------------------------------------
 --fim de Area de criacao de tabelas de compra e vendas da farmacia----------------------------------------------------------------------------
+
+
+CREATE TABLE produto (
+    IdProduto INT PRIMARY KEY IDENTITY(1,1),
+    NomeProduto NVARCHAR(255),
+    CodFornecedor INT,
+    Qtd INT,
+    ValorCompra DECIMAL(18,2),
+    ValorVenda DECIMAL(18,2),
+    Concentracao NVARCHAR(255),
+    Dosagem NVARCHAR(255),
+    TipoProduto NVARCHAR(255),
+    CategoriaProduto NVARCHAR(255),
+    FormaFarmaceutica NVARCHAR(255),
+    Obs NVARCHAR(255),
+    NomeFornecedor NVARCHAR(255),
+    Total DECIMAL(18,2),
+    Fabricante NVARCHAR(255),
+	DataProducao date,
+	DataExpiracao date,
+	FinalidadeProduto varchar(20)
+);
+
+
+insert into ItemCompraProduto values('47','25','10','100','1000')
+select *from Compra
+select *from  ItemCompraProduto
+select *from produto
+-- Tabela Compra
+delete  produto
+CREATE TABLE Compra (
+    IDCompra INT PRIMARY KEY not null identity(1,1),
+    FornecedorID INT
+    DataCompra DATE,
+    TotalCompra DECIMAL(10, 2),
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedor(FornecedorID)
+);
+
+drop procedure Insert_procedure_Compra
+CREATE PROCEDURE Insert_procedure_Compra
+    @FornecedorID INT,
+    @DataCompra DATE,
+    @TotalCompra DECIMAL(10, 2)
+AS
+BEGIN
+    INSERT INTO Compra (FornecedorID, DataCompra, TotalCompra)
+    VALUES (@FornecedorID, @DataCompra, @TotalCompra);
+
+    -- Adicione mensagens de depuração
+    PRINT 'Rows Affected: ' + CAST(@@ROWCOUNT AS NVARCHAR(10));
+    PRINT 'IDCompra Inserida: ' + CAST(SCOPE_IDENTITY() AS NVARCHAR(10));
+END;
+
+
+insert into ItemCompraProduto values('1','2','10','100','1000')
+
+select *from fornecedor
+SELECT * FROM Compra WHERE IDCompra = 42;
+SELECT * FROM Produto WHERE IDProduto = 25;
+
+insert into ItemCompraProduto values('42','25','10','100','1000')
+-- Tabela ItemCompraProduto
+CREATE TABLE ItemCompraProduto (
+    IDItemCompraProduto INT PRIMARY KEY not null identity(1,1),
+    CompraID INT,
+    ProdutoID INT,
+    Quantidade INT,
+    PrecoUnitario DECIMAL(10, 2),
+    Total DECIMAL(10, 2),
+    FOREIGN KEY (CompraID) REFERENCES Compra(IDCompra),
+    FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
+);
+CREATE PROCEDURE Insert_procedure_ItemCompraProduto
+    @CompraID INT,
+    @ProdutoID INT,
+    @Quantidade INT,
+    @PrecoUnitario DECIMAL(10, 2),
+    @Total DECIMAL(10, 2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Inserir dados na tabela ItemCompraProduto
+    INSERT INTO ItemCompraProduto (CompraID, ProdutoID, Quantidade, PrecoUnitario, Total)
+    VALUES (@CompraID, @ProdutoID, @Quantidade, @PrecoUnitario, @Total);
+END;
+
+
+
+select *from produto
+
+-- Criar o procedimento armazenado
+CREATE PROCEDURE Insert_procedure_Produto
+    @NomeProduto NVARCHAR(255),
+    @CodFornecedor INT,
+    @Qtd INT,
+    @ValorCompra DECIMAL(18,2),
+    @ValorVenda DECIMAL(18,2),
+    @Concentracao NVARCHAR(255),
+    @Dosagem NVARCHAR(255),
+    @TipoProduto NVARCHAR(255),
+    @CategoriaProduto NVARCHAR(255),
+    @FormaFarmaceutica NVARCHAR(255),
+    @Obs NVARCHAR(255),
+    @NomeFornecedor NVARCHAR(255),
+    @Total DECIMAL(18,2),
+    @Fabricante NVARCHAR(255),
+	@DataProducao date,
+	@DataExpiracao date,
+	@FinalidadeProduto varchar (20)
+AS
+BEGIN
+    INSERT INTO Produto (
+        NomeProduto,
+        CodFornecedor,
+        Qtd,
+        ValorCompra,
+        ValorVenda,
+        Concentracao,
+        Dosagem,
+        TipoProduto,
+        CategoriaProduto,
+        FormaFarmaceutica,
+        Obs,
+        NomeFornecedor,
+        Total,
+        Fabricante,
+		DataProducao,
+		DataExpiracao,
+		FinalidadeProduto
+    )
+    VALUES (
+        @NomeProduto,
+        @CodFornecedor,
+        @Qtd,
+        @ValorCompra,
+        @ValorVenda,
+        @Concentracao,
+        @Dosagem,
+        @TipoProduto,
+        @CategoriaProduto,
+        @FormaFarmaceutica,
+        @Obs,
+        @NomeFornecedor,
+        @Total,
+        @Fabricante,
+		@DataProducao,
+		@DataExpiracao,
+		@FinalidadeProduto
+    );
+END;
+
+
+-- Outras declarações que podem vir depois

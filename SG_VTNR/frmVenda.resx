@@ -147,18 +147,4 @@
         3KAThMFeNszzfgDsF+ot45PfsQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="colImprimir.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="colImprimir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAASFJREFUOE9j
-        QAf5aWlyeZmZxsRgkFqoNtwgNyNjRk5GxoLc9PQOfBisBqgWqg03ACkC2Q7l4gQgNaMGQkBZUhJvTnr6
-        eaDkfwrxuaysLB6G7LQ0IyySZGGQWTCnY1VABD6Uk5KiCKRfg/jgoKLQwGfA9FgLpH+B+NQwEAXTz8D8
-        zMwYaCLACUBq0PXhNRBIpwLxGWw4JzMzEaeBOWlpGugSIMUZGRliIAXIGFgoaEEdiNWF2ampamBJICcH
-        mLhngnFGxrXczEzvvPR0L/QSJi8jowGsAQhAakBqYfqAFmZDpVAB0HBw1gN6KwBuCRoGWuYPdjEpebmg
-        oECgMDNTCRsGyZFkINA7a7G5DBmD1BBlYHFamgg2V2HDILVQbVDAwAAA/EoKBWPvyQEAAAAASUVORK5C
-        YII=
-</value>
-  </data>
 </root>

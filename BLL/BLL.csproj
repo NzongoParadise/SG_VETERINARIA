@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLAnimal.cs" />
+    <Compile Include="BLLCompra.cs" />
     <Compile Include="BLLConsulta.cs" />
     <Compile Include="BLLEndereco.cs" />
     <Compile Include="BLLFornecedor.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="BLLMedicamento.cs" />
     <Compile Include="BLLProprietario.cs" />
     <Compile Include="BLLUsuario.cs" />
+    <Compile Include="BLLVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

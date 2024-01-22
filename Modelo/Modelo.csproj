@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ModeloAgendamento.cs" />
     <Compile Include="ModeloAnimal.cs" />
+    <Compile Include="ModeloCompra.cs" />
     <Compile Include="ModeloConsulta.cs" />
     <Compile Include="ModeloEndereco.cs" />
     <Compile Include="ModeloEntradasEstoque.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ModeloTipo_Exame.cs" />
     <Compile Include="ModeloTratamento.cs" />
     <Compile Include="ModeloUsuario.cs" />
+    <Compile Include="ModeloVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

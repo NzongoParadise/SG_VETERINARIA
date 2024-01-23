@@ -40,6 +40,7 @@ namespace DAL
                     foreach (var modelo in listaDeVenda)
                     {
                         IncluirItemVenda(vendaID, modelo.produtoID, modelo.Qtd, modelo.precoUnitario, modelo.Total, transacaoPrincipal);
+                        AtualizarQuantidadeEstoque(modelo.produtoID, modelo.Qtd, transacaoPrincipal);
                     }
 
                     transacaoPrincipal.Commit();
@@ -102,6 +103,26 @@ namespace DAL
                 }
             }
         }
+        public void AtualizarQuantidadeEstoque(int produtoID, int quantidade, SqlTransaction transacao)
+        {
+            using (SqlCommand cmd = new SqlCommand("Update_procedure_AtualizarQuantidadeEstoque", transacao.Connection, transacao))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ProdutoID", produtoID);
+                    cmd.Parameters.AddWithValue("@Quantidade", quantidade);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Erro ao atualizar a quantidade do estoque: " + ex.Message);
+                }
+            }
+        }
+
 
         private void IncluirItemVenda(int VendaID, int produtoID, int quantidade, decimal precoUnitario, decimal total, SqlTransaction transacao)
         {
@@ -110,7 +131,6 @@ namespace DAL
                 try
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@VendaID", VendaID);
                     cmd.Parameters.AddWithValue("@ProdutoID", produtoID);
                     cmd.Parameters.AddWithValue("@Quantidade", quantidade);

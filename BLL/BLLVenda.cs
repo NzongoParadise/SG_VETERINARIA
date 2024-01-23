@@ -31,7 +31,7 @@ namespace BLL
                 {
                     DALVenda dall = new DALVenda(conexao);
                     dall.IncluirVendaItem(listaDeDados);
-
+                    
                 }
                 else
                 {

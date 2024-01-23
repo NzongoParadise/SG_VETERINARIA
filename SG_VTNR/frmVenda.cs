@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,9 +16,11 @@ namespace SG_VTNR
 {
     public partial class frmVenda : Form
     {
+        int qtdDatGridviw = 0;
         public frmVenda()
         {
             InitializeComponent();
+
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -85,7 +88,8 @@ namespace SG_VTNR
 
         private void guna2TextBox6_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtQuantidade.Text)||(string.IsNullOrEmpty(txtPrecoUnitario.Text)))
+
+            if (string.IsNullOrWhiteSpace(txtQuantidade.Text) || (string.IsNullOrEmpty(txtPrecoUnitario.Text)))
             {
                 txtTotal.Text = "";
             }
@@ -103,11 +107,11 @@ namespace SG_VTNR
                     txtTotal.Text = "";
                 }
             }
-        
-          
+
+
         }
 
-      
+
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
@@ -116,30 +120,35 @@ namespace SG_VTNR
 
         private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             txtNomeProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["NomeProduto"].Value.ToString();
             txtCodProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["IDProduto"].Value.ToString();
             txtPrecoUnitario.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["ValorVenda"].Value.ToString();
-            panelMostrarProduto.Visible=false;
+            qtdDatGridviw = Convert.ToInt32(dgvMostrarProduto.Rows[e.RowIndex].Cells["Qtd"].Value.ToString());
+            txtqtdDisponivelStock.Text = qtdDatGridviw.ToString();
+            //panelMostrarProduto.Visible=false;
             txtPesquisarProduto.Text = "";
+
         }
 
         private void frmVenda_Load(object sender, EventArgs e)
         {
             panelMostrarProduto.Visible = false;
         }
-       public void  PesquisarProduto()
+        public void PesquisarProduto()
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLVenda bll = new BLLVenda(cx);
-            DataTable dt= new DataTable();
-           dt= bll.PesquisarProduto(txtPesquisarProduto.Text);
+            DataTable dt = new DataTable();
+            dt = bll.PesquisarProduto(txtPesquisarProduto.Text);
             dgvMostrarProduto.DataSource = dt;
 
         }
         private void rxrPesquisarProduto_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPesquisarProduto.Text)){
-                panelMostrarProduto.Visible = false;
+            if (string.IsNullOrWhiteSpace(txtPesquisarProduto.Text))
+            {
+                //panelMostrarProduto.Visible = false;
 
             }
             else
@@ -147,42 +156,98 @@ namespace SG_VTNR
                 PesquisarProduto();
                 panelMostrarProduto.Visible = true;
             }
-            
-        }
-        
 
+        }
+
+        public void InserirAoCarrinho()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtCodProduto.Text) || string.IsNullOrEmpty(txtNomeCliente.Text) || string.IsNullOrEmpty(txtNomeProduto.Text)
+                       || (string.IsNullOrEmpty(txtQuantidade.Text)))
+                {
+                    MessageBox.Show("Preencha os campos obrigatórios!!!");
+
+                }
+                else
+                {
+
+                    int qtdFormulario = Convert.ToInt32(txtQuantidade.Text);
+                //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                if (qtdFormulario > 0)
+                {
+                    // verifica se a quantidade no sistema eh maior com aque o usuario esta a inserir no txtQuantidade
+                    if (this.qtdDatGridviw >= qtdFormulario)
+                    {
+                            int produtoID = Convert.ToInt32(txtCodProduto.Text);
+                            // Verifica se o produto já está no carrinho
+                            ModeloVenda produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
+                            if (produtoExistente != null)
+                            {
+                                // Se o produto já existe, atualiza a quantidade
+                                produtoExistente.Qtd += Convert.ToInt32(txtQuantidade.Text);
+                                produtoExistente.Total = produtoExistente.precoUnitario * produtoExistente.Qtd;
+                                 // Atualiza o SubTotal somando o Total do novo produto
+                                decimal subtotal = Decimal.Parse(txtSubtotal.Text);
+                               subtotal += produtoExistente.Total;
+                                txtSubtotal.Text = subtotal.ToString();
+                                AtualizarDataGridView();
+                            }
+                            else
+                            {
+
+                                ModeloVenda novoProduto = new ModeloVenda
+                                {
+
+                                    produtoID = Convert.ToInt32(txtCodProduto.Text),
+                                    Qtd = Convert.ToInt32(txtQuantidade.Text),
+                                    precoUnitario = decimal.Parse(txtPrecoUnitario.Text),
+                                    Total = decimal.Parse(txtTotal.Text),
+                                    nomeProduto = txtNomeProduto.Text,
+                                    //totalGeral = decimal.Parse(txtTotalGeral.Text),
+
+                                    dataVenda = DateTime.Now,
+                                };
+
+                                listaDeDados.Add(novoProduto);
+                                // Atualiza o SubTotal somando o Total do novo produto
+                                decimal subtotal = Decimal.Parse(txtSubtotal.Text);
+                                subtotal += novoProduto.Total;
+                                txtSubtotal.Text = subtotal.ToString();
+                                // Atualiza o DataGridView
+                                AtualizarDataGridView();
+
+                            }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Quantidade superior ao disponível no estoque.\nInforme uma quantidade menor ou igual que  {qtdDatGridviw}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        txtQuantidade.Text = "";
+                        txtTotal.Text = "";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"A quantidade tem de ser maior que 0.\nInforme uma quantidade superio a 0", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                }
+                }
+
+            }
+            catch (Exception erro)
+            {
+
+                throw new Exception("Erro ao Enviar os dados para o BLLVenda" + erro.Message);
+            }
+        }
         private List<ModeloVenda> listaDeDados = new List<ModeloVenda>();
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCodProduto.Text)||string.IsNullOrEmpty(txtNomeCliente.Text)||string.IsNullOrEmpty(txtNomeProduto.Text)
-                ||(string.IsNullOrEmpty(txtQuantidade.Text)))
-            {
-                MessageBox.Show("Preencha os campos obrigatórios!!!");
+            InserirAoCarrinho();
 
-            }
-            else
-            {
-                ModeloVenda novoProduto = new ModeloVenda
-                {
-                    produtoID = Convert.ToInt32(txtCodProduto.Text),
-                    Qtd = Convert.ToInt32(txtQuantidade.Text),
-                    precoUnitario = decimal.Parse(txtPrecoUnitario.Text),
-                    Total = decimal.Parse(txtTotal.Text),
-                    nomeProduto = txtNomeProduto.Text,
-                    //totalGeral = decimal.Parse(txtTotalGeral.Text),
-                    
-                    dataVenda=DateTime.Now,
-                };
 
-                listaDeDados.Add(novoProduto);
-                // Atualiza o SubTotal somando o Total do novo produto
-                decimal subtotal = Decimal.Parse(txtSubtotal.Text);
-                subtotal += novoProduto.Total;
-                txtSubtotal.Text = subtotal.ToString();
-                // Atualiza o DataGridView
-                AtualizarDataGridView();
-
-            }
         }
         public void AtualizarDataGridView()
         {
@@ -194,7 +259,7 @@ namespace SG_VTNR
                 d.Qtd,
                 d.precoUnitario,
                 d.Total,
-              
+
             }).ToList();
             // Atualiza o DataSource do DataGridView com a listaDeDados
             dgvCarinho.DataSource = null;  // Limpa qualquer fonte de dados existente
@@ -224,8 +289,10 @@ namespace SG_VTNR
             }
         }
 
+
         private void dgvCarinho_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             string collname = dgvCarinho.Columns[e.ColumnIndex].Name;
             if (collname == "ColDeletar")
             {
@@ -250,7 +317,8 @@ namespace SG_VTNR
                     txtQuantidade.Text = itemSelecionado.Qtd.ToString();
                     txtTotal.Text = itemSelecionado.Total.ToString();
 
-                   
+
+
                     // Carregue outras TextBoxes conforme necessário
 
                     // ... Restante do seu código para carregar outras TextBoxes ...
@@ -337,5 +405,5 @@ namespace SG_VTNR
             txtTotalGeral.Text = totalGeral.ToString();
         }
     }
-    }
+}
 

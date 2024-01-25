@@ -494,6 +494,7 @@
             this.pctAnimal.Name = "pctAnimal";
             this.pctAnimal.ShadowDecoration.Parent = this.pctAnimal;
             this.pctAnimal.Size = new System.Drawing.Size(190, 246);
+            this.pctAnimal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctAnimal.TabIndex = 62;
             this.pctAnimal.TabStop = false;
             // 

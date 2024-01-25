@@ -2,6 +2,8 @@
 using Modelo;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace BLL
@@ -14,15 +16,23 @@ namespace BLL
         {
             this.conexao = cx;
         }
+
        
-        public void incluirProdutoCompra(List<ModeloCompra> listaDeDados)
+        public DataTable PesquisarFornecedorComChavenaCompra( string chave)
+        {
+            DALLCompra dall = new DALLCompra(conexao);
+            return  dall.PesquisarFornecedorComChavenaCompra(chave);
+        }
+
+        public void updateProdutoCompra(List<ModeloCompra> listaDeDados)
         {
             try
             {
                 if (listaDeDados.Count > 0)
                 {
                     DALLCompra DALLCompra = new DALLCompra(conexao);
-                    DALLCompra.IncluirProdutoCompra(listaDeDados);
+                    ModeloCompra modeloCompra = new ModeloCompra(); 
+                    DALLCompra.IncluirCompraItem(listaDeDados);
                 }
                 else
                 {
@@ -32,9 +42,30 @@ namespace BLL
             catch (Exception erro)
             {
 
+                throw new Exception("Erro ao atualizar os produtos no banco de dados. Detalhes: " + erro.Message);
+            }
+
+        }
+        public void CadastrarProduto(ModeloCompra listaDeDados)
+        {
+            try
+            {
+                
+                    DALLCompra DALLCompra = new DALLCompra(conexao);
+                    DALLCompra.CadastrarProduto (listaDeDados);                
+            }
+            catch (Exception erro)
+            {
+
                 throw new Exception("Erro ao incluir os dados:" + erro.Message);
             }
-           
+
+        }
+        public DataTable PesquisarProdutoComChave( string chave)
+        {
+            DALLCompra dall = new DALLCompra(conexao);
+            return dall.PesquisarProdutoComChave(chave);
+
         }
         //public void incluirCompra(List<ModeloCompra> listaDeDados)
         //{
@@ -56,7 +87,7 @@ namespace BLL
 
         //        throw new Exception("Erro ao incluir:" + erro.Message);
         //    }
-            
+
         //}
     }
 }

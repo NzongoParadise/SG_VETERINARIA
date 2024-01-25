@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DAL;
+using Ferramenta;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +19,16 @@ namespace SG_VTNR
     public partial class frmVenda : Form
     {
         int qtdDatGridviw = 0;
+        private ModeloVenda m;
+       
         public frmVenda()
         {
             InitializeComponent();
-
+             
+        m = new ModeloVenda();
+           m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
         }
+        
 
         private void label11_Click(object sender, EventArgs e)
         {
@@ -189,7 +196,7 @@ namespace SG_VTNR
                                 produtoExistente.Total = produtoExistente.precoUnitario * produtoExistente.Qtd;
                                  // Atualiza o SubTotal somando o Total do novo produto
                                 decimal subtotal = Decimal.Parse(txtSubtotal.Text);
-                               subtotal += produtoExistente.Total;
+                                subtotal += produtoExistente.Total;
                                 txtSubtotal.Text = subtotal.ToString();
                                 AtualizarDataGridView();
                             }
@@ -204,6 +211,7 @@ namespace SG_VTNR
                                     precoUnitario = decimal.Parse(txtPrecoUnitario.Text),
                                     Total = decimal.Parse(txtTotal.Text),
                                     nomeProduto = txtNomeProduto.Text,
+                                    nomeCliente=txtNomeCliente.Text,
                                     //totalGeral = decimal.Parse(txtTotalGeral.Text),
 
                                     dataVenda = DateTime.Now,
@@ -351,8 +359,9 @@ namespace SG_VTNR
                 foreach (var item in listaDeDados)
                 {
                     item.totalGeral = totalGeral;
+                    item.UsuarioID = m.UsuarioID;
                 }
-
+               
                 // Inserir os dados
                 bll.incluirVendaItem(listaDeDados);
                 MessageBox.Show("\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
@@ -362,34 +371,6 @@ namespace SG_VTNR
                 MessageBox.Show("Não foi possível Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-
-        //private void guna2Button2_Click(object sender, EventArgs e)
-        //{
-
-        //    try
-        //    {
-        //        if (dgvCarinho.Rows.Count == 0)
-        //        {
-        //            throw new Exception("Adicione produtos ao carrinho antes de confirmar a Venda.!!!");
-
-        //        }
-
-        //        DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-        //        BLLVenda bll = new BLLVenda(cx);
-
-        //        //inserir os dados
-        //        bll.incluirVendaItem(listaDeDados);
-        //        MessageBox.Show("\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
-
-        //    }
-        //    catch (Exception erro)
-        //    {
-
-        //        MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-        //    }
-
-        //}
 
         private void txtSubtotal_TextChanged(object sender, EventArgs e)
         {

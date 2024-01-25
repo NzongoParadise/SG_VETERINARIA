@@ -24,6 +24,7 @@ namespace DAL
             da.Fill(dt);
             return dt;
         }
+
         public void IncluirVendaItem(List<ModeloVenda> listaDeVenda)
         {
             using (SqlConnection conexaoPrincipal = new SqlConnection(conexao.StringConexao))
@@ -35,7 +36,7 @@ namespace DAL
                 {
                     int vendaID = IncluirVenda(listaDeVenda[0], transacaoPrincipal); // Assume que a lista tem pelo menos um item
 
-                    Console.WriteLine("ID retornado da venda: " + vendaID);
+                    //Console.WriteLine("ID retornado da venda: " + vendaID);
 
                     foreach (var modelo in listaDeVenda)
                     {
@@ -53,34 +54,6 @@ namespace DAL
             }
         }
 
-        //public void IncluirVendaItem(List<ModeloVenda> listaDeVenda)
-        //{
-        //    using (SqlConnection conexaoPrincipal = new SqlConnection(conexao.StringConexao))
-        //    {
-        //        conexaoPrincipal.Open();
-        //        SqlTransaction transacaoPrincipal = conexaoPrincipal.BeginTransaction();
-
-        //        try
-        //        {
-        //            foreach (var modelo in listaDeVenda)
-        //            {
-        //                int vendaID = IncluirVenda(modelo, transacaoPrincipal);
-
-        //                Console.WriteLine("ID retornado da venda: " + vendaID);
-
-        //                IncluirItemVenda(vendaID, modelo.produtoID, modelo.Qtd, modelo.precoUnitario, modelo.Total, transacaoPrincipal);
-        //            }
-
-        //            transacaoPrincipal.Commit();
-        //        }
-        //        catch (Exception erro)
-        //        {
-        //            transacaoPrincipal.Rollback();
-        //            throw new Exception("Erro ao incluir Venda e ItemVenda: " + erro.Message);
-        //        }
-        //    }
-        //}
-
         private int IncluirVenda(ModeloVenda modelo, SqlTransaction transacao)
         {
             using (SqlCommand cmd = new SqlCommand("Insert_procedure_Venda", transacao.Connection, transacao))
@@ -88,9 +61,10 @@ namespace DAL
                 try
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@DataVenda", modelo.dataVenda);
                     cmd.Parameters.AddWithValue("@TotalVenda", modelo.totalGeral);
+                    cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
+                    cmd.Parameters.AddWithValue("@NomeCliente", modelo.nomeCliente);
 
                     // Executa o comando e retorna o ID da venda inserida
                     int vendaID = Convert.ToInt32(cmd.ExecuteScalar());

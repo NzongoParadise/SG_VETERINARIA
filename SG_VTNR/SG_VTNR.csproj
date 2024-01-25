@@ -238,6 +238,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -265,6 +266,15 @@
       <Project>{77bf6bf6-a865-4d26-a9a4-560f5fc24b71}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_500px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_500px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3582783-icone-de-carrinho-de-compras-para-transporte-de-mercadorias-na-loja-grátis-vetor.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

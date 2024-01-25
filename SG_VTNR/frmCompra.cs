@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DAL;
+using Ferramenta;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,15 @@ namespace SG_VTNR
         private DataTable FornecdorDT = new DataTable();
         private DataTable TransacaoDT = new DataTable();
         string finalidade;
+        private ModeloVenda m;
         ModeloCompra ModeloDadosCompra = new ModeloCompra();
+        private List <ModeloCompra> listaDeDados =new List<ModeloCompra>();
         public frmCompra()
         {
             InitializeComponent();
+             
+        m = new ModeloVenda();
+        m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
         }
         private void guna2TextBox6_TextChanged(object sender, EventArgs e)
         {
@@ -44,50 +50,57 @@ namespace SG_VTNR
         {
 
         }
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        public void pesquisarProdutocomChave()
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-            BLLFornecedor bll = new BLLFornecedor(cx);
+            BLLCompra bll = new BLLCompra(cx);
+            FornecdorDT = bll.PesquisarFornecedorComChavenaCompra(txtPesquisarFornecedor.Text);
+                    // Vincular DataTable ao DataGridView
+                    dgvFornecedor.DataSource = FornecdorDT;
+        }
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
 
-            if (pnlFornecedor.Visible == false)
+            if (string.IsNullOrEmpty(txtPesquisarFornecedor.Text)|| string.IsNullOrWhiteSpace(txtPesquisarFornecedor.Text))
             {
-                pnlFornecedor.Visible = true;
+                //if (pnlFornecedor.Visible == true)
+                //{
+                pnlFornecedor.Visible = false;
+                }
+                else
+                {
+                    if (pnlFornecedor.Visible == false)
+                    {
+                        pnlFornecedor.Visible = true;
+                        pesquisarProdutocomChave();
+                    }
+                }
             }
 
-            FornecdorDT = bll.PesquisarFornecedorComChavenaCompra(txtPesquisarFornecedor.Text);
-
-            // Vincular DataTable ao DataGridView
-            dgvFornecedor.DataSource = FornecdorDT;
-        }
+           
+        
 
 
 
         private void frmCompra_Load(object sender, EventArgs e)
         {
-            if (pnlFornecedor.Visible)
+            if (pnlFornecedor.Visible==true)
             {
                 pnlFornecedor.Visible = false;
             }
+            if (pnlMostrarProduto.Visible == true)
+            {
+                pnlMostrarProduto.Visible = false;
+            }
+            
 
-            // Limpar as colunas existentes, se houver
-            FornecdorDT.Columns.Clear();
-            // Adicionar colunas com nomes específicos
-            FornecdorDT.Columns.Add("FornecedorID", typeof(int)).ColumnName = "Código Fornecedor";
-            FornecdorDT.Columns.Add("NomeFornecedor").ColumnName = "Nome do Fornecedor";
-            dgvFornecedor.DataSource = FornecdorDT;
-            rbComercial.Checked = true;
-            // Adicionar colunas com nomes NO DATA GRID VIW ITENS COMPRA
-            TransacaoDT.Columns.Add("Fornecedor");
-            TransacaoDT.Columns.Add("Nome do produto");
-            TransacaoDT.Columns.Add("Quantidade");
-            //TransacaoDT.Columns.Add("Fornecedor");
-            TransacaoDT.Columns.Add("Valor de Compra");
-            TransacaoDT.Columns.Add("Valor de Venda");
-            //TransacaoDT.Columns.Add("Categoria");
-            TransacaoDT.Columns.Add("Tipo Produto");
-            TransacaoDT.Columns.Add("Categoria Produto");
 
-            TransacaoDT.Columns.Add("Total");
+            if (pnlCadastrarProduto.Visible==true)
+            {
+                pnlCadastrarProduto.Visible = false;
+            }
+
+            
 
         }
         public void limparCampos()
@@ -106,73 +119,62 @@ namespace SG_VTNR
             txtFormaFarmaceutica.Text = "";
             txtObs.Text = "";
             txtNomeFornecedor.Text = "";
+            txtCodProdutoCompra.Text = "";
+            txtNomeProdutoCompra.Text = "";
+            txtTipoProduto.Text = "";
+            txtCategoria.Text = "";
         }
-
-        private List <ModeloCompra> listaDeDados = new List <ModeloCompra>();
-        private void guna2Button4_Click(object sender, EventArgs e)
+        public void CadProduto()
         {
-           
-            
-            if (string.IsNullOrEmpty(txtNomeProduto.Text) || string.IsNullOrEmpty(txtCodFornecedor.Text) ||
-                string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text) ||
-                string.IsNullOrEmpty(txtValorVenda.Text) || string.IsNullOrEmpty(txtxConcentracao.Text) ||
-                string.IsNullOrEmpty(txtDosage.Text) || string.IsNullOrEmpty(cmbTipoPropduto.Text) ||
-                string.IsNullOrEmpty(cmbCategoria.Text) || string.IsNullOrEmpty(txtCodFornecedor.Text) ||
-                string.IsNullOrEmpty(txtFormaFarmaceutica.Text) || string.IsNullOrEmpty(txtNomeFornecedor.Text)||string.IsNullOrEmpty(txtFabricante.Text))
+            try
             {
-                MessageBox.Show("Preencha os Campos Obrigatórios");
-            }
-            else
-            {
-                // Adiciona os dados à lista
-                ModeloCompra novoProduto = new ModeloCompra
+                ModeloCompra modelo = new ModeloCompra();
+                modelo.NomeFornecedor = txtNomeFornecedor.Text;
+                modelo.NomeProduto = txtNomeProduto.Text;
+                modelo.CodFornecedor = Convert.ToInt32(txtCodFornecedor.Text);
+                modelo.Concentracao = txtxConcentracao.Text;
+                modelo.Dosagem = txtDosage.Text;
+                modelo.TipoProduto = cmbTipoPropduto.Text;
+                modelo.CategoriaProduto = cmbCategoria.Text;
+                modelo.FormaFarmaceutica = txtFormaFarmaceutica.Text;
+                modelo.Obs = txtObs.Text;
+                modelo.Fabricante = txtFabricante.Text;
+                modelo.finalidadeProduto = lblFinalidade.Text;
+                modelo.dataExpiracao = DateTime.MaxValue;
+                modelo.CodigodeBara = txtCodigodeBarra.Text;
+                modelo.finalidadeProduto = finalidade;
+                //metedoPagamento =cmbMetodoPagamento.Text,
+                modelo.DataCadastro = DateTime.Now;
+                modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
+                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                BLLCompra bll = new BLLCompra(cx);
+                //inserir os dados
+                bll.CadastrarProduto(modelo);
 
-                {
-                    NomeFornecedor = txtNomeFornecedor.Text,
-                    NomeProduto = txtNomeProduto.Text,
-                    CodFornecedor = Convert.ToInt32(txtCodFornecedor.Text),
-                    Qtd = Convert.ToInt32(txtQtd.Text),
-                    precoCompraUnitario = Decimal.Parse(txtValorCompr.Text),
-                    precoUnitarioVenda = Decimal.Parse(txtValorVenda.Text),
-                    Concentracao = txtxConcentracao.Text,
-                    Dosagem = txtDosage.Text,
-                    TipoProduto = cmbTipoPropduto.Text,
-                    CategoriaProduto = cmbCategoria.Text,
-                    FormaFarmaceutica = txtFormaFarmaceutica.Text,
-                    Obs = txtObs.Text,
-                    Fabricante = txtFabricante.Text,
-                    Total = Convert.ToInt32(txtQtd.Text) * Decimal.Parse(txtValorCompr.Text),
-                    dataProducao = Convert.ToDateTime(dataProducao.Text),
-                    dataExpiracao = Convert.ToDateTime(DataExpiracao.Text),
-                    finalidadeProduto=lblFinalidade.Text,
-                    metedoPagamento=cmbMetodoPagamento.Text,
-                    DataCompra=DateTime.Now,
-                    
+                MessageBox.Show(modelo.produtoID.ToString() + "\n \n Produto Cadastrado com Sucesso!", "Confirmação", MessageBoxButtons.OK);
 
-                };
-
-                listaDeDados.Add(novoProduto);
-                // Atualiza o SubTotal somando o Total do novo produto
-                decimal subtotal = Decimal.Parse(txtSubTotal.Text);
-                subtotal += novoProduto.Total;
-                txtSubTotal.Text = subtotal.ToString();
-                // Atualiza o DataGridView
-                AtualizarDataGridView();
 
             }
-        }
+            catch (Exception erro)
+            {
 
+                throw new Exception("Erro ao incluir os dados:" + erro.Message);
+            }
+           }
         public void AtualizarDataGridView()
         {
             //criando uma lista temporaria contendo os atribusto para exibir no data grid view
             var dadosParaExibir = listaDeDados.Select(d => new
             {
-                d.NomeFornecedor,
+                d.produtoID,
                 d.NomeProduto,
                 d.Qtd,
                 d.precoCompraUnitario,
                 d.precoUnitarioVenda,
+                d.CategoriaProduto,
+                d.TipoProduto,
                 d.Total,
+
             }).ToList();
             // Atualiza o DataSource do DataGridView com a listaDeDados
             dgvCarinho.DataSource = null;  // Limpa qualquer fonte de dados existente
@@ -202,9 +204,9 @@ namespace SG_VTNR
             {
                 txtValorCompr.Enabled = false;
                 txtValorVenda.Enabled = false;
-                lblFinalidade.Text = "Entrega Gratuita";
-                finalidade = Convert.ToString(lblFinalidade.Text);
-                txtValorCompr.Text = "";
+                //lblFinalidade.Text = "Entrega Gratuita";
+                finalidade = "Entrega Gratuita";
+                //txtValorCompr.Text = "";
                 txtValorVenda.Text = "";
             }
         }
@@ -213,9 +215,9 @@ namespace SG_VTNR
         {
             txtValorCompr.Enabled = false;
             txtValorVenda.Enabled = false;
-            lblFinalidade.Text = "Uso Interno";
-            finalidade = Convert.ToString(lblFinalidade.Text);
-            txtValorCompr.Text = "";
+            //lblFinalidade.Text = "Uso Interno";
+            finalidade = "Uso Interno";
+            //txtValorCompr.Text = "";
             txtValorVenda.Text = "";
         }
 
@@ -223,8 +225,8 @@ namespace SG_VTNR
         {
             txtValorCompr.Enabled = true;
             txtValorVenda.Enabled = true;
-            lblFinalidade.Text = "Comercial";
-            finalidade = Convert.ToString(lblFinalidade.Text);
+            //lblFinalidade.Text = "Comercial";
+            finalidade = "Comercial";
             txtValorCompr.Text = "";
             txtValorVenda.Text = "";
         }
@@ -236,7 +238,8 @@ namespace SG_VTNR
 
         private void guna2Button4_Click_1(object sender, EventArgs e)
         {
-            limparCampos();
+            CadProduto();
+            //limparCampos();
         }
         public void EliminarColSelecionada()
         {
@@ -284,23 +287,19 @@ namespace SG_VTNR
                     // Obtém o item correspondente na listaDeDados usando o índice
                     ModeloCompra itemSelecionado = listaDeDados[rowIndex];
 
-                        // Carrega as informações do item nas TextBoxes
-                        txtNomeProduto.Text = itemSelecionado.NomeProduto;
-                        txtCodFornecedor.Text = itemSelecionado.CodFornecedor.ToString();
-                        txtQtd.Text = itemSelecionado.Qtd.ToString();
-                        txtValorCompr.Text = itemSelecionado.precoCompraUnitario.ToString();
+                    // Carrega as informações do item nas TextBoxes
+                    txtCodProdutoCompra.Text = itemSelecionado.produtoID.ToString();
+                    txtNomeProdutoCompra.Text = itemSelecionado.NomeProduto;
+                    txtQtd.Text = itemSelecionado.Qtd.ToString();
+                    txtValorCompr.Text = itemSelecionado.precoCompraUnitario.ToString();
+                    txtValorVenda.Text = itemSelecionado.precoUnitarioVenda.ToString();
+                    txtTotqtd.Text = itemSelecionado.Total.ToString();
+                    txtCategoria.Text = itemSelecionado.CategoriaProduto.ToString();
+                    txtTipoProduto.Text = itemSelecionado.TipoProduto.ToString();
 
-                        txtValorVenda.Text = itemSelecionado.precoUnitarioVenda.ToString();
-                        txtxConcentracao.Text = itemSelecionado.Concentracao;
-                        txtDosage.Text = itemSelecionado.Dosagem;
-                        cmbTipoPropduto.Text = itemSelecionado.TipoProduto;
-                        cmbCategoria.Text = itemSelecionado.CategoriaProduto;
-                        txtFormaFarmaceutica.Text = itemSelecionado.FormaFarmaceutica;
-                        txtObs.Text = itemSelecionado.Obs;
-                    txtNomeFornecedor.Text = itemSelecionado.NomeFornecedor;
-                        // Carregue outras TextBoxes conforme necessário
 
-                    // ... Restante do seu código para carregar outras TextBoxes ...
+
+
 
                     // Pode ser útil armazenar o índice da linha selecionada para referência futura
                     // Pode ser usado em conjunto com o botão de "Salvar" no seu formulário de edição
@@ -319,31 +318,37 @@ namespace SG_VTNR
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-           
             try
             {
                 if (dgvCarinho.Rows.Count == 0)
                 {
-                    throw new Exception("Adicione produtos ao carrinho antes de confirmar a compra.!!!");
-                    
+                    throw new InvalidOperationException("Adicione produtos ao carrinho antes de confirmar a compra.");
                 }
-                
+
                 DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                 BLLCompra bll = new BLLCompra(cx);
+                // Calcular o totalGeral para toda a venda
+                decimal totalGeral = decimal.Parse(txtSubTotal.Text) + decimal.Parse(txtImposto.Text);
+
+                // Adicionar o totalGeral à venda
+                foreach (var item in listaDeDados)
+                {
+                    item.totalGeral = totalGeral;
+                    item.UsuarioID = m.UsuarioID;
+                }
                 //inserir os dados
-                bll.incluirProdutoCompra(listaDeDados);
-                MessageBox.Show("\n \n Compra realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
+                bll.updateProdutoCompra(listaDeDados);
 
+                MessageBox.Show("Compra realizada com sucesso!", "Confirmação", MessageBoxButtons.OK);
             }
-            catch (Exception erro)
+            catch (InvalidOperationException ex)
             {
-
-                MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
+                MessageBox.Show($"Erro ao confirmar a compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
-        
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao confirmar a compra. Contate o Administrador do Sistema.\n\nDetalhes do Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
 
         private void txtTotalGeral_TextChanged(object sender, EventArgs e)
@@ -370,5 +375,260 @@ namespace SG_VTNR
             }
         }
 
+        public void PesquisarProduto()
+        {
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCompra bll = new BLLCompra(cx);
+            DataTable dt = new DataTable();
+            dt=bll.PesquisarProdutoComChave(txtPesquisarProduto.Text);
+            dgvMostrarProduto.DataSource= dt;
+
+        }
+        private void txtPesquisarProduto_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPesquisarProduto.Text)||string.IsNullOrWhiteSpace(txtPesquisarProduto.Text))
+            {
+                pnlMostrarProduto.Visible = false;
+
+            }
+            else
+            {
+                if (pnlMostrarProduto.Visible == false)
+                {
+                    pnlMostrarProduto.Visible = true;
+                    PesquisarProduto();
+                }
+            }
+           
+           
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            if (pnlCadastrarProduto.Visible==false)
+            {
+                pnlCadastrarProduto.Visible = true;
+            }
+        }
+
+        private void guna2Button7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+       
+
+        private void btnAdicionarCarrinhoCompra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // verifica o a finalidade do produto
+                if (lblFinalidade.Text!="Comercial")
+                {
+                    if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
+                   string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text))
+                    {
+                        MessageBox.Show("Preencha os Campos Obrigatórios");
+                    }
+                    else
+                    {
+                        int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
+                        // Verifica se o produto já está no carrinho
+                        ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
+                        if (produtoExistente != null)
+                        {
+                            MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+
+                            int qtdFormulario = Convert.ToInt32(txtQtd.Text);
+                            //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                            if (qtdFormulario > 0)
+                            {
+                                ModeloCompra novoProduto = new ModeloCompra
+                                {
+                                    NomeProduto = txtNomeProdutoCompra.Text,
+                                    produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
+                                    Qtd = Convert.ToInt32(txtQtd.Text),
+                                    precoUnitarioVenda = 0,
+                                    precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
+                                    dataProducao = dataProducao.Value,
+                                    dataExpiracao = DataExpiracao.Value,
+                                    Total = decimal.Parse(txtTotqtd.Text),
+                                    TipoProduto = txtTipoProduto.Text,
+                                    CategoriaProduto = txtCategoria.Text,
+                                     UsuarioID = m.UsuarioID,
+                                     DataCompra=DateTime.Now
+                                     
+
+                                };
+
+                               
+
+                                decimal subtotal = Decimal.Parse(txtSubTotal.Text);
+                                subtotal += novoProduto.Total;
+                                txtSubTotal.Text = subtotal.ToString();
+                                this.listaDeDados.Add(novoProduto);
+                                AtualizarDataGridView();
+                                limparCampos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Quantidade Inválida!!!");
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
+                   string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text) ||
+                   string.IsNullOrEmpty(txtValorVenda.Text))
+                    {
+                        MessageBox.Show("Preencha os Campos Obrigatórios");
+                    }
+                    else
+                    {
+                        int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
+                        // Verifica se o produto já está no carrinho
+                        ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
+                        if (produtoExistente != null)
+                        {
+                            MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            int qtdFormulario = Convert.ToInt32(txtQtd.Text);
+                            //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                            if (qtdFormulario > 0)
+                            {
+                                ModeloCompra novoProduto = new ModeloCompra
+                                {
+                                    NomeProduto = txtNomeProdutoCompra.Text,
+                                    produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
+                                    Qtd = Convert.ToInt32(txtQtd.Text),
+                                    precoUnitarioVenda = decimal.Parse(txtValorVenda.Text),
+                                    precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
+                                    dataProducao = dataProducao.Value,
+                                    dataExpiracao = DataExpiracao.Value,
+                                    Total = decimal.Parse(txtTotqtd.Text),
+                                    TipoProduto = txtTipoProduto.Text,
+                                    CategoriaProduto = txtCategoria.Text,
+                                     UsuarioID = m.UsuarioID,
+                                    DataCompra = DateTime.Now
+
+                                };
+                                decimal subtotal = Decimal.Parse(txtSubTotal.Text);
+                                subtotal += novoProduto.Total;
+                                txtSubTotal.Text = subtotal.ToString();
+                                this.listaDeDados.Add(novoProduto);
+                                AtualizarDataGridView();
+                                limparCampos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Quantidade Inválida!!!");
+                            }
+                        }
+
+
+                    }
+                }
+               
+            }
+            catch (Exception erro)
+            {
+
+                throw new Exception("Erro ao incluir os dados:"+erro.Message);
+            }
+
+            
+
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            if (pnlCadastrarProduto.Visible==true)
+            {
+                pnlCadastrarProduto.Visible = false;
+            }
+        }
+
+        private void dgvMostrarProduto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNomeProdutoCompra.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["NomeProduto"].Value.ToString();
+            txtCodProdutoCompra.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["IdProduto"].Value.ToString();
+            txtCategoria.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["CategoriaProduto"].Value.ToString();
+            txtTipoProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["TipoProduto"].Value.ToString();
+            string finalidad= dgvMostrarProduto.Rows[e.RowIndex].Cells["FinalidadeProduto"].Value.ToString();
+            lblFinalidade.Text = finalidad;
+           if (finalidad == "Comercial")
+            {
+                txtValorVenda.Enabled = true;
+            }
+            else
+            {
+                txtValorVenda.Enabled = false;
+
+            }
+            txtPesquisarProduto.Text ="";
+            if (pnlMostrarProduto.Visible == true)
+            {
+                pnlMostrarProduto.Visible = false;
+
+            }
+
+        }
+
+        private void txtQtd_TextChanged(object sender, EventArgs e)
+        {
+            if (lblFinalidade.Text != "Comercial")
+            {
+                if (string.IsNullOrWhiteSpace(txtQtd.Text))
+                {
+                    txtTotqtd.Text = "";
+                }
+                else
+                {
+                    if (decimal.TryParse(txtQtd.Text, out decimal quantidadeaceite))
+                    {
+                        txtTotqtd.Text = ((Decimal.Parse(txtValorCompr.Text)) * (Convert.ToInt16(txtQtd.Text))).ToString();
+                    }
+                    else
+                    {
+                        // Se o texto não puder ser convertido, informa ao usuário ou toma a ação apropriada
+                        MessageBox.Show("O valor entregue não é válido. Insira um valor numérico.");
+                        // Ou pode fazer alguma outra ação, como limpar a TextBox ou definir o txtTroco.Text para vazio, etc.
+                        txtTotqtd.Text = "";
+                    }
+                }
+
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(txtQtd.Text) || (string.IsNullOrEmpty(txtValorVenda.Text)))
+                {
+                    txtTotqtd.Text = "";
+                }
+                else
+                {
+                    if (decimal.TryParse(txtQtd.Text, out decimal quantidadeaceite))
+                    {
+                        txtTotqtd.Text = ((Decimal.Parse(txtValorCompr.Text)) * (Convert.ToInt16(txtQtd.Text))).ToString();
+                    }
+                    else
+                    {
+                        // Se o texto não puder ser convertido, informa ao usuário ou toma a ação apropriada
+                        MessageBox.Show("O valor entregue não é válido. Insira um valor numérico.");
+                        // Ou pode fazer alguma outra ação, como limpar a TextBox ou definir o txtTroco.Text para vazio, etc.
+                        txtTotqtd.Text = "";
+                    }
+                }
+
+            }
+
+        }
     }
 }

@@ -9,12 +9,14 @@ namespace Modelo
     public  class ModeloVenda
     {
         public string nomeProduto { get; set; }
+        public string nomeCliente{ get; set; }
         public  int produtoID { get; set; }
         public int Qtd { get; set; }
         public decimal precoUnitario { get; set; }
         public decimal Total{ get; set; }
         public DateTime dataVenda  { get; set; }
         public decimal totalGeral { get; set; }
+        public  int UsuarioID { get; set; }
 
 
     }

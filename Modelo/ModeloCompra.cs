@@ -9,6 +9,8 @@ namespace Modelo
 {
     public class ModeloCompra
     {
+        public int produtoID { get; set; }
+        public int MyProperty { get; set; }
         public string NomeProduto { get; set; }
         public int CodFornecedor { get; set; }
         public int Qtd { get; set; }
@@ -19,6 +21,7 @@ namespace Modelo
         public string TipoProduto { get; set; }
         public string CategoriaProduto { get; set; }
         public string FormaFarmaceutica { get; set; }
+        public string CodigodeBara { get; set; }
         public string Obs { get; set; }
         public string NomeFornecedor { get; set; }
         public decimal Total { get; set; }
@@ -28,6 +31,9 @@ namespace Modelo
         public string finalidadeProduto { get; set; }
         public DateTime DataCompra { get; set; }
         public string metedoPagamento { get; set; }
+        public DateTime DataCadastro  { get; set; }
+        public int UsuarioID { get; set; }
+        public decimal totalGeral { get; set; }
     }
 
 }

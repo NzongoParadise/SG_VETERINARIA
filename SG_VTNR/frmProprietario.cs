@@ -379,7 +379,11 @@ namespace SG_VTNR
         private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             txtCodeEndereco.Text = Convert.ToString(dgvEndereco.Rows[e.RowIndex].Cells[0].Value);
-            txtMostrarEndereco.Text = Convert.ToString(dgvEndereco.Rows[e.RowIndex].Cells[1].Value);
+            string bairro = Convert.ToString(dgvEndereco.Rows[e.RowIndex].Cells[1].Value);
+            string cidade= Convert.ToString(dgvEndereco.Rows[e.RowIndex].Cells[2].Value);
+            string rua = Convert.ToString(dgvEndereco.Rows[e.RowIndex].Cells[3].Value);
+            txtMostrarEndereco.Text =$"{bairro},{rua},{cidade}";
+
             if (pnlEndereco.Visible == true)
             {
                 pnlEndereco.Visible = false;

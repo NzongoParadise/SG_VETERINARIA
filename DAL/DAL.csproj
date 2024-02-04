@@ -53,8 +53,11 @@
     <Compile Include="DALItem_Exame.cs" />
     <Compile Include="DALLAnimal.cs" />
     <Compile Include="DALLCompra.cs" />
+    <Compile Include="DALLVacina.cs" />
     <Compile Include="DALMedicamento.cs" />
+    <Compile Include="DALProduto.cs" />
     <Compile Include="DALProprietario.cs" />
+    <Compile Include="DALRaca.cs" />
     <Compile Include="DALReceita.cs" />
     <Compile Include="DALTratamento.cs" />
     <Compile Include="DALUsuario.cs" />

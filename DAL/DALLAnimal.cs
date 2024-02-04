@@ -9,50 +9,59 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-   public class DALLAnimal
+    public class DALLAnimal
     {
         private DALConexao conexao;
         public DALLAnimal(DALConexao cx)
         {
             this.conexao = cx;
         }
-        public void IncluirAnimal(ModeloAnimal  modelo)
+        public void IncluirAnimal(ModeloAnimal modelo)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "Insert_procedure_Animal";
-
-            cmd.Parameters.AddWithValue("@nome", modelo.Nome1);
-            cmd.Parameters.AddWithValue("@Especie", modelo.Especie1);
-            cmd.Parameters.AddWithValue("@Raca", modelo.Raca1);
-            cmd.Parameters.AddWithValue("@Cor", modelo.Cor1);
-            cmd.Parameters.AddWithValue("@peso", modelo.Peso1);
-            cmd.Parameters.AddWithValue("@Estado", modelo.Estado1);
-            cmd.Parameters.AddWithValue("@DataNascimento", modelo.DataNascimento1);
-            cmd.Parameters.AddWithValue("@Porte", modelo.Porte1);
-            cmd.Parameters.AddWithValue("@ProprietarioID", modelo.ProprietarioID1);
-            cmd.Parameters.AddWithValue("@observacao", modelo.Observacao);
-            cmd.Parameters.AddWithValue("@sexo", modelo.sexo1);
-            cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
-            if (modelo.Foto==null)
+            try
             {
-                cmd.Parameters["@Foto"].Value = DBNull.Value;
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conexao.ObjectoConexao;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "Insert_procedure_Animal";
+
+                cmd.Parameters.AddWithValue("@nome", modelo.Nome1);
+                cmd.Parameters.AddWithValue("@Especie", modelo.Especie1);
+                cmd.Parameters.AddWithValue("@Raca", modelo.Raca1);
+                cmd.Parameters.AddWithValue("@Cor", modelo.Cor1);
+                cmd.Parameters.AddWithValue("@peso", modelo.Peso1);
+                cmd.Parameters.AddWithValue("@Estado", modelo.Estado1);
+                cmd.Parameters.AddWithValue("@DataNascimento", modelo.DataNascimento1);
+                cmd.Parameters.AddWithValue("@Porte", modelo.Porte1);
+                cmd.Parameters.AddWithValue("@ProprietarioID", modelo.ProprietarioID1);
+                cmd.Parameters.AddWithValue("@observacao", modelo.Observacao);
+                cmd.Parameters.AddWithValue("@sexo", modelo.sexo1);
+                cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
+                if (modelo.Foto == null)
+                {
+                    cmd.Parameters["@Foto"].Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters["@Foto"].Value = modelo.Foto;
+
+                }
+
+                //cmd.Parameters.AddWithValue("@Foto",modelo.Foto);
+                //cmd.Parameters.AddWithValue("@foto", modelo.Foto);
+
+                conexao.Conectar();
+                cmd.ExecuteNonQuery();
+                modelo.AnimalID1 = Convert.ToInt16(cmd.ExecuteScalar());
+                conexao.Desconectar();
+
             }
-            else
+            catch (Exception erro)
             {
-                cmd.Parameters["@Foto"].Value = modelo.Foto;
 
+                throw new Exception("Falha ao Cadastrar os dados no Banco de Dados:" + erro.Message);
             }
-
-            //cmd.Parameters.AddWithValue("@Foto",modelo.Foto);
-            //cmd.Parameters.AddWithValue("@foto", modelo.Foto);
-
-            conexao.Conectar();
-            cmd.ExecuteNonQuery();
-            modelo.AnimalID1= Convert.ToInt16(cmd.ExecuteScalar());
-            conexao.Desconectar();
-
         }
 
         public void AtualizarAnimal(ModeloAnimal modelo)
@@ -106,13 +115,13 @@ namespace DAL
             conexao.Conectar();
             cmd.ExecuteNonQuery();
         }
-        public  DataTable SelecionarTodosAnimais()
+        public DataTable SelecionarTodosAnimais()
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("select * from Animal", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
-            return dt; 
+            return dt;
 
         }
         public int ObterTotalAnimaisCadastrados()
@@ -139,7 +148,7 @@ namespace DAL
             return totalAnimais;
         }
 
-        public DataTable PesquisarAnimalcomChave( string nome)
+        public DataTable PesquisarAnimalcomChave(string nome)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("select * from Animal where nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
@@ -148,5 +157,93 @@ namespace DAL
             return dt;
 
         }
+        public DataTable PesquisarAnimalcomChaveVacina(string nome)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select AnimalID,Nome,Especie,Raca, Estado, DataNascimento, sexo,Porte,Peso from Animal where nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+
+        }
+
+        public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)
+        {
+            
+                string informacoes = string.Empty;
+
+                using (SqlCommand cmd = new SqlCommand("SELECT p.Nome, p.Sobrenome, p.Apelido FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo", conexao.ObjectoConexao))
+                {
+                    cmd.Parameters.AddWithValue("@Codigo", codigo);
+
+                    try
+                    {
+                        conexao.ObjectoConexao.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            // Recupere os valores das colunas Nome, Sobrenome e Apelido
+                            string nome = reader["Nome"].ToString();
+                            string sobrenome = reader["Sobrenome"].ToString();
+                            string apelido = reader["Apelido"].ToString();
+
+                            // Concatene os valores
+                            informacoes = $"{nome} {sobrenome} ({apelido})";
+                        }
+
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        conexao.ObjectoConexao.Close();
+                    }
+                }
+
+                return informacoes;
+            }
+
+
+            //string nome = string.Empty;
+
+            //using (SqlCommand cmd = new SqlCommand("SELECT p.Nome FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo", conexao.ObjectoConexao))
+            //{
+            //    // Substitua o parâmetro @Codigo pelo valor real que você deseja pesquisar
+            //    cmd.Parameters.AddWithValue("@Codigo", codigo);
+
+            //    try
+            //    {
+            //        conexao.ObjectoConexao.Open();
+            //        // Use ExecuteScalar para recuperar um valor único do banco de dados
+            //        object resultado = cmd.ExecuteScalar();
+
+            //        // Verifique se o resultado não é nulo antes de atribuir à variável 'nome'
+            //        if (resultado != null)
+            //        {
+            //            nome = resultado.ToString();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // Lide com exceções aqui, como registro ou repropagação
+            //        // Não se esqueça de fechar a conexão em caso de exceção
+            //        Console.WriteLine(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        conexao.ObjectoConexao.Close();
+            //    }
+            //}
+
+            //return nome;
+        }
+
+
+
+    
     }
-}
+

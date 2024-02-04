@@ -55,7 +55,9 @@
     <Compile Include="ModeloItem_Exame.cs" />
     <Compile Include="ModeloMedicamento.cs" />
     <Compile Include="ModeloPrescricao.cs" />
+    <Compile Include="ModeloProduto.cs" />
     <Compile Include="ModeloProprietario.cs" />
+    <Compile Include="ModeloRacaAnimal.cs" />
     <Compile Include="ModeloReceita.cs" />
     <Compile Include="ModeloRegistro_Exame.cs" />
     <Compile Include="ModeloSaidasEstoque.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="ModeloTipo_Exame.cs" />
     <Compile Include="ModeloTratamento.cs" />
     <Compile Include="ModeloUsuario.cs" />
+    <Compile Include="ModeloVacina.cs" />
     <Compile Include="ModeloVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

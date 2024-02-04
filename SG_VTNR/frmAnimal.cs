@@ -321,6 +321,7 @@ namespace SG_VTNR
         {
             this.foto = "";
             pctAnimal.Image = null;
+
         }
        
 
@@ -426,6 +427,7 @@ namespace SG_VTNR
         {
             PesquisarAnimalcomChave();
         }
+
         public void PesquisarProprietario()
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
@@ -479,6 +481,11 @@ namespace SG_VTNR
           
 
 
+
+        }
+
+        private void btnAdcEndereco_Click(object sender, EventArgs e)
+        {
 
         }
     }

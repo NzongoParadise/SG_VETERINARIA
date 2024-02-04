@@ -153,6 +153,14 @@ namespace DAL
             da.Dispose();
             return dt;
         }
+        public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(" select FuncionarioID,Nome,Sobrenome,Apelido  from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+        }
         public DataTable ExibirTodosFuncionarios()
         {
             DataTable dt = new DataTable();

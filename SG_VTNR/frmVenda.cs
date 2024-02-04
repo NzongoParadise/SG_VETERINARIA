@@ -356,12 +356,13 @@ namespace SG_VTNR
                 decimal totalGeral = decimal.Parse(txtSubtotal.Text) + decimal.Parse(txtImposto.Text);
 
                 // Adicionar o totalGeral à venda
+                
                 foreach (var item in listaDeDados)
                 {
                     item.totalGeral = totalGeral;
                     item.UsuarioID = m.UsuarioID;
                 }
-               
+
                 // Inserir os dados
                 bll.incluirVendaItem(listaDeDados);
                 MessageBox.Show("\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);

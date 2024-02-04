@@ -31,7 +31,7 @@ namespace BLL
                 if (listaDeDados.Count > 0)
                 {
                     DALLCompra DALLCompra = new DALLCompra(conexao);
-                    ModeloCompra modeloCompra = new ModeloCompra(); 
+                    ModeloCompra modeloCompra = new ModeloCompra();
                     DALLCompra.IncluirCompraItem(listaDeDados);
                 }
                 else

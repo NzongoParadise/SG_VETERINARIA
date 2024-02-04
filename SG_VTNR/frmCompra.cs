@@ -21,14 +21,14 @@ namespace SG_VTNR
         private DataTable FornecdorDT = new DataTable();
         private DataTable TransacaoDT = new DataTable();
         string finalidade;
-        private ModeloVenda m;
+        private ModeloCompra m;
         ModeloCompra ModeloDadosCompra = new ModeloCompra();
         private List <ModeloCompra> listaDeDados =new List<ModeloCompra>();
         public frmCompra()
         {
             InitializeComponent();
              
-        m = new ModeloVenda();
+        m = new ModeloCompra();
         m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
         }
         private void guna2TextBox6_TextChanged(object sender, EventArgs e)
@@ -50,13 +50,20 @@ namespace SG_VTNR
         {
 
         }
-        public void pesquisarProdutocomChave()
+        public void pesquisarFornecedorcomChave()
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLCompra bll = new BLLCompra(cx);
             FornecdorDT = bll.PesquisarFornecedorComChavenaCompra(txtPesquisarFornecedor.Text);
                     // Vincular DataTable ao DataGridView
                     dgvFornecedor.DataSource = FornecdorDT;
+            dgvFornecedor.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvFornecedor.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvFornecedor.AutoResizeRows();
+
+            // Ajustar a altura da linha de cabeçalho
+            dgvFornecedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
         }
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
@@ -72,7 +79,7 @@ namespace SG_VTNR
                     if (pnlFornecedor.Visible == false)
                     {
                         pnlFornecedor.Visible = true;
-                        pesquisarProdutocomChave();
+                        pesquisarFornecedorcomChave();
                     }
                 }
             }
@@ -138,11 +145,21 @@ namespace SG_VTNR
                 modelo.CategoriaProduto = cmbCategoria.Text;
                 modelo.FormaFarmaceutica = txtFormaFarmaceutica.Text;
                 modelo.Obs = txtObs.Text;
+                modelo.eestadoProduto = false;
                 modelo.Fabricante = txtFabricante.Text;
                 modelo.finalidadeProduto = lblFinalidade.Text;
                 modelo.dataExpiracao = DateTime.MaxValue;
                 modelo.CodigodeBara = txtCodigodeBarra.Text;
                 modelo.finalidadeProduto = finalidade;
+                if (finalidade!="Comercial")
+                {
+                    modelo.isentoCusto = "Isento a Custos";
+
+                }
+                else
+                {
+                    modelo.isentoCusto = "Não Isento a Custos";
+                }
                 //metedoPagamento =cmbMetodoPagamento.Text,
                 modelo.DataCadastro = DateTime.Now;
                 modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
@@ -157,8 +174,10 @@ namespace SG_VTNR
             }
             catch (Exception erro)
             {
+                MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
-                throw new Exception("Erro ao incluir os dados:" + erro.Message);
+
+                //MessageBox.Show("Erro ao incluir os dados:","Aviso" + erro.Message);
             }
            }
         public void AtualizarDataGridView()
@@ -290,16 +309,14 @@ namespace SG_VTNR
                     // Carrega as informações do item nas TextBoxes
                     txtCodProdutoCompra.Text = itemSelecionado.produtoID.ToString();
                     txtNomeProdutoCompra.Text = itemSelecionado.NomeProduto;
-                    txtQtd.Text = itemSelecionado.Qtd.ToString();
                     txtValorCompr.Text = itemSelecionado.precoCompraUnitario.ToString();
+                    txtQtd.Text = itemSelecionado.Qtd.ToString();
+
                     txtValorVenda.Text = itemSelecionado.precoUnitarioVenda.ToString();
+                    
                     txtTotqtd.Text = itemSelecionado.Total.ToString();
                     txtCategoria.Text = itemSelecionado.CategoriaProduto.ToString();
                     txtTipoProduto.Text = itemSelecionado.TipoProduto.ToString();
-
-
-
-
 
                     // Pode ser útil armazenar o índice da linha selecionada para referência futura
                     // Pode ser usado em conjunto com o botão de "Salvar" no seu formulário de edição
@@ -330,6 +347,9 @@ namespace SG_VTNR
                 // Calcular o totalGeral para toda a venda
                 decimal totalGeral = decimal.Parse(txtSubTotal.Text) + decimal.Parse(txtImposto.Text);
 
+                //ModeloCompra tot = new ModeloCompra();
+                //tot.totalGeral = totalGeral;
+                //tot.UsuarioID = m.UsuarioID;
                 // Adicionar o totalGeral à venda
                 foreach (var item in listaDeDados)
                 {
@@ -365,12 +385,13 @@ namespace SG_VTNR
                     decimal subtotal = decimal.Parse(txtSubTotal.Text);
                     txtTroco.Text = (valorEntregue - subtotal).ToString();
                 }
-                else
+                else 
                 {
                     // Se o texto não puder ser convertido, informa ao usuário ou toma a ação apropriada
                     MessageBox.Show("O valor entregue não é válido. Insira um valor numérico.");
                     // Ou pode fazer alguma outra ação, como limpar a TextBox ou definir o txtTroco.Text para vazio, etc.
                     txtTroco.Text = "";
+
                 }
             }
         }
@@ -382,6 +403,15 @@ namespace SG_VTNR
             DataTable dt = new DataTable();
             dt=bll.PesquisarProdutoComChave(txtPesquisarProduto.Text);
             dgvMostrarProduto.DataSource= dt;
+
+
+            dgvMostrarProduto.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvMostrarProduto.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvMostrarProduto.AutoResizeRows();
+
+            // Ajustar a altura da linha de cabeçalho
+            dgvMostrarProduto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
 
         }
         private void txtPesquisarProduto_TextChanged(object sender, EventArgs e)
@@ -457,14 +487,10 @@ namespace SG_VTNR
                                     Total = decimal.Parse(txtTotqtd.Text),
                                     TipoProduto = txtTipoProduto.Text,
                                     CategoriaProduto = txtCategoria.Text,
-                                     UsuarioID = m.UsuarioID,
-                                     DataCompra=DateTime.Now
-                                     
-
+                                    UsuarioID = m.UsuarioID,
+                                    eestadoProduto=true,
+                                    DataCompra=DateTime.Now
                                 };
-
-                               
-
                                 decimal subtotal = Decimal.Parse(txtSubTotal.Text);
                                 subtotal += novoProduto.Total;
                                 txtSubTotal.Text = subtotal.ToString();
@@ -477,8 +503,6 @@ namespace SG_VTNR
                                 MessageBox.Show("Quantidade Inválida!!!");
                             }
                         }
-
-
                     }
                 }
                 else
@@ -517,6 +541,7 @@ namespace SG_VTNR
                                     TipoProduto = txtTipoProduto.Text,
                                     CategoriaProduto = txtCategoria.Text,
                                      UsuarioID = m.UsuarioID,
+                                     eestadoProduto=true,
                                     DataCompra = DateTime.Now
 
                                 };
@@ -608,7 +633,7 @@ namespace SG_VTNR
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(txtQtd.Text) || (string.IsNullOrEmpty(txtValorVenda.Text)))
+                if (string.IsNullOrWhiteSpace(txtQtd.Text) || (string.IsNullOrEmpty(txtValorCompr.Text)))
                 {
                     txtTotqtd.Text = "";
                 }
@@ -628,6 +653,35 @@ namespace SG_VTNR
                 }
 
             }
+
+        }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+            txtvalorpagargeral.Text = (decimal.Parse(txtSubTotal.Text) + decimal.Parse(txtImposto.Text)).ToString();
+            
+            decimal subtotal = decimal.Parse(txtSubTotal.Text);
+            decimal imposto = decimal.Parse(txtImposto.Text);
+            decimal totalGeral = subtotal + imposto;
+
+            // Adicione logs para depuração
+            Console.WriteLine($"Subtotal: {subtotal}, Imposto: {imposto}, Total Geral: {totalGeral}");
+
+            txtvalorpagargeral.Text = totalGeral.ToString();
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
 
         }
     }

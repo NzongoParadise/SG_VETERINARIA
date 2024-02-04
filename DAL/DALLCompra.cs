@@ -112,6 +112,7 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@NovaDataExpiracao", produto.dataExpiracao);
                         cmd.Parameters.AddWithValue("@NovoValorCompra", produto.precoCompraUnitario);
                         cmd.Parameters.AddWithValue("@NovoValorVenda", produto.precoUnitarioVenda);
+                        cmd.Parameters.AddWithValue("@EstadoProduto", produto.eestadoProduto);
                         //conexao.Conectar();
                         cmd.ExecuteNonQuery();
                         //conexao.Desconectar();
@@ -156,9 +157,6 @@ namespace DAL
 
         }
 
-
-
-
         private int IncluirCompra(ModeloCompra modelo, SqlTransaction transacao)
         {
             using (SqlCommand cmd = new SqlCommand("Insert_procedure_Compra", transacao.Connection, transacao))
@@ -166,11 +164,9 @@ namespace DAL
                 try
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                   
                     cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
                     cmd.Parameters.AddWithValue("@DataCompra", modelo.DataCompra);
-                    cmd.Parameters.AddWithValue("@TotalCompra", modelo.Total);
+                    cmd.Parameters.AddWithValue("@TotalCompra", modelo.totalGeral);
 
                     // Executa o comando e retorna o ID da compra inserida
                     return Convert.ToInt32(cmd.ExecuteScalar());
@@ -465,6 +461,8 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@FinalidadeProduto", modelo.finalidadeProduto);
                 cmd.Parameters.AddWithValue("UsuarioID", modelo.UsuarioID);
                 cmd.Parameters.AddWithValue("CodigodeBarra", modelo.CodigodeBara);
+                cmd.Parameters.AddWithValue("estadoProduto", modelo.eestadoProduto);
+                cmd.Parameters.AddWithValue("IsentoCusto", modelo.isentoCusto);
                 // Adiciona o parâmetro de saída para capturar o novo ID
                 SqlParameter paramNovoProdutoID = new SqlParameter("@NovoProdutoID", SqlDbType.Int);
                 paramNovoProdutoID.Direction = ParameterDirection.Output;

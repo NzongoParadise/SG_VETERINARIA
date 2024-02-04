@@ -133,7 +133,18 @@ namespace BLL
             DALLAnimal DALObj = new DALLAnimal(conexao);
             return DALObj.PesquisarAnimalcomChave(Nome);
         }
-  public DataTable SelecionarTodosAnimal()
+        public DataTable PesquisarAnimalcomChaveVacina(string Nome)
+        {
+            DALLAnimal DALObj = new DALLAnimal(conexao);
+            return DALObj.PesquisarAnimalcomChaveVacina(Nome);
+        }
+        public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)
+        {
+            DALLAnimal DALObj = new DALLAnimal(conexao);
+            return DALObj.PesquisarNomeProprietarioVacinaComCodigo(codigo);
+        }
+
+        public DataTable SelecionarTodosAnimal()
         {
             DALLAnimal DALObj = new DALLAnimal(conexao);
             return DALObj.SelecionarTodosAnimais();

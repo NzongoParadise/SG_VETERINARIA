@@ -96,8 +96,7 @@ CREATE TABLE Funcionario (
 	EnderecoID int,
 	constraint fk_EnderecoID_Funcionario foreign key(EnderecoID) references Endereco(EnderecoID)
 );
-use BD_Veterinaria
-select * from animal
+
 
 GO 
 CREATE PROCEDURE procedure_Atualizar_Funcionario
@@ -180,6 +179,7 @@ BEGIN
     VALUES (@Nome, @Sobrenome, @Apelido, @sexo, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
 
 END
+
 
 
 ----------------------tabelas relacionadas com proprietario e animais------------------------------
@@ -339,47 +339,124 @@ BEGIN
 END;
 
 
+select *from compra
+select *from ItemCompraProduto
 
 
+select *from venda
+select *from Itemvenda
 
-----Inicio tabelas relacionada com a clinica ---------------
--- Tabela de Consultas
-CREATE TABLE Consultas (
-    ConsultaID INT PRIMARY KEY NOT NULL identity(1,1),
-    DataConsulta DATETIME,
+
+---------------------------------Inicio tabelas relacionada com a clinica ---------------
+
+CREATE TABLE RegistroVacinacao (
+    IDRegistroVacinacao INT PRIMARY KEY IDENTITY(1,1),
     AnimalID INT,
+	FuncionarioID INT,
+	IdProduto INT,
+	UsuarioID int,
+    DoseVacina INT,
+    NomeVacina VARCHAR(50),
+    LoteVacina VARCHAR(20),
+    ViaAdministracao VARCHAR(20),
+    LocalAdministracao VARCHAR(50),
+    ValidadeVacina DATE,
+    ReacoesAdversas TEXT,
+    VeterinarioResponsavel VARCHAR(50),
+    DataVacinacao DATETIME,
+    ProximaDataVacinacao DATETIME,
+    VacinacaoCompleta BIT,
+    ResponsavelAdministracao VARCHAR(50),
+    DataRegistro DATETIME,
+    NotasObservacoes TEXT,
+   CONSTRAINT fk_AnimalID_RegistroVacinacao FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_IdProduto_RegistroVacinacao FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto),
+    CONSTRAINT fk_FuncionarioID_RegistroVacinacao FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+	CONSTRAINT fk_UsuarioID_RegistroVacinacao FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+);
+
+CREATE TABLE Pesagem (
+    PesagemID INT PRIMARY KEY IDENTITY(1,1),
+    AnimalID INT,
+	UsuarioID INT,
+	FuncionarioID INT,
+    DataPesagem DATE,
+    Peso DECIMAL(5,2),
+    CONSTRAINT fk_AnimalID_Pesagem FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+	CONSTRAINT fk_FuncionarioID_Pesagem FOREIGN KEY (FuncionarioID) REFERENCES FuncionarioID(FuncionarioID),
+	CONSTRAINT fk_UsuarioID_Pesagem FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+);
+
+CREATE TABLE MovimentacaoAnimal (
+    MovimentacaoID INT PRIMARY KEY IDENTITY(1,1),
+    AnimalID INT,
+    ProprietarioID INT,
+	UsuarioID int,
+    Origem VARCHAR(100),
+    Destino VARCHAR(100),
+    StatusMovimentacao VARCHAR(50),
+    CONSTRAINT fk_AnimalID_MovimentacaoAnimal FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_ProprietarioID_MovimentacaoAnimal FOREIGN KEY (ProprietarioID) REFERENCES Proprietario(ProprietarioID),
+	CONSTRAINT fk_UsuarioID_MovimentacaoAnimal FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+);
+
+CREATE TABLE Consulta(
+    ConsultaID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+    DataConsulta DATETIME NOT NULL,
+    AnimalID INT NOT NULL,
+    FuncionarioID INT NOT NULL,
+    MotivoConsulta VARCHAR(255),
+    ExamesRealizados VARCHAR(255),
     Diagnostico VARCHAR(MAX),
     Tratamento VARCHAR(MAX),
-    observacao VARCHAR(MAX),
-	constraint fk_AnimalID_ConsultaID foreign key(AnimalID) references Animal(AnimalID)
+    Observacao VARCHAR(MAX),
+    EstadoConsulta VARCHAR(50), -- Pode ser 'Agendada', 'Realizada', 'Cancelada', etc.
+    CONSTRAINT fk_AnimalID_ConsultaID FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_FuncionarioID_ConsultaID FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID)
+);
+-- Tabela de Agendamento
+CREATE TABLE Agendamento(
+    AgendamentoID INT PRIMARY KEY NOT NULL  identity(1,1),
+    DataAgendamento DATETIME,
+    ConsultaID INT,
+	FuncionarioID int,
+	UsuarioID int,
+    Observacoes VARCHAR(MAX),
+	constraint RegistroExame_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID),
+	constraint fk_Agendamento_Consulta FOREIGN KEY (ConsultaID) REFERENCES Consultas(ConsultaID),
+	CONSTRAINT fk_UsuarioID_Agendamento FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 
 --criacao da tabela abaixo
 CREATE TABLE Receita
 (
-	num_receita INT PRIMARY KEY identity(1,1),
-	data_receita DATETIME,
-	desc_orientacoes_gerais VARCHAR(150),
-	codigo_de_barra VARCHAR(20) null,
-	ConsultaID INT,
-	AnimalID int,
-	descricao TEXT,
-	constraint fk_ConsultaID_num_receita  foreign key(ConsultaID) references Consultas(ConsultaID),
-	constraint fk_AnimalID_num_receita  foreign key(AnimalID) references Animal(AnimalID)
+    ReceitaID INT PRIMARY KEY IDENTITY(1,1),
+    DataEmissao DATETIME,
+    OrientacoesGerais VARCHAR(150),
+    CodigoBarra VARCHAR(20) NULL,
+    ConsultaID INT,
+    AnimalID INT,
+    VeterinarioID INT,
+    descricao TEXT,
+    CONSTRAINT fk_ConsultaID_ReceitaID FOREIGN KEY (ConsultaID) REFERENCES Consulta(ConsultaID),
+    CONSTRAINT fk_AnimalID_Receita FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_FuncionarioID_Receita FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID);
+	CONSTRAINT fk_UsuarioID_Receita FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 
 --criacao da tabela abaixo  ItemReceita
 CREATE TABLE ItemReceita
 (
-	item_num_receita INT PRIMARY KEY identity(1,1),
-    num_receita int,
-	codeMedicamento INT,
+	ItemReceita INT PRIMARY KEY identity(1,1),
+	ReceitaID int,
+	produtoID INT,
 	quantidade INT,
-    observacao VARCHAR(200),
-	constraint fk_num_receita_num_item_num_receita foreign key(num_receita) references Receita(num_receita),
-	constraint fk_codeMedicamento_item_num_receita foreign key(codeMedicamento) references Medicamento(codeMedicamento)
-)
-
+    observacao VARCH
+	
+	AR(200),
+	constraint fk_num_receita_num_item_num_receita foreign key(ReceitaID) references Receita(ReceitaID),
+	constraint fk_produto_ItemReceita foreign key(produtoID) references produto(ProdutoID)
+);
 --pesquisar sobre isso
 --criacao da tabela abaixo
 CREATE TABLE Prescricao
@@ -396,62 +473,66 @@ CREATE TABLE Prescricao
 	constraint fk_num_receita_codePrescricao foreign key(num_receita) references Receita(num_receita),
 	constraint fk_codeMedicamento_codePrescricao foreign key(codeMedicamento) references Medicamento(codeMedicamento)
 );
+
 -- Tabela de Tratamento
 CREATE TABLE Tratamento (
-    ID_Tratamento INT PRIMARY KEY,
+    ID_Tratamento INT PRIMARY KEY identity(1,1),
     FuncionarioID INT,
     AnimalID int,
+	UsuarioID int,
     Data_Inicio DATE,
     Data_Fim DATE,
     Descricao TEXT,
     constraint fk_Tratamento_FuncionarioID foreign key(FuncionarioID) references Funcionario(FuncionarioID),
     constraint fk_Tratamento_AnimalID foreign key(AnimalID) references Animal(AnimalID)
-);
+	CONSTRAINT fk_UsuarioID_Tratamento FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 
+);
 -- Tabela de Tipo_Exame
 CREATE TABLE Tipo_Exame (
     ID_Tipo_Exame INT PRIMARY KEY,
     Descricao VARCHAR(100)
 );
+
 -- Tabela de Exame
 CREATE TABLE Exame (
     ID_Exame INT PRIMARY KEY identity(1,1),
-    AnimalID INT FOREIGN KEY REFERENCES Animal(AnimalID),
+    AnimalID INT,
     FuncionarioID INT,
+	UsuarioID int,
     ID_Tipo_Exame INT,
     Data_Hora DATETIME,
     Resultado TEXT,
 	constraint fk_Exame_AnimalID foreign key(AnimalID) references Animal(AnimalID),
 	constraint fk_Exame_FuncionarioID foreign key(FuncionarioID) references Funcionario(FuncionarioID),
-	constraint fk_ExameID_Tipo_Exame foreign key(ID_Tipo_Exame) references Tipo_Exame(ID_Tipo_Exame)
+	constraint fk_ExameID_Tipo_Exame foreign key(ID_Tipo_Exame) references Tipo_Exame(ID_Tipo_Exame),
+	CONSTRAINT fk_UsuarioID_exame FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+
 -- Tabela de Item_Exame
-CREATE TABLE Item_Exame (
-    ID_Item_Exame INT PRIMARY KEY,
-    ID_Exame INT,
-    Descricao_Exame VARCHAR(100),
-    Resultado_Exame TEXT,
+CREATE TABLE ItemExame (
+   ItemExameID INT PRIMARY KEY,
+    ExameID INT,
+    DescricaoExame VARCHAR(100),
+    ResultadoExame TEXT,
 	constraint fk_Item_Exame_ID_Exame_ID_Exame foreign key(ID_Exame) references Exame(ID_Exame)
 );
+
 -- Tabela de Registro_Exame
-CREATE TABLE Registro_Exame (
-    ID_Registro_Exame INT PRIMARY KEY,
+CREATE TABLE RegistroExame (
+    RegistroExameID INT PRIMARY KEY,
     FuncionarioID INT,
-	ID_Exame INT,
+	UsuarioID int
+	IDExame INT,
     AnimalID INT,
     Data_Hora DATETIME,
     Observacoes TEXT,
 	constraint fk_Registro_Exame_Exame foreign key(ID_Exame) references Exame(ID_Exame),
-	constraint Registro_Exame_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID)
+	constraint RegistroExame_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID)
+	CONSTRAINT fk_UsuarioID_RegistroExame FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+
 );
--- Tabela de Agendamento
-CREATE TABLE Agendamento (
-    AgendamentoID INT PRIMARY KEY NOT NULL  identity(1,1),
-    DataAgendamento DATETIME,
-    ConsultaID INT,
-    Observacoes VARCHAR(MAX),
-	constraint fk_Agendamento_Consulta FOREIGN KEY (ConsultaID) REFERENCES Consultas(ConsultaID),
-);
+
 
 ----fim tabelas relacionada com a clinica ---------------
 
@@ -460,9 +541,9 @@ CREATE TABLE Agendamento (
 
 
 
+
 -- inicio da Area de criacao de tabelas de compra e vendas da farmacia----------------------------------------------------------------------------
 -- Tabela de Fornecedores de Medicamentos e Vacinas
-select *from Fornecedor
 CREATE TABLE Fornecedor (
     FornecedorID INT PRIMARY KEY identity(1,1),
     NomeFornecedor VARCHAR(100),
@@ -497,12 +578,7 @@ CREATE TABLE produto(
 	foreign key (FornecedorID) REFERENCES Fornecedor(FornecedorID),
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
-alter table produto column CodigodeBarra varchar(100)
-ALTER TABLE produto
-ALTER COLUMN CodigodeBarra VARCHAR(100);
-
-select *from ItemCompraProduto
-select *from produto
+--criacao do procedimento para actualizar os dados da compra do produto
 CREATE PROCEDURE Update_procedure_Produtocompra
 	@IdProduto INT,
     @NovaQuantidade INT,
@@ -521,7 +597,7 @@ BEGIN
         ValorVenda = @NovoValorVenda
     WHERE IdProduto = @IdProduto;
 END;
-
+--criacao do procedimento para inserir produto
 CREATE PROCEDURE Insert_procedure_Produto
     @NomeProduto NVARCHAR(255),
     @FornecedorID INT,
@@ -545,8 +621,6 @@ CREATE PROCEDURE Insert_procedure_Produto
 AS
 BEGIN
     SET NOCOUNT ON;
-
-    -- Inserir dados na tabela produto
     INSERT INTO produto (
         NomeProduto,
         FornecedorID,
@@ -590,19 +664,11 @@ BEGIN
         @FinalidadeProduto
     );
 
-    -- Obtém o ID do produto recém-inserido
+   -- Obtém o ID do produto recém-inserido
     SET @NovoProdutoID = SCOPE_IDENTITY();
 END;
 
-
-alter table produto add DataCadastro datetime 
-select *from Fornecedor
-select *from produto
-select *from compra 
-select *from ItemCompraProduto
-select * from Usuario
-
--- Tabela Compra
+-- criacao da Tabela Compra
 CREATE TABLE Compra (
     IDCompra INT PRIMARY KEY not null identity(1,1),
     UsuarioID INT, -- Adicionada a referência ao Funcionario
@@ -610,6 +676,25 @@ CREATE TABLE Compra (
     TotalCompra DECIMAL(10, 2),
     FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+-- criacao do procedimento inserir compra 
+CREATE PROCEDURE Insert_procedure_Compra
+    @UsuarioID INT,
+    @DataCompra DATE,
+    @TotalCompra DECIMAL(18, 2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    -- Aqui você realiza as operações necessárias, por exemplo, inserir dados na tabela Compra
+    INSERT INTO Compra (UsuarioID, DataCompra, TotalCompra)
+    VALUES (@UsuarioID, @DataCompra, @TotalCompra);
+    -- Obtém o ID da compra inserida
+    DECLARE @CompraID INT;
+    SET @CompraID = SCOPE_IDENTITY();
+
+    -- Retorna o ID da compra
+    SELECT @CompraID AS 'CompraID';
+END
+
 -- Tabela ItemCompraProduto
 CREATE TABLE ItemCompraProduto (
     IDItemCompraProduto INT PRIMARY KEY not null identity(1,1),
@@ -621,7 +706,8 @@ CREATE TABLE ItemCompraProduto (
     FOREIGN KEY (CompraID) REFERENCES Compra(IDCompra),
     FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
 );
-CREATE PROCEDURE Insert_procedure_ItemCompraProduto
+--criacao do procedimento inserir itemcompra
+CREATE PROCEDURE Insert_procedure_ItemCompra
     @CompraID INT,
     @ProdutoID INT,
     @Quantidade INT,
@@ -631,18 +717,20 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Inserir dados na tabela ItemCompraProduto
     INSERT INTO ItemCompraProduto (CompraID, ProdutoID, Quantidade, PrecoUnitario, Total)
     VALUES (@CompraID, @ProdutoID, @Quantidade, @PrecoUnitario, @Total);
 END;
+
 -- Tabela Venda
 CREATE TABLE Venda (
     IDVenda INT PRIMARY KEY identity (1,1),
+	NomeCliente Varchar (100),
     DataVenda DATE,
     TotalVenda DECIMAL(10, 2),
 	UsuarioID INT, -- Adicionada a referência ao Funcionario
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+
 -- Tabela ItemVenda
 CREATE TABLE ItemVenda (
     IDItemVenda INT PRIMARY KEY identity (1,1),
@@ -653,19 +741,22 @@ CREATE TABLE ItemVenda (
     Total DECIMAL(10, 2),
     FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
 );
+
 -- Exemplo de procedimento armazenado "Insert_procedure_Venda"
 CREATE PROCEDURE Insert_procedure_Venda
-    @DataVenda DATE,
-    @TotalVenda DECIMAL(10, 2)
+    @NomeCliente Varchar (100),
+	@DataVenda DATE,
+    @TotalVenda DECIMAL(10, 2),
+	@UsuarioID INT
 AS
 BEGIN
-    INSERT INTO Venda (DataVenda, TotalVenda)
-    VALUES (@DataVenda, @TotalVenda);
+    INSERT INTO Venda (NomeCliente, DataVenda,TotalVenda,UsuarioID)
+    VALUES (@NomeCliente, @DataVenda, @TotalVenda,@UsuarioID);
 
     -- Retorna o ID da venda inserida
     SELECT SCOPE_IDENTITY();
 END;
-
+--criacao do procedimento para actualizar a quantidade vendida
 CREATE PROCEDURE Update_procedure_AtualizarQuantidadeEstoque
     @ProdutoID INT,
     @Quantidade INT

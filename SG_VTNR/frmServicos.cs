@@ -33,6 +33,7 @@ namespace SG_VTNR
 
         }
 
+
         private void dgvDados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -43,6 +44,7 @@ namespace SG_VTNR
 
         }
 
+       
         private void guna2Button3_Click(object sender, EventArgs e)
         {
             
@@ -77,6 +79,31 @@ namespace SG_VTNR
         private void guna2Button6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVacina_Click(object sender, EventArgs e)
+        {
+            if (pnlContainer.Visible == false)
+            {
+                pnlContainer.Visible = true;
+                container(new frmVacinacao());
+            }
+
+
+        }
+
+        private void pnlContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Button10_Click(object sender, EventArgs e)
+        {
+            if (pnlContainer.Visible == false)
+            {
+                pnlContainer.Visible = true;
+                container(new frmPesagem());
+            }
         }
     }
 }

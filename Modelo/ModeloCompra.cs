@@ -34,6 +34,8 @@ namespace Modelo
         public DateTime DataCadastro  { get; set; }
         public int UsuarioID { get; set; }
         public decimal totalGeral { get; set; }
+        public bool eestadoProduto { get; set; }
+        public string isentoCusto { get; set; }
     }
 
 }

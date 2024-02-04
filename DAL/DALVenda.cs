@@ -25,6 +25,7 @@ namespace DAL
             return dt;
         }
 
+
         public void IncluirVendaItem(List<ModeloVenda> listaDeVenda)
         {
             using (SqlConnection conexaoPrincipal = new SqlConnection(conexao.StringConexao))
@@ -65,7 +66,6 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@TotalVenda", modelo.totalGeral);
                     cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
                     cmd.Parameters.AddWithValue("@NomeCliente", modelo.nomeCliente);
-
                     // Executa o comando e retorna o ID da venda inserida
                     int vendaID = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -77,6 +77,7 @@ namespace DAL
                 }
             }
         }
+
         public void AtualizarQuantidadeEstoque(int produtoID, int quantidade, SqlTransaction transacao)
         {
             using (SqlCommand cmd = new SqlCommand("Update_procedure_AtualizarQuantidadeEstoque", transacao.Connection, transacao))

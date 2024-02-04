@@ -48,8 +48,11 @@
     <Compile Include="BLLFornecedor.cs" />
     <Compile Include="BLLFuncionario.cs" />
     <Compile Include="BLLMedicamento.cs" />
+    <Compile Include="BLLProduto.cs" />
     <Compile Include="BLLProprietario.cs" />
+    <Compile Include="BLLRacaAnimal.cs" />
     <Compile Include="BLLUsuario.cs" />
+    <Compile Include="BLLVacina.cs" />
     <Compile Include="BLLVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

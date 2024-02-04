@@ -62,17 +62,47 @@
     </Compile>
     <Compile Include="FormatandoDGV.cs" />
     <Compile Include="FormRoundedCorners.cs" />
+    <Compile Include="frmAgendamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAgendamento.Designer.cs">
+      <DependentUpon>frmAgendamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAnimal.Designer.cs">
       <DependentUpon>frmAnimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCadastrarAnimalteste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastrarAnimalteste.Designer.cs">
+      <DependentUpon>frmCadastrarAnimalteste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadastroRaca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastroRaca.Designer.cs">
+      <DependentUpon>frmCadastroRaca.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCompra.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCompra.Designer.cs">
       <DependentUpon>frmCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIntermediarioAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIntermediarioAnimal.Designer.cs">
+      <DependentUpon>frmIntermediarioAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPesagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPesagem.Designer.cs">
+      <DependentUpon>frmPesagem.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServicos.cs">
       <SubType>Form</SubType>
@@ -164,6 +194,12 @@
     <Compile Include="frmVacina.Designer.cs">
       <DependentUpon>frmVacina.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVacinacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVacinacao.Designer.cs">
+      <DependentUpon>frmVacinacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,11 +212,26 @@
     <EmbeddedResource Include="dia.resx">
       <DependentUpon>dia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAgendamento.resx">
+      <DependentUpon>frmAgendamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAnimal.resx">
       <DependentUpon>frmAnimal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastrarAnimalteste.resx">
+      <DependentUpon>frmCadastrarAnimalteste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastroRaca.resx">
+      <DependentUpon>frmCadastroRaca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCompra.resx">
       <DependentUpon>frmCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIntermediarioAnimal.resx">
+      <DependentUpon>frmIntermediarioAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPesagem.resx">
+      <DependentUpon>frmPesagem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicos.resx">
       <DependentUpon>frmServicos.cs</DependentUpon>
@@ -226,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmVacina.resx">
       <DependentUpon>frmVacina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVacinacao.resx">
+      <DependentUpon>frmVacinacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVenda.resx">
       <DependentUpon>frmVenda.cs</DependentUpon>

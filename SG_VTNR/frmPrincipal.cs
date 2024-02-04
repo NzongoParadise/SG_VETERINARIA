@@ -111,7 +111,7 @@ namespace SG_VTNR
             if (pnlMenu.Visible == true)
             {
                 pnlMenu.Visible = false;
-                container(new frmAnimal());
+                container(new frmIntermediarioAnimal());
             }
         }
 

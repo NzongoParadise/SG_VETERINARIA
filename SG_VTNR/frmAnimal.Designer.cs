@@ -302,6 +302,7 @@
             this.btnAdcEndereco.Size = new System.Drawing.Size(84, 57);
             this.btnAdcEndereco.TabIndex = 67;
             this.btnAdcEndereco.Text = "adic.";
+            this.btnAdcEndereco.Click += new System.EventHandler(this.btnAdcEndereco_Click);
             // 
             // txtPeso
             // 

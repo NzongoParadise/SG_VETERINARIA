@@ -89,7 +89,7 @@ namespace DAL
         public DataTable PesquisarProprietarioComChave( string nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select Nome,sobrenome, ProprietarioID from Proprietario where Nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter("select  ProprietarioID,Nome,sobrenome from Proprietario where Nome like '%" + nome.ToString() + "%'  or  ProprietarioID like '%" +nome+ "%'", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
            return dt;

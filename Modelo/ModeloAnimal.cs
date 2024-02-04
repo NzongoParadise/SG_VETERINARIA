@@ -13,8 +13,8 @@ namespace Modelo
             private string Nome;
             private string Especie;
             private string Raca;
-        private string sexo;
-        private string Cor;
+            private string sexo;
+            private string Cor;
             private double Peso;
             private string Estado;
             private DateTime DataNascimento;

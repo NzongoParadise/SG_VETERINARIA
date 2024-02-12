@@ -31,13 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServicos));
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.pnlContainer = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label39 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtCodigo = new Guna.UI2.WinForms.Guna2TextBox();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -54,18 +51,10 @@
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.gunaVSeparator1 = new Guna.UI.WinForms.GunaVSeparator();
-            this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtMostarData = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.guna2TextBox5 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlContainer.SuspendLayout();
             this.guna2ShadowPanel2.SuspendLayout();
             this.gunaShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTesteServicos)).BeginInit();
-            this.gunaShadowPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -90,7 +79,7 @@
             this.pnlContainer.BackColor = System.Drawing.Color.Transparent;
             this.pnlContainer.Controls.Add(this.guna2ShadowPanel2);
             this.pnlContainer.FillColor = System.Drawing.Color.White;
-            this.pnlContainer.Location = new System.Drawing.Point(332, 208);
+            this.pnlContainer.Location = new System.Drawing.Point(333, 72);
             this.pnlContainer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlContainer.Name = "pnlContainer";
             this.pnlContainer.Radius = 2;
@@ -127,43 +116,6 @@
             this.label39.Size = new System.Drawing.Size(311, 29);
             this.label39.TabIndex = 54;
             this.label39.Text = "CADASTRAR CONSULTA";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 11);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(56, 20);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "código";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCodigo.BorderRadius = 5;
-            this.txtCodigo.BorderThickness = 2;
-            this.txtCodigo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCodigo.DefaultText = "";
-            this.txtCodigo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCodigo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCodigo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCodigo.DisabledState.Parent = this.txtCodigo;
-            this.txtCodigo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCodigo.Enabled = false;
-            this.txtCodigo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCodigo.FocusedState.Parent = this.txtCodigo;
-            this.txtCodigo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCodigo.HoverState.Parent = this.txtCodigo;
-            this.txtCodigo.Location = new System.Drawing.Point(9, 38);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.PasswordChar = '\0';
-            this.txtCodigo.PlaceholderText = "";
-            this.txtCodigo.SelectedText = "";
-            this.txtCodigo.ShadowDecoration.Parent = this.txtCodigo;
-            this.txtCodigo.Size = new System.Drawing.Size(99, 55);
-            this.txtCodigo.TabIndex = 18;
             // 
             // gunaShadowPanel1
             // 
@@ -448,127 +400,6 @@
             this.gunaVSeparator1.Size = new System.Drawing.Size(318, 211);
             this.gunaVSeparator1.TabIndex = 70;
             // 
-            // gunaShadowPanel2
-            // 
-            this.gunaShadowPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel2.BaseColor = System.Drawing.Color.White;
-            this.gunaShadowPanel2.Controls.Add(this.guna2DateTimePicker1);
-            this.gunaShadowPanel2.Controls.Add(this.dtMostarData);
-            this.gunaShadowPanel2.Controls.Add(this.guna2TextBox5);
-            this.gunaShadowPanel2.Controls.Add(this.label9);
-            this.gunaShadowPanel2.Controls.Add(this.label6);
-            this.gunaShadowPanel2.Controls.Add(this.guna2Button2);
-            this.gunaShadowPanel2.Controls.Add(this.txtCodigo);
-            this.gunaShadowPanel2.Controls.Add(this.label15);
-            this.gunaShadowPanel2.Location = new System.Drawing.Point(332, 75);
-            this.gunaShadowPanel2.Name = "gunaShadowPanel2";
-            this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.Black;
-            this.gunaShadowPanel2.Size = new System.Drawing.Size(1317, 135);
-            this.gunaShadowPanel2.TabIndex = 70;
-            // 
-            // guna2DateTimePicker1
-            // 
-            this.guna2DateTimePicker1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2DateTimePicker1.BorderRadius = 5;
-            this.guna2DateTimePicker1.BorderThickness = 2;
-            this.guna2DateTimePicker1.CheckedState.Parent = this.guna2DateTimePicker1;
-            this.guna2DateTimePicker1.FillColor = System.Drawing.Color.White;
-            this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.guna2DateTimePicker1.HoverState.Parent = this.guna2DateTimePicker1;
-            this.guna2DateTimePicker1.Location = new System.Drawing.Point(424, 38);
-            this.guna2DateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.ShadowDecoration.Parent = this.guna2DateTimePicker1;
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(282, 55);
-            this.guna2DateTimePicker1.TabIndex = 25;
-            this.guna2DateTimePicker1.Value = new System.DateTime(2023, 11, 19, 16, 56, 15, 15);
-            // 
-            // dtMostarData
-            // 
-            this.dtMostarData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.dtMostarData.BorderRadius = 5;
-            this.dtMostarData.BorderThickness = 2;
-            this.dtMostarData.CheckedState.Parent = this.dtMostarData;
-            this.dtMostarData.FillColor = System.Drawing.Color.White;
-            this.dtMostarData.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtMostarData.HoverState.Parent = this.dtMostarData;
-            this.dtMostarData.Location = new System.Drawing.Point(122, 38);
-            this.dtMostarData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtMostarData.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtMostarData.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtMostarData.Name = "dtMostarData";
-            this.dtMostarData.ShadowDecoration.Parent = this.dtMostarData;
-            this.dtMostarData.Size = new System.Drawing.Size(262, 55);
-            this.dtMostarData.TabIndex = 25;
-            this.dtMostarData.Value = new System.DateTime(2023, 11, 19, 16, 56, 15, 15);
-            // 
-            // guna2TextBox5
-            // 
-            this.guna2TextBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox5.BorderRadius = 5;
-            this.guna2TextBox5.BorderThickness = 2;
-            this.guna2TextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox5.DefaultText = "";
-            this.guna2TextBox5.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox5.DisabledState.Parent = this.guna2TextBox5;
-            this.guna2TextBox5.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox5.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox5.FocusedState.Parent = this.guna2TextBox5;
-            this.guna2TextBox5.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox5.HoverState.Parent = this.guna2TextBox5;
-            this.guna2TextBox5.Location = new System.Drawing.Point(734, 38);
-            this.guna2TextBox5.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.guna2TextBox5.Name = "guna2TextBox5";
-            this.guna2TextBox5.PasswordChar = '\0';
-            this.guna2TextBox5.PlaceholderText = "";
-            this.guna2TextBox5.SelectedText = "";
-            this.guna2TextBox5.ShadowDecoration.Parent = this.guna2TextBox5;
-            this.guna2TextBox5.Size = new System.Drawing.Size(429, 55);
-            this.guna2TextBox5.TabIndex = 19;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
-            this.label9.Location = new System.Drawing.Point(393, 58);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(18, 20);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "a";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
-            this.label6.Location = new System.Drawing.Point(758, 18);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 20);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Procurar";
-            // 
-            // guna2Button2
-            // 
-            this.guna2Button2.BorderRadius = 5;
-            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
-            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
-            this.guna2Button2.Location = new System.Drawing.Point(1173, 38);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(126, 55);
-            this.guna2Button2.TabIndex = 37;
-            this.guna2Button2.Text = "Pesquisar";
-            // 
             // frmServicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -577,7 +408,6 @@
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.guna2ShadowPanel1);
             this.Controls.Add(this.gunaShadowPanel1);
-            this.Controls.Add(this.gunaShadowPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmServicos";
             this.Text = "frmConsulta";
@@ -588,8 +418,6 @@
             this.gunaShadowPanel1.ResumeLayout(false);
             this.gunaShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTesteServicos)).EndInit();
-            this.gunaShadowPanel2.ResumeLayout(false);
-            this.gunaShadowPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -600,8 +428,6 @@
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlContainer;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label15;
-        private Guna.UI2.WinForms.Guna2TextBox txtCodigo;
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel1;
         private Guna.UI2.WinForms.Guna2Button guna2Button6;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
@@ -609,13 +435,6 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI.WinForms.GunaVSeparator gunaVSeparator1;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel2;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox5;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtMostarData;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvTesteServicos;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox8;
         private Guna.UI2.WinForms.Guna2Button guna2Button10;

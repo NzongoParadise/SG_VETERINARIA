@@ -2,6 +2,8 @@
 CREATE DATABASE BD_Veterinaria;
 
 USE BD_Veterinaria;
+select *from proprietario
+select *from Animal
 select *from endereco
 drop DATABASE BD_Veterinaria;
 -----------tabelas basicas ---------------
@@ -339,12 +341,68 @@ BEGIN
 END;
 
 
-select *from compra
+CREATE TABLE Racas
+(
+    IDRaca INT PRIMARY KEY IDENTITY(1,1),
+    NomeRaca NVARCHAR(100) NOT NULL,
+    Descricao NVARCHAR(MAX)
+);
+-- Procedimento para Obter Nomes de Raças
+CREATE PROCEDURE ObterNomesRacas
+AS
+BEGIN
+   
+END; SELECT NomeRaca
+    FROM Racas;
+select *from Animal
+--procedimento para inserir dados na tabela raca
+CREATE PROCEDURE Insert_procedure_Raca
+    @NomeRaca NVARCHAR(100),
+    @Descricao NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO Racas (NomeRaca, Descricao)
+    VALUES (@NomeRaca, @Descricao);
+END;
+
+--procedimento para actualizar os dados na tabela raca
+CREATE PROCEDURE Update_procedure_Raca
+    @IDRaca INT,
+    @NomeRaca NVARCHAR(100),
+    @Descricao NVARCHAR(MAX)
+AS
+BEGIN
+    UPDATE Racas
+    SET NomeRaca = @NomeRaca,
+        Descricao = @Descricao
+    WHERE IDRaca = @IDRaca;
+END;
+
+
+
+
+
+----------------------------area de consultas de teste-----------------------------------------------------
+select *from proprietario
+select *from Animal
+select *from produto
+SELECT *FROM Funcionario
+delete produto
+delete Animal
+select *from Compra
 select *from ItemCompraProduto
+delete Venda
+delete ItemVenda
+delete RegistroVacinacao
+delete IItensRegistroVacina
+select *from Racas
+select *from IItensRegistroVacina
+select a.Nome, p.ProprietarioID, p.Nome from proprietario p, Animal a where p.ProprietarioID=a.ProprietarioID 
 
 
-select *from venda
-select *from Itemvenda
+
+
+
 
 
 ---------------------------------Inicio tabelas relacionada com a clinica ---------------
@@ -353,27 +411,104 @@ CREATE TABLE RegistroVacinacao (
     IDRegistroVacinacao INT PRIMARY KEY IDENTITY(1,1),
     AnimalID INT,
 	FuncionarioID INT,
-	IdProduto INT,
 	UsuarioID int,
-    DoseVacina INT,
-    NomeVacina VARCHAR(50),
+	DataVacinacao DATETIME,
+	CONSTRAINT fk_AnimalID_RegistroVacinacao FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_FuncionarioID_RegistroVacinacao FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+	CONSTRAINT fk_UsuarioID_RegistroVacinacao FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+);
+
+CREATE PROCEDURE  Insert_procedure_RegistroVacinacao
+    @AnimalID INT,
+    @FuncionarioID INT,
+    @UsuarioID INT,
+    @DataVacinacao DATETIME
+AS
+BEGIN
+    -- Inserir dados na tabela RegistroVacinacao
+    INSERT INTO RegistroVacinacao (AnimalID, FuncionarioID, UsuarioID, DataVacinacao)
+    VALUES (@AnimalID, @FuncionarioID, @UsuarioID, @DataVacinacao);
+
+    -- Obter o ID gerado
+declare @IDRegistroVacinacao int;
+    SET @IDRegistroVacinacao = SCOPE_IDENTITY();
+ -- Retorna o IDRegistro
+    SELECT @IDRegistroVacinacao AS 'IDRegistroVacinacao';
+END;
+
+	
+create table  IItensRegistroVacina(
+	IDItens int primary key identity(1,1),
+	IDRegistroVacinacao INT,
+	IdProduto INT,
+    DoseVacina decimal (10,2),
+	NomeVacina VARCHAR(50),
     LoteVacina VARCHAR(20),
     ViaAdministracao VARCHAR(20),
     LocalAdministracao VARCHAR(50),
     ValidadeVacina DATE,
-    ReacoesAdversas TEXT,
-    VeterinarioResponsavel VARCHAR(50),
-    DataVacinacao DATETIME,
+    ReacoesAdversas varchar (MAX),
     ProximaDataVacinacao DATETIME,
-    VacinacaoCompleta BIT,
-    ResponsavelAdministracao VARCHAR(50),
-    DataRegistro DATETIME,
-    NotasObservacoes TEXT,
-   CONSTRAINT fk_AnimalID_RegistroVacinacao FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
-    CONSTRAINT fk_IdProduto_RegistroVacinacao FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto),
-    CONSTRAINT fk_FuncionarioID_RegistroVacinacao FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
-	CONSTRAINT fk_UsuarioID_RegistroVacinacao FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+    VacinacaoCompleta BIT,-- deletar ou pensar
+    DataValidade DATETIME,
+    NotasObservacoes varchar (MAX),
+	CustodeCompra Varchar(50),
+	constraint fk_IDRegistroVacinacao_IItensRegistroVacina foreign key (IDRegistroVacinacao) references RegistroVacinacao (IDRegistroVacinacao),
+	CONSTRAINT fk_IdProduto_IItensRegistroVacina FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto)
 );
+	
+	CREATE PROCEDURE Insert_procedure_ItensRegistroVacina
+    @IDRegistroVacinacao INT,
+    @IdProduto INT,
+    @DoseVacina DECIMAL(10, 2),
+    @NomeVacina VARCHAR(50),
+    @LoteVacina VARCHAR(20),
+    @ViaAdministracao VARCHAR(20),
+    @LocalAdministracao VARCHAR(50),
+    @ValidadeVacina DATE,
+    @ReacoesAdversas VARCHAR(MAX),
+    @ProximaDataVacinacao DATETIME,
+    @VacinacaoCompleta BIT,
+    @DataValidade DATETIME,
+    @NotasObservacoes VARCHAR(MAX),
+    @CustodeCompra VARCHAR(50)
+AS
+BEGIN
+    -- Inserir dados na tabela IItensRegistroVacina
+    INSERT INTO IItensRegistroVacina (
+        IDRegistroVacinacao,
+        IdProduto,
+        DoseVacina,
+        NomeVacina,
+        LoteVacina,
+        ViaAdministracao,
+        LocalAdministracao,
+        ValidadeVacina,
+        ReacoesAdversas,
+        ProximaDataVacinacao,
+        VacinacaoCompleta,
+        DataValidade,
+        NotasObservacoes,
+        CustodeCompra
+    )
+    VALUES (
+        @IDRegistroVacinacao,
+        @IdProduto,
+        @DoseVacina,
+        @NomeVacina,
+        @LoteVacina,
+        @ViaAdministracao,
+        @LocalAdministracao,
+        @ValidadeVacina,
+        @ReacoesAdversas,
+        @ProximaDataVacinacao,
+        @VacinacaoCompleta,
+        @DataValidade,
+        @NotasObservacoes,
+        @CustodeCompra
+    );
+END;
+
 
 CREATE TABLE Pesagem (
     PesagemID INT PRIMARY KEY IDENTITY(1,1),
@@ -575,17 +710,26 @@ CREATE TABLE produto(
 	DataExpiracao date,
 	DataCadastro datetime,
 	FinalidadeProduto varchar(20),
+	EstadoProduto BIT,
+	IsentoCusto varchar(20)
+	
 	foreign key (FornecedorID) REFERENCES Fornecedor(FornecedorID),
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+sp_help produto
+alter table produto add IsentoCusto varchar(5)
+alter table produto alter column  IsentoCusto varchar(20)
+select *from produto
 --criacao do procedimento para actualizar os dados da compra do produto
+
 CREATE PROCEDURE Update_procedure_Produtocompra
 	@IdProduto INT,
     @NovaQuantidade INT,
     @NovaDataProducao DATE,
     @NovaDataExpiracao DATE,
     @NovoValorCompra DECIMAL(18,2),
-    @NovoValorVenda DECIMAL(18,2)
+    @NovoValorVenda DECIMAL(18,2),
+	@EstadoProduto bit
 AS
 BEGIN
     UPDATE produto
@@ -594,9 +738,11 @@ BEGIN
         DataProducao = @NovaDataProducao,
         DataExpiracao = @NovaDataExpiracao,
         ValorCompra = @NovoValorCompra,
-        ValorVenda = @NovoValorVenda
-    WHERE IdProduto = @IdProduto;
+        ValorVenda = @NovoValorVenda,
+		EstadoProduto=@EstadoProduto
+    WHERE IdProduto = @IdProduto
 END;
+
 --criacao do procedimento para inserir produto
 CREATE PROCEDURE Insert_procedure_Produto
     @NomeProduto NVARCHAR(255),
@@ -617,7 +763,9 @@ CREATE PROCEDURE Insert_procedure_Produto
     @DataProducao DATE,
     @DataExpiracao DATE,
     @FinalidadeProduto VARCHAR(20),
-    @NovoProdutoID INT OUTPUT
+    @NovoProdutoID INT OUTPUT,
+	@EstadoProduto bit,
+	@IsentoCusto varchar(20)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -640,7 +788,9 @@ BEGIN
         DataProducao,
         DataExpiracao,
         DataCadastro,
-        FinalidadeProduto
+        FinalidadeProduto,
+		EstadoProduto,
+		IsentoCusto 
     )
     VALUES (
         @NomeProduto,
@@ -661,7 +811,9 @@ BEGIN
         @DataProducao,
         @DataExpiracao,
         GETDATE(), -- DataCadastro
-        @FinalidadeProduto
+        @FinalidadeProduto,
+		@EstadoProduto,
+		@IsentoCusto 
     );
 
    -- Obtém o ID do produto recém-inserido
@@ -720,7 +872,11 @@ BEGIN
     INSERT INTO ItemCompraProduto (CompraID, ProdutoID, Quantidade, PrecoUnitario, Total)
     VALUES (@CompraID, @ProdutoID, @Quantidade, @PrecoUnitario, @Total);
 END;
-
+select *from ItemVenda 
+select *from venda
+ma
+select *from Fornecedor
+select *from produto where idproduto=2
 -- Tabela Venda
 CREATE TABLE Venda (
     IDVenda INT PRIMARY KEY identity (1,1),

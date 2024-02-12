@@ -156,7 +156,7 @@ namespace DAL
         public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(" select FuncionarioID,Nome,Sobrenome,Apelido  from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter(" select FuncionarioID, CONCAT(Nome,' ',Sobrenome,' ',Apelido) as 'Nome Completo' from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
             return dt;

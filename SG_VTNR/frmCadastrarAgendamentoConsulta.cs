@@ -14,21 +14,34 @@ using System.Windows.Forms;
 
 namespace SG_VTNR
 {
-    public partial class frmPesagem : Form
+    public partial class frmCadastrarAgendamentoConsulta : Form
     {
-         private int FuncionarioID;
-      
-        private string proprietarioAnimal;
-
-
-        public frmPesagem()
+        private int FuncionarioID;
+        public frmCadastrarAgendamentoConsulta()
         {
             InitializeComponent();
-           var m = new ModeloPesagem();
-            m.usuarioID = SessaoUsuario.Session.Instance.UsuID;
+            var m = new ModeloCadastrarAgendamento();
+            m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
             SessaoUsuario sessao = new SessaoUsuario();
-            
 
+
+            txtPesquisarAnimal.Enabled = false;
+            txtPesquisarFuncionario.Enabled = false;
+            cmbGravidade.Enabled = false;
+            dtDataAgendada.Enabled = false;
+            cbmStatus.Enabled = false;
+            cbmTipoAgendamento.Enabled = false;
+
+        }
+
+        private void guna2Button13_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmCadastrarAgendamentoConsulta_Load(object sender, EventArgs e)
+        {
+            dtDataAgendada.Text = UserControlDays.static_day + "/" + frmMarcacaoConsulta.static_month + "/" + frmMarcacaoConsulta.static_year;
         }
         public void PesquisarAnimalcomChave()
         {
@@ -52,6 +65,7 @@ namespace SG_VTNR
         }
         private void txtPesquisarAnimal_TextChanged(object sender, EventArgs e)
         {
+
             txtPesquisarFuncionario.Text = "";
             if (string.IsNullOrWhiteSpace(txtPesquisarAnimal.Text) || string.IsNullOrEmpty(txtPesquisarAnimal.Text))
             {
@@ -77,7 +91,7 @@ namespace SG_VTNR
             dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(txtPesquisarFuncionario.Text);
             // Renomear os cabeçalhos das colunas diretamente no DataGridView
             dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
-         
+           
             //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
 
             dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -91,8 +105,7 @@ namespace SG_VTNR
 
         }
 
-        private void txtPesquisaFuncionario_TextChanged(object sender, EventArgs e)
-
+        private void txtPesquisarFuncionariob_TextChanged(object sender, EventArgs e)
         {
             txtPesquisarAnimal.Text = "";
             if (string.IsNullOrWhiteSpace(txtPesquisarFuncionario.Text) || string.IsNullOrEmpty(txtPesquisarFuncionario.Text))
@@ -108,14 +121,12 @@ namespace SG_VTNR
                 if (pnlMostrarFuncionario.Visible == false)
                 {
                     pnlMostrarFuncionario.Visible = true;
+
+                
                     PesquisarFuncionariocomChave();
                 }
 
             }
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -133,8 +144,8 @@ namespace SG_VTNR
                 string sexo = dgvMostrarAnimal.Rows[e.RowIndex].Cells["Sexo"].Value.ToString();
                 string peso = dgvMostrarAnimal.Rows[e.RowIndex].Cells["Peso"].Value.ToString();
                 string animalID = dgvMostrarAnimal.Rows[e.RowIndex].Cells["AnimalID"].Value.ToString();
-                txtCodigo.Text = animalID.ToString();
-                txtPesquisarRegistroPeso.Text = animalID;
+                //txtCodigo.Text = animalID.ToString();
+                //txtPesquisarRegistroPeso.Text = animalID;
 
                 DateTime nascimento = Convert.ToDateTime(dgvMostrarAnimal.Rows[e.RowIndex].Cells["DataNascimento"].Value.ToString());
                 TimeSpan diferenca = DateTime.Now - nascimento;
@@ -175,10 +186,10 @@ namespace SG_VTNR
 
                 // Vincule o DataTable ao DataGridView
                 dgvMostrarDadosAnimal.DataSource = dt;
-                string prop = this.proprietarioAnimal;
-                novaLinha["proprietario"] = prop;
+                //string prop = this.proprietarioAnimal;
+                //novaLinha["proprietario"] = prop;
                 dgvMostrarDadosAnimal.DataSource = dt;
-               
+              
                 // Configurar o DataGridView para quebrar as linhas
                 dgvMostrarDadosAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 dgvMostrarDadosAnimal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -200,6 +211,8 @@ namespace SG_VTNR
 
             }
         }
+
+
         private void RenomearCabecalhos()
         {
             // Renomear os cabeçalhos das colunas diretamente no DataGridView
@@ -226,7 +239,7 @@ namespace SG_VTNR
                 this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
-                txtDadosFuncionario.Text = nome;
+                txtDadosFuncionario.Text = " Codigo:    "+ FuncionarioID+   "          Nome: " + nome;
                 if (pnlMostrarFuncionario.Visible == true)
                 {
                     pnlMostrarFuncionario.Visible = false;
@@ -235,69 +248,61 @@ namespace SG_VTNR
             }
         }
 
-        private void btnAdicionar_Click(object sender, EventArgs e)
+        private void btnNovo_Click(object sender, EventArgs e)
         {
-            try
-            {
-            var modelo= new ModeloPesagem();
-            modelo.AnimalID = Convert.ToInt16(txtCodigo.Text);
+            alteraBotoes(2, perInserir, perAlterar, perExcluir, perImprimir);
           
-            modelo.obs=txtObs.Text;
-            modelo.peso =Convert.ToDecimal(txtPeso.Text);
-            modelo.FuncionarioID = this.FuncionarioID;
+        }
+        Boolean perInserir = false; Boolean perAlterar = false; Boolean perExcluir = false; Boolean perImprimir = false;
+        public void alteraBotoes(int op, Boolean perInserir, Boolean perAlterar, Boolean perExcluir, Boolean perImprimir)
+        {
+            btnGuardar.Enabled = false;
+            btnEditar.Enabled = false;
+            btnCancelar.Enabled = false;
 
-            modelo.usuarioID = SessaoUsuario.Session.Instance.UsuID;
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-            BLLPesagem bll = new BLLPesagem(cx);
-            bll.IncluirPesagem(modelo);
-
-            MessageBox.Show("Registro de Pesagem realizada com  sucesso!", "Confirmação", MessageBoxButtons.OK);
-            }
-            catch (InvalidOperationException ex)
+            if (op == 1)
             {
-                MessageBox.Show($"Erro ao confirmar o registro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnGuardar.Enabled = perInserir;
+                btnEditar.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnNovo.Enabled = true;
+
+                txtPesquisarAnimal.Enabled = false;
+                txtPesquisarFuncionario.Enabled = false;
+                cmbGravidade.Enabled = false;
+                dtDataAgendada.Enabled = false;
+                cbmStatus.Enabled = false;
+                cbmTipoAgendamento.Enabled = false;
             }
-            catch (Exception ex)
+
+            if (op == 2)
             {
-                MessageBox.Show($"Erro ao confirmar o registro de pesagem. Contate o Administrador do Sistema.\n\nDetalhes do Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                btnEditar.Enabled = false;
+                btnGuardar.Enabled = true;
+                btnCancelar.Enabled = true;
+                
+
+                txtPesquisarAnimal.Enabled = true;
+                txtPesquisarFuncionario.Enabled = true;
+                cmbGravidade.Enabled = true;
+                dtDataAgendada.Enabled = true;
+                cbmStatus.Enabled = true;
+                cbmTipoAgendamento.Enabled = true;
             }
-        }
-
-        private void txtPesquisarRegistroPeso_TextChanged(object sender, EventArgs e)
-        {
-            pesquisarHistoricoPesagem();
-
-        }
-        public void pesquisarHistoricoPesagem()
-        {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-            BLLPesagem bll = new BLLPesagem(cx);
-            dgvExibirHistoricoPesagem.DataSource = bll.PesquisarPesoComChave(txtPesquisarRegistroPeso.Text);
-
-            // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvExibirHistoricoPesagem.Columns["AnimalID"].HeaderText = "Código";
-            dgvExibirHistoricoPesagem.Columns["Nome"].HeaderText = "Nome Animal";
-            dgvExibirHistoricoPesagem.Columns["Especie"].HeaderText = "Espécie";
-
-            dgvExibirHistoricoPesagem.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvExibirHistoricoPesagem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvExibirHistoricoPesagem.AutoResizeRows();
-
-            // Ajustar a altura da linha de cabeçalho
-            dgvExibirHistoricoPesagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            if (op == 3)
+            {
+                //btnEditar.Enabled = perAlterar;
+                btnEditar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnNovo.Enabled = true;
+                txtPesquisarAnimal.Enabled = true;
+                txtPesquisarFuncionario.Enabled = true;
+                cmbGravidade.Enabled = true;
+                dtDataAgendada.Enabled = true;
+                cbmStatus.Enabled = true;
+                cbmTipoAgendamento.Enabled = true;
+            }
 
         }
-
-        private void dgvExibirHistoricoPesagem_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
-    }
-
-
+}
+}

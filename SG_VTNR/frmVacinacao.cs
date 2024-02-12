@@ -27,6 +27,7 @@ namespace SG_VTNR
         private List<ModeloVacina> listaDeDados = new List<ModeloVacina>();
         private string proprietarioAnimal;
         private string codAnimalDgvMostrarDado;
+       
         public frmVacinacao()
         {
             InitializeComponent();
@@ -400,6 +401,7 @@ namespace SG_VTNR
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
                 string sobreNome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Sobrenome"].Value.ToString();
                 string apelido = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Apelido"].Value.ToString();
+                txtFuncionarioID.Text = FuncionarioID.ToString();               
                 txtResPesqFuncionario.Text = nome + " " + sobreNome + " " + apelido;
                 if (pnlMostrarFuncionario.Visible==true)
                 {
@@ -587,7 +589,7 @@ namespace SG_VTNR
 
                                 ModeloVacina novoProduto = new ModeloVacina
                                 {
-                                    FuncionarioID = this.FuncionarioID,
+                                    FuncionarioID =Convert.ToInt32(txtFuncionarioID.Text),
                                     AnimalID = Convert.ToInt32(codAnimalDgvMostrarDado),
                                     NomeVacina = txtNomeVacina.Text,
                                     IdVacina = Convert.ToInt32(txtCodVacinaEsquema.Text),
@@ -619,7 +621,8 @@ namespace SG_VTNR
                                 ModeloVacina novoProduto = new ModeloVacina
                                 {
                                     AnimalID = Convert.ToInt32(codAnimalDgvMostrarDado),
-                                    FuncionarioID = this.FuncionarioID,
+                                    //FuncionarioID = this.FuncionarioID,
+                                    FuncionarioID = Convert.ToInt32(txtFuncionarioID.Text),
                                     NomeVacina = txtNomeVacina.Text,
                                     IdVacina = Convert.ToInt32(txtCodVacinaEsquema.Text),
                                     tipoVacina = txtTipoVacina.Text,

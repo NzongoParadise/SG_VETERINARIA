@@ -203,9 +203,10 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.csproj.CopyComplete
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAdicionarEndereco.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmServicos.resources
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAgendamento.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastroRaca.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmPesagem.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmVacinacao.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastrarAnimalteste.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmIntermediarioAnimal.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.UserControlDays.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastrarAgendamentoConsulta.resources

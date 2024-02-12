@@ -44,10 +44,12 @@
     <Compile Include="BLLAnimal.cs" />
     <Compile Include="BLLCompra.cs" />
     <Compile Include="BLLConsulta.cs" />
+    <Compile Include="BLLConsultasMarcadas.cs" />
     <Compile Include="BLLEndereco.cs" />
     <Compile Include="BLLFornecedor.cs" />
     <Compile Include="BLLFuncionario.cs" />
     <Compile Include="BLLMedicamento.cs" />
+    <Compile Include="BLLPesagem.cs" />
     <Compile Include="BLLProduto.cs" />
     <Compile Include="BLLProprietario.cs" />
     <Compile Include="BLLRacaAnimal.cs" />

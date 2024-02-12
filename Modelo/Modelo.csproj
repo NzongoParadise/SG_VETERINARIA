@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ModeloAgendamento.cs" />
     <Compile Include="ModeloAnimal.cs" />
+    <Compile Include="ModeloCadastrarAgendamento.cs" />
     <Compile Include="ModeloCompra.cs" />
     <Compile Include="ModeloConsulta.cs" />
     <Compile Include="ModeloEndereco.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="ModeloItemReceita.cs" />
     <Compile Include="ModeloItem_Exame.cs" />
     <Compile Include="ModeloMedicamento.cs" />
+    <Compile Include="ModeloPesagem.cs" />
     <Compile Include="ModeloPrescricao.cs" />
     <Compile Include="ModeloProduto.cs" />
     <Compile Include="ModeloProprietario.cs" />

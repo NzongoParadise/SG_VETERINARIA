@@ -45,6 +45,7 @@
     <Compile Include="DALAgendamento.cs" />
     <Compile Include="DALConexao.cs" />
     <Compile Include="DALConsulta.cs" />
+    <Compile Include="DALConsultasMarcadas.cs" />
     <Compile Include="DALEndereco.cs" />
     <Compile Include="DALEntradasEstoque.cs" />
     <Compile Include="DALExame.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="DALLCompra.cs" />
     <Compile Include="DALLVacina.cs" />
     <Compile Include="DALMedicamento.cs" />
+    <Compile Include="DALPesagem.cs" />
     <Compile Include="DALProduto.cs" />
     <Compile Include="DALProprietario.cs" />
     <Compile Include="DALRaca.cs" />

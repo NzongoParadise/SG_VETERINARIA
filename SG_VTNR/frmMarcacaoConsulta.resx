@@ -117,20 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="guna2Button7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAOxJREFUOE/F
-        k8sKAWEcR2fhspDbFnkQubwNXkdK2EviCcSLWLglFmLNxjif+c1MoxFFOXWa+Z/vG018rJ9j23YNJ3jE
-        s65jrGpLOGyIYA8XWMc8ZnVt4BY7GNUjQVjo4xQTSgHoGZxjT8mHaF57iUmlUFhP4RorSg6EEdY1etBs
-        3XqQmjjU6EA4YEGjBy3sA4q40+hAuGJM4+PBZ7Rk1uJ40ehA2GNeowft4zf4+jsoo/kVUkqhmHVcYUnJ
-        h9jGGaaVAtDdc9BSCsJCFLu4QXPycuo5ze5JjDweeAUbzKEaoDkwNzzh+//Cn7CsO8jFNZqJrNFHAAAA
-        AElFTkSuQmCC
-</value>
-  </data>
   <metadata name="ColDeletar.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ColDeletar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAATFJREFUOE+9

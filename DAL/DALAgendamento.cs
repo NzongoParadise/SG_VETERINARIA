@@ -16,37 +16,38 @@ namespace DAL
         {
             this.conexao = cx;
         }
-        public void IncluirAgendamento(ModeloAgendamento modelo)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Insert_procedure_Animal";
 
-            cmd.Parameters.AddWithValue("@DataAgendamento", modelo.DataAgendamento);
-            cmd.Parameters.AddWithValue("@ConsultaID", modelo.ConsultaID);
-            cmd.Parameters.AddWithValue("@Observacoes", modelo.Observacoes);
+        //public void IncluirAgendamento(ModeloAgendamento modelo)
+        //{
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = conexao.ObjectoConexao;
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Insert_procedure_Animal";
 
-            conexao.Conectar();
-            cmd.ExecuteNonQuery();
-            modelo.AgendamentoID = Convert.ToInt32(cmd.ExecuteScalar());
-            conexao.Desconectar();
-        }
-        public void AlterarAgendamento(ModeloAgendamento modelo)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Update_procedure_Animal";
+        //    cmd.Parameters.AddWithValue("@DataAgendamento", modelo.DataAgendamento);
+        //    cmd.Parameters.AddWithValue("@ConsultaID", modelo.ConsultaID);
+        //    cmd.Parameters.AddWithValue("@Observacoes", modelo.Observacoes);
 
-            cmd.Parameters.AddWithValue("@AgendamentoID", modelo.DataAgendamento);
-            cmd.Parameters.AddWithValue("@DataAgendamento", modelo.DataAgendamento);
-            cmd.Parameters.AddWithValue("@ConsultaID", modelo.ConsultaID);
-            cmd.Parameters.AddWithValue("@Observacoes", modelo.Observacoes);
+        //    conexao.Conectar();
+        //    cmd.ExecuteNonQuery();
+        //    modelo.AgendamentoID = Convert.ToInt32(cmd.ExecuteScalar());
+        //    conexao.Desconectar();
+        //}
+        //public void AlterarAgendamento(ModeloAgendamento modelo)
+        //{
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = conexao.ObjectoConexao;
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Update_procedure_Animal";
 
-            conexao.Conectar();
-            cmd.ExecuteNonQuery();
-            conexao.Desconectar();
-        }
+        //    cmd.Parameters.AddWithValue("@AgendamentoID", modelo.DataAgendamento);
+        //    cmd.Parameters.AddWithValue("@DataAgendamento", modelo.DataAgendamento);
+        //    cmd.Parameters.AddWithValue("@ConsultaID", modelo.ConsultaID);
+        //    cmd.Parameters.AddWithValue("@Observacoes", modelo.Observacoes);
+
+        //    conexao.Conectar();
+        //    cmd.ExecuteNonQuery();
+        //    conexao.Desconectar();
+        //}
     }
 }

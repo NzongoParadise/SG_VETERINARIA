@@ -98,7 +98,7 @@ namespace DAL
             //cmd.Parameters.AddWithValue("@foto", modelo.Foto);
 
             conexao.Conectar();
-            cmd.ExecuteNonQuery();
+         
             modelo.AnimalID1 = Convert.ToInt16(cmd.ExecuteScalar());
             conexao.Desconectar();
 
@@ -151,12 +151,22 @@ namespace DAL
         public DataTable PesquisarAnimalcomChave(string nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select * from Animal where nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
-            da.Fill(dt);
-            da.Dispose();
-            return dt;
+            string query = "SELECT  AnimalID,Nome,Especie,Raca, Estado, DataNascimento, sexo,Porte,Peso FROM Animal WHERE nome LIKE @Nome OR AnimalID = @ID";
 
+            using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao))
+            {
+                cmd.Parameters.AddWithValue("@Nome", "%" + nome + "%");
+                cmd.Parameters.AddWithValue("@ID", nome);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
         }
+
         public DataTable PesquisarAnimalcomChaveVacina(string nome)
         {
             DataTable dt = new DataTable();

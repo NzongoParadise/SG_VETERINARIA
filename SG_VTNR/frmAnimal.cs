@@ -390,6 +390,7 @@ namespace SG_VTNR
                     alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
                     pnlCadastrar.Visible = true;
                 }
+               
 
             }
             if (colName == "ColDeletar")

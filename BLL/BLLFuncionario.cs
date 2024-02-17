@@ -214,6 +214,13 @@ namespace BLL
             DALFuncionario DALObj = new DALFuncionario(conexao);
             return DALObj.PesquisarFuncionarioComChaveVacina(nome);
         }
+        public ModeloCadastrarConsultaAgendada BusacarFuncionarioMarcacaoConsulta(int codigo)
+        {
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALFuncionario dall = new DALFuncionario(cx);
+            return dall.buscarFuncionarioConsultasAgendadas(codigo);
+        }
+
     }
 }
 

@@ -153,14 +153,42 @@ namespace DAL
             da.Dispose();
             return dt;
         }
+        
         public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(" select FuncionarioID, CONCAT(Nome,' ',Sobrenome,' ',Apelido) as 'Nome Completo' from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
-            da.Fill(dt);
-            da.Dispose();
+            string query = "SELECT FuncionarioID, CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo' FROM Funcionario WHERE Nome LIKE @keyword ";
+            using (SqlConnection con = new SqlConnection(conexao.StringConexao))
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
             return dt;
         }
+
+
+
+        public ModeloCadastrarConsultaAgendada buscarFuncionarioConsultasAgendadas(int codigo)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(conexao.StringConexao))
+            {
+                SqlCommand cmd = new SqlCommand("select FuncionarioID, Nome, Sobrenome, Apelido from Funcionario WHERE FuncionarioID=@codigo", con);
+                cmd.Parameters.AddWithValue("@codigo", codigo);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            ModeloCadastrarConsultaAgendada modeloFuncionario = new ModeloCadastrarConsultaAgendada();
+            if (dt.Rows.Count > 0)
+            {
+                modeloFuncionario.funcionarioID = Convert.ToInt16(dt.Rows[0]["FuncionarioID"]);
+                modeloFuncionario.nomeFuncionario = $"{dt.Rows[0]["Nome"]} {dt.Rows[0]["Sobrenome"]} {dt.Rows[0]["Apelido"]}";
+            }
+            return modeloFuncionario;
+        }
+
         public DataTable ExibirTodosFuncionarios()
         {
             DataTable dt = new DataTable();

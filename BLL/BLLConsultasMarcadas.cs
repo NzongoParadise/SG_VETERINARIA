@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,13 @@ namespace BLL
         {
             this.conexao = cx;
         }
-        public DataTable mostrarConsultasAgendadas()
+        public ModeloCadastrarConsultaAgendada BusacarConsultaComChave(int codigo)
         {
-            DALConsultasMarcadas dall = new DALConsultasMarcadas(conexao);
-            return dall.mostrarConsultasAgendadas();
-
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConsultasMarcadas dall=new DALConsultasMarcadas(cx);
+            return dall.BusacarConsultaComChave(codigo);
         }
+
+
     }
 }

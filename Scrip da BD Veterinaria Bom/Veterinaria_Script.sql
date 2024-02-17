@@ -282,6 +282,7 @@ CREATE TABLE Animal (
     constraint fk_ProprietarioID_AnimalID foreign key(ProprietarioID) references Proprietario(ProprietarioID)
 );
 
+
 GO
 CREATE PROCEDURE procedure_Atualizar_Animal
     @AnimalID INT,
@@ -339,6 +340,24 @@ BEGIN
     VALUES (@Nome, @Especie, @Raca,@sexo, @Cor, @Peso, @Estado, @DataNascimento, @Porte, @ProprietarioID, @Foto, @Observacao);
     select @@identity;
 END;
+
+select * from Animal
+--criacao do procedimento para actualizar os dados do peso do animal
+CREATE PROCEDURE Update_procedure_Peso
+	@AnimalID INT,
+    @NovoPeso INT
+AS
+BEGIN
+    UPDATE Animal
+    SET
+        Peso = @NovoPeso
+    WHERE AnimalID = @AnimalID
+END;
+
+
+
+
+
 
 
 CREATE TABLE Racas
@@ -510,17 +529,52 @@ BEGIN
 END;
 
 
-CREATE TABLE Pesagem (
+CREATE  TABLE Pesagem (
     PesagemID INT PRIMARY KEY IDENTITY(1,1),
     AnimalID INT,
 	UsuarioID INT,
 	FuncionarioID INT,
-    DataPesagem DATE,
-    Peso DECIMAL(5,2),
+    DataPesagem DATETIME default getdate(),
+    Peso decimal(5,2),
+	Obs varchar(MAX),
     CONSTRAINT fk_AnimalID_Pesagem FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
-	CONSTRAINT fk_FuncionarioID_Pesagem FOREIGN KEY (FuncionarioID) REFERENCES FuncionarioID(FuncionarioID),
+	CONSTRAINT fk_FuncionarioID_Pesagem FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
 	CONSTRAINT fk_UsuarioID_Pesagem FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
-);
+
+
+--procedimento para inserir dados na tabela rPesagem
+CREATE  PROCEDURE Insert_procedure_Pesagem
+    @AnimalID int,
+    @FuncionarioID int,
+	@Peso decimal(5,2),
+    @Obs NVARCHAR(MAX),
+	@UsuarioID int 
+AS
+BEGIN
+    INSERT INTO Pesagem (AnimalID,FuncionarioID,Peso,Obs,UsuarioID)
+    VALUES (@AnimalID, @FuncionarioID,@Peso,@Obs,@UsuarioID);
+END;
+select*from Animal where peso=600
+
+select *from pesagem
+select *from proprietario
+SELECT * FROM Animal WHERE AnimalID=26 or AnimalID=28 or AnimalID=31
+
+select distinct a.AnimalID,a.Nome,pp.Nome,a.Cor,a.DataNascimento,a.Especie,a.Raca,p.DataPesagem, p.peso from proprietario pp, pesagem p, Animal a where p.animalID=a.AnimalID
+
+select p.nome, a.Nome as nome_animal from  Animal as a, proprietario as p where p.ProprietarioID=a.ProprietarioID
+select distinct a.AnimalID,a.Nome,pp.Nome,a.Cor,a.DataNascimento,a.Especie,a.Raca,p.DataPesagem, p.peso  from proprietario pp, pesagem p, Animal a where p.animalID=a.AnimalID and pp.ProprietarioID=a.ProprietarioID and a.Nome like '%m%' OR a.AnimalID=26
+
+
+SELECT DISTINCT a.AnimalID, a.Nome, pp.Nome, a.Cor, a.DataNascimento, a.Especie, a.Raca, p.DataPesagem, p.peso 
+FROM proprietario pp, pesagem p, Animal a 
+WHERE p.animalID = a.AnimalID 
+  AND pp.ProprietarioID = a.ProprietarioID 
+  AND (a.Nome LIKE '%m%' OR p.AnimalID = 28)
+
+
+
+
 
 CREATE TABLE MovimentacaoAnimal (
     MovimentacaoID INT PRIMARY KEY IDENTITY(1,1),
@@ -529,17 +583,20 @@ CREATE TABLE MovimentacaoAnimal (
 	UsuarioID int,
     Origem VARCHAR(100),
     Destino VARCHAR(100),
-    StatusMovimentacao VARCHAR(50),
+	Motivos varchar(max),
+	Obs varchar(max),
     CONSTRAINT fk_AnimalID_MovimentacaoAnimal FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
     CONSTRAINT fk_ProprietarioID_MovimentacaoAnimal FOREIGN KEY (ProprietarioID) REFERENCES Proprietario(ProprietarioID),
 	CONSTRAINT fk_UsuarioID_MovimentacaoAnimal FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 
+
 CREATE TABLE Consulta(
     ConsultaID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
-    DataConsulta DATETIME NOT NULL,
     AnimalID INT NOT NULL,
+	UsuarioID int,
     FuncionarioID INT NOT NULL,
+	DataConsulta DATETIME NOT NULL,
     MotivoConsulta VARCHAR(255),
     ExamesRealizados VARCHAR(255),
     Diagnostico VARCHAR(MAX),
@@ -547,21 +604,57 @@ CREATE TABLE Consulta(
     Observacao VARCHAR(MAX),
     EstadoConsulta VARCHAR(50), -- Pode ser 'Agendada', 'Realizada', 'Cancelada', etc.
     CONSTRAINT fk_AnimalID_ConsultaID FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
-    CONSTRAINT fk_FuncionarioID_ConsultaID FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID)
+    CONSTRAINT fk_FuncionarioID_ConsultaID FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+	CONSTRAINT fk_UsuarioID_Consulta FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+
 );
+select *from usuario
+select *from Funcionario
+select *from Animal
+
+select *from usuario
+select *from usuario
 -- Tabela de Agendamento
 CREATE TABLE Agendamento(
     AgendamentoID INT PRIMARY KEY NOT NULL  identity(1,1),
-    DataAgendamento DATETIME,
-    ConsultaID INT,
+    DataAgendamento DATE,
 	FuncionarioID int,
 	UsuarioID int,
+	AnimalID int,
+	DataCadastro date default getdate(),
+	TipoAgendamento varchar(30),
     Observacoes VARCHAR(MAX),
-	constraint RegistroExame_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID),
-	constraint fk_Agendamento_Consulta FOREIGN KEY (ConsultaID) REFERENCES Consultas(ConsultaID),
+	StatusAgendamento varchar (50),
+	Gravidade varchar (50),
+	HoraInicial time,
+	HoraFinal time,
+	constraint Agendamento_AnimalID foreign key(AnimalID) references Animal(AnimalID),
+	constraint Agendamento_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID),
 	CONSTRAINT fk_UsuarioID_Agendamento FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+alter table agendamento alter column DataAgendamento date
+CREATE PROCEDURE Insert_procedure_CadastrarCosultaAgendada
+    @DataAgendamento DATETIME,
+    @FuncionarioID INT,
+    @UsuarioID INT,
+    @AnimalID INT,
+    @TipoAgendamento VARCHAR(30),
+    @Observacoes VARCHAR(MAX),
+    @StatusAgendamento VARCHAR(50),
+    @Gravidade VARCHAR(50),
+    @HoraInicial TIME,
+    @HoraFinal TIME
+AS
+BEGIN
+    INSERT INTO Agendamento (DataAgendamento, FuncionarioID, UsuarioID, AnimalID, TipoAgendamento, Observacoes, StatusAgendamento, Gravidade, HoraInicial, HoraFinal)
+    VALUES (@DataAgendamento, @FuncionarioID, @UsuarioID, @AnimalID, @TipoAgendamento, @Observacoes, @StatusAgendamento, @Gravidade, @HoraInicial, @HoraFinal);
+END;
+select *from Agendamento
+alter table agendamento add DataCadastro datetime
 
+alter table Agendamento add AnimalID
+alter table Agendamento add HoraInicial time
+alter table Agendamento add HoraFinal time
 --criacao da tabela abaixo
 CREATE TABLE Receita
 (
@@ -571,7 +664,7 @@ CREATE TABLE Receita
     CodigoBarra VARCHAR(20) NULL,
     ConsultaID INT,
     AnimalID INT,
-    VeterinarioID INT,
+    FuncionarioID INT,
     descricao TEXT,
     CONSTRAINT fk_ConsultaID_ReceitaID FOREIGN KEY (ConsultaID) REFERENCES Consulta(ConsultaID),
     CONSTRAINT fk_AnimalID_Receita FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
@@ -586,9 +679,7 @@ CREATE TABLE ItemReceita
 	ReceitaID int,
 	produtoID INT,
 	quantidade INT,
-    observacao VARCH
-	
-	AR(200),
+    observacao VARCHAR(200),
 	constraint fk_num_receita_num_item_num_receita foreign key(ReceitaID) references Receita(ReceitaID),
 	constraint fk_produto_ItemReceita foreign key(produtoID) references produto(ProdutoID)
 );
@@ -609,6 +700,24 @@ CREATE TABLE Prescricao
 	constraint fk_codeMedicamento_codePrescricao foreign key(codeMedicamento) references Medicamento(codeMedicamento)
 );
 
+CREATE TABLE Tratamento (
+    ID_Tratamento INT PRIMARY KEY IDENTITY(1,1),
+    FuncionarioID INT,
+    AnimalID INT,
+    UsuarioID INT,
+    Data_Inicio DATE,
+    Data_Fim DATE,
+    Descricao TEXT,
+    Custo DECIMAL(10, 2),
+    Resultado VARCHAR(100),
+    Observacoes TEXT,
+    Tipo_Tratamento VARCHAR(50),---"Medicação", "Cirurgia", "Fisioterapia")
+    Estado VARCHAR(20)--('Em andamento', 'Terminado', 'Cancelado')),
+    CONSTRAINT fk_Tratamento_FuncionarioID FOREIGN KEY(FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+    CONSTRAINT fk_Tratamento_AnimalID FOREIGN KEY(AnimalID) REFERENCES Animal(AnimalID),
+    CONSTRAINT fk_UsuarioID_Tratamento FOREIGN KEY(UsuarioID) REFERENCES Usuario(UsuarioID)
+);
+
 -- Tabela de Tratamento
 CREATE TABLE Tratamento (
     ID_Tratamento INT PRIMARY KEY identity(1,1),
@@ -621,8 +730,8 @@ CREATE TABLE Tratamento (
     constraint fk_Tratamento_FuncionarioID foreign key(FuncionarioID) references Funcionario(FuncionarioID),
     constraint fk_Tratamento_AnimalID foreign key(AnimalID) references Animal(AnimalID)
 	CONSTRAINT fk_UsuarioID_Tratamento FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
-
 );
+
 -- Tabela de Tipo_Exame
 CREATE TABLE Tipo_Exame (
     ID_Tipo_Exame INT PRIMARY KEY,
@@ -631,43 +740,41 @@ CREATE TABLE Tipo_Exame (
 
 -- Tabela de Exame
 CREATE TABLE Exame (
-    ID_Exame INT PRIMARY KEY identity(1,1),
-    AnimalID INT,
-    FuncionarioID INT,
-	UsuarioID int,
-    ID_Tipo_Exame INT,
+    ID_Exame INT PRIMARY KEY IDENTITY(1,1),
     Data_Hora DATETIME,
-    Resultado TEXT,
-	constraint fk_Exame_AnimalID foreign key(AnimalID) references Animal(AnimalID),
-	constraint fk_Exame_FuncionarioID foreign key(FuncionarioID) references Funcionario(FuncionarioID),
-	constraint fk_ExameID_Tipo_Exame foreign key(ID_Tipo_Exame) references Tipo_Exame(ID_Tipo_Exame),
-	CONSTRAINT fk_UsuarioID_exame FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+    Resultado VARCHAR(MAX),
 );
 
 -- Tabela de Item_Exame
 CREATE TABLE ItemExame (
-   ItemExameID INT PRIMARY KEY,
+    ItemExameID INT PRIMARY KEY IDENTITY(1,1),
     ExameID INT,
+    ID_Tipo_Exame INT,
     DescricaoExame VARCHAR(100),
-    ResultadoExame TEXT,
-	constraint fk_Item_Exame_ID_Exame_ID_Exame foreign key(ID_Exame) references Exame(ID_Exame)
+    ResultadoExame VARCHAR(MAX),
+    CONSTRAINT fk_ItemExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(ID_Exame),
+   CONSTRAINT fk_Exame_ID_Tipo_Exame FOREIGN KEY (ID_Tipo_Exame) REFERENCES Tipo_Exame(ID_Tipo_Exame)
 );
 
--- Tabela de Registro_Exame
 CREATE TABLE RegistroExame (
-    RegistroExameID INT PRIMARY KEY,
-    FuncionarioID INT,
-	UsuarioID int
-	IDExame INT,
+    RegistroExameID INT PRIMARY KEY IDENTITY(1,1),
+    ExameID INT,
     AnimalID INT,
+    FuncionarioID INT,
+    UsuarioID INT,
     Data_Hora DATETIME,
+    CondicaoAnimal VARCHAR(MAX),
     Observacoes TEXT,
-	constraint fk_Registro_Exame_Exame foreign key(ID_Exame) references Exame(ID_Exame),
-	constraint RegistroExame_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID)
-	CONSTRAINT fk_UsuarioID_RegistroExame FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
-
+    DiagnosticoPreliminar VARCHAR(MAX),
+    RecomendacoesTratamento TEXT,
+    InstrucoesProprietario TEXT,
+    AcompanhamentoNecessario TEXT,
+    AssinaturaProprietario VARCHAR(100), -- Pode ser um campo de assinatura digital
+    CONSTRAINT fk_RegistroExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(ID_Exame),
+    CONSTRAINT fk_RegistroExame_Funcionario FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+    CONSTRAINT fk_RegistroExame_Usuario FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID),
+    CONSTRAINT fk_RegistroExame_Animal FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID)
 );
-
 
 ----fim tabelas relacionada com a clinica ---------------
 

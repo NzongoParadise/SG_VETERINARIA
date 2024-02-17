@@ -62,10 +62,6 @@
     </Compile>
     <Compile Include="FormatandoDGV.cs" />
     <Compile Include="FormRoundedCorners.cs" />
-    <Compile Include="frmAgendamento.cs" />
-    <Compile Include="frmAgendamento.Designer.cs">
-      <DependentUpon>frmAgendamento.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,9 +217,6 @@
     </Compile>
     <EmbeddedResource Include="dia.resx">
       <DependentUpon>dia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAgendamento.resx">
-      <DependentUpon>frmAgendamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAnimal.resx">
       <DependentUpon>frmAnimal.cs</DependentUpon>

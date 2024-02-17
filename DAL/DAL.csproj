@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DadosDaConexao.cs" />
     <Compile Include="DALAgendamento.cs" />
+    <Compile Include="DALCadastarConsultaAgendada.cs" />
     <Compile Include="DALConexao.cs" />
     <Compile Include="DALConsulta.cs" />
     <Compile Include="DALConsultasMarcadas.cs" />

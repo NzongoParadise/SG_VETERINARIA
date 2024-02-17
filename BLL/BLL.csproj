@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLAnimal.cs" />
+    <Compile Include="BLLCadastarConsultaAgendada.cs" />
     <Compile Include="BLLCompra.cs" />
     <Compile Include="BLLConsulta.cs" />
     <Compile Include="BLLConsultasMarcadas.cs" />

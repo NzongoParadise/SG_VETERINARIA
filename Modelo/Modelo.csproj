@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="ModeloAgendamento.cs" />
     <Compile Include="ModeloAnimal.cs" />
-    <Compile Include="ModeloCadastrarAgendamento.cs" />
+    <Compile Include="ModeloCadastrarConsultaAgendada.cs" />
     <Compile Include="ModeloCompra.cs" />
     <Compile Include="ModeloConsulta.cs" />
     <Compile Include="ModeloEndereco.cs" />

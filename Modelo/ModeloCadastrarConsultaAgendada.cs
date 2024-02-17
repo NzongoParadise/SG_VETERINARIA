@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class ModeloCadastrarAgendamento
+    public class ModeloCadastrarConsultaAgendada
     {
+        public int agendamentoID { get; set; }
+        public string nomeFuncionario { get; set; }
         public int UsuarioID { get; set; }
         public int ProprietarioID { get; set; }
         public int funcionarioID{ get; set; }
@@ -18,6 +20,7 @@ namespace Modelo
         public string gravidade { get; set; }
         public DateTime horaInicial { get; set; }
         public DateTime horaFinal { get; set; }
+        public DateTime dataMarcada { get; set; }
 
 
     }

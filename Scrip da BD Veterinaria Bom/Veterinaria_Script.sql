@@ -608,13 +608,20 @@ CREATE TABLE Consulta(
 	CONSTRAINT fk_UsuarioID_Consulta FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 
 );
-select *from usuario
-select *from Funcionario
+delete from agendamento
+select *from agendamento
+update agendamento set DataAgendamento='2024-02-10' where AgendamentoID=35
+select *from agendamento where FuncionarioID=1018 and DataAgendamento='2024-02-19'
 select *from Animal
-
+45
 select *from usuario
 select *from usuario
+select f.nome from agendamento a,funcionario f where f.FuncionarioID=1018
+select *from Agendamento
 -- Tabela de Agendamento
+
+select *from Agendamento where FuncionarioID=1018
+update agendamento set StatusAgendamento ='Marcada' where StatusAgendamento='Agendado'
 CREATE TABLE Agendamento(
     AgendamentoID INT PRIMARY KEY NOT NULL  identity(1,1),
     DataAgendamento DATE,
@@ -632,6 +639,65 @@ CREATE TABLE Agendamento(
 	constraint Agendamento_Funcionario foreign key(FuncionarioID) references Funcionario(FuncionarioID),
 	CONSTRAINT fk_UsuarioID_Agendamento FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+
+
+DECLARE @DataAgendamento DATE = '2024-02-20'; -- Data para a qual deseja verificar a disponibilidade
+
+SELECT DISTINCT
+    HoraInicial,
+    HoraFinal
+FROM (
+    SELECT
+        A1.HoraInicial,
+        A2.HoraFinal
+    FROM
+        Agendamento A1
+        JOIN Agendamento A2 ON A1.HoraInicial < A2.HoraInicial
+    WHERE
+        A1.DataAgendamento = @DataAgendamento
+        AND NOT EXISTS (
+            SELECT 1
+            FROM Agendamento A3
+            WHERE
+                A3.DataAgendamento = @DataAgendamento
+                AND A3.FuncionarioID = A1.FuncionarioID
+                AND A3.HoraInicial <= A1.HoraInicial
+                AND A3.HoraFinal >= A2.HoraFinal
+        )
+) AS IntervalosDisponiveis;
+
+
+
+
+
+CREATE PROCEDURE procedure_Atualizar_ConsultaAgendada
+    @AgendamentoID INT,
+    @DataAgendamento DATE,
+    @FuncionarioID INT,
+    @UsuarioID INT,
+    @AnimalID INT,
+    @TipoAgendamento VARCHAR(30),
+    @Observacoes VARCHAR(MAX),
+    @StatusAgendamento VARCHAR(50),
+    @Gravidade VARCHAR(50),
+    @HoraInicial TIME,
+    @HoraFinal TIME
+AS
+BEGIN
+    UPDATE Agendamento
+    SET DataAgendamento = @DataAgendamento,
+        FuncionarioID = @FuncionarioID,
+        UsuarioID = @UsuarioID,
+        AnimalID = @AnimalID,
+        TipoAgendamento = @TipoAgendamento,
+        Observacoes = @Observacoes,
+        StatusAgendamento = @StatusAgendamento,
+        Gravidade = @Gravidade,
+        HoraInicial = @HoraInicial,
+        HoraFinal = @HoraFinal
+    WHERE AgendamentoID = @AgendamentoID;
+END;
+
 alter table agendamento alter column DataAgendamento date
 CREATE PROCEDURE Insert_procedure_CadastrarCosultaAgendada
     @DataAgendamento DATETIME,

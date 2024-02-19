@@ -126,7 +126,7 @@ namespace DAL
             INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
             INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
         WHERE 
-            a.DataAgendamento BETWEEN @Inicial AND @Final";
+            a.DataAgendamento >=@Inicial AND a.DataAgendamento <=@Final";
             using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
                {
                 using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
@@ -234,7 +234,293 @@ namespace DAL
 
             return dt;
         }
+        public DataTable mostrarConsultasHoje(DateTime dataHoje)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        a.AgendamentoID as Código,
+        an.AnimalID as 'Código Animal',
+        f.FuncionarioID as 'Código Veterinário',
+        CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+        a.DataAgendamento as 'Data Marcada',
+        a.TipoAgendamento as Tipo,
+        a.StatusAgendamento as Situação,
+        a.Gravidade, 
+        a.HoraInicial as Início, 
+        a.HoraFinal as Fim, 
+        e.Telefone1 as Contacto,
+        -- Cálculo da diferença em minutos
+        DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+        -- Determinação do período
+        CASE
+            WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+            WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+            ELSE 'Noite'
+        END AS Período,
+        -- Cálculo da diferença em dias
+        DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+    FROM 
+        agendamento a 
+        INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+        INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+        INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+        INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+        INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+    WHERE    
+         a.DataAgendamento = @dataHoje";
 
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@dataHoje", dataHoje);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable mostrarConsultasOntem(DateTime dataOntem)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        a.AgendamentoID as Código,
+        an.AnimalID as 'Código Animal',
+        f.FuncionarioID as 'Código Veterinário',
+        CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+        a.DataAgendamento as 'Data Marcada',
+        a.TipoAgendamento as Tipo,
+        a.StatusAgendamento as Situação,
+        a.Gravidade, 
+        a.HoraInicial as Início, 
+        a.HoraFinal as Fim, 
+        e.Telefone1 as Contacto,
+        -- Cálculo da diferença em minutos
+        DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+        -- Determinação do período
+        CASE
+            WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+            WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+            ELSE 'Noite'
+        END AS Período,
+        -- Cálculo da diferença em dias
+        DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+    FROM 
+        agendamento a 
+        INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+        INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+        INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+        INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+        INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+    WHERE    
+        CONVERT(date, a.DataAgendamento) = @dataOntem";
+
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@dataOntem", dataOntem.Date);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable mostrarConsultasAmanha(DateTime dataAmanha)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        a.AgendamentoID as Código,
+        an.AnimalID as 'Código Animal',
+        f.FuncionarioID as 'Código Veterinário',
+        CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+        a.DataAgendamento as 'Data Marcada',
+        a.TipoAgendamento as Tipo,
+        a.StatusAgendamento as Situação,
+        a.Gravidade, 
+        a.HoraInicial as Início, 
+        a.HoraFinal as Fim, 
+        e.Telefone1 as Contacto,
+        -- Cálculo da diferença em minutos
+        DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+        -- Determinação do período
+        CASE
+            WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+            WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+            ELSE 'Noite'
+        END AS Período,
+        -- Cálculo da diferença em dias
+        DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+    FROM 
+        agendamento a 
+        INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+        INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+        INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+        INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+        INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+    WHERE    
+        CONVERT(date, a.DataAgendamento) = @dataAmanha";
+
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@dataAmanha", dataAmanha.Date);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable mostrarConsultasSemana(DateTime dataSemana)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        a.AgendamentoID as Código,
+        an.AnimalID as 'Código Animal',
+        f.FuncionarioID as 'Código Veterinário',
+        CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+        a.DataAgendamento as 'Data Marcada',
+        a.TipoAgendamento as Tipo,
+        a.StatusAgendamento as Situação,
+        a.Gravidade, 
+        a.HoraInicial as Início, 
+        a.HoraFinal as Fim, 
+        e.Telefone1 as Contacto,
+        -- Cálculo da diferença em minutos
+        DATEDIFF(MINUTE, a.HoraInicial, a.HoraFinal) AS 'Duração(minutos)',
+        -- Determinação do período
+        CASE
+            WHEN a.HoraInicial < '12:00:00' THEN 'Manhã'
+            WHEN a.HoraInicial < '18:00:00' THEN 'Tarde'
+            ELSE 'Noite'
+        END AS Período,
+        -- Cálculo da diferença em dias
+        DATEDIFF(DAY, a.DataCadastro, a.DataAgendamento) AS 'Dias Restante' 
+    FROM 
+        agendamento a 
+        INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+        INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+        INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+        INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+        INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+    WHERE    
+        a.DataAgendamento >= @inicioSemana
+        AND a.DataAgendamento < DATEADD(DAY, 7, @inicioSemana)";
+
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@inicioSemana", dataSemana.Date);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        public DataTable mostrarConsultasMes(DateTime dataMes)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        a.AgendamentoID as Código,
+        an.AnimalID as 'Código Animal',
+        f.FuncionarioID as 'Código Veterinário',
+        CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+        a.DataAgendamento as 'Data Marcada',
+        a.TipoAgendamento as Tipo,
+        a.StatusAgendamento as Situação,
+        a.Gravidade, 
+        a.HoraInicial as Início, 
+        a.HoraFinal as Fim, 
+        e.Telefone1 as Contacto,
+        -- Cálculo da diferença em minutos
+        DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+        -- Determinação do período
+        CASE
+            WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+            WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+            ELSE 'Noite'
+        END AS Período,
+        -- Cálculo da diferença em dias
+        DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+    FROM 
+        agendamento a 
+        INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+        INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+        INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+        INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+        INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+    WHERE    
+        MONTH(a.DataAgendamento) = MONTH(@dataMes) 
+        AND YEAR(a.DataAgendamento) = YEAR(@dataMes)";
+
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@dataMes", dataMes);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+        public DataTable mostrarConsultasEmAndamento()
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT 
+            a.AgendamentoID as Código,
+            an.AnimalID as 'Código Animal',
+            f.FuncionarioID as 'Código Veterinário',
+            CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+            a.DataAgendamento as 'Data Marcada',
+            a.TipoAgendamento as Tipo,
+            a.StatusAgendamento as Situação,
+            a.Gravidade, 
+            a.HoraInicial as Início, 
+            a.HoraFinal as Fim, 
+            e.Telefone1 as Contacto,
+            -- Cálculo da diferença em minutos
+            DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+            -- Determinação do período
+            CASE
+                WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+                WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+                ELSE 'Noite'
+            END AS Período,
+            -- Cálculo da diferença em dias
+            DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+        FROM 
+            agendamento a 
+            INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+            INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+            INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+            INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+            INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+        WHERE    
+
+           StatusAgendamento='Em andamento'";
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                       da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
 
         public bool VerificarDisponibilidadeConsulta(ModeloCadastrarConsultaAgendada modelo)
         {
@@ -304,42 +590,39 @@ namespace DAL
         // para o veterinário no mesmo horário
 
         // Exemplo de conexão com o banco de dados (substitua por sua lógica real de acesso ao banco de dados)
-        private bool ConsultaJaAgendadaNoHorario(int funcionarioID, DateTime dataMarcada,TimeSpan horaInicial, TimeSpan horaFinal)
+        private bool ConsultaJaAgendadaNoHorario(int funcionarioID, DateTime dataMarcada, TimeSpan horaInicial, TimeSpan horaFinal)
         {
             try
             {
+                using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Agendamento WHERE FuncionarioID = @FuncionarioID AND DataAgendamento = @DataAgendamento AND ((HoraInicial <= @HoraInicial AND HoraFinal >= @HoraInicial) OR (HoraInicial <= @HoraFinal AND HoraFinal >= @HoraFinal))", connection);
+                    command.Parameters.AddWithValue("@FuncionarioID", funcionarioID);
+                    command.Parameters.AddWithValue("@DataAgendamento", dataMarcada);
+                    command.Parameters.AddWithValue("@HoraInicial", horaInicial);
+                    command.Parameters.AddWithValue("@HoraFinal", horaFinal);
 
-            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Agendamento WHERE FuncionarioID = @FuncionarioID AND DataAgendamento = @DataAgendamento AND HoraInicial =@HoraInicial AND HoraFinal = @HoraFinal", connection);
-                command.Parameters.AddWithValue("@FuncionarioID", funcionarioID);
-                command.Parameters.AddWithValue("@DataAgendamento", dataMarcada);
-                command.Parameters.AddWithValue("@HoraInicial", horaInicial);
-                command.Parameters.AddWithValue("@HoraFinal", horaFinal);
-
-                int count = (int)command.ExecuteScalar();
-                return count > 0;
-            }
-
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
             }
             catch (Exception erro)
             {
-
-                throw new Exception("erro ao pesquisar os dados:"+erro.Message);
+                throw new Exception("Erro ao pesquisar os dados: " + erro.Message);
             }
         }
 
 
 
-       
 
 
 
 
 
 
-}
+
+    }
 
 }
 

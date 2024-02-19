@@ -21,5 +21,10 @@ namespace SG_VTNR
         {
 
         }
+
+        private void guna2ShadowPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

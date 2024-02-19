@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastrarAgendamentoConsulta));
             this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.pnlMostrarAnimal = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.dgvMostrarAnimal = new Guna.UI2.WinForms.Guna2DataGridView();
             this.pnlMostrarFuncionario = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.dgvMostrarFuncionario = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cbmTipoAgendamento = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -52,8 +54,6 @@
             this.dgvMostrarDadosAnimal = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.gunaShadowPanel3 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.pnlMostrarAnimal = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.dgvMostrarAnimal = new Guna.UI2.WinForms.Guna2DataGridView();
             this.finalMaskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.finalNumericUpDownMinutes = new System.Windows.Forms.NumericUpDown();
             this.finallNumericUpDownHours = new System.Windows.Forms.NumericUpDown();
@@ -66,6 +66,7 @@
             this.txtPesquisarAnimal = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtDataAgendada = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -80,14 +81,13 @@
             this.guna2Button13 = new Guna.UI2.WinForms.Guna2Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.pnlCadastrar.SuspendLayout();
+            this.pnlMostrarAnimal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarAnimal)).BeginInit();
             this.pnlMostrarFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarFuncionario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarDadosAnimal)).BeginInit();
             this.gunaShadowPanel3.SuspendLayout();
-            this.pnlMostrarAnimal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarAnimal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finalNumericUpDownMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finallNumericUpDownHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownMinutes)).BeginInit();
@@ -132,12 +132,89 @@
             this.pnlCadastrar.TabIndex = 21;
             this.pnlCadastrar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCadastrar_Paint);
             // 
+            // pnlMostrarAnimal
+            // 
+            this.pnlMostrarAnimal.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMostrarAnimal.Controls.Add(this.dgvMostrarAnimal);
+            this.pnlMostrarAnimal.FillColor = System.Drawing.Color.White;
+            this.pnlMostrarAnimal.Location = new System.Drawing.Point(2, 421);
+            this.pnlMostrarAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlMostrarAnimal.Name = "pnlMostrarAnimal";
+            this.pnlMostrarAnimal.Radius = 2;
+            this.pnlMostrarAnimal.ShadowColor = System.Drawing.Color.Black;
+            this.pnlMostrarAnimal.ShadowDepth = 50;
+            this.pnlMostrarAnimal.Size = new System.Drawing.Size(1366, 152);
+            this.pnlMostrarAnimal.TabIndex = 129;
+            this.pnlMostrarAnimal.Visible = false;
+            // 
+            // dgvMostrarAnimal
+            // 
+            this.dgvMostrarAnimal.AllowUserToAddRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvMostrarAnimal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMostrarAnimal.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMostrarAnimal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostrarAnimal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvMostrarAnimal.ColumnHeadersHeight = 4;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarAnimal.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvMostrarAnimal.EnableHeadersVisualStyles = false;
+            this.dgvMostrarAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostrarAnimal.Location = new System.Drawing.Point(-1, 18);
+            this.dgvMostrarAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvMostrarAnimal.Name = "dgvMostrarAnimal";
+            this.dgvMostrarAnimal.ReadOnly = true;
+            this.dgvMostrarAnimal.RowHeadersVisible = false;
+            this.dgvMostrarAnimal.RowHeadersWidth = 62;
+            this.dgvMostrarAnimal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostrarAnimal.Size = new System.Drawing.Size(1361, 198);
+            this.dgvMostrarAnimal.TabIndex = 56;
+            this.dgvMostrarAnimal.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
+            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvMostrarAnimal.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvMostrarAnimal.ThemeStyle.ReadOnly = true;
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostrarAnimal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostrarAnimal_CellContentClick);
+            // 
             // pnlMostrarFuncionario
             // 
             this.pnlMostrarFuncionario.BackColor = System.Drawing.Color.Transparent;
             this.pnlMostrarFuncionario.Controls.Add(this.dgvMostrarFuncionario);
             this.pnlMostrarFuncionario.FillColor = System.Drawing.Color.White;
-            this.pnlMostrarFuncionario.Location = new System.Drawing.Point(2, 424);
+            this.pnlMostrarFuncionario.Location = new System.Drawing.Point(2, 383);
             this.pnlMostrarFuncionario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlMostrarFuncionario.Name = "pnlMostrarFuncionario";
             this.pnlMostrarFuncionario.Radius = 2;
@@ -150,30 +227,30 @@
             // dgvMostrarFuncionario
             // 
             this.dgvMostrarFuncionario.AllowUserToAddRows = false;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvMostrarFuncionario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMostrarFuncionario.BackgroundColor = System.Drawing.Color.White;
             this.dgvMostrarFuncionario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMostrarFuncionario.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvMostrarFuncionario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarFuncionario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarFuncionario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvMostrarFuncionario.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarFuncionario.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarFuncionario.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvMostrarFuncionario.EnableHeadersVisualStyles = false;
             this.dgvMostrarFuncionario.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvMostrarFuncionario.Location = new System.Drawing.Point(-5, 14);
@@ -225,9 +302,9 @@
             this.cbmTipoAgendamento.HoverState.Parent = this.cbmTipoAgendamento;
             this.cbmTipoAgendamento.ItemHeight = 20;
             this.cbmTipoAgendamento.Items.AddRange(new object[] {
-            "Marcado",
-            "Cancelado",
-            "Em andamento"});
+            "Externa",
+            "Banho",
+            "Consultas Regular"});
             this.cbmTipoAgendamento.ItemsAppearance.Parent = this.cbmTipoAgendamento;
             this.cbmTipoAgendamento.Location = new System.Drawing.Point(13, 358);
             this.cbmTipoAgendamento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -307,9 +384,8 @@
             this.cmbGravidade.HoverState.Parent = this.cmbGravidade;
             this.cmbGravidade.ItemHeight = 20;
             this.cmbGravidade.Items.AddRange(new object[] {
-            "Marcado",
-            "Cancelado",
-            "Em andamento"});
+            "Moderada",
+            "Grave"});
             this.cmbGravidade.ItemsAppearance.Parent = this.cmbGravidade;
             this.cmbGravidade.Location = new System.Drawing.Point(13, 284);
             this.cmbGravidade.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -361,30 +437,30 @@
             // dgvMostrarDadosAnimal
             // 
             this.dgvMostrarDadosAnimal.AllowUserToAddRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarDadosAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarDadosAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvMostrarDadosAnimal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMostrarDadosAnimal.BackgroundColor = System.Drawing.Color.ForestGreen;
             this.dgvMostrarDadosAnimal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMostrarDadosAnimal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvMostrarDadosAnimal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarDadosAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarDadosAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvMostrarDadosAnimal.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarDadosAnimal.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarDadosAnimal.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvMostrarDadosAnimal.EnableHeadersVisualStyles = false;
             this.dgvMostrarDadosAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvMostrarDadosAnimal.Location = new System.Drawing.Point(4, 72);
@@ -455,83 +531,6 @@
             this.gunaShadowPanel3.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel3.Size = new System.Drawing.Size(660, 333);
             this.gunaShadowPanel3.TabIndex = 55;
-            // 
-            // pnlMostrarAnimal
-            // 
-            this.pnlMostrarAnimal.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMostrarAnimal.Controls.Add(this.dgvMostrarAnimal);
-            this.pnlMostrarAnimal.FillColor = System.Drawing.Color.White;
-            this.pnlMostrarAnimal.Location = new System.Drawing.Point(2, 469);
-            this.pnlMostrarAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlMostrarAnimal.Name = "pnlMostrarAnimal";
-            this.pnlMostrarAnimal.Radius = 2;
-            this.pnlMostrarAnimal.ShadowColor = System.Drawing.Color.Black;
-            this.pnlMostrarAnimal.ShadowDepth = 50;
-            this.pnlMostrarAnimal.Size = new System.Drawing.Size(1366, 152);
-            this.pnlMostrarAnimal.TabIndex = 129;
-            this.pnlMostrarAnimal.Visible = false;
-            // 
-            // dgvMostrarAnimal
-            // 
-            this.dgvMostrarAnimal.AllowUserToAddRows = false;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
-            this.dgvMostrarAnimal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMostrarAnimal.BackgroundColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvMostrarAnimal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvMostrarAnimal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
-            this.dgvMostrarAnimal.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarAnimal.DefaultCellStyle = dataGridViewCellStyle27;
-            this.dgvMostrarAnimal.EnableHeadersVisualStyles = false;
-            this.dgvMostrarAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvMostrarAnimal.Location = new System.Drawing.Point(5, 5);
-            this.dgvMostrarAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvMostrarAnimal.Name = "dgvMostrarAnimal";
-            this.dgvMostrarAnimal.ReadOnly = true;
-            this.dgvMostrarAnimal.RowHeadersVisible = false;
-            this.dgvMostrarAnimal.RowHeadersWidth = 62;
-            this.dgvMostrarAnimal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMostrarAnimal.Size = new System.Drawing.Size(1361, 214);
-            this.dgvMostrarAnimal.TabIndex = 56;
-            this.dgvMostrarAnimal.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvMostrarAnimal.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvMostrarAnimal.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvMostrarAnimal.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvMostrarAnimal.ThemeStyle.ReadOnly = true;
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvMostrarAnimal.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvMostrarAnimal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostrarAnimal_CellContentClick);
             // 
             // finalMaskedTextBox1
             // 
@@ -673,6 +672,16 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "Funcionário(a)";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(545, 280);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 20);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Selecionada";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -752,6 +761,7 @@
             this.cbmStatus.ShadowDecoration.Parent = this.cbmStatus;
             this.cbmStatus.Size = new System.Drawing.Size(360, 26);
             this.cbmStatus.TabIndex = 68;
+            this.cbmStatus.SelectedIndexChanged += new System.EventHandler(this.cbmStatus_SelectedIndexChanged);
             // 
             // txtObservacao
             // 
@@ -913,16 +923,6 @@
             this.label23.TabIndex = 16;
             this.label23.Text = "Observação";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(545, 280);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 20);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Selecionada";
-            // 
             // frmCadastrarAgendamentoConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -935,13 +935,13 @@
             this.Load += new System.EventHandler(this.frmCadastrarAgendamentoConsulta_Load);
             this.pnlCadastrar.ResumeLayout(false);
             this.pnlCadastrar.PerformLayout();
+            this.pnlMostrarAnimal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarAnimal)).EndInit();
             this.pnlMostrarFuncionario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarFuncionario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarDadosAnimal)).EndInit();
             this.gunaShadowPanel3.ResumeLayout(false);
             this.gunaShadowPanel3.PerformLayout();
-            this.pnlMostrarAnimal.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarAnimal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.finalNumericUpDownMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.finallNumericUpDownHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownMinutes)).EndInit();

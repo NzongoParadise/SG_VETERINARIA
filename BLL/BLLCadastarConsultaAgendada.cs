@@ -35,6 +35,42 @@ namespace BLL
             return dall.mostrarConsultasAgendadasPorVeterinario(codigo);
 
         }
+        public DataTable mostrarConsultasHoje(DateTime dataHoje)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasHoje(dataHoje);
+
+        }
+        public DataTable mostrarConsultasOntem(DateTime dataOntem)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasOntem(dataOntem);
+
+        }
+        public DataTable mostrarConsultasAmanha(DateTime dataAmanha)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasAmanha(dataAmanha);
+
+        }
+        public DataTable mostrarConsultasSemana(DateTime dataSemana)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasSemana(dataSemana);
+
+        }
+        public DataTable mostrarConsultasMes(DateTime dataMes)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasMes(dataMes);
+
+        }
+        public DataTable mostrarConsultasEmAndamento()
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasEmAndamento();
+
+        }
         public DataTable mostrarConsultasAgendadasSoMarcadas()
         {
             DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);

@@ -25,6 +25,8 @@ namespace SG_VTNR
         public int FuncionarioID;
         private int ProprietarioID;
         public int animalID;
+        //esta linha permite com que se faca perceber se o clique esta a vir do datagrid ou entao do calendario marcar consulta
+       public string vindoDe;
         public frmCadastrarAgendamentoConsulta()
         {
             InitializeComponent();
@@ -214,7 +216,6 @@ namespace SG_VTNR
         {
             if (e.RowIndex >= 0)
             {
-
                 // Obtenha os valores das células do DataGridView
                 string especie = dgvMostrarAnimal.Rows[e.RowIndex].Cells["Especie"].Value.ToString();
                 string nome = dgvMostrarAnimal.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
@@ -263,21 +264,17 @@ namespace SG_VTNR
 
                 // Limpando qualquer fonte de dados existente no DataGridView
                 dgvMostrarDadosAnimal.DataSource = null;
-
                 // Vincule o DataTable ao DataGridView
                 dgvMostrarDadosAnimal.DataSource = dt;
                 //string prop = this.proprietarioAnimal;
                 //novaLinha["proprietario"] = prop;
                 dgvMostrarDadosAnimal.DataSource = dt;
-
                 // Configurar o DataGridView para quebrar as linhas
                 dgvMostrarDadosAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 dgvMostrarDadosAnimal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dgvMostrarDadosAnimal.AutoResizeRows();
-
                 // Ajustar a altura da linha de cabeçalho
                 dgvMostrarDadosAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
                 // Esconda o painel se estiver visível
                 if (pnlMostrarAnimal.Visible == true)
                 {
@@ -450,7 +447,7 @@ namespace SG_VTNR
             string horaInicialText = inicialMaskedTextBox1.Text;
             string horaFinalText = finalMaskedTextBox1.Text;
 
-            
+
             if (!DateTime.TryParse(horaInicialText, out horaInicial) || !DateTime.TryParse(horaFinalText, out horaFinal))
             {
 
@@ -462,13 +459,28 @@ namespace SG_VTNR
             {
                 return false;
             }
-           
+
 
             return true;
         }
 
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            //verifica a hora de funcionamento da clinica
+            // Obter as horas iniciais e finais das caixas de texto
+            TimeSpan horaInicialHorario = TimeSpan.Parse(inicialMaskedTextBox1.Text);
+            TimeSpan horaFinalHorario = TimeSpan.Parse(finalMaskedTextBox1.Text);
+
+            // Verificar se a hora inicial é antes das 8h ou a hora final é após as 15h
+            if (horaInicialHorario < TimeSpan.Parse("08:00:00") || horaFinalHorario > TimeSpan.Parse("15:00:00"))
+            {
+                MessageBox.Show("A clínica funciona das 8h às 15h. Por favor, escolha um horário dentro deste intervalo.", "Horário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            { 
+
             if (VerificarHorarioValido() == false || (dtDataAgendada.Value < DateTime.Today))
             {
                 MessageBox.Show("Horário ou Data inválidos \n O horário final deve ser maior que o horário inicial \ne\n A data agendada deve ser maior que a data actual.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -477,7 +489,7 @@ namespace SG_VTNR
             // Verificar se a duração é maior ou igual a 30 minutos
             if ((horaFinal - horaInicial).TotalMinutes < 30)
             {
-                MessageBox.Show("A duração da consulta deve ser maior que 30 minutos.", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("A duração da consulta deve ser maior que 30 minutos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -486,8 +498,6 @@ namespace SG_VTNR
                 DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
                 BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
                 ModeloCadastrarConsultaAgendada modelo = new ModeloCadastrarConsultaAgendada();
-
-
                 modelo.dataMarcada = dtDataAgendada.Value.Date;
                 modelo.funcionarioID = this.FuncionarioID;
                 modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
@@ -518,20 +528,21 @@ namespace SG_VTNR
                 if (teste)
                 {
                     bll.CadastarConsultaAgendada(modelo);
-                MessageBox.Show("\n \n Agendamento  Cadastrado com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //ataualizando o datagrid na tela de marcacao de consulta
-                frmMarcacaoConsulta frmMarcacao = new frmMarcacaoConsulta();
-                frmMarcacao.mostrarConsultasAgendadas();
-                limparTela();
-                
-                 }
+                    MessageBox.Show("\n \n Agendamento  Cadastrado com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //ataualizando o datagrid na tela de marcacao de consulta
+                    frmMarcacaoConsulta frmMarcacao = new frmMarcacaoConsulta();
+                    frmMarcacao.mostrarConsultasAgendadas();
+                    limparTela();
+
+                }
                 else
                 {
-                    MessageBox.Show("O horário selecionado para este Veterinário já está ocupado. Por favor, escolha outro horário.","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("O horário selecionado para este Veterinário já está ocupado. Por favor, escolha outro horário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
 
             }
+
             catch (Exception erro)
             {
 
@@ -539,128 +550,268 @@ namespace SG_VTNR
 
             }
         }
-        public void UpdateMaskedTextBoxTextInicial()
-        {
-            inicialMaskedTextBox1.Text = $"{inicialNumericUpDownHours.Value:00}:{inicialNumericUpDownMinutes.Value:00}";
-        }
-        public void UpdateMaskedTextBoxTextFinalteste(string hora)
-        {
-            finalMaskedTextBox1.Text = hora;
-        }
-        public void UpdateMaskedTextBoxTextInicialteste(string hora)
-        {
-            inicialMaskedTextBox1.Text = hora;
-        }
-
-
-        public void UpdateMaskedTextBoxTextFinal()
-        {
-            finalMaskedTextBox1.Text = $"{finallNumericUpDownHours.Value:00}:{finalNumericUpDownMinutes.Value:00}";
-        }
-        private void numericUpDownHours_ValueChanged(object sender, EventArgs e)
-        {
-            if (inicialNumericUpDownHours.Value == 24)
+            }
+            public void UpdateMaskedTextBoxTextInicial()
             {
-                inicialNumericUpDownHours.Value = 0;
+                inicialMaskedTextBox1.Text = $"{inicialNumericUpDownHours.Value:00}:{inicialNumericUpDownMinutes.Value:00}";
+            }
+            public void UpdateMaskedTextBoxTextFinalteste(string hora)
+            {
+                finalMaskedTextBox1.Text = hora;
+            }
+            public void UpdateMaskedTextBoxTextInicialteste(string hora)
+            {
+                inicialMaskedTextBox1.Text = hora;
             }
 
-            UpdateMaskedTextBoxTextInicial();
-        }
 
-        private void numericUpDownMinutes_ValueChanged(object sender, EventArgs e)
-
-        {
-            if (inicialNumericUpDownMinutes.Value == 59)
+            public void UpdateMaskedTextBoxTextFinal()
             {
-                inicialNumericUpDownMinutes.Value = 0;
-                inicialNumericUpDownHours.Value++;
+                finalMaskedTextBox1.Text = $"{finallNumericUpDownHours.Value:00}:{finalNumericUpDownMinutes.Value:00}";
             }
-
-            UpdateMaskedTextBoxTextInicial();
-        }
-
-        private void finallNumericUpDownHours_ValueChanged(object sender, EventArgs e)
-        {
-            if (finallNumericUpDownHours.Value == 24)
+            private void numericUpDownHours_ValueChanged(object sender, EventArgs e)
             {
-                finallNumericUpDownHours.Value = 0;
-            }
-
-            UpdateMaskedTextBoxTextFinal();
-        }
-
-        private void finalNumericUpDownMinutes_ValueChanged(object sender, EventArgs e)
-        {
-            if (finalNumericUpDownMinutes.Value == 59)
-            {
-                finalNumericUpDownMinutes.Value = 0;
-                finallNumericUpDownHours.Value++;
-            }
-
-            UpdateMaskedTextBoxTextFinal();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            if (dtDataAgendada.Value < DateTime.Today)
-            {
-                MessageBox.Show("Data Inválida. Por favor selecione outra data.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Retorna para interromper o fluxo do método
-            }
-            try
-            {
-                DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
-                BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
-                ModeloCadastrarConsultaAgendada modelo = new ModeloCadastrarConsultaAgendada();
-
-                modelo.dataMarcada = dtDataAgendada.Value.Date;
-                modelo.funcionarioID = this.FuncionarioID;
-                modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
-                modelo.animalID = this.animalID;
-                modelo.tipoAgendamento = cbmTipoAgendamento.Text;
-                modelo.Obs = txtObservacao.Text;
-                modelo.status = cbmStatus.Text;
-                modelo.gravidade = cmbGravidade.Text;
-                DateTime dataBase = new DateTime(2022, 1, 1);
-                modelo.agendamentoID = Convert.ToInt32(txtCodAgendamento.Text);
-
-                DateTime horaInicial;
-                DateTime horaFinal;
-
-                string[] timePartsInicial = inicialMaskedTextBox1.Text.Split(':');
-                if (timePartsInicial.Length == 2 && int.TryParse(timePartsInicial[0], out int hoursInicial) && int.TryParse(timePartsInicial[1], out int minutesInicial))
+                if (inicialNumericUpDownHours.Value == 24)
                 {
-                    horaInicial = dataBase.Add(new TimeSpan(hoursInicial, minutesInicial, 0));
-                    modelo.horaInicial = horaInicial;
+                    inicialNumericUpDownHours.Value = 0;
                 }
 
-                string[] timePartsFinal = finalMaskedTextBox1.Text.Split(':');
-                if (timePartsFinal.Length == 2 && int.TryParse(timePartsFinal[0], out int hoursFinal) && int.TryParse(timePartsFinal[1], out int minutesFinal))
+                UpdateMaskedTextBoxTextInicial();
+            }
+
+            private void numericUpDownMinutes_ValueChanged(object sender, EventArgs e)
+
+            {
+                if (inicialNumericUpDownMinutes.Value == 59)
                 {
-                    horaFinal = dataBase.Add(new TimeSpan(hoursFinal, minutesFinal, 0));
-                    modelo.horaFinal = horaFinal;
+                    inicialNumericUpDownMinutes.Value = 0;
+                    inicialNumericUpDownHours.Value++;
                 }
-                bll.updateConsultaAgendada(modelo);
-                MessageBox.Show("\n \n Dados Alterados com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //ataualizando o datagrid na tela de marcacao de consulta
-                frmMarcacaoConsulta frmMarcacao = new frmMarcacaoConsulta();
-                frmMarcacao.mostrarConsultasAgendadas();
+
+                UpdateMaskedTextBoxTextInicial();
+            }
+
+            private void finallNumericUpDownHours_ValueChanged(object sender, EventArgs e)
+            {
+                if (finallNumericUpDownHours.Value == 24)
+                {
+                    finallNumericUpDownHours.Value = 0;
+                }
+
+                UpdateMaskedTextBoxTextFinal();
+            }
+
+            private void finalNumericUpDownMinutes_ValueChanged(object sender, EventArgs e)
+            {
+                if (finalNumericUpDownMinutes.Value == 59)
+                {
+                    finalNumericUpDownMinutes.Value = 0;
+                    finallNumericUpDownHours.Value++;
+                }
+
+                UpdateMaskedTextBoxTextFinal();
+            }
+            public void EditarConsultaNomal()
+            {
+                if (VerificarHorarioValido() == false || (dtDataAgendada.Value < DateTime.Today))
+                {
+                    MessageBox.Show("Horário ou Data inválidos \n O horário final deve ser maior que o horário inicial \ne\n A data agendada deve ser maior que a data actual.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // Retorna para interromper o fluxo do método
+                }
+                // Verificar se a duração é maior ou igual a 30 minutos
+                if ((horaFinal - horaInicial).TotalMinutes < 30)
+                {
+                    MessageBox.Show("A duração da consulta deve ser maior que 30 minutos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                try
+                {
+                    DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+                    BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+                    ModeloCadastrarConsultaAgendada modelo = new ModeloCadastrarConsultaAgendada();
+
+                    modelo.dataMarcada = dtDataAgendada.Value.Date;
+                    modelo.funcionarioID = this.FuncionarioID;
+                    modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
+                    modelo.animalID = this.animalID;
+                    modelo.tipoAgendamento = cbmTipoAgendamento.Text;
+                    modelo.Obs = txtObservacao.Text;
+                    modelo.status = cbmStatus.Text;
+                    modelo.gravidade = cmbGravidade.Text;
+                    DateTime dataBase = new DateTime(2022, 1, 1);
+                    modelo.agendamentoID = Convert.ToInt32(txtCodAgendamento.Text);
+
+                    DateTime horaInicial;
+                    DateTime horaFinal;
+
+                    string[] timePartsInicial = inicialMaskedTextBox1.Text.Split(':');
+                    if (timePartsInicial.Length == 2 && int.TryParse(timePartsInicial[0], out int hoursInicial) && int.TryParse(timePartsInicial[1], out int minutesInicial))
+                    {
+                        horaInicial = dataBase.Add(new TimeSpan(hoursInicial, minutesInicial, 0));
+                        modelo.horaInicial = horaInicial;
+                    }
+
+                    string[] timePartsFinal = finalMaskedTextBox1.Text.Split(':');
+                    if (timePartsFinal.Length == 2 && int.TryParse(timePartsFinal[0], out int hoursFinal) && int.TryParse(timePartsFinal[1], out int minutesFinal))
+                    {
+                        horaFinal = dataBase.Add(new TimeSpan(hoursFinal, minutesFinal, 0));
+                        modelo.horaFinal = horaFinal;
+                    }
+
+                    bll.updateConsultaAgendada(modelo);
+                    MessageBox.Show("\n \n Actualização sem reagendamento realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //ataualizando o datagrid na tela de marcacao de consulta
+                    frmMarcacaoConsulta frmMarcacao = new frmMarcacaoConsulta();
+                    frmMarcacao.mostrarConsultasAgendadas();
+                    limparTela();
+                }
+                catch (Exception erro)
+                {
+
+                    MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                }
+
+            }
+            public void editarConsultaReagendada()
+            {
+                if (VerificarHorarioValido() == false || (dtDataAgendada.Value < DateTime.Today))
+                {
+                    MessageBox.Show("Horário ou Data inválidos \n O horário final deve ser maior que o horário inicial \ne\n A data agendada deve ser maior que a data actual.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // Retorna para interromper o fluxo do método
+                }
+                // Verificar se a duração é maior ou igual a 30 minutos
+                if ((horaFinal - horaInicial).TotalMinutes < 30)
+                {
+                    MessageBox.Show("A duração da consulta deve ser maior que 30 minutos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                try
+                {
+                    DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+                    BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+                    ModeloCadastrarConsultaAgendada modelo = new ModeloCadastrarConsultaAgendada();
+
+                    modelo.dataMarcada = dtDataAgendada.Value.Date;
+                    modelo.funcionarioID = this.FuncionarioID;
+                    modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
+                    modelo.animalID = this.animalID;
+                    modelo.tipoAgendamento = cbmTipoAgendamento.Text;
+                    modelo.Obs = txtObservacao.Text;
+                    modelo.status = cbmStatus.Text;
+                    modelo.gravidade = cmbGravidade.Text;
+                    DateTime dataBase = new DateTime(2022, 1, 1);
+                    modelo.agendamentoID = Convert.ToInt32(txtCodAgendamento.Text);
+
+                    DateTime horaInicial;
+                    DateTime horaFinal;
+
+                    string[] timePartsInicial = inicialMaskedTextBox1.Text.Split(':');
+                    if (timePartsInicial.Length == 2 && int.TryParse(timePartsInicial[0], out int hoursInicial) && int.TryParse(timePartsInicial[1], out int minutesInicial))
+                    {
+                        horaInicial = dataBase.Add(new TimeSpan(hoursInicial, minutesInicial, 0));
+                        modelo.horaInicial = horaInicial;
+                    }
+
+                    string[] timePartsFinal = finalMaskedTextBox1.Text.Split(':');
+                    if (timePartsFinal.Length == 2 && int.TryParse(timePartsFinal[0], out int hoursFinal) && int.TryParse(timePartsFinal[1], out int minutesFinal))
+                    {
+                        horaFinal = dataBase.Add(new TimeSpan(hoursFinal, minutesFinal, 0));
+                        modelo.horaFinal = horaFinal;
+                    }
+                    bool teste = bll.VerificarDisponibilidadeConsulta(modelo);
+                    if (teste)
+                    {
+                        bll.updateConsultaAgendada(modelo);
+                        MessageBox.Show("\n \n Actualização com reagendamento realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //ataualizando o datagrid na tela de marcacao de consulta
+                        frmMarcacaoConsulta frmMarcacao = new frmMarcacaoConsulta();
+                        frmMarcacao.mostrarConsultasAgendadas();
+                        limparTela();
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("O horário selecionado para este Veterinário já está ocupado. Por favor, escolha outro horário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+                catch (Exception erro)
+                {
+
+                    MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                }
+
+
+            }
+
+            private void btnEditar_Click(object sender, EventArgs e)
+            {
+                string status = cbmStatus.SelectedItem?.ToString();
+                if (status == "Reagendada")
+                {
+                    editarConsultaReagendada();
+                }
+                else
+                {
+                    EditarConsultaNomal();
+                }
+
+            }
+
+            private void btnCancelar_Click(object sender, EventArgs e)
+            {
                 limparTela();
+                alteraBotoes(2, perInserir, perAlterar, perExcluir, perImprimir);
             }
-            catch (Exception erro)
+
+            private void cbmStatus_SelectedIndexChanged(object sender, EventArgs e)
             {
+            if (vindoDe == "Editar")
+            {
+                string status = cbmStatus.SelectedItem?.ToString();
+                if (status == "Reagendada")
+                {
+                    inicialMaskedTextBox1.Enabled = true;
+                    inicialNumericUpDownHours.Enabled = true;
+                    inicialNumericUpDownMinutes.Enabled = true;
 
-                MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    finallNumericUpDownHours.Enabled = true;
+                    finalNumericUpDownMinutes.Enabled = true;
+                    finalMaskedTextBox1.Enabled = true;
+                    dtDataAgendada.Enabled = true;
+
+                }
+                else
+                {
+                    inicialMaskedTextBox1.Enabled = false;
+                    inicialNumericUpDownHours.Enabled = false;
+                    inicialNumericUpDownMinutes.Enabled = false;
+
+                    finallNumericUpDownHours.Enabled = false;
+                    finalNumericUpDownMinutes.Enabled = false;
+                    finalMaskedTextBox1.Enabled = false;
+                    dtDataAgendada.Enabled = false;
+                }
+            }
+            else
+            {
+                inicialMaskedTextBox1.Enabled = true;
+                inicialNumericUpDownHours.Enabled = true;
+                inicialNumericUpDownMinutes.Enabled = true;
+
+                finallNumericUpDownHours.Enabled = true;
+                finalNumericUpDownMinutes.Enabled = true;
+                finalMaskedTextBox1.Enabled = true;
+                dtDataAgendada.Enabled = true;
 
             }
 
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            limparTela();
-            alteraBotoes(2, perInserir, perAlterar, perExcluir, perImprimir);
+            }
         }
     }
-}
 

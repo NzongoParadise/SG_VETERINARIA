@@ -106,5 +106,10 @@ namespace SG_VTNR
                 container(new frmPesagem());
             }
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

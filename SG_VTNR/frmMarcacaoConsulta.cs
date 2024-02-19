@@ -24,7 +24,7 @@ namespace SG_VTNR
         int year;
         int animalID;
         int funcionarioID;
-
+       
         public frmMarcacaoConsulta()
         {
             InitializeComponent();
@@ -71,25 +71,29 @@ namespace SG_VTNR
                 DateTime teste = DateTime.Now.Date;
                 foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
                 {
-                    // Verificar se a célula contém um valor e se esse valor é uma data válida
-                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    // Verificar se a célula contém um valor
+                    if (row.Cells["Data Marcada"].Value != null)
                     {
-
-                        // Comparar apenas a parte da data (ignorando a hora)
-                        if (dataMarcada.Date == teste)
+                        // Tentar converter o valor da célula para DateTime
+                        if (DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
                         {
-                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                            // Comparar a data sem considerar a hora
+                            if (dataMarcada.Date == teste)
+                            {
+                                row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                            }
                         }
                     }
-
                 }
+
+
+            
             }
             catch (Exception ex)
             {
 
                 Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
             }
-
 
         }
 
@@ -415,7 +419,6 @@ namespace SG_VTNR
                 this.animalID = Convert.ToInt32(dgvMostrarConsultasAgendadas.Rows[e.RowIndex].Cells["Código Animal"].Value.ToString());
                 frm.animalID = this.animalID;
                 ModeloCadastrarConsultaAgendada modelo = bll.BusacarConsultaComChave(codAgendamento);
-
                 if (modelo != null)
                 {
                     //PreencherFormulario(modelo);
@@ -432,12 +435,8 @@ namespace SG_VTNR
                     frm.dtDataAgendada.Value = modelo.dataMarcada;
 
                     //PesquisarFuncionariocomChave(funcionarioID);-----------------------------------------
-                    //DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                     BLLFuncionario bllFuncionario = new BLLFuncionario(cx);
-                    //frmCadastrarAgendamentoConsulta frm = new frmCadastrarAgendamentoConsulta();
                     bllFuncionario.BusacarFuncionarioMarcacaoConsulta(this.funcionarioID);
-                    //frm.txtDadosFuncionario.Text= modelo.nomeFuncionario.ToString();
-
                     ModeloCadastrarConsultaAgendada modelo02 = bllFuncionario.BusacarFuncionarioMarcacaoConsulta(this.funcionarioID);
                     if (modelo02 != null)
                     {
@@ -449,7 +448,6 @@ namespace SG_VTNR
                         // Trate o caso em que nenhum funcionário foi encontrado com o código especificado
                         frm.txtDadosFuncionario.Text = "Funcionário não encontrado";
                     }
-
                     //este metodo peqmite pesquisar os dados do animal com base ao codigo do animal que esta na linha
                     PesquisarAnimal();
                     //frmCadastrarAgendamentoConsulta frm = new frmCadastrarAgendamentoConsulta();
@@ -470,6 +468,16 @@ namespace SG_VTNR
                     // Exibir o formulário para edição
                     Boolean perInserir = false; Boolean perAlterar = false; Boolean perExcluir = false; Boolean perImprimir = false;
                     frm.alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
+                    frm.inicialMaskedTextBox1.Enabled = false;
+                    frm.inicialNumericUpDownHours.Enabled = false;
+                    frm.inicialNumericUpDownMinutes.Enabled = false;
+
+                    frm.finallNumericUpDownHours.Enabled = false;
+                    frm.finalNumericUpDownMinutes.Enabled = false;
+                    frm.finalMaskedTextBox1.Enabled = false;
+                    frm.dtDataAgendada.Enabled = false;
+                    //esta linha permite com que se faca perceber se o clique esta a vir do datagrid ou entao do calendario marcar consulta
+                    frm.vindoDe = "Editar";
                     frm.Show();
                 }
             }
@@ -486,11 +494,11 @@ namespace SG_VTNR
         }
         public void mostrarConsultaAgendadaPorData()
         {
-            DateTime dataInicial1 = dataInicial.Value;
-            DateTime dataFinal1 = dataFinal.Value.Date.AddDays(1).AddSeconds(-1);
+            DateTime dataInicial1 = dataInicialPesq.Value;
+            DateTime dataFinal1 = dataFinalPesq.Value.Date.AddDays(1).AddTicks(-1);
             if (dataFinal.Value < dataInicial.Value)
             {
-                MessageBox.Show("A data Inicial tem de ser Menor que a data Final","Informação",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("A data Inicial tem de ser Menor que a data Final", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (dataFinal.Value >= dataInicial.Value)
@@ -531,7 +539,7 @@ namespace SG_VTNR
                 // Destacar consultas marcadas para a data atual com cor verde
                 try
                 {
-                    DateTime teste = DateTime.Now.Date;
+                    DateTime teste = DateTime.Today;
                     foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
                     {
                         // Verificar se a célula contém um valor e se esse valor é uma data válida
@@ -556,7 +564,7 @@ namespace SG_VTNR
         }
         public void mostrarConsultasPorVeterinario(int codigo)
         {
-            
+
             DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
             dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasAgendadasPorVeterinario(codigo);
@@ -615,6 +623,316 @@ namespace SG_VTNR
                 Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
             }
         }
+        public void mostrarConsultasHoje(DateTime hoje)
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasHoje(hoje);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
+        public void mostrarConsultasAmanha(DateTime amanha)
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasAmanha(amanha);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
+        public void mostrarConsultasOntem(DateTime Ontem)
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasOntem(Ontem);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
+        public void mostrarConsultasSemana(DateTime semana)
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasSemana(semana);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
+        public void mostrarConsultasMes(DateTime mes)
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasMes(mes);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
+
+
+
+
+
         public void mostrarConsultasSoMarcadas()
         {
 
@@ -737,43 +1055,113 @@ namespace SG_VTNR
                 Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
             }
         }
+        public void mostrarConsultasEmAndamento()
+        {
+
+            DALConexao conexao = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLCadastarConsultaAgendada bll = new BLLCadastarConsultaAgendada(conexao);
+            dgvMostrarConsultasAgendadas.DataSource = bll.mostrarConsultasEmAndamento();
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarConsultasAgendadas.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarConsultasAgendadas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarConsultasAgendadas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarConsultasAgendadas.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarConsultasAgendadas.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarConsultasAgendadas.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarConsultasAgendadas.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarConsultasAgendadas.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarConsultasAgendadas.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+            // Destacar consultas marcadas para a data atual com cor verde
+            try
+            {
+                DateTime teste = DateTime.Now.Date;
+                foreach (DataGridViewRow row in dgvMostrarConsultasAgendadas.Rows)
+                {
+                    // Verificar se a célula contém um valor e se esse valor é uma data válida
+                    if (row.Cells["Data Marcada"].Value != null && DateTime.TryParse(row.Cells["Data Marcada"].Value.ToString(), out DateTime dataMarcada))
+                    {
+
+                        // Comparar apenas a parte da data (ignorando a hora)
+                        if (dataMarcada.Date == teste)
+                        {
+                            row.Cells["Data Marcada"].Style.BackColor = Color.LightGreen; // Definir a cor de fundo da célula como verde
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine($"erro ao comparar as datas:{ex.Message}");
+            }
+        }
 
         private void cbmSelecionarTipoPesquisa_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tipoPesquisa = cbmSelecionarTipoPesquisa.SelectedItem?.ToString();
-            if (tipoPesquisa!=null)
+            if (tipoPesquisa != null)
             {
-            switch (tipoPesquisa)
-            {
-                case "Pesquisar por data":
-                    mostrarConsultaAgendadaPorData();
-                    txtCodFuncionario.Text = "";
-                    txtNomeFuncionario.Text = "";
-                    txtPesquisarFuncionario.Text = "";
-                    break;
-                case "Conusultas Canceladas":
-                    mostrarConsultasCanceladas();
-                    txtCodFuncionario.Text = "";
-                    txtNomeFuncionario.Text = "";
-                    txtPesquisarFuncionario.Text = "";
-                    break;
-                case "Pesquisar por Veterinário":
-                    if (string.IsNullOrEmpty(txtCodFuncionario.Text))
-                    {
-                        MessageBox.Show("Por favor, informa o Código do veterinario para proceguir com a pesquisa!","Informação",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                switch (tipoPesquisa)
+                {
+                    case "Pesquisar por data":
+                        mostrarConsultaAgendadaPorData();
+                        txtCodFuncionario.Text = "";
+                        txtNomeFuncionario.Text = "";
+                        txtPesquisarFuncionario.Text = "";
+                        break;
+                    case "Conusultas Canceladas":
+                        mostrarConsultasCanceladas();
+                        txtCodFuncionario.Text = "";
+                        txtNomeFuncionario.Text = "";
+                        txtPesquisarFuncionario.Text = "";
+                        break;
+                    case "Pesquisar por Veterinário":
+                        if (string.IsNullOrEmpty(txtCodFuncionario.Text))
+                        {
+                            MessageBox.Show("Por favor, informa o Código do veterinario para proceguir com a pesquisa!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             cbmSelecionarTipoPesquisa.SelectedIndex = -1;
+                            txtPesquisarFuncionario.Focus();
                             return;
-                    }
-                    int codigoFuncionario = Convert.ToInt32(txtCodFuncionario.Text);
-                    mostrarConsultasPorVeterinario(codigoFuncionario);
-                    break;
-                case "Consultas Marcadas":
-                    txtCodFuncionario.Text = "";
-                    txtNomeFuncionario.Text = "";
-                    txtPesquisarFuncionario.Text = "";
-                    mostrarConsultasSoMarcadas();
-                    break;
-            }
+                        }
+                        int codigoFuncionario = Convert.ToInt32(txtCodFuncionario.Text);
+                        mostrarConsultasPorVeterinario(codigoFuncionario);
+                        break;
+                    case "Consultas Marcadas":
+                        txtCodFuncionario.Text = "";
+                        txtNomeFuncionario.Text = "";
+                        txtPesquisarFuncionario.Text = "";
+                        mostrarConsultasSoMarcadas();
+                        break;
+
+                    case "Em andamento":
+                        txtCodFuncionario.Text = "";
+                        txtNomeFuncionario.Text = "";
+                        txtPesquisarFuncionario.Text = "";
+                        mostrarConsultasEmAndamento();
+                        break;
+                }
+
 
             }
 
@@ -781,13 +1169,18 @@ namespace SG_VTNR
 
         private void dataInicial_ValueChanged(object sender, EventArgs e)
         {
-            mostrarConsultaAgendadaPorData();
+   
+           
+            
         }
 
         private void dataFinal_ValueChanged(object sender, EventArgs e)
         {
-            mostrarConsultaAgendadaPorData();
-        }
+            
+             
+            
+                
+                }
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -819,7 +1212,7 @@ namespace SG_VTNR
 
         private void txtPesquisarFuncionario_TextChanged(object sender, EventArgs e)
         {
-           
+
             if (string.IsNullOrWhiteSpace(txtPesquisarFuncionario.Text) || string.IsNullOrEmpty(txtPesquisarFuncionario.Text))
             {
                 if (pnlMostrarFuncionario.Visible == true)
@@ -834,7 +1227,7 @@ namespace SG_VTNR
                 {
                     pnlMostrarFuncionario.Visible = true;
 
-                   
+
                     PesquisarFuncionariocomChave(txtPesquisarFuncionario.Text);
                 }
             }
@@ -846,7 +1239,7 @@ namespace SG_VTNR
             {
                 DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
 
-                txtCodFuncionario.Text =dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString();
+                txtCodFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString();
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 txtNomeFuncionario.Text = nome;
@@ -863,10 +1256,100 @@ namespace SG_VTNR
         {
             if (int.TryParse(txtCodFuncionario.Text, out int cod))
             {
-               
+
                 mostrarConsultasPorVeterinario(cod);
             }
+
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
            
+            DateTime hoje = DateTime.Today.Date;
+            DateTime ontem =hoje.AddDays(-1);
+            txtCodFuncionario.Text = "";
+            txtNomeFuncionario.Text = "";
+            txtPesquisarFuncionario.Text = "";
+            dataInicial.Value = ontem;
+            mostrarConsultasOntem(ontem);
+           
+        }
+    
+
+    private void btnSeguinte_Click(object sender, EventArgs e)
+    {
+           
+            DateTime hoje = DateTime.Today.Date;
+            DateTime amanha = hoje.AddDays(1);
+            txtCodFuncionario.Text = "";
+            txtNomeFuncionario.Text = "";
+            txtPesquisarFuncionario.Text = "";
+            mostrarConsultasAmanha(amanha);
+            dataInicial.Value = amanha;
+           
+        }
+
+        private void btnHoje_Click(object sender, EventArgs e)
+        {
+           
+            DateTime hoje = DateTime.Today.Date;
+            
+            txtCodFuncionario.Text = "";
+            txtNomeFuncionario.Text = "";
+            txtPesquisarFuncionario.Text = "";
+            mostrarConsultasHoje(hoje);
+            dataInicial.Value = hoje;
+            
+           
+        }
+
+        private void btnSemana_Click(object sender, EventArgs e)
+        {
+           
+            DateTime hoje = DateTime.Today.Date;
+            DateTime primeiroDiadaSemana = hoje.AddDays(-(int)hoje.DayOfWeek); // Primeiro dia da semana
+            DateTime ultimoDiadaSemana = primeiroDiadaSemana.AddDays(6); // Último dia da semana
+
+            DateTime semana = hoje.AddDays(-(int)hoje.DayOfWeek);
+            txtCodFuncionario.Text = "";
+            txtNomeFuncionario.Text = "";
+            txtPesquisarFuncionario.Text = "";
+            mostrarConsultasSemana(semana);
+            dataInicial.Value = primeiroDiadaSemana;
+            dataFinal.Value = ultimoDiadaSemana;
+            
+        }
+
+        private void btnMes_Click(object sender, EventArgs e)
+        {
+        
+            DateTime hoje = DateTime.Today.Date;
+            DateTime mes = new DateTime(hoje.Year, hoje.Month, 1); // Primeiro dia do mês atual
+            DateTime primeiroDiaMes = new DateTime(hoje.Year, hoje.Month, 1); // Primeiro dia do mês
+            DateTime ultimoDiaMes = primeiroDiaMes.AddMonths(1).AddDays(-1); // Último dia do mês
+
+            txtCodFuncionario.Text = "";
+            txtNomeFuncionario.Text = "";
+            txtPesquisarFuncionario.Text = "";
+            mostrarConsultasMes(mes);
+           
+            dataInicial.Value = primeiroDiaMes;
+            dataFinal.Value = ultimoDiaMes;
+        }
+
+        private void userControlDays1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataInicialPesq_ValueChanged(object sender, EventArgs e)
+        {
+            mostrarConsultaAgendadaPorData();
+        }
+
+        private void dataFinalPesq_ValueChanged(object sender, EventArgs e)
+        {
+            mostrarConsultaAgendadaPorData();
         }
     }
 }

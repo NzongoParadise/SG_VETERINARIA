@@ -60,7 +60,8 @@ namespace SG_VTNR
             dgvFornecedor.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvFornecedor.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvFornecedor.AutoResizeRows();
-
+            dgvFornecedor.Columns["FornecedorID"].HeaderText = "Códgo do Fornecedor";
+            dgvFornecedor.Columns["NomeFornecedor"].HeaderText = "Nome do Fornecedor";
             // Ajustar a altura da linha de cabeçalho
             dgvFornecedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
@@ -403,8 +404,11 @@ namespace SG_VTNR
             DataTable dt = new DataTable();
             dt=bll.PesquisarProdutoComChave(txtPesquisarProduto.Text);
             dgvMostrarProduto.DataSource= dt;
-
-
+            dgvMostrarProduto.Columns["IdProduto"].HeaderText = "Código do Produto";
+            dgvMostrarProduto.Columns["NomeProduto"].HeaderText = "Nome do Produto";
+            dgvMostrarProduto.Columns["TipoProduto"].HeaderText = "Tipo de Produto";
+            dgvMostrarProduto.Columns["CategoriaProduto"].HeaderText = "Categoria do Produto";
+            dgvMostrarProduto.Columns["FinalidadeProduto"].HeaderText = "Finalidade do Produto";
             dgvMostrarProduto.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvMostrarProduto.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvMostrarProduto.AutoResizeRows();
@@ -681,6 +685,11 @@ namespace SG_VTNR
         }
 
         private void guna2Button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ShadowPanel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

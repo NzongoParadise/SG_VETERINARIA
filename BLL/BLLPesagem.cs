@@ -43,6 +43,11 @@ namespace BLL
             DALPesagem DALObj = new DALPesagem(conexao);
             return DALObj.PesquisarPesocomChave(codigo);
         }
+        public DataTable PesquisarPesoComChaveNomesIdade(string codigo)
+        {
+            DALPesagem DALObj = new DALPesagem(conexao);
+            return DALObj.PesquisarPesocomChaveNomesIdade(codigo);
+        }
 
 
 

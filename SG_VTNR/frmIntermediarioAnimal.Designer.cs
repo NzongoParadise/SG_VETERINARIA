@@ -69,14 +69,14 @@
             this.txtPesquisarAnimal.FocusedState.Parent = this.txtPesquisarAnimal;
             this.txtPesquisarAnimal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPesquisarAnimal.HoverState.Parent = this.txtPesquisarAnimal;
-            this.txtPesquisarAnimal.Location = new System.Drawing.Point(1121, 169);
+            this.txtPesquisarAnimal.Location = new System.Drawing.Point(1253, 169);
             this.txtPesquisarAnimal.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPesquisarAnimal.Name = "txtPesquisarAnimal";
             this.txtPesquisarAnimal.PasswordChar = '\0';
             this.txtPesquisarAnimal.PlaceholderText = "";
             this.txtPesquisarAnimal.SelectedText = "";
             this.txtPesquisarAnimal.ShadowDecoration.Parent = this.txtPesquisarAnimal;
-            this.txtPesquisarAnimal.Size = new System.Drawing.Size(624, 55);
+            this.txtPesquisarAnimal.Size = new System.Drawing.Size(492, 55);
             this.txtPesquisarAnimal.TabIndex = 117;
             this.txtPesquisarAnimal.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
@@ -115,13 +115,13 @@
             this.dgvExibirAnimal.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvExibirAnimal.EnableHeadersVisualStyles = false;
             this.dgvExibirAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvExibirAnimal.Location = new System.Drawing.Point(-2, 227);
+            this.dgvExibirAnimal.Location = new System.Drawing.Point(3, 237);
             this.dgvExibirAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvExibirAnimal.Name = "dgvExibirAnimal";
             this.dgvExibirAnimal.RowHeadersVisible = false;
             this.dgvExibirAnimal.RowHeadersWidth = 62;
             this.dgvExibirAnimal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExibirAnimal.Size = new System.Drawing.Size(1747, 472);
+            this.dgvExibirAnimal.Size = new System.Drawing.Size(1858, 619);
             this.dgvExibirAnimal.TabIndex = 116;
             this.dgvExibirAnimal.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvExibirAnimal.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -170,13 +170,13 @@
             // guna2Button2
             // 
             this.guna2Button2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.guna2Button2.BorderRadius = 5;
+            this.guna2Button2.BorderRadius = 15;
             this.guna2Button2.CheckedState.Parent = this.guna2Button2;
             this.guna2Button2.CustomImages.Parent = this.guna2Button2;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Location = new System.Drawing.Point(-2, 168);
+            this.guna2Button2.Location = new System.Drawing.Point(13, 169);
             this.guna2Button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
@@ -189,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1744, 698);
+            this.ClientSize = new System.Drawing.Size(1909, 845);
             this.Controls.Add(this.guna2Button2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtPesquisarAnimal);

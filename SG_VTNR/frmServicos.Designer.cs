@@ -28,21 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.pnlContainer = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label39 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2TextBox8 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dgvTesteServicos = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
             this.btnVacina = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
@@ -50,10 +41,12 @@
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.gunaVSeparator1 = new Guna.UI.WinForms.GunaVSeparator();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContainer.SuspendLayout();
             this.guna2ShadowPanel2.SuspendLayout();
             this.gunaShadowPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTesteServicos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -120,13 +113,9 @@
             // 
             this.gunaShadowPanel1.BackColor = System.Drawing.Color.Transparent;
             this.gunaShadowPanel1.BaseColor = System.Drawing.Color.White;
-            this.gunaShadowPanel1.Controls.Add(this.guna2HtmlLabel5);
-            this.gunaShadowPanel1.Controls.Add(this.guna2HtmlLabel4);
-            this.gunaShadowPanel1.Controls.Add(this.guna2HtmlLabel3);
-            this.gunaShadowPanel1.Controls.Add(this.guna2HtmlLabel2);
-            this.gunaShadowPanel1.Controls.Add(this.guna2HtmlLabel1);
+            this.gunaShadowPanel1.Controls.Add(this.pictureBox1);
+            this.gunaShadowPanel1.Controls.Add(this.label2);
             this.gunaShadowPanel1.Controls.Add(this.guna2TextBox8);
-            this.gunaShadowPanel1.Controls.Add(this.dgvTesteServicos);
             this.gunaShadowPanel1.Controls.Add(this.guna2Button10);
             this.gunaShadowPanel1.Controls.Add(this.btnVacina);
             this.gunaShadowPanel1.Controls.Add(this.guna2Button6);
@@ -140,51 +129,6 @@
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel1.Size = new System.Drawing.Size(326, 880);
             this.gunaShadowPanel1.TabIndex = 70;
-            // 
-            // guna2HtmlLabel5
-            // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(26, 350);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(129, 22);
-            this.guna2HtmlLabel5.TabIndex = 73;
-            this.guna2HtmlLabel5.Text = "guna2HtmlLabel1";
-            // 
-            // guna2HtmlLabel4
-            // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(26, 299);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(129, 22);
-            this.guna2HtmlLabel4.TabIndex = 73;
-            this.guna2HtmlLabel4.Text = "guna2HtmlLabel1";
-            // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(26, 255);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(129, 22);
-            this.guna2HtmlLabel3.TabIndex = 73;
-            this.guna2HtmlLabel3.Text = "guna2HtmlLabel1";
-            // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(20, 208);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(129, 22);
-            this.guna2HtmlLabel2.TabIndex = 73;
-            this.guna2HtmlLabel2.Text = "guna2HtmlLabel1";
-            // 
-            // guna2HtmlLabel1
-            // 
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(26, 164);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(129, 22);
-            this.guna2HtmlLabel1.TabIndex = 73;
-            this.guna2HtmlLabel1.Text = "guna2HtmlLabel1";
             // 
             // guna2TextBox8
             // 
@@ -202,7 +146,7 @@
             this.guna2TextBox8.FocusedState.Parent = this.guna2TextBox8;
             this.guna2TextBox8.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox8.HoverState.Parent = this.guna2TextBox8;
-            this.guna2TextBox8.Location = new System.Drawing.Point(20, 16);
+            this.guna2TextBox8.Location = new System.Drawing.Point(9, 49);
             this.guna2TextBox8.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.guna2TextBox8.Name = "guna2TextBox8";
             this.guna2TextBox8.PasswordChar = '\0';
@@ -211,65 +155,6 @@
             this.guna2TextBox8.ShadowDecoration.Parent = this.guna2TextBox8;
             this.guna2TextBox8.Size = new System.Drawing.Size(290, 57);
             this.guna2TextBox8.TabIndex = 72;
-            // 
-            // dgvTesteServicos
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvTesteServicos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTesteServicos.BackgroundColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvTesteServicos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvTesteServicos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTesteServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvTesteServicos.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTesteServicos.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvTesteServicos.EnableHeadersVisualStyles = false;
-            this.dgvTesteServicos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvTesteServicos.Location = new System.Drawing.Point(13, 79);
-            this.dgvTesteServicos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvTesteServicos.Name = "dgvTesteServicos";
-            this.dgvTesteServicos.RowHeadersVisible = false;
-            this.dgvTesteServicos.RowHeadersWidth = 62;
-            this.dgvTesteServicos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTesteServicos.Size = new System.Drawing.Size(297, 481);
-            this.dgvTesteServicos.TabIndex = 72;
-            this.dgvTesteServicos.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-            this.dgvTesteServicos.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvTesteServicos.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvTesteServicos.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvTesteServicos.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvTesteServicos.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvTesteServicos.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvTesteServicos.ThemeStyle.ReadOnly = false;
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvTesteServicos.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
             // guna2Button10
             // 
@@ -382,6 +267,25 @@
             this.gunaVSeparator1.Size = new System.Drawing.Size(318, 211);
             this.gunaVSeparator1.TabIndex = 70;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 20);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "Pesquisar Animal";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SG_VTNR.Properties.Resources.search_500px1;
+            this.pictureBox1.Location = new System.Drawing.Point(242, 60);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 115;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmServicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -399,7 +303,7 @@
             this.guna2ShadowPanel2.PerformLayout();
             this.gunaShadowPanel1.ResumeLayout(false);
             this.gunaShadowPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTesteServicos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -416,14 +320,10 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI.WinForms.GunaVSeparator gunaVSeparator1;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvTesteServicos;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox8;
         private Guna.UI2.WinForms.Guna2Button guna2Button10;
         private Guna.UI2.WinForms.Guna2Button btnVacina;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

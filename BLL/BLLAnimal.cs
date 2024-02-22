@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BLL
 {
@@ -137,6 +138,11 @@ namespace BLL
         {
             DALLAnimal DALObj = new DALLAnimal(conexao);
             return DALObj.PesquisarAnimalcomChaveVacina(Nome);
+        }
+        public DataTable PesquisarAnimalcomChaveExame(string Nome)
+        {
+            DALLAnimal DALObj = new DALLAnimal(conexao);
+            return DALObj.PesquisarAnimalcomChaveExame(Nome);
         }
         public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)
         {

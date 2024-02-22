@@ -128,6 +128,7 @@ namespace BLL
             DALProprietario DalObj =new DALProprietario(conexao);
             return DalObj.PesquisarProprietarioComChave(nome);
         }
+        
         public DataTable Localizar(string nome)
         {
             DALProprietario DALObj = new DALProprietario(conexao);

@@ -15,44 +15,44 @@ namespace DAL
         public DALExame(DALConexao cx)
         {
             this.conexao = cx;
-        }
-        public void IncluirExame(ModeloExame modelo)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Insert_procedure_Exame";
+        //}
+        //public void IncluirExame(ModeloExame modelo)
+        //{
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = conexao.ObjectoConexao;
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Insert_procedure_Exame";
 
-            cmd.Parameters.AddWithValue("@AnimalID", modelo.AnimalID);
-            cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
-            cmd.Parameters.AddWithValue("@ID_Tipo_Exame", modelo.ID_Tipo_Exame);
-            cmd.Parameters.AddWithValue("@Data_Hora", modelo.Data_Hora);
-            cmd.Parameters.AddWithValue("@Resultado", modelo.Resultado);
-
-
-            conexao.Conectar();
-            cmd.ExecuteNonQuery();
-            modelo.ID_Exame = Convert.ToInt32(cmd.ExecuteScalar());
-            conexao.Desconectar();
-        }
-        public void AlterarExame(ModeloExame modelo)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjectoConexao;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Update_procedure_Exame";
-
-            cmd.Parameters.AddWithValue("@ID_Exame", modelo.ID_Exame);
-            cmd.Parameters.AddWithValue("@AnimalID", modelo.AnimalID);
-            cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
-            cmd.Parameters.AddWithValue("@ID_Tipo_Exame", modelo.ID_Tipo_Exame);
-            cmd.Parameters.AddWithValue("@Data_Hora", modelo.Data_Hora);
-            cmd.Parameters.AddWithValue("@Resultado", modelo.Resultado);
+        //    cmd.Parameters.AddWithValue("@AnimalID", modelo.AnimalID);
+        //    cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
+        //    cmd.Parameters.AddWithValue("@ID_Tipo_Exame", modelo.ID_Tipo_Exame);
+        //    cmd.Parameters.AddWithValue("@Data_Hora", modelo.Data_Hora);
+        //    cmd.Parameters.AddWithValue("@Resultado", modelo.Resultado);
 
 
-            conexao.Conectar();
-            cmd.ExecuteNonQuery();
-            conexao.Desconectar();
+        //    conexao.Conectar();
+        //    cmd.ExecuteNonQuery();
+        //    modelo.ID_Exame = Convert.ToInt32(cmd.ExecuteScalar());
+        //    conexao.Desconectar();
+        //}
+        //public void AlterarExame(ModeloExame modelo)
+        //{
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = conexao.ObjectoConexao;
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Update_procedure_Exame";
+
+        //    cmd.Parameters.AddWithValue("@ID_Exame", modelo.ID_Exame);
+        //    cmd.Parameters.AddWithValue("@AnimalID", modelo.AnimalID);
+        //    cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
+        //    cmd.Parameters.AddWithValue("@ID_Tipo_Exame", modelo.ID_Tipo_Exame);
+        //    cmd.Parameters.AddWithValue("@Data_Hora", modelo.Data_Hora);
+        //    cmd.Parameters.AddWithValue("@Resultado", modelo.Resultado);
+
+
+        //    conexao.Conectar();
+        //    cmd.ExecuteNonQuery();
+        //    conexao.Desconectar();
         }
     }
 }

@@ -157,7 +157,20 @@ namespace DAL
         public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT FuncionarioID, CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo' FROM Funcionario WHERE Nome LIKE @keyword ";
+            string query = "SELECT FuncionarioID as 'Código Funcionário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
+            using (SqlConnection con = new SqlConnection(conexao.StringConexao))
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
+        public DataTable PesquisarFuncionarioComChavePesagem(String keyword)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT FuncionarioID as 'Código Funcionário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
             using (SqlConnection con = new SqlConnection(conexao.StringConexao))
             {
                 SqlCommand cmd = new SqlCommand(query, con);

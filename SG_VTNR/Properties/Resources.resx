@@ -121,10 +121,22 @@
   <data name="search_500px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_500px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="kg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kg.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OIP.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconepeso" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconepeso.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search_500px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_500px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="3582783-icone-de-carrinho-de-compras-para-transporte-de-mercadorias-na-loja-grátis-vetor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3582783-icone-de-carrinho-de-compras-para-transporte-de-mercadorias-na-loja-grátis-vetor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ICONEOFRO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ICONEOFRO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

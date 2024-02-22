@@ -105,10 +105,7 @@ namespace SG_VTNR
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLFuncionario bll = new BLLFuncionario(cx);
             dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(txtPesquisarFuncionario.Text);
-            // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
-            dgvMostrarFuncionario.Columns["Nome"].HeaderText = "Nome";
-            //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
+             //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
 
             dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvMostrarFuncionario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -127,7 +124,7 @@ namespace SG_VTNR
             DialogResult dialogo = MessageBox.Show("Desejas guardar as alterações do foruário?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (dialogo.ToString() == "Yes")
             {
-                tabControl1.SelectTab(tabPage3);
+                tabControl1.SelectTab(tabPage2);
                 btnGravar.Focus();
             }
 
@@ -337,7 +334,8 @@ namespace SG_VTNR
                 novaLinha["Porte"] = porte;
                 novaLinha["Sexo"] = sexo;
                 novaLinha["Peso"] = peso;
-                
+
+             
                 novaLinha["Idade"] = idadeEmAnos == 0 ? $"{idadeEmMeses} Meses" : $"{idadeEmAnos} Ano(s)";
                
 
@@ -397,12 +395,10 @@ namespace SG_VTNR
             {
                 DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
 
-                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
-                string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-                string sobreNome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Sobrenome"].Value.ToString();
-                string apelido = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Apelido"].Value.ToString();
+                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código Funcionário"].Value.ToString());
+                string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 txtFuncionarioID.Text = FuncionarioID.ToString();               
-                txtResPesqFuncionario.Text = nome + " " + sobreNome + " " + apelido;
+                txtResPesqFuncionario.Text = nome;
                 if (pnlMostrarFuncionario.Visible==true)
                 {
                     pnlMostrarFuncionario.Visible = false;
@@ -495,7 +491,7 @@ namespace SG_VTNR
                 {
                     txtcustoTotalCompra.Text = "Isento a Custo";
                     txtCustoUnitarioVacina.Text = "Inseto a Custo";
-                    lblIsentoCusto.Text = "Inseto a Custo";
+                     lblIsentoCusto.Text = "Inseto a Custo";
 
                     txtcustoTotalCompra.Enabled=false;
                     txtCustoUnitarioVacina.Enabled = false;
@@ -706,7 +702,7 @@ namespace SG_VTNR
             dgvCarrinho.Columns["qtdAdministrada"].HeaderText = "Dose Administ.";
             dgvCarrinho.Columns["custoUnitarioVacina"].HeaderText = "Custo unitário";
             dgvCarrinho.Columns["custoTotalCompra"].HeaderText = "Total";
-
+            dgvCarrinho.Columns["IsentoCusto"].HeaderText = "Custo Compra";
            
           
         }
@@ -872,7 +868,33 @@ namespace SG_VTNR
 
         }
 
-        
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMostrarDetalhes_Click(object sender, EventArgs e)
+        {
+            if (pnlMostrarDetalhesPagamento.Visible==false)
+            {
+                pnlMostrarDetalhesPagamento.Visible = true;
+            }
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            pnlMostrarDetalhesPagamento.Visible = false;
+        }
     }
 }
 

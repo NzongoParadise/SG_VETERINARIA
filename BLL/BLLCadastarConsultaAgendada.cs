@@ -23,6 +23,12 @@ namespace BLL
             return dall.mostrarConsultasAgendadas();
 
         }
+        public DataTable mostrarConsultasAgendadasExame(int keyword)
+        {
+            DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);
+            return dall.mostrarConsultasAgendadasExame(keyword);
+
+        }
         public DataTable mostrarConsultasAgendadasPorData(DateTime inicial, DateTime final)
         {
             DALCadastarConsultaAgendada dall = new DALCadastarConsultaAgendada(conexao);

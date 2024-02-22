@@ -18,17 +18,18 @@ namespace SG_VTNR
 {
     public partial class frmVenda : Form
     {
-        int qtdDatGridviw = 0;
+        //variavel que recebe a quantidade disponivel do produto vindo da base de dados
+        int qtdDisponivelBaseDados = 0;
         private ModeloVenda m;
-       
+
         public frmVenda()
         {
             InitializeComponent();
-             
-        m = new ModeloVenda();
-           m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
+
+            m = new ModeloVenda();
+            m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
         }
-        
+
 
         private void label11_Click(object sender, EventArgs e)
         {
@@ -104,7 +105,10 @@ namespace SG_VTNR
             {
                 if (decimal.TryParse(txtQuantidade.Text, out decimal quantidadeaceite))
                 {
+
+
                     txtTotal.Text = ((Decimal.Parse(txtPrecoUnitario.Text)) * (Convert.ToInt16(txtQuantidade.Text))).ToString();
+
                 }
                 else
                 {
@@ -112,6 +116,7 @@ namespace SG_VTNR
                     MessageBox.Show("O valor entregue não é válido. Insira um valor numérico.");
                     // Ou pode fazer alguma outra ação, como limpar a TextBox ou definir o txtTroco.Text para vazio, etc.
                     txtTotal.Text = "";
+
                 }
             }
 
@@ -128,11 +133,11 @@ namespace SG_VTNR
         private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            txtNomeProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["NomeProduto"].Value.ToString();
-            txtCodProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["IDProduto"].Value.ToString();
-            txtPrecoUnitario.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["ValorVenda"].Value.ToString();
-            qtdDatGridviw = Convert.ToInt32(dgvMostrarProduto.Rows[e.RowIndex].Cells["Qtd"].Value.ToString());
-            txtqtdDisponivelStock.Text = qtdDatGridviw.ToString();
+            txtNomeProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["Nome do Produto"].Value.ToString();
+            txtCodProduto.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["Código Produto"].Value.ToString();
+            txtPrecoUnitario.Text = dgvMostrarProduto.Rows[e.RowIndex].Cells["Valor de Venda"].Value.ToString();
+            qtdDisponivelBaseDados = Convert.ToInt32(dgvMostrarProduto.Rows[e.RowIndex].Cells["Quantidade Disponivel"].Value.ToString());
+            txtqtdDisponivelStock.Text = qtdDisponivelBaseDados.ToString();
             //panelMostrarProduto.Visible=false;
             txtPesquisarProduto.Text = "";
 
@@ -150,18 +155,52 @@ namespace SG_VTNR
             dt = bll.PesquisarProduto(txtPesquisarProduto.Text);
             dgvMostrarProduto.DataSource = dt;
 
+            //atribuicao dos valores no outro datagriview
+            dgvMostrarProduto.DataSource = dt;
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarProduto.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarProduto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarProduto.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarProduto.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarProduto.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarProduto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarProduto.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarProduto.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarProduto.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarProduto.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+
         }
         private void rxrPesquisarProduto_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPesquisarProduto.Text))
+            if (string.IsNullOrWhiteSpace(txtPesquisarProduto.Text) || string.IsNullOrEmpty(txtPesquisarProduto.Text))
             {
-                //panelMostrarProduto.Visible = false;
+
+                panelMostrarProduto.Visible = false;
 
             }
             else
             {
-                PesquisarProduto();
+
                 panelMostrarProduto.Visible = true;
+                PesquisarProduto();
             }
 
         }
@@ -173,19 +212,19 @@ namespace SG_VTNR
                 if (string.IsNullOrEmpty(txtCodProduto.Text) || string.IsNullOrEmpty(txtNomeCliente.Text) || string.IsNullOrEmpty(txtNomeProduto.Text)
                        || (string.IsNullOrEmpty(txtQuantidade.Text)))
                 {
-                    MessageBox.Show("Preencha os campos obrigatórios!!!");
+                    MessageBox.Show("Preencha os campos obrigatórios!!!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
                 else
                 {
-
-                    int qtdFormulario = Convert.ToInt32(txtQuantidade.Text);
-                //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
-                if (qtdFormulario > 0)
-                {
-                    // verifica se a quantidade no sistema eh maior com aque o usuario esta a inserir no txtQuantidade
-                    if (this.qtdDatGridviw >= qtdFormulario)
+                    //craica da variavel local que recebe a quantidade que o produto quer comprar para verificar se eh menor ou igual com a quantidade disponivel
+                    int qtdCompra = Convert.ToInt32(txtQuantidade.Text);
+                    //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                    if (qtdCompra > 0)
                     {
+                        // verifica se a quantidade no sistema eh maior com aque o usuario esta a inserir no txtQuantidade
+                        if (this.qtdDisponivelBaseDados >= qtdCompra)
+                        {
                             int produtoID = Convert.ToInt32(txtCodProduto.Text);
                             // Verifica se o produto já está no carrinho
                             ModeloVenda produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
@@ -193,8 +232,9 @@ namespace SG_VTNR
                             {
                                 // Se o produto já existe, atualiza a quantidade
                                 produtoExistente.Qtd += Convert.ToInt32(txtQuantidade.Text);
+
                                 produtoExistente.Total = produtoExistente.precoUnitario * produtoExistente.Qtd;
-                                 // Atualiza o SubTotal somando o Total do novo produto
+                                // Atualiza o SubTotal somando o Total do novo produto
                                 decimal subtotal = Decimal.Parse(txtSubtotal.Text);
                                 subtotal += produtoExistente.Total;
                                 txtSubtotal.Text = subtotal.ToString();
@@ -211,7 +251,8 @@ namespace SG_VTNR
                                     precoUnitario = decimal.Parse(txtPrecoUnitario.Text),
                                     Total = decimal.Parse(txtTotal.Text),
                                     nomeProduto = txtNomeProduto.Text,
-                                    nomeCliente=txtNomeCliente.Text,
+                                    nomeCliente = txtNomeCliente.Text,
+
                                     //totalGeral = decimal.Parse(txtTotalGeral.Text),
 
                                     dataVenda = DateTime.Now,
@@ -222,32 +263,33 @@ namespace SG_VTNR
                                 decimal subtotal = Decimal.Parse(txtSubtotal.Text);
                                 subtotal += novoProduto.Total;
                                 txtSubtotal.Text = subtotal.ToString();
+
                                 // Atualiza o DataGridView
                                 AtualizarDataGridView();
 
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Quantidade superior ao disponível no estoque.\nInforme uma quantidade menor ou igual que  {qtdDisponivelBaseDados}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            txtQuantidade.Text = "";
+                            txtTotal.Text = "";
+                        }
                     }
                     else
                     {
-                        MessageBox.Show($"Quantidade superior ao disponível no estoque.\nInforme uma quantidade menor ou igual que  {qtdDatGridviw}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"A quantidade tem de ser maior que 0.\nInforme uma quantidade superio a 0", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        txtQuantidade.Text = "";
-                        txtTotal.Text = "";
+
                     }
-                }
-                else
-                {
-                    MessageBox.Show($"A quantidade tem de ser maior que 0.\nInforme uma quantidade superio a 0", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                }
                 }
 
             }
             catch (Exception erro)
             {
 
-                throw new Exception("Erro ao Enviar os dados para o BLLVenda" + erro.Message);
+                MessageBox.Show("Erro:" + erro.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private List<ModeloVenda> listaDeDados = new List<ModeloVenda>();
@@ -272,6 +314,42 @@ namespace SG_VTNR
             // Atualiza o DataSource do DataGridView com a listaDeDados
             dgvCarinho.DataSource = null;  // Limpa qualquer fonte de dados existente
             dgvCarinho.DataSource = dadosParaExibir;
+            //RENOMEANDO O NOME DAS COLUNAS DO DATAGRIDVIEW
+            dgvCarinho.Columns["nomeProduto"].HeaderText = "Nome do do Produto";
+            dgvCarinho.Columns["produtoID"].HeaderText = "Código do Produto";
+            dgvCarinho.Columns["Qtd"].HeaderText = "Quantidade Selecionada";
+            dgvCarinho.Columns["precoUnitario"].HeaderText = "Preço Unitário";
+            dgvCarinho.Columns["Total"].HeaderText = "Total";
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvCarinho.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvCarinho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvCarinho.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvCarinho.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvCarinho.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvCarinho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCarinho.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvCarinho.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvCarinho.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvCarinho.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+
         }
         public void EliminarColSelecionada()
         {
@@ -356,7 +434,7 @@ namespace SG_VTNR
                 decimal totalGeral = decimal.Parse(txtSubtotal.Text) + decimal.Parse(txtImposto.Text);
 
                 // Adicionar o totalGeral à venda
-                
+
                 foreach (var item in listaDeDados)
                 {
                     item.totalGeral = totalGeral;
@@ -385,6 +463,22 @@ namespace SG_VTNR
             Console.WriteLine($"Subtotal: {subtotal}, Imposto: {imposto}, Total Geral: {totalGeral}");
 
             txtTotalGeral.Text = totalGeral.ToString();
+        }
+
+        private void txtValorEntregue_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtValorEntregue.Text) || !string.IsNullOrWhiteSpace(txtValorEntregue.Text))
+            {
+                decimal valorEntregue = Convert.ToDecimal(txtValorEntregue.Text);
+                decimal totalGeral = Convert.ToDecimal(txtTotalGeral.Text);
+                decimal troco = valorEntregue - totalGeral;
+                txtTroco.Text = troco.ToString();
+            }
+            }
+
+            private void panelMostrarProduto_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

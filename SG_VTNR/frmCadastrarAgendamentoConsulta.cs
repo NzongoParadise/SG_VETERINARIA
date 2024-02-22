@@ -165,6 +165,7 @@ namespace SG_VTNR
                 }
             }
         }
+
         public void PesquisarFuncionariocomChave(string nome)
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);

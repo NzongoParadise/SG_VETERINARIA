@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -52,7 +54,6 @@ namespace DAL
                 //cmd.Parameters.AddWithValue("@foto", modelo.Foto);
 
                 conexao.Conectar();
-                cmd.ExecuteNonQuery();
                 modelo.AnimalID1 = Convert.ToInt16(cmd.ExecuteScalar());
                 conexao.Desconectar();
 
@@ -151,7 +152,7 @@ namespace DAL
         public DataTable PesquisarAnimalcomChave(string nome)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT  AnimalID,Nome,Especie,Raca, Estado, DataNascimento, sexo,Porte,Peso FROM Animal WHERE nome LIKE @Nome OR AnimalID = @ID";
+            string query = "SELECT  AnimalID, Nome, Especie, Raca, Estado, DataNascimento, Cor, sexo, Porte, Peso FROM Animal WHERE nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
 
             using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao))
             {
@@ -170,11 +171,19 @@ namespace DAL
         public DataTable PesquisarAnimalcomChaveVacina(string nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select AnimalID,Nome,Especie,Raca, Estado, DataNascimento, sexo,Porte,Peso from Animal where nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter("select AnimalID,Nome,Especie,Raca, Cor,Estado, DataNascimento, sexo,Porte,Peso from Animal where nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
             return dt;
 
+        }
+        public DataTable PesquisarAnimalcomChaveExame(string nome)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select a.AnimalID as 'Código do Animal',a.Nome as 'Nome do Animal',a.Especie as Espécie,a.Raca as Raça, a.Cor,a.Estado, a.DataNascimento as 'Data Nascimento', a.sexo as Sexo,a.Porte,a.Peso ,p.ProprietarioID as 'Código Proprietário',concat(p.nome,' ',p.Sobrenome,' ',p.Apelido) as 'Nome Completo',e.Provincia as Província,e.Municipio as Município,e.Cidade,e.Bairro,e.Rua,e.Email from  proprietario p inner JOIN  Animal a on p.ProprietarioID=a.ProprietarioID INNER JOIN Endereco e on e.EnderecoID=p.EnderecoID where a.nome like '%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
         }
 
         public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)

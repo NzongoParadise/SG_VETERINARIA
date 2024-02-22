@@ -16,7 +16,21 @@ namespace DAL
         public DataTable PesquisarPesocomChave(string nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT a.AnimalID, a.Nome, pp.Nome, a.Cor, a.DataNascimento, a.Especie, a.Raca, p.DataPesagem, p.peso " +
+            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT a.AnimalID as 'Código do Animal', a.Cor, a.DataNascimento as 'Data Nascimento', a.Especie as 'Espécie', a.Raca as 'Raça', p.DataPesagem as 'Data Pesagem', p.peso as 'Peso Obtido' " +
+                                        "FROM proprietario pp, pesagem p, Animal a " +
+                                        "WHERE p.animalID = a.AnimalID " +
+                                        "AND pp.ProprietarioID = a.ProprietarioID " +
+                                        "AND (a.Nome LIKE '%" + nome.ToString() + "%' OR p.AnimalID LIKE '%" + nome + "%')",
+                                        conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+
+        }
+        public DataTable PesquisarPesocomChaveNomesIdade(string nome)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT a.Nome as 'Nome do Animal', pp.Nome as 'Proprietário do Animal',a.DataNascimento as 'Data Nascimento'" +
                                         "FROM proprietario pp, pesagem p, Animal a " +
                                         "WHERE p.animalID = a.AnimalID " +
                                         "AND pp.ProprietarioID = a.ProprietarioID " +

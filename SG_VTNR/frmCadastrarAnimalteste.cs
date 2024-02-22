@@ -22,6 +22,10 @@ namespace SG_VTNR
         public frmCadastrarAnimalteste()
         {
             InitializeComponent();
+            if (pnlProprietario.Visible == false)
+            {
+                pnlProprietario.Visible = true;
+            }
             PreencherComboBoxRacas();
         }
         public void PreencherComboBoxRacas()
@@ -294,11 +298,7 @@ private void pictureBox3_Click(object sender, EventArgs e)
 
         private void txtPesquisarProp_TextChanged(object sender, EventArgs e)
         {
-            if (pnlProprietario.Visible == false)
-            {
-                pnlProprietario.Visible = true;
-            }
-
+            
             PesquisarProprietario();
         }
         public void PesquisarProprietario()
@@ -310,11 +310,34 @@ private void pictureBox3_Click(object sender, EventArgs e)
             dgvMostrarProp.AutoGenerateColumns = true; // Ativa a geração automática de colunas
             dgvMostrarProp.DataSource = dt;
 
-            // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarProp.Columns["ProprietarioID"].HeaderText = "Código";
-            dgvMostrarProp.Columns["Nome"].HeaderText = "Nome";
-            dgvMostrarProp.Columns["Sobrenome"].HeaderText = "Sobrenome";
-      
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarProp.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarProp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarProp.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarProp.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarProp.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostrarProp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarProp.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarProp.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarProp.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarProp.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
         }
 
         private void dgvMostrarProp01_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -333,6 +356,43 @@ private void pictureBox3_Click(object sender, EventArgs e)
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLAnimal bll = new BLLAnimal(cx);
             dgvExibirAnimal.DataSource = bll.PesquisarAnimalcomChave(txtPesquisarAnimal.Text);
+            // Alterar a fonte para toda a DataGridView
+            dgvExibirAnimal.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
+
+            //// Ou, se quiser alterar apenas para uma coluna específica (por exemplo, a primeira coluna)
+            //dataGridView1.Columns[0].DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvExibirAnimal.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvExibirAnimal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvExibirAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvExibirAnimal.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvExibirAnimal.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvExibirAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvExibirAnimal.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvExibirAnimal.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvExibirAnimal.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvExibirAnimal.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+
+
 
         }
 
@@ -455,6 +515,11 @@ private void pictureBox3_Click(object sender, EventArgs e)
         {
             this.foto = "";
             pctAnimal.Image = null;
+
+        }
+
+        private void dataNascimento_ValueChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -412,7 +412,7 @@
             this.dgvEndereco.RowHeadersVisible = false;
             this.dgvEndereco.RowHeadersWidth = 62;
             this.dgvEndereco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEndereco.Size = new System.Drawing.Size(600, 115);
+            this.dgvEndereco.Size = new System.Drawing.Size(703, 115);
             this.dgvEndereco.TabIndex = 56;
             this.dgvEndereco.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvEndereco.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;

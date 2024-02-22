@@ -20,7 +20,7 @@ namespace DAL
         public DataTable PesquisarProdutoComChave(string chave)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select IDProduto, NomeProduto,Qtd,ValorVenda,NomeFornecedor,TipoProduto from Produto where NomeProduto like '%" + chave + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter("select IDProduto as 'Código Produto', NomeProduto as 'Nome do Produto', Qtd as 'Quantidade Disponivel', ValorVenda as 'Valor de Venda', NomeFornecedor as 'Nome Fornecedor', TipoProduto as 'Tipo de Produto',FinalidadeProduto as'Finalidade do Produto', NomeFornecedor as 'Nome do Fornecedor', CategoriaProduto as 'Categoria do Produto', Fabricante, DataExpiracao as 'Data Validade'from Produto where EstadoProduto = 1 and IsentoCusto = 'Não Isento a Custos' and NomeProduto like '%" + chave + "%'", conexao.ObjectoConexao);
             da.Fill(dt);
             return dt;
         }

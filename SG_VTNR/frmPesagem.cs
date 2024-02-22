@@ -45,8 +45,35 @@ namespace SG_VTNR
             dgvMostrarAnimal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvMostrarAnimal.AutoResizeRows();
 
-            // Ajustar a altura da linha de cabeçalho
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarAnimal.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarAnimal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarAnimal.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarAnimal.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
             dgvMostrarAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarAnimal.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarAnimal.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarAnimal.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarAnimal.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
 
 
         }
@@ -74,19 +101,38 @@ namespace SG_VTNR
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLFuncionario bll = new BLLFuncionario(cx);
-            dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(txtPesquisarFuncionario.Text);
+            dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChavePesagem(txtPesquisarFuncionario.Text);
             // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
-         
-            //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
+            dgvMostrarFuncionario.Columns["Código Funcionário"].HeaderText = "Código";
 
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarFuncionario.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarFuncionario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
             dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvMostrarFuncionario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvMostrarFuncionario.AutoResizeRows();
 
-            // Ajustar a altura da linha de cabeçalho
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarFuncionario.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarFuncionario.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
             dgvMostrarFuncionario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarFuncionario.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
 
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarFuncionario.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarFuncionario.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
 
 
         }
@@ -223,7 +269,7 @@ namespace SG_VTNR
             {
                 DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
 
-                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
+                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código Funcionário"].Value.ToString());
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 txtDadosFuncionario.Text = nome;
@@ -265,28 +311,79 @@ namespace SG_VTNR
 
         private void txtPesquisarRegistroPeso_TextChanged(object sender, EventArgs e)
         {
+            
             pesquisarHistoricoPesagem();
 
         }
         public void pesquisarHistoricoPesagem()
         {
+            pesquisarHistoricoPesagemNomesIdade(txtPesquisarRegistroPeso.Text);
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLPesagem bll = new BLLPesagem(cx);
             dgvExibirHistoricoPesagem.DataSource = bll.PesquisarPesoComChave(txtPesquisarRegistroPeso.Text);
+            
+            lblNumerodevezes.Text =((dgvExibirHistoricoPesagem.RowCount)-1).ToString();
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvExibirHistoricoPesagem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvExibirHistoricoPesagem.Columns["AnimalID"].HeaderText = "Código";
-            dgvExibirHistoricoPesagem.Columns["Nome"].HeaderText = "Nome Animal";
-            dgvExibirHistoricoPesagem.Columns["Especie"].HeaderText = "Espécie";
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvExibirHistoricoPesagem.AllowUserToResizeColumns = true;
 
+            // Configurar o DataGridView para quebrar as linhas
             dgvExibirHistoricoPesagem.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvExibirHistoricoPesagem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvExibirHistoricoPesagem.AutoResizeRows();
 
-            // Ajustar a altura da linha de cabeçalho
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvExibirHistoricoPesagem.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvExibirHistoricoPesagem.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
             dgvExibirHistoricoPesagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvExibirHistoricoPesagem.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
 
+            // Aumentar o tamanho das outras linhas
+            dgvExibirHistoricoPesagem.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvExibirHistoricoPesagem.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvExibirHistoricoPesagem.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
         }
+        public void pesquisarHistoricoPesagemNomesIdade(string nome)
+        {
+         
+            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            BLLPesagem bll = new BLLPesagem(cx);
+          
+            DataTable dt = bll.PesquisarPesoComChaveNomesIdade(nome);
+
+            if (dt.Rows.Count > 0)
+            {
+                // Supondo que você tenha labels lblNomeAnimal, lblProprietarioAnimal e lblDataNascimento
+                lblNomeAnimal.Text = dt.Rows[0]["Nome do Animal"].ToString();
+                lblProprietario.Text = dt.Rows[0]["Proprietário do Animal"].ToString();
+                DateTime dataNacimento =Convert.ToDateTime(dt.Rows[0]["Data Nascimento"]);
+
+                TimeSpan diferenca = DateTime.Now - dataNacimento;
+                int idadeEmAnos = (int)(diferenca.TotalDays / 365.25);
+                int idadeEmMeses = (int)((diferenca.TotalDays % 365.25) / 30.44); // Aproximadamente 30.44 dias em um mês
+
+                lblIdade.Text = idadeEmAnos == 0 ? $"{idadeEmMeses} Meses" : $"{idadeEmAnos} Ano(s)";
+
+
+            }
+            else
+            {
+                // Limpar os labels se nenhum resultado for encontrado
+                lblNomeAnimal.Text = "";
+                lblProprietario.Text = "";
+                lblIdade.Text = "";
+            }
+        }
+
 
         private void dgvExibirHistoricoPesagem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -297,7 +394,19 @@ namespace SG_VTNR
         {
 
         }
-    }
+
+        private void pnlMostrarFuncionario_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        }
     }
 
 

@@ -86,15 +86,19 @@ namespace DAL
             conexao.Conectar();
             cmd.ExecuteNonQuery();
         }
-        public DataTable PesquisarProprietarioComChave( string nome)
+        public DataTable PesquisarProprietarioComChave(string chave)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select  ProprietarioID,Nome,sobrenome from Proprietario where Nome like '%" + nome.ToString() + "%'  or  ProprietarioID like '%" +nome+ "%'", conexao.ObjectoConexao);
+            string query = "SELECT ProprietarioID as 'Código Proprietaário', concat(Nome, ' ', Sobrenome) as 'Nome Completo', Sexo, NumIdent as 'Número de Identificação', TipoDocumento as 'Tipo de Documento', DataValidade as 'Data Validade', Nacionalidade, CONCAT(NomePai, ' & ', NomeMae) as 'Filhação' FROM proprietario WHERE Nome like @chave OR ProprietarioID like @chave";
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            cmd.Parameters.AddWithValue("@chave", "%" + chave + "%");
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             da.Dispose();
-           return dt;
+            return dt;
         }
-    public DataTable Localizar(String nome)
+
+        public DataTable Localizar(String nome)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(" select * from proprietario where Nome like'%" + nome.ToString() + "%'" , conexao.ObjectoConexao);

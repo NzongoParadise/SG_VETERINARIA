@@ -20,6 +20,7 @@ namespace SG_VTNR
         public frmPrincipal()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void container(object _form)
         {
@@ -107,12 +108,16 @@ namespace SG_VTNR
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            
+
             if (pnlMenu.Visible == true)
             {
                 pnlMenu.Visible = false;
-                container(new frmIntermediarioAnimal());
+                //container(new frmIntermediarioAnimal());
+                var form = new frmCadastrarAnimalteste();
+                form.StartPosition = FormStartPosition.CenterScreen;
+                container(form);
             }
+
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)

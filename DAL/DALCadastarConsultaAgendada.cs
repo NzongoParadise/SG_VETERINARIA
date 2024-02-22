@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -234,6 +235,57 @@ namespace DAL
 
             return dt;
         }
+        public DataTable mostrarConsultasAgendadasExame(int keyword)
+        {
+            
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT 
+            a.AgendamentoID as Código,
+            an.AnimalID as 'Código Animal',
+            f.FuncionarioID as 'Código Veterinário',
+            CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) as 'Veterinário',
+            a.DataAgendamento as 'Data Marcada',
+            a.TipoAgendamento as Tipo,
+            a.StatusAgendamento as Situação,
+            a.Gravidade, 
+            a.HoraInicial as Início, 
+            a.HoraFinal as Fim, 
+            e.Telefone1 as Contacto,
+            -- Cálculo da diferença em minutos
+            DATEDIFF(MINUTE, a.horaInicial, a.horaFinal) AS 'Duração(minutos)',
+            -- Determinação do período
+            CASE
+                WHEN a.horaInicial < '12:00:00' THEN 'Manhã'
+                WHEN a.horaInicial < '18:00:00' THEN 'Tarde'
+                ELSE 'Noite'
+            END AS Período,
+            -- Cálculo da diferença em dias
+            DATEDIFF(DAY, a.DataCadastro, a.dataAgendamento) AS 'Dias Restante' 
+        FROM 
+            agendamento a 
+            INNER JOIN Animal an ON a.AnimalID= an.AnimalID 
+            INNER JOIN Funcionario f ON a.FuncionarioID=f.FuncionarioID 
+            INNER JOIN Usuario u ON a.UsuarioID=u.UsuarioID
+            INNER JOIN proprietario p ON an.ProprietarioID=p.ProprietarioID 
+            INNER JOIN Endereco e ON p.EnderecoID=e.EnderecoID 
+        WHERE    
+
+            ((StatusAgendamento='Marcada') or (StatusAgendamento='Em andamento') or (StatusAgendamento='Em espera')) and AgendamentoID=@keyword";
+            using (SqlConnection connection = new SqlConnection(conexao.StringConexao))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+                {
+                    
+                    da.SelectCommand.Parameters.AddWithValue("@keyword", keyword);
+                      da.Fill(dt);
+                    
+                }
+            }
+
+            return dt;
+        }
+
         public DataTable mostrarConsultasHoje(DateTime dataHoje)
         {
             DataTable dt = new DataTable();

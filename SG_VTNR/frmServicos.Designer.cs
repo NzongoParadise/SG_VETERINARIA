@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlContainer = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label39 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.guna2TextBox8 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
             this.btnVacina = new Guna.UI2.WinForms.Guna2Button();
@@ -41,8 +44,7 @@
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.gunaVSeparator1 = new Guna.UI.WinForms.GunaVSeparator();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.guna2ShadowPanel1.SuspendLayout();
             this.pnlContainer.SuspendLayout();
             this.guna2ShadowPanel2.SuspendLayout();
             this.gunaShadowPanel1.SuspendLayout();
@@ -52,6 +54,7 @@
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.label1);
             this.guna2ShadowPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
             this.guna2ShadowPanel1.Location = new System.Drawing.Point(326, 0);
@@ -62,6 +65,18 @@
             this.guna2ShadowPanel1.ShadowDepth = 50;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1316, 68);
             this.guna2ShadowPanel1.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(561, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(532, 29);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "ÁREA DOS SERVIÇOS CLÍNICOS - ISV-UÍGE";
             // 
             // pnlContainer
             // 
@@ -130,6 +145,25 @@
             this.gunaShadowPanel1.Size = new System.Drawing.Size(326, 880);
             this.gunaShadowPanel1.TabIndex = 70;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SG_VTNR.Properties.Resources.search_500px1;
+            this.pictureBox1.Location = new System.Drawing.Point(242, 60);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 115;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 20);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "Pesquisar Animal";
+            // 
             // guna2TextBox8
             // 
             this.guna2TextBox8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -158,7 +192,7 @@
             // 
             // guna2Button10
             // 
-            this.guna2Button10.BorderRadius = 5;
+            this.guna2Button10.BorderRadius = 15;
             this.guna2Button10.CheckedState.Parent = this.guna2Button10;
             this.guna2Button10.CustomImages.Parent = this.guna2Button10;
             this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -175,7 +209,7 @@
             // 
             // btnVacina
             // 
-            this.btnVacina.BorderRadius = 5;
+            this.btnVacina.BorderRadius = 15;
             this.btnVacina.CheckedState.Parent = this.btnVacina;
             this.btnVacina.CustomImages.Parent = this.btnVacina;
             this.btnVacina.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -192,7 +226,7 @@
             // 
             // guna2Button6
             // 
-            this.guna2Button6.BorderRadius = 5;
+            this.guna2Button6.BorderRadius = 15;
             this.guna2Button6.CheckedState.Parent = this.guna2Button6;
             this.guna2Button6.CustomImages.Parent = this.guna2Button6;
             this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -209,7 +243,7 @@
             // 
             // guna2Button4
             // 
-            this.guna2Button4.BorderRadius = 5;
+            this.guna2Button4.BorderRadius = 15;
             this.guna2Button4.CheckedState.Parent = this.guna2Button4;
             this.guna2Button4.CustomImages.Parent = this.guna2Button4;
             this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -226,7 +260,7 @@
             // 
             // guna2Button5
             // 
-            this.guna2Button5.BorderRadius = 5;
+            this.guna2Button5.BorderRadius = 15;
             this.guna2Button5.CheckedState.Parent = this.guna2Button5;
             this.guna2Button5.CustomImages.Parent = this.guna2Button5;
             this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -243,7 +277,7 @@
             // 
             // guna2Button3
             // 
-            this.guna2Button3.BorderRadius = 5;
+            this.guna2Button3.BorderRadius = 15;
             this.guna2Button3.CheckedState.Parent = this.guna2Button3;
             this.guna2Button3.CustomImages.Parent = this.guna2Button3;
             this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -267,25 +301,6 @@
             this.gunaVSeparator1.Size = new System.Drawing.Size(318, 211);
             this.gunaVSeparator1.TabIndex = 70;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 20);
-            this.label2.TabIndex = 113;
-            this.label2.Text = "Pesquisar Animal";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SG_VTNR.Properties.Resources.search_500px1;
-            this.pictureBox1.Location = new System.Drawing.Point(242, 60);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 115;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmServicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -298,6 +313,8 @@
             this.Name = "frmServicos";
             this.Text = "frmConsulta";
             this.Load += new System.EventHandler(this.frmConsulta_Load);
+            this.guna2ShadowPanel1.ResumeLayout(false);
+            this.guna2ShadowPanel1.PerformLayout();
             this.pnlContainer.ResumeLayout(false);
             this.guna2ShadowPanel2.ResumeLayout(false);
             this.guna2ShadowPanel2.PerformLayout();
@@ -325,5 +342,6 @@
         private Guna.UI2.WinForms.Guna2Button btnVacina;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

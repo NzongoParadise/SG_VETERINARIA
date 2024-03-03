@@ -396,98 +396,6 @@ private void pictureBox3_Click(object sender, EventArgs e)
 
         }
 
-        private void dgvExibirAnimal_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-           
-            string colName = dgvExibirAnimal.Columns[e.ColumnIndex].Name;
-                if (colName == "colEditar")
-                {
-                    txtCodigo.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["AnimalID"].Value.ToString();
-                    txtNomeAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
-                    cbmEspecie.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Especie"].Value.ToString();
-                    cmbRaca.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Raca"].Value.ToString();
-                    cbmCor.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Cor"].Value.ToString();
-                    txtPeso.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Peso"].Value.ToString();
-                    cbmEstado.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
-                    dataNascimento.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["DataNascimento"].Value.ToString();
-                    cbmPorte.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Porte"].Value.ToString();
-                    txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString();
-                    //pctAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
-                    if (dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value != null)
-                    {
-                        string imagemString = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
-
-                        byte[] imagemBytes;
-                        try
-                        {
-                            imagemBytes = Convert.FromBase64String(imagemString);
-                        }
-                        catch (FormatException)
-                        {
-                            // Caso a conversão de base64 para bytes falhe, pode tratar aqui, por exemplo, definindo uma imagem padrão ou mostrando uma mensagem de erro.
-                            pctAnimal.Image = null; // Define uma imagem padrão ou limpa o controle PictureBox
-                                                    //MessageBox.Show("A imagem fornecida é inválida.");
-                            return;
-                        }
-
-                        using (MemoryStream ms = new MemoryStream(imagemBytes))
-                        {
-                            try
-                            {
-                                Image imagem = Image.FromStream(ms);
-                                pctAnimal.Image = imagem;
-                            }
-                            catch (ArgumentException)
-                            {
-                                // Se ocorrer um erro ao tentar criar a imagem a partir do MemoryStream, pode tratar aqui (por exemplo, definir uma imagem padrão ou mostrar uma mensagem de erro).
-                                pctAnimal.Image = null; // Define uma imagem padrão ou limpa o controle PictureBox
-                                                        //MessageBox.Show("A imagem fornecida é inválida.");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        pctAnimal.Image = null;
-                    }
-
-                    txtObs.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["observacao"].Value.ToString();
-                    cbmGenero.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["sexo"].Value.ToString();
-
-                    //codigoProp =Convert.ToInt32( txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString());
-                    //txtNomeProp.Text = BuscarNomeProp();
-                        alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
-                tabControl1.SelectTab(tabPage1);
-            }
-                if (colName == "ColDeletar")
-                {
-                    try
-                    {
-                        DialogResult d = MessageBox.Show("desejas realmente excluir os dados?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                        if (d.ToString() == "Yes")
-                        {
-                            //alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
-                            int col = Convert.ToInt32(dgvExibirAnimal.CurrentRow.Cells["AnimalID"].Value);
-                            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                            BLLAnimal bll = new BLLAnimal(cx);
-                            bll.EliminarAnimal(Convert.ToInt32(col));
-                            DialogResult = MessageBox.Show("Dados eliminados com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                       
-                        frmCadastrarAnimalteste frm=new frmCadastrarAnimalteste();
-                        frm.ShowDialog();
-                        tabControl1.SelectTab(tabPage3);
-                        txtPesquisarAnimal.Focus();
-                        ExibirAnimal();
-                    }
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
-                }
-        }
         public void ExibirAnimal()
         {
 
@@ -522,5 +430,65 @@ private void pictureBox3_Click(object sender, EventArgs e)
         {
 
         }
-    }
+
+        private void dgvExibirAnimal_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+
+                string colName = dgvExibirAnimal.Columns[e.ColumnIndex].Name;
+                if (colName == "colEditar")
+                {
+             
+                txtCodigo.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Código do Animal"].Value.ToString();
+                    txtNomeAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Nome do Animal"].Value.ToString();
+                    cbmEspecie.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Espécie"].Value.ToString();
+                    cmbRaca.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Raça"].Value.ToString();
+                    cbmCor.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Cor"].Value.ToString();
+                    txtPeso.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Peso"].Value.ToString();
+                    cbmEstado.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
+                    dataNascimento.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Data de Nascimento"].Value.ToString();
+                    cbmPorte.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Porte"].Value.ToString();
+                    txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Código do Proprietário"].Value.ToString();
+                    //pctAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
+                    txtObs.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Observação"].Value.ToString();
+                    cbmGenero.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Sexo"].Value.ToString();
+
+                    //codigoProp =Convert.ToInt32( txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString());
+                    //txtNomeProp.Text = BuscarNomeProp();
+                    alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
+                    tabControl1.SelectTab(tabPage1);
+                }
+                if (colName == "ColDeletar")
+                {
+                    try
+                    {
+                        DialogResult d = MessageBox.Show("desejas realmente excluir os dados?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                        if (d.ToString() == "Yes")
+                        {
+                            //alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
+                            int col = Convert.ToInt32(dgvExibirAnimal.CurrentRow.Cells["AnimalID"].Value);
+                            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                            BLLAnimal bll = new BLLAnimal(cx);
+                            bll.EliminarAnimal(Convert.ToInt32(col));
+                            DialogResult = MessageBox.Show("Dados eliminados com sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            frmCadastrarAnimalteste frm = new frmCadastrarAnimalteste();
+                            frm.ShowDialog();
+                            tabControl1.SelectTab(tabPage3);
+                            txtPesquisarAnimal.Focus();
+                            ExibirAnimal();
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+                }
+            }
+
+        }
+    
 }

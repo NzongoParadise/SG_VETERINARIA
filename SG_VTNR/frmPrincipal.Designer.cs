@@ -201,7 +201,7 @@
             // guna2Button1
             // 
             this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderRadius = 5;
+            this.guna2Button1.BorderRadius = 15;
             this.guna2Button1.CheckedState.Parent = this.guna2Button1;
             this.guna2Button1.CustomImages.Parent = this.guna2Button1;
             this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(184)))), ((int)(((byte)(210)))));
@@ -363,7 +363,9 @@
             // 
             // guna2Button2
             // 
-            this.guna2Button2.BorderRadius = 5;
+            this.guna2Button2.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.BorderRadius = 15;
+            this.guna2Button2.BorderThickness = 5;
             this.guna2Button2.CheckedState.Parent = this.guna2Button2;
             this.guna2Button2.CustomImages.Parent = this.guna2Button2;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -410,6 +412,9 @@
             // 
             // guna2Button16
             // 
+            this.guna2Button16.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button16.BorderRadius = 15;
+            this.guna2Button16.BorderThickness = 5;
             this.guna2Button16.CheckedState.Parent = this.guna2Button16;
             this.guna2Button16.CustomImages.Parent = this.guna2Button16;
             this.guna2Button16.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -425,6 +430,9 @@
             // 
             // btnVenda
             // 
+            this.btnVenda.BorderColor = System.Drawing.Color.Transparent;
+            this.btnVenda.BorderRadius = 15;
+            this.btnVenda.BorderThickness = 5;
             this.btnVenda.CheckedState.Parent = this.btnVenda;
             this.btnVenda.CustomImages.Parent = this.btnVenda;
             this.btnVenda.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -440,6 +448,9 @@
             // 
             // guna2Button12
             // 
+            this.guna2Button12.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button12.BorderRadius = 15;
+            this.guna2Button12.BorderThickness = 5;
             this.guna2Button12.CheckedState.Parent = this.guna2Button12;
             this.guna2Button12.CustomImages.Parent = this.guna2Button12;
             this.guna2Button12.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -455,7 +466,9 @@
             // 
             // guna2Button5
             // 
-            this.guna2Button5.BorderRadius = 5;
+            this.guna2Button5.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button5.BorderRadius = 15;
+            this.guna2Button5.BorderThickness = 5;
             this.guna2Button5.CheckedState.Parent = this.guna2Button5;
             this.guna2Button5.CustomImages.Parent = this.guna2Button5;
             this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -472,7 +485,9 @@
             // 
             // guna2Button15
             // 
-            this.guna2Button15.BorderRadius = 5;
+            this.guna2Button15.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button15.BorderRadius = 15;
+            this.guna2Button15.BorderThickness = 5;
             this.guna2Button15.CheckedState.Parent = this.guna2Button15;
             this.guna2Button15.CustomImages.Parent = this.guna2Button15;
             this.guna2Button15.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -491,7 +506,9 @@
             // 
             // guna2Button11
             // 
-            this.guna2Button11.BorderRadius = 5;
+            this.guna2Button11.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button11.BorderRadius = 15;
+            this.guna2Button11.BorderThickness = 5;
             this.guna2Button11.CheckedState.Parent = this.guna2Button11;
             this.guna2Button11.CustomImages.Parent = this.guna2Button11;
             this.guna2Button11.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -510,7 +527,9 @@
             // 
             // guna2Button10
             // 
-            this.guna2Button10.BorderRadius = 5;
+            this.guna2Button10.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button10.BorderRadius = 15;
+            this.guna2Button10.BorderThickness = 5;
             this.guna2Button10.CheckedState.Parent = this.guna2Button10;
             this.guna2Button10.CustomImages.Parent = this.guna2Button10;
             this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -524,12 +543,14 @@
             this.guna2Button10.ShadowDecoration.Parent = this.guna2Button10;
             this.guna2Button10.Size = new System.Drawing.Size(254, 62);
             this.guna2Button10.TabIndex = 5;
-            this.guna2Button10.Text = "Medicamentos";
+            this.guna2Button10.Text = "Produtos";
             this.guna2Button10.Click += new System.EventHandler(this.guna2Button10_Click);
             // 
             // guna2Button9
             // 
-            this.guna2Button9.BorderRadius = 5;
+            this.guna2Button9.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button9.BorderRadius = 15;
+            this.guna2Button9.BorderThickness = 5;
             this.guna2Button9.CheckedState.Parent = this.guna2Button9;
             this.guna2Button9.CustomImages.Parent = this.guna2Button9;
             this.guna2Button9.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -547,7 +568,9 @@
             // 
             // guna2Button3
             // 
-            this.guna2Button3.BorderRadius = 5;
+            this.guna2Button3.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.BorderRadius = 15;
+            this.guna2Button3.BorderThickness = 5;
             this.guna2Button3.CheckedState.Parent = this.guna2Button3;
             this.guna2Button3.CustomImages.Parent = this.guna2Button3;
             this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -564,7 +587,9 @@
             // 
             // guna2Button13
             // 
-            this.guna2Button13.BorderRadius = 5;
+            this.guna2Button13.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button13.BorderRadius = 15;
+            this.guna2Button13.BorderThickness = 5;
             this.guna2Button13.CheckedState.Parent = this.guna2Button13;
             this.guna2Button13.CustomImages.Parent = this.guna2Button13;
             this.guna2Button13.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -582,7 +607,9 @@
             // 
             // guna2Button4
             // 
-            this.guna2Button4.BorderRadius = 5;
+            this.guna2Button4.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button4.BorderRadius = 15;
+            this.guna2Button4.BorderThickness = 5;
             this.guna2Button4.CheckedState.Parent = this.guna2Button4;
             this.guna2Button4.CustomImages.Parent = this.guna2Button4;
             this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F);

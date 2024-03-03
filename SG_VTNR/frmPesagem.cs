@@ -103,8 +103,7 @@ namespace SG_VTNR
             BLLFuncionario bll = new BLLFuncionario(cx);
             dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChavePesagem(txtPesquisarFuncionario.Text);
             // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarFuncionario.Columns["Código Funcionário"].HeaderText = "Código";
-
+           
             // Permitir que as colunas sejam redimensionadas pelos usuários
             dgvMostrarFuncionario.AllowUserToResizeColumns = true;
 
@@ -269,7 +268,7 @@ namespace SG_VTNR
             {
                 DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
 
-                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código Funcionário"].Value.ToString());
+                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código do Veterinário"].Value.ToString());
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 txtDadosFuncionario.Text = nome;

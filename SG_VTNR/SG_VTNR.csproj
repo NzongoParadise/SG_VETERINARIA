@@ -98,6 +98,12 @@
     <Compile Include="frmCadastrarAgendamentoConsulta.Designer.cs">
       <DependentUpon>frmCadastrarAgendamentoConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMostrarRelatorioVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMostrarRelatorioVenda.Designer.cs">
+      <DependentUpon>frmMostrarRelatorioVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPesagem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,7 @@
     <EmbeddedResource Include="frmPesagem.resx">
       <DependentUpon>frmPesagem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatorioVenda.rdlc" />
     <EmbeddedResource Include="frmServicos.resx">
       <DependentUpon>frmServicos.cs</DependentUpon>
     </EmbeddedResource>

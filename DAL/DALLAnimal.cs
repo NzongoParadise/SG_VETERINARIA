@@ -152,9 +152,10 @@ namespace DAL
         public DataTable PesquisarAnimalcomChave(string nome)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT  AnimalID, Nome, Especie, Raca, Estado, DataNascimento, Cor, sexo, Porte, Peso FROM Animal WHERE nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
+            string query = "SELECT  AnimalID as 'Código do Animal', Nome as 'Nome do Animal', Especie as Espécie, Raca as Raça, Estado, DataNascimento as 'Data de Nascimento', Cor, sexo as Sexo, Porte, Peso,observacao as Observação,ProprietarioID AS 'Código do Proprietário' FROM Animal WHERE nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
 
-            using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao))
+            using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao)) 
+         
             {
                 cmd.Parameters.AddWithValue("@Nome", "%" + nome + "%");
                 cmd.Parameters.AddWithValue("@ID", nome);

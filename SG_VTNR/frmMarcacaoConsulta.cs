@@ -149,11 +149,6 @@ namespace SG_VTNR
             displaDay();
         }
 
-        private void guna2Button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnMarcarConsulta_Click(object sender, EventArgs e)
         {
 
@@ -440,8 +435,9 @@ namespace SG_VTNR
                     ModeloCadastrarConsultaAgendada modelo02 = bllFuncionario.BusacarFuncionarioMarcacaoConsulta(this.funcionarioID);
                     if (modelo02 != null)
                     {
-                        frm.txtDadosFuncionario.Text = "Código: " + this.funcionarioID + "        Nome: " + modelo02.nomeFuncionario.ToString();
+                        frm.txtDadosFuncionario.Text =  modelo02.nomeFuncionario;
                         frm.FuncionarioID = this.funcionarioID;
+                        frm.txtCodVeterinario.Text = this.funcionarioID.ToString();
                     }
                     else
                     {
@@ -454,18 +450,57 @@ namespace SG_VTNR
 
                     BLLAnimal bllAnimal = new BLLAnimal(cx);
                     frm.dgvMostrarDadosAnimal.DataSource = bllAnimal.PesquisarAnimalcomChave(this.animalID.ToString());
-                    // Renomear os cabeçalhos das colunas diretamente no DataGridView
-                    frm.dgvMostrarDadosAnimal.Columns["AnimalID"].HeaderText = "Código";
-                    frm.dgvMostrarDadosAnimal.Columns["Nome"].HeaderText = "Nome";
-                    frm.dgvMostrarDadosAnimal.Columns["Especie"].HeaderText = "Espécie";
+
+
                     frm.dgvMostrarDadosAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     frm.dgvMostrarDadosAnimal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     frm.dgvMostrarDadosAnimal.AutoResizeRows();
 
-                    // Ajustar a altura da linha de cabeçalho
-                    frm.dgvMostrarDadosAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                    // Permitir que as colunas sejam redimensionadas pelos usuários
+                    frm.dgvMostrarDadosAnimal.AllowUserToResizeColumns = true;
 
-                    // Exibir o formulário para edição
+                    // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+                    frm.dgvMostrarDadosAnimal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                    // Configurar o DataGridView para quebrar as linhas
+                    frm.dgvMostrarDadosAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+
+
+                    // Definir altura das linhas para acomodar o conteúdo completo
+                    frm.dgvMostrarDadosAnimal.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+                    // Definir o tamanho das linhas do cabeçalho
+                    frm.dgvMostrarDadosAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                    frm.dgvMostrarDadosAnimal.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+                    // Aumentar o tamanho das outras linhas
+                    frm.dgvMostrarDadosAnimal.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+                    // Adicionar diferença visual na cor das linhas
+                    frm.dgvMostrarDadosAnimal.RowsDefaultCellStyle.BackColor = Color.LightGray;
+                    frm.dgvMostrarDadosAnimal.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
+
+
+
+
+
+
+                    // Renomear os cabeçalhos das colunas diretamente no DataGridView
+                    //"SELECT  AnimalID as '', Nome as 'Nome do Animal', Especie as Espécie, Raca as Raça, Estado, DataNascimento as 'Data de Nascimento', Cor, sexo as Sexo, Porte, Peso,observacao as Observação,ProprietarioID AS 'Código do Proprietário' FROM Animal WHERE nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
+
+                    //frm.dgvMostrarDadosAnimal.Columns["AnimalID"].HeaderText = "Código";
+                    //frm.dgvMostrarDadosAnimal.Columns["Nome"].HeaderText = "Nome";
+                    //frm.dgvMostrarDadosAnimal.Columns["Especie"].HeaderText = "Espécie";
+                    //frm.dgvMostrarDadosAnimal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    //frm.dgvMostrarDadosAnimal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    //frm.dgvMostrarDadosAnimal.AutoResizeRows();
+
+                    //// Ajustar a altura da linha de cabeçalho
+                    //frm.dgvMostrarDadosAnimal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                    //// Exibir o formulário para edição
                     Boolean perInserir = false; Boolean perAlterar = false; Boolean perExcluir = false; Boolean perImprimir = false;
                     frm.alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
                     frm.inicialMaskedTextBox1.Enabled = false;
@@ -1191,18 +1226,42 @@ namespace SG_VTNR
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLFuncionario bll = new BLLFuncionario(cx);
 
-            dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(nome);
-            // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
-
+            dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveMarcacao(nome);
+           
             //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
 
             dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvMostrarFuncionario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvMostrarFuncionario.AutoResizeRows();
 
-            // Ajustar a altura da linha de cabeçalho
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostrarFuncionario.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostrarFuncionario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostrarFuncionario.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostrarFuncionario.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
             dgvMostrarFuncionario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostrarFuncionario.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostrarFuncionario.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostrarFuncionario.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
 
 
 
@@ -1232,14 +1291,14 @@ namespace SG_VTNR
                 }
             }
         }
-
+         
         private void dgvMostrarFuncionario_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
-
-                txtCodFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString();
+                
+                txtCodFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código do Veterinário"].Value.ToString();
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 txtNomeFuncionario.Text = nome;
@@ -1350,6 +1409,21 @@ namespace SG_VTNR
         private void dataFinalPesq_ValueChanged(object sender, EventArgs e)
         {
             mostrarConsultaAgendadaPorData();
+        }
+
+        private void guna2ShadowPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlMostrarFuncionario_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -214,6 +214,11 @@ namespace BLL
             DALFuncionario DALObj = new DALFuncionario(conexao);
             return DALObj.PesquisarFuncionarioComChaveVacina(nome);
         }
+        public DataTable PesquisarFuncionariosComChaveMarcacao(string nome)
+        {
+            DALFuncionario DALObj = new DALFuncionario(conexao);
+            return DALObj.PesquisarFuncionarioComChavePesagem(nome);
+        }
         public DataTable PesquisarFuncionariosComChavePesagem(string nome)
         {
             DALFuncionario DALObj = new DALFuncionario(conexao);

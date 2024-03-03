@@ -137,14 +137,7 @@ namespace DAL
                 conexao.Desconectar();
             }
         }
-        //public DataTable PesquisarFuncionarioComChave01(String keyword)
-        //{
-        //    DataTable dt = new DataTable();
-        //    SqlDataAdapter da = new SqlDataAdapter(" select Nome,Sobrenome,Apelido,sexo,NomePai,NomeMae,Cargo,Salario,DataContratacao,DataNascimento,TipoDocumento,NumIdentificacao,DataEmissaoBI,DataExpiracaoBI,Nacionalidade,foto,GrauAcademico,EstadoCivil,Observacao,EnderecoID, FuncionarioID from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
-        //    da.Fill(dt);
-        //    da.Dispose();
-        //    return dt;
-        //}
+       
         public DataTable PesquisarFuncionarioComChave(String keyword)
         {
             DataTable dt = new DataTable();
@@ -157,7 +150,7 @@ namespace DAL
         public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT FuncionarioID as 'Código Funcionário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
+            string query = "SELECT FuncionarioID as 'Código do Veterinário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
             using (SqlConnection con = new SqlConnection(conexao.StringConexao))
             {
                 SqlCommand cmd = new SqlCommand(query, con);
@@ -170,7 +163,7 @@ namespace DAL
         public DataTable PesquisarFuncionarioComChavePesagem(String keyword)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT FuncionarioID as 'Código Funcionário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
+            string query = "SELECT FuncionarioID as 'Código do Veterinário', CONCAT(Nome, ' ', Sobrenome, ' ', Apelido) AS 'Nome Completo',Especialidade,GrauAcademico as 'Grau Academico' FROM Funcionario WHERE Nome LIKE @keyword ";
             using (SqlConnection con = new SqlConnection(conexao.StringConexao))
             {
                 SqlCommand cmd = new SqlCommand(query, con);

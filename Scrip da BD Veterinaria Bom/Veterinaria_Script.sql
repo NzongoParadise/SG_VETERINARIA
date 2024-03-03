@@ -181,8 +181,15 @@ BEGIN
     VALUES (@Nome, @Sobrenome, @Apelido, @sexo, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
 
 END
-
-
+select *from Venda
+select *from produto
+select IDProduto as 'Código Produto', NomeProduto as 'Nome Produto' 
+,Qtd as 'Quantidade Disponivel',ValorVenda as 'Valor de Venda'
+,NomeFornecedor as 'Nome Fornecedor',TipoProduto as 'Tipo de Produto',
+FinalidadeProduto as'Finalidade do Produto', NomeFornecedor as 'Nome do Fornecedor'
+,CategoriaProduto as 'Categoria do Produto', Fabricante, DataExpiracao as 'Data Validade'
+from Produto where EstadoProduto=1 and IsentoCusto='Não Isento a Custos' 
+            
 
 ----------------------tabelas relacionadas com proprietario e animais------------------------------
 -- Tabela de PROPRIETARIO
@@ -203,6 +210,14 @@ CREATE TABLE proprietario (
     descricao VARCHAR(MAX),
 	constraint fk_EnderecoID_ProprietarioID foreign key(EnderecoID) references Endereco(EnderecoID)
 );
+INSERT INTO proprietario (EnderecoID, Nome, Sexo, Sobrenome, Apelido, TipoDocumento, NumIdent, DataEmisao, DataValidade, NomePai, NomeMae, Nacionalidade, descricao)
+VALUES
+(1, 'Mauricio', 'Masculino', 'Filipe', '', 'BI', '007042471UE044', '1990-02-15', '2025-02-15', 'Carlos', 'Mariana', 'Angolana', 'Descrição sobre Ana'),
+(2, 'Pedro', 'Masculino', 'Mendes', 'Pedrinho', 'BI', '34567890', '1985-06-20', '2024-06-20', 'António', 'Luísa', 'Angolana', 'Descrição sobre Pedro'),
+(3, 'Marta', 'Feminino', 'Gomes', 'Martinha', 'BI', '45678901', '1988-09-30', '2023-09-30', 'Francisco', 'Catarina', 'Angolana', 'Descrição sobre Marta'),
+(4, 'Rui', 'Masculino', 'Almeida', 'Ruízinho', 'BI', '56789012', '1992-11-10', '2026-11-10', 'Jorge', 'Isabel', 'Angolana', 'Descrição sobre Rui'),
+(4, 'Sofia', 'Feminino', 'Oliveira', 'Sofiazinha', 'BI', '67890123', '1996-04-25', '2022-04-25', 'Ricardo', 'Filipa', 'Angolana', 'Descrição sobre Sofia');
+
 
 GO
 CREATE PROCEDURE procedure_Atualizar_Proprietario
@@ -590,7 +605,7 @@ CREATE TABLE MovimentacaoAnimal (
 	CONSTRAINT fk_UsuarioID_MovimentacaoAnimal FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 
-
+select *from Consultas
 CREATE TABLE Consulta(
     ConsultaID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
     AnimalID INT NOT NULL,
@@ -608,7 +623,7 @@ CREATE TABLE Consulta(
 	CONSTRAINT fk_UsuarioID_Consulta FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 
 );
-delete from agendamento
+
 select *from agendamento
 update agendamento set DataAgendamento='2024-02-10' where AgendamentoID=35
 select *from agendamento where FuncionarioID=1018 and DataAgendamento='2024-02-19'
@@ -799,29 +814,41 @@ CREATE TABLE Tratamento (
 );
 
 -- Tabela de Tipo_Exame
-CREATE TABLE Tipo_Exame (
-    ID_Tipo_Exame INT PRIMARY KEY,
+CREATE TABLE TipoExame (
+    TipoExameID INT PRIMARY KEY,
     Descricao VARCHAR(100)
 );
 
 -- Tabela de Exame
 CREATE TABLE Exame (
-    ID_Exame INT PRIMARY KEY IDENTITY(1,1),
-    Data_Hora DATETIME,
-    Resultado VARCHAR(MAX),
+    IDExame INT PRIMARY KEY IDENTITY(1,1),
+    DataHora DATETIME,
+    ResultadoGeral VARCHAR(MAX),
+	 AnimalID INT,
+    FuncionarioID INT,
+    UsuarioID INT,
+    Observacoes TEXT,
+    DiagnosticoPreliminar VARCHAR(MAX),
+	CondicaoAnimal VARCHAR(MAX),
+    RecomendacoesTratamento VARCHAR(MAX),
+    InstrucoesProprietario VARCHAR(MAX),
+    AcompanhamentoNecessario VARCHAR(MAX),
+     CONSTRAINT fk_RegistroExame_Funcionario FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
+    CONSTRAINT fk_RegistroExame_Usuario FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID),
+    CONSTRAINT fk_RegistroExame_Animal FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID)
 );
 
 -- Tabela de Item_Exame
 CREATE TABLE ItemExame (
     ItemExameID INT PRIMARY KEY IDENTITY(1,1),
     ExameID INT,
-    ID_Tipo_Exame INT,
-    DescricaoExame VARCHAR(100),
-    ResultadoExame VARCHAR(MAX),
-    CONSTRAINT fk_ItemExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(ID_Exame),
-   CONSTRAINT fk_Exame_ID_Tipo_Exame FOREIGN KEY (ID_Tipo_Exame) REFERENCES Tipo_Exame(ID_Tipo_Exame)
+    TipoExameID INT,
+    ObservacaoItemExame VARCHAR(MAX),
+    CONSTRAINT fk_ItemExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(IDExame),
+	CONSTRAINT fk_Exame_TipoExameID FOREIGN KEY (TipoExameID) REFERENCES TipoExame(TipoExameID)
 );
 
+select *from Animal
 CREATE TABLE RegistroExame (
     RegistroExameID INT PRIMARY KEY IDENTITY(1,1),
     ExameID INT,
@@ -829,13 +856,12 @@ CREATE TABLE RegistroExame (
     FuncionarioID INT,
     UsuarioID INT,
     Data_Hora DATETIME,
-    CondicaoAnimal VARCHAR(MAX),
     Observacoes TEXT,
     DiagnosticoPreliminar VARCHAR(MAX),
+	CondicaoAnimal VARCHAR(MAX),
     RecomendacoesTratamento TEXT,
     InstrucoesProprietario TEXT,
     AcompanhamentoNecessario TEXT,
-    AssinaturaProprietario VARCHAR(100), -- Pode ser um campo de assinatura digital
     CONSTRAINT fk_RegistroExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(ID_Exame),
     CONSTRAINT fk_RegistroExame_Funcionario FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
     CONSTRAINT fk_RegistroExame_Usuario FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID),
@@ -845,7 +871,7 @@ CREATE TABLE RegistroExame (
 ----fim tabelas relacionada com a clinica ---------------
 
 
-
+select *from Funcionario
 
 
 
@@ -860,7 +886,38 @@ CREATE TABLE Fornecedor (
 	Observacao varchar (MAX),
 	constraint fk_Fornecedor_Endereco foreign key(EnderecoID) references Endereco(EnderecoID)
 );
+
 SELECT *FROM produto
+INSERT INTO produto (NomeProduto, FornecedorID, UsuarioID, CodigodeBarra, Qtd, ValorCompra, ValorVenda, Concentracao, Dosagem, TipoProduto, CategoriaProduto, FormaFarmaceutica, Obs, NomeFornecedor, Fabricante, DataProducao, DataExpiracao, DataCadastro, FinalidadeProduto, EstadoProduto, IsentoCusto)
+VALUES
+('Ração para Cães', 17, 2, '7891234567890', 100, 10.00, 20.00, '500g', 'Concentracao1', 'Ração', 'Alimentação', 'Sólido', 'Ração para Cães de todas as raças', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Alimentação', 1, 'Não Isento a Custos'),
+('Shampoo Antipulgas', 17, 2, '7892345678901', 150, 15.00, 25.00, '250ml', 'Dosagem2', 'Shampoo', 'Higiene', 'Líquido', 'Shampoo Antipulgas para Cães e Gatos', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Higiene', 0, 'Não Isento a Custos'),
+('Coleira Antipulgas', 17, 2, '7893456789012', 200, 20.00, 30.00, 'Tamanho Único', 'Dosagem3', 'Acessório', 'Acessório', 'Outros', 'Coleira Antipulgas para Cães', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
+('Ração para Gatos', 17, 2, '7894567890123', 120, 12.00, 22.00, '400g', 'Concentracao1', 'Ração', 'Alimentação', 'Sólido', 'Ração para Gatos de todas as raças', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Alimentação', 1, 'Não Isento a Custos'),
+('Coleira para Gatos', 17, 2, '7895678901234', 180, 18.00, 28.00, 'Pequeno', 'Dosagem3', 'Acessório', 'Acessório', 'Outros', 'Coleira para Gatos ajustável', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
+('Shampoo para Gatos', 17, 2, '7896789012345', 220, 22.00, 32.00, '200ml', 'Dosagem2', 'Shampoo', 'Higiene', 'Líquido', 'Shampoo para Gatos de todas as raças', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Higiene', 0, 'Não Isento a Custos'),
+('Brinquedo para Cães', 17, 2, '7897890123456', 90, 9.00, 19.00, 'Tamanho Médio', 'Dosagem4', 'Brinquedo', 'Acessório', 'Outros', 'Brinquedo para Cães de porte médio', 'Fornecedor4', 'Fabricante4', '2020-01-01', '2021-01-01', GETDATE(), 'Entretenimento', 1, 'Não Isento a Custos'),
+('Areia Sanitária para Gatos', 17, 2, '7898901234567', 130, 13.00, 23.00, '1kg', 'Dosagem5', 'Areia Sanitária', 'Higiene', 'Sólido', 'Areia Sanitária para Gatos', 'Fornecedor5', 'Fabricante5', '2019-01-01', '2020-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
+('Vacina V10 para Cães', 17, 2, '7899012345678', 50, 50.00, 100.00, '1 dose', 'Dosagem6', 'Vacina', 'Saúde', 'Injetável', 'Vacina V10 para Cães', 'Fornecedor6', 'Fabricante6', '2018-01-01', '2019-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Coleira Scalibor', 17, 2, '7890123456789', 70, 70.00, 130.00, 'Grande', 'Dosagem7', 'Coleira', 'Higiene', 'Outros', 'Coleira Scalibor para Cães', 'Fornecedor7', 'Fabricante7', '2017-01-01', '2018-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos');
+
+INSERT INTO produto (NomeProduto, FornecedorID, UsuarioID, CodigodeBarra, Qtd, ValorCompra, ValorVenda, Concentracao, Dosagem, TipoProduto, CategoriaProduto, FormaFarmaceutica, Obs, NomeFornecedor, Fabricante, DataProducao, DataExpiracao, DataCadastro, FinalidadeProduto, EstadoProduto, IsentoCusto)
+VALUES
+('Vacina contra Raiva para Cães', 17, 2, '7890123456780', 100, 5000.00, 10000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Raiva para Cães', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Parvovirose para Cães', 17, 2, '7891234567801', 150, 5500.00, 11000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Parvovirose para Cães', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Cinomose para Cães', 17, 2, '7892345678901', 200, 6000.00, 12000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Cinomose para Cães', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Gripe Canina', 17, 2, '7893456789012', 120, 4000.00, 8000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Gripe Canina', 'Fornecedor4', 'Fabricante4', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Tosse dos Canis para Cães', 17, 2, '7894567890123', 180, 4500.00, 9000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Tosse dos Canis para Cães', 'Fornecedor5', 'Fabricante5', '2021-01-01', '2022-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Leucemia Felina', 17, 2, '7895678901234', 220, 5000.00, 10000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Leucemia Felina', 'Fornecedor6', 'Fabricante6', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Calicivirose Felina', 17, 2, '7896789012345', 90, 3000.00, 6000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Calicivirose Felina', 'Fornecedor7', 'Fabricante7', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Panleucopenia Felina', 17, 2, '7897890123456', 130, 3500.00, 7000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Panleucopenia Felina', 'Fornecedor8', 'Fabricante8', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Rinotraqueíte Felina', 17, 2, '7898901234567', 50, 2500.00, 5000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Rinotraqueíte Felina', 'Fornecedor9', 'Fabricante9', '2024-01-01', '2025-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Panleucopenia Felina para Gatos', 17, 2, '7899012345678', 70, 3000.00, 6000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Panleucopenia Felina para Gatos', 'Fornecedor10', 'Fabricante10', '2025-01-01', '2026-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
+('Vacina contra Giárdia para Cães', 17, 2, '7890123456789', 80, 3500.00, 7000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Giárdia para Cães', 'Fornecedor11', 'Fabricante11', '2026-01-01', '2027-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos');
+
+update produto set TipoProduto ='Vacina'where IdProduto>25
+
+
 -- Tabela de Produtos
 CREATE TABLE produto(
     IdProduto INT PRIMARY KEY IDENTITY(1,1),
@@ -885,10 +942,10 @@ CREATE TABLE produto(
 	FinalidadeProduto varchar(20),
 	EstadoProduto BIT,
 	IsentoCusto varchar(20)
-	
 	foreign key (FornecedorID) REFERENCES Fornecedor(FornecedorID),
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+select *from produto
 sp_help produto
 alter table produto add IsentoCusto varchar(5)
 alter table produto alter column  IsentoCusto varchar(20)
@@ -1050,13 +1107,19 @@ select *from venda
 ma
 select *from Fornecedor
 select *from produto where idproduto=2
+select *from Venda
+
 -- Tabela Venda
 CREATE TABLE Venda (
     IDVenda INT PRIMARY KEY identity (1,1),
 	NomeCliente Varchar (100),
     DataVenda DATE,
     TotalVenda DECIMAL(10, 2),
-	UsuarioID INT, -- Adicionada a referência ao Funcionario
+	Desconto decimal(5,2),
+	Imposto decimal(5,2),
+	Troco decimal(5,2),
+	FormaPagamento varchar(30),
+	UsuarioID INT,-- Adicionada a referência ao Funcionario
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 

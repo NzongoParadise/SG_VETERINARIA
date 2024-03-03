@@ -228,7 +228,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BorderRadius = 5;
+            this.btnGuardar.BorderRadius = 15;
             this.btnGuardar.CheckedState.Parent = this.btnGuardar;
             this.btnGuardar.CustomImages.Parent = this.btnGuardar;
             this.btnGuardar.Enabled = false;
@@ -248,7 +248,7 @@
             // 
             // btnNovo
             // 
-            this.btnNovo.BorderRadius = 5;
+            this.btnNovo.BorderRadius = 15;
             this.btnNovo.CheckedState.Parent = this.btnNovo;
             this.btnNovo.CustomImages.Parent = this.btnNovo;
             this.btnNovo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
@@ -266,7 +266,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.BorderRadius = 5;
+            this.btnCancelar.BorderRadius = 15;
             this.btnCancelar.CheckedState.Parent = this.btnCancelar;
             this.btnCancelar.CustomImages.Parent = this.btnCancelar;
             this.btnCancelar.Enabled = false;
@@ -286,7 +286,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.BorderRadius = 5;
+            this.btnEditar.BorderRadius = 15;
             this.btnEditar.CheckedState.Parent = this.btnEditar;
             this.btnEditar.CustomImages.Parent = this.btnEditar;
             this.btnEditar.Enabled = false;
@@ -542,7 +542,7 @@
             // 
             // btnAdcEndereco
             // 
-            this.btnAdcEndereco.BorderRadius = 5;
+            this.btnAdcEndereco.BorderRadius = 15;
             this.btnAdcEndereco.CheckedState.Parent = this.btnAdcEndereco;
             this.btnAdcEndereco.CustomImages.Parent = this.btnAdcEndereco;
             this.btnAdcEndereco.Font = new System.Drawing.Font("Segoe UI", 9F);

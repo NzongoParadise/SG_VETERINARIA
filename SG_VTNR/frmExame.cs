@@ -319,7 +319,7 @@ namespace SG_VTNR
         {
             txtNomeFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
             txtEspecialidade.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Especialidade"].Value.ToString();
-            txtCodFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código Funcionário"].Value.ToString();
+            txtCodFuncionario.Text = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código do Veterinário"].Value.ToString();
             if (pnlMostrarFuncionario.Visible == true)
             {
                 pnlMostrarFuncionario.Visible = false;

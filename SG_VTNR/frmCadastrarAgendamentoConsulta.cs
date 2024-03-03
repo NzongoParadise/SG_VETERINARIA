@@ -315,7 +315,8 @@ namespace SG_VTNR
                 this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
                 string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
                 //this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["FuncionarioID"].Value.ToString());
-                txtDadosFuncionario.Text = " Codigo:    " + FuncionarioID + "          Nome: " + nome;
+                txtDadosFuncionario.Text =nome;
+                txtCodVeterinario.Text= FuncionarioID.ToString();
                 if (pnlMostrarFuncionario.Visible == true)
                 {
                     pnlMostrarFuncionario.Visible = false;
@@ -813,6 +814,16 @@ namespace SG_VTNR
             }
 
             }
+
+        private void guna2ShadowPanel7_Paint(object sender, PaintEventArgs e)
+        {
+
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
     }
 

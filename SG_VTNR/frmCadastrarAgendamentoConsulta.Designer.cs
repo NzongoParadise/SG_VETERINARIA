@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastrarAgendamentoConsulta));
             this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.pnlMostrarAnimal = new Guna.UI2.WinForms.Guna2ShadowPanel();
@@ -44,9 +44,11 @@
             this.pnlMostrarFuncionario = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.dgvMostrarFuncionario = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cbmTipoAgendamento = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.txtCodVeterinario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCodAgendamento = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtDadosFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
             this.cmbGravidade = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl = new System.Windows.Forms.Label();
@@ -59,7 +61,6 @@
             this.finallNumericUpDownHours = new System.Windows.Forms.NumericUpDown();
             this.inicialMaskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.inicialNumericUpDownMinutes = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.inicialNumericUpDownHours = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtPesquisarFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
@@ -77,10 +78,12 @@
             this.btnNovo = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2ShadowPanel7 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.guna2Button13 = new Guna.UI2.WinForms.Guna2Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlCadastrar.SuspendLayout();
             this.pnlMostrarAnimal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarAnimal)).BeginInit();
@@ -91,10 +94,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.finalNumericUpDownMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finallNumericUpDownHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownMinutes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.guna2ShadowPanel7.SuspendLayout();
+            this.guna2ShadowPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlCadastrar
@@ -103,9 +106,11 @@
             this.pnlCadastrar.Controls.Add(this.pnlMostrarAnimal);
             this.pnlCadastrar.Controls.Add(this.pnlMostrarFuncionario);
             this.pnlCadastrar.Controls.Add(this.cbmTipoAgendamento);
+            this.pnlCadastrar.Controls.Add(this.txtCodVeterinario);
             this.pnlCadastrar.Controls.Add(this.txtCodAgendamento);
             this.pnlCadastrar.Controls.Add(this.txtDadosFuncionario);
             this.pnlCadastrar.Controls.Add(this.cmbGravidade);
+            this.pnlCadastrar.Controls.Add(this.label10);
             this.pnlCadastrar.Controls.Add(this.label7);
             this.pnlCadastrar.Controls.Add(this.label3);
             this.pnlCadastrar.Controls.Add(this.lbl);
@@ -119,16 +124,15 @@
             this.pnlCadastrar.Controls.Add(this.btnNovo);
             this.pnlCadastrar.Controls.Add(this.btnCancelar);
             this.pnlCadastrar.Controls.Add(this.btnEditar);
-            this.pnlCadastrar.Controls.Add(this.guna2ShadowPanel7);
             this.pnlCadastrar.Controls.Add(this.label23);
             this.pnlCadastrar.FillColor = System.Drawing.Color.White;
-            this.pnlCadastrar.Location = new System.Drawing.Point(0, 36);
+            this.pnlCadastrar.Location = new System.Drawing.Point(0, 61);
             this.pnlCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCadastrar.Name = "pnlCadastrar";
             this.pnlCadastrar.Radius = 2;
             this.pnlCadastrar.ShadowColor = System.Drawing.Color.Black;
             this.pnlCadastrar.ShadowDepth = 20;
-            this.pnlCadastrar.Size = new System.Drawing.Size(1366, 649);
+            this.pnlCadastrar.Size = new System.Drawing.Size(1366, 691);
             this.pnlCadastrar.TabIndex = 21;
             this.pnlCadastrar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCadastrar_Paint);
             // 
@@ -150,30 +154,30 @@
             // dgvMostrarAnimal
             // 
             this.dgvMostrarAnimal.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle67;
             this.dgvMostrarAnimal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMostrarAnimal.BackgroundColor = System.Drawing.Color.White;
             this.dgvMostrarAnimal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMostrarAnimal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvMostrarAnimal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle68.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle68;
             this.dgvMostrarAnimal.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarAnimal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle69.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle69.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle69.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle69.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle69.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarAnimal.DefaultCellStyle = dataGridViewCellStyle69;
             this.dgvMostrarAnimal.EnableHeadersVisualStyles = false;
             this.dgvMostrarAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvMostrarAnimal.Location = new System.Drawing.Point(-1, 18);
@@ -227,30 +231,30 @@
             // dgvMostrarFuncionario
             // 
             this.dgvMostrarFuncionario.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle70.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarFuncionario.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle70;
             this.dgvMostrarFuncionario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMostrarFuncionario.BackgroundColor = System.Drawing.Color.White;
             this.dgvMostrarFuncionario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMostrarFuncionario.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvMostrarFuncionario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarFuncionario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle71.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle71.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarFuncionario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle71;
             this.dgvMostrarFuncionario.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarFuncionario.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle72.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle72.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle72.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarFuncionario.DefaultCellStyle = dataGridViewCellStyle72;
             this.dgvMostrarFuncionario.EnableHeadersVisualStyles = false;
             this.dgvMostrarFuncionario.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvMostrarFuncionario.Location = new System.Drawing.Point(-5, 14);
@@ -313,6 +317,34 @@
             this.cbmTipoAgendamento.Size = new System.Drawing.Size(288, 26);
             this.cbmTipoAgendamento.TabIndex = 128;
             // 
+            // txtCodVeterinario
+            // 
+            this.txtCodVeterinario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCodVeterinario.BorderRadius = 5;
+            this.txtCodVeterinario.BorderThickness = 2;
+            this.txtCodVeterinario.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCodVeterinario.DefaultText = "";
+            this.txtCodVeterinario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCodVeterinario.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCodVeterinario.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCodVeterinario.DisabledState.Parent = this.txtCodVeterinario;
+            this.txtCodVeterinario.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCodVeterinario.Enabled = false;
+            this.txtCodVeterinario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCodVeterinario.FocusedState.Parent = this.txtCodVeterinario;
+            this.txtCodVeterinario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCodVeterinario.HoverState.Parent = this.txtCodVeterinario;
+            this.txtCodVeterinario.Location = new System.Drawing.Point(166, 193);
+            this.txtCodVeterinario.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.txtCodVeterinario.Name = "txtCodVeterinario";
+            this.txtCodVeterinario.PasswordChar = '\0';
+            this.txtCodVeterinario.PlaceholderText = "";
+            this.txtCodVeterinario.SelectedText = "";
+            this.txtCodVeterinario.ShadowDecoration.Parent = this.txtCodVeterinario;
+            this.txtCodVeterinario.Size = new System.Drawing.Size(133, 51);
+            this.txtCodVeterinario.TabIndex = 114;
+            this.txtCodVeterinario.TextChanged += new System.EventHandler(this.txtPesquisarAnimal_TextChanged);
+            // 
             // txtCodAgendamento
             // 
             this.txtCodAgendamento.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -353,6 +385,7 @@
             this.txtDadosFuncionario.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDadosFuncionario.DisabledState.Parent = this.txtDadosFuncionario;
             this.txtDadosFuncionario.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDadosFuncionario.Enabled = false;
             this.txtDadosFuncionario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDadosFuncionario.FocusedState.Parent = this.txtDadosFuncionario;
             this.txtDadosFuncionario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -394,6 +427,16 @@
             this.cmbGravidade.Size = new System.Drawing.Size(288, 26);
             this.cmbGravidade.TabIndex = 128;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(164, 165);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 20);
+            this.label10.TabIndex = 127;
+            this.label10.Text = "Código Vet.";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -420,9 +463,9 @@
             this.lbl.Location = new System.Drawing.Point(334, 165);
             this.lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(159, 20);
+            this.lbl.Size = new System.Drawing.Size(154, 20);
             this.lbl.TabIndex = 127;
-            this.lbl.Text = "Dados do Veterinario";
+            this.lbl.Text = "Nome do Veterinário";
             // 
             // label2
             // 
@@ -437,40 +480,40 @@
             // dgvMostrarDadosAnimal
             // 
             this.dgvMostrarDadosAnimal.AllowUserToAddRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dgvMostrarDadosAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle64.BackColor = System.Drawing.Color.White;
+            this.dgvMostrarDadosAnimal.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle64;
             this.dgvMostrarDadosAnimal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMostrarDadosAnimal.BackgroundColor = System.Drawing.Color.ForestGreen;
             this.dgvMostrarDadosAnimal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMostrarDadosAnimal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvMostrarDadosAnimal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMostrarDadosAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle65.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle65.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle65.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostrarDadosAnimal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle65;
             this.dgvMostrarDadosAnimal.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMostrarDadosAnimal.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle66.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle66.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostrarDadosAnimal.DefaultCellStyle = dataGridViewCellStyle66;
             this.dgvMostrarDadosAnimal.EnableHeadersVisualStyles = false;
             this.dgvMostrarDadosAnimal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvMostrarDadosAnimal.Location = new System.Drawing.Point(4, 72);
+            this.dgvMostrarDadosAnimal.Location = new System.Drawing.Point(4, 5);
             this.dgvMostrarDadosAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvMostrarDadosAnimal.Name = "dgvMostrarDadosAnimal";
             this.dgvMostrarDadosAnimal.ReadOnly = true;
             this.dgvMostrarDadosAnimal.RowHeadersVisible = false;
             this.dgvMostrarDadosAnimal.RowHeadersWidth = 62;
             this.dgvMostrarDadosAnimal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMostrarDadosAnimal.Size = new System.Drawing.Size(1362, 84);
+            this.dgvMostrarDadosAnimal.Size = new System.Drawing.Size(1362, 151);
             this.dgvMostrarDadosAnimal.TabIndex = 126;
             this.dgvMostrarDadosAnimal.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvMostrarDadosAnimal.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -514,8 +557,8 @@
             this.gunaShadowPanel3.Controls.Add(this.finallNumericUpDownHours);
             this.gunaShadowPanel3.Controls.Add(this.inicialMaskedTextBox1);
             this.gunaShadowPanel3.Controls.Add(this.inicialNumericUpDownMinutes);
-            this.gunaShadowPanel3.Controls.Add(this.pictureBox2);
             this.gunaShadowPanel3.Controls.Add(this.inicialNumericUpDownHours);
+            this.gunaShadowPanel3.Controls.Add(this.pictureBox2);
             this.gunaShadowPanel3.Controls.Add(this.pictureBox1);
             this.gunaShadowPanel3.Controls.Add(this.txtPesquisarFuncionario);
             this.gunaShadowPanel3.Controls.Add(this.txtPesquisarAnimal);
@@ -569,16 +612,6 @@
             this.inicialNumericUpDownMinutes.Size = new System.Drawing.Size(249, 26);
             this.inicialNumericUpDownMinutes.TabIndex = 133;
             this.inicialNumericUpDownMinutes.ValueChanged += new System.EventHandler(this.numericUpDownMinutes_ValueChanged);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SG_VTNR.Properties.Resources.search_500px1;
-            this.pictureBox2.Location = new System.Drawing.Point(491, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 34);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 131;
-            this.pictureBox2.TabStop = false;
             // 
             // inicialNumericUpDownHours
             // 
@@ -867,52 +900,6 @@
             this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // guna2ShadowPanel7
-            // 
-            this.guna2ShadowPanel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel7.Controls.Add(this.guna2Button13);
-            this.guna2ShadowPanel7.Controls.Add(this.label13);
-            this.guna2ShadowPanel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2ShadowPanel7.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel7.Location = new System.Drawing.Point(0, 0);
-            this.guna2ShadowPanel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2ShadowPanel7.Name = "guna2ShadowPanel7";
-            this.guna2ShadowPanel7.Radius = 2;
-            this.guna2ShadowPanel7.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel7.ShadowDepth = 50;
-            this.guna2ShadowPanel7.Size = new System.Drawing.Size(1366, 69);
-            this.guna2ShadowPanel7.TabIndex = 22;
-            // 
-            // guna2Button13
-            // 
-            this.guna2Button13.BorderRadius = 15;
-            this.guna2Button13.CheckedState.Parent = this.guna2Button13;
-            this.guna2Button13.CustomImages.Parent = this.guna2Button13;
-            this.guna2Button13.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
-            this.guna2Button13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button13.ForeColor = System.Drawing.Color.DimGray;
-            this.guna2Button13.HoverState.Parent = this.guna2Button13;
-            this.guna2Button13.Location = new System.Drawing.Point(1310, 14);
-            this.guna2Button13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2Button13.Name = "guna2Button13";
-            this.guna2Button13.ShadowDecoration.Parent = this.guna2Button13;
-            this.guna2Button13.Size = new System.Drawing.Size(42, 42);
-            this.guna2Button13.TabIndex = 53;
-            this.guna2Button13.Text = "X";
-            this.guna2Button13.Click += new System.EventHandler(this.guna2Button13_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.DimGray;
-            this.label13.Location = new System.Drawing.Point(391, 22);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(280, 29);
-            this.label13.TabIndex = 54;
-            this.label13.Text = "AGENDAR CONSULTA";
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -923,14 +910,89 @@
             this.label23.TabIndex = 16;
             this.label23.Text = "Observação";
             // 
+            // guna2ShadowPanel2
+            // 
+            this.guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel2.Controls.Add(this.guna2Button1);
+            this.guna2ShadowPanel2.Controls.Add(this.label39);
+            this.guna2ShadowPanel2.Controls.Add(this.guna2Button7);
+            this.guna2ShadowPanel2.FillColor = System.Drawing.Color.White;
+            this.guna2ShadowPanel2.Location = new System.Drawing.Point(0, 3);
+            this.guna2ShadowPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
+            this.guna2ShadowPanel2.Radius = 2;
+            this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black;
+            this.guna2ShadowPanel2.ShadowDepth = 50;
+            this.guna2ShadowPanel2.Size = new System.Drawing.Size(1366, 63);
+            this.guna2ShadowPanel2.TabIndex = 131;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.Black;
+            this.label39.Location = new System.Drawing.Point(390, 22);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(485, 29);
+            this.label39.TabIndex = 54;
+            this.label39.Text = "ÁREA DE MARCAÇÃO DE  CONSULTAS";
+            // 
+            // guna2Button7
+            // 
+            this.guna2Button7.BorderRadius = 15;
+            this.guna2Button7.CheckedState.Parent = this.guna2Button7;
+            this.guna2Button7.CustomImages.Parent = this.guna2Button7;
+            this.guna2Button7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button7.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button7.HoverState.Parent = this.guna2Button7;
+            this.guna2Button7.Location = new System.Drawing.Point(1513, 14);
+            this.guna2Button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button7.Name = "guna2Button7";
+            this.guna2Button7.ShadowDecoration.Parent = this.guna2Button7;
+            this.guna2Button7.Size = new System.Drawing.Size(42, 42);
+            this.guna2Button7.TabIndex = 68;
+            this.guna2Button7.Text = "X";
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 15;
+            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
+            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.HoverState.Parent = this.guna2Button1;
+            this.guna2Button1.Location = new System.Drawing.Point(1263, 11);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
+            this.guna2Button1.Size = new System.Drawing.Size(42, 42);
+            this.guna2Button1.TabIndex = 69;
+            this.guna2Button1.Text = "X";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SG_VTNR.Properties.Resources.search_500px1;
+            this.pictureBox2.Location = new System.Drawing.Point(496, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 115;
+            this.pictureBox2.TabStop = false;
+            // 
             // frmCadastrarAgendamentoConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1365, 667);
+            this.ClientSize = new System.Drawing.Size(1369, 819);
+            this.Controls.Add(this.guna2ShadowPanel2);
             this.Controls.Add(this.pnlCadastrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCadastrarAgendamentoConsulta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMarcarConsulta";
             this.Load += new System.EventHandler(this.frmCadastrarAgendamentoConsulta_Load);
             this.pnlCadastrar.ResumeLayout(false);
@@ -945,11 +1007,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.finalNumericUpDownMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.finallNumericUpDownHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownMinutes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inicialNumericUpDownHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.guna2ShadowPanel7.ResumeLayout(false);
-            this.guna2ShadowPanel7.PerformLayout();
+            this.guna2ShadowPanel2.ResumeLayout(false);
+            this.guna2ShadowPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -969,9 +1031,6 @@
         private Guna.UI2.WinForms.Guna2Button btnNovo;
         private Guna.UI2.WinForms.Guna2Button btnCancelar;
         private Guna.UI2.WinForms.Guna2Button btnEditar;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel7;
-        private Guna.UI2.WinForms.Guna2Button guna2Button13;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label23;
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlMostrarFuncionario;
         private Guna.UI2.WinForms.Guna2DataGridView dgvMostrarFuncionario;
@@ -985,7 +1044,6 @@
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlMostrarAnimal;
         private Guna.UI2.WinForms.Guna2DataGridView dgvMostrarAnimal;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisarFuncionario;
         public Guna.UI2.WinForms.Guna2TextBox txtDadosFuncionario;
         private System.Windows.Forms.Label lbl;
@@ -999,5 +1057,12 @@
         public System.Windows.Forms.NumericUpDown finalNumericUpDownMinutes;
         public System.Windows.Forms.NumericUpDown finallNumericUpDownHours;
         private System.Windows.Forms.Label label9;
+        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button7;
+        private System.Windows.Forms.Label label39;
+        public Guna.UI2.WinForms.Guna2TextBox txtCodVeterinario; 
+        private System.Windows.Forms.Label label10;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

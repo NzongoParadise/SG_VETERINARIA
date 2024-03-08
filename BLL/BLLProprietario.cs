@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,11 +44,11 @@ namespace BLL
             {
                 throw new Exception("o nome da mae  deve ser informado!!!");
             }
-            if (modelo.NomePai.Trim().Length== 0)
+            if (modelo.NomePai.Trim().Length == 0)
             {
                 throw new Exception("o nome do pai  deve ser informado!!!");
             }
-            if (modelo.NumIdnt.Trim().Length==0)
+            if (modelo.NumIdnt.Trim().Length == 0)
             {
                 throw new Exception("o numero de identificacao deve ser Informado!!!");
             }
@@ -67,9 +68,14 @@ namespace BLL
             DALProprietario DALobj = new DALProprietario(conexao);
             DALobj.incluirProprietario(modelo);
         }
+
         #endregion fim regiao incluir proprietario
         #region Regiao alterar propriretario
-
+        public bool verificarProprietarioAnimal(int codigo)
+        {
+            DALProprietario DALobj = new DALProprietario(conexao);
+           return  DALobj.verificarProprietarioAnimal(codigo);
+        }
         public void Alterar(ModeloProprietario modelo)
         {
             if (modelo.PropietarioId <= 0)

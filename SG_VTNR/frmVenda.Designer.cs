@@ -51,7 +51,7 @@
             this.txtTotalGeral = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cmbFormaPagamento = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label39 = new System.Windows.Forms.Label();
@@ -376,33 +376,33 @@
             this.label6.Text = "Forma de Pagamento";
             this.label6.Click += new System.EventHandler(this.label1_Click);
             // 
-            // guna2ComboBox2
+            // cmbFormaPagamento
             // 
-            this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox2.BorderRadius = 5;
-            this.guna2ComboBox2.BorderThickness = 2;
-            this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox2.FocusedColor = System.Drawing.Color.Empty;
-            this.guna2ComboBox2.FocusedState.Parent = this.guna2ComboBox2;
-            this.guna2ComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox2.FormattingEnabled = true;
-            this.guna2ComboBox2.HoverState.Parent = this.guna2ComboBox2;
-            this.guna2ComboBox2.ItemHeight = 30;
-            this.guna2ComboBox2.Items.AddRange(new object[] {
+            this.cmbFormaPagamento.BackColor = System.Drawing.Color.Transparent;
+            this.cmbFormaPagamento.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbFormaPagamento.BorderRadius = 5;
+            this.cmbFormaPagamento.BorderThickness = 2;
+            this.cmbFormaPagamento.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbFormaPagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFormaPagamento.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbFormaPagamento.FocusedState.Parent = this.cmbFormaPagamento;
+            this.cmbFormaPagamento.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbFormaPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbFormaPagamento.FormattingEnabled = true;
+            this.cmbFormaPagamento.HoverState.Parent = this.cmbFormaPagamento;
+            this.cmbFormaPagamento.ItemHeight = 30;
+            this.cmbFormaPagamento.Items.AddRange(new object[] {
             "Cash",
             "Multicaixa",
             "Transferência Bancaria"});
-            this.guna2ComboBox2.ItemsAppearance.Parent = this.guna2ComboBox2;
-            this.guna2ComboBox2.Location = new System.Drawing.Point(214, 264);
-            this.guna2ComboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2ComboBox2.Name = "guna2ComboBox2";
-            this.guna2ComboBox2.ShadowDecoration.Parent = this.guna2ComboBox2;
-            this.guna2ComboBox2.Size = new System.Drawing.Size(178, 36);
-            this.guna2ComboBox2.TabIndex = 70;
-            this.guna2ComboBox2.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox1_SelectedIndexChanged);
+            this.cmbFormaPagamento.ItemsAppearance.Parent = this.cmbFormaPagamento;
+            this.cmbFormaPagamento.Location = new System.Drawing.Point(214, 264);
+            this.cmbFormaPagamento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbFormaPagamento.Name = "cmbFormaPagamento";
+            this.cmbFormaPagamento.ShadowDecoration.Parent = this.cmbFormaPagamento;
+            this.cmbFormaPagamento.Size = new System.Drawing.Size(178, 36);
+            this.cmbFormaPagamento.TabIndex = 70;
+            this.cmbFormaPagamento.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox1_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -532,7 +532,7 @@
             this.guna2ShadowPanel1.Controls.Add(this.guna2Button1);
             this.guna2ShadowPanel1.Controls.Add(this.txtImposto);
             this.guna2ShadowPanel1.Controls.Add(this.txtDesconto);
-            this.guna2ShadowPanel1.Controls.Add(this.guna2ComboBox2);
+            this.guna2ShadowPanel1.Controls.Add(this.cmbFormaPagamento);
             this.guna2ShadowPanel1.Controls.Add(this.txtSubtotal);
             this.guna2ShadowPanel1.Controls.Add(this.label6);
             this.guna2ShadowPanel1.Controls.Add(this.Imposto);
@@ -560,7 +560,7 @@
             this.txtValorEntregue.BorderRadius = 5;
             this.txtValorEntregue.BorderThickness = 2;
             this.txtValorEntregue.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtValorEntregue.DefaultText = "";
+            this.txtValorEntregue.DefaultText = "0";
             this.txtValorEntregue.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtValorEntregue.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtValorEntregue.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -576,6 +576,7 @@
             this.txtValorEntregue.PasswordChar = '\0';
             this.txtValorEntregue.PlaceholderText = "";
             this.txtValorEntregue.SelectedText = "";
+            this.txtValorEntregue.SelectionStart = 1;
             this.txtValorEntregue.ShadowDecoration.Parent = this.txtValorEntregue;
             this.txtValorEntregue.Size = new System.Drawing.Size(173, 48);
             this.txtValorEntregue.TabIndex = 71;
@@ -1054,7 +1055,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtTotalGeral;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbFormaPagamento;
         private System.Windows.Forms.Label label10;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
         private System.Windows.Forms.Label label39;

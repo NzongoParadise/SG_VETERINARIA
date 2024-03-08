@@ -10,7 +10,7 @@ namespace Modelo
     public class ModeloCompra
     {
         public int produtoID { get; set; }
-        public int MyProperty { get; set; }
+        public string formaPagamento { get; set; }
         public string NomeProduto { get; set; }
         public int CodFornecedor { get; set; }
         public int Qtd { get; set; }
@@ -36,6 +36,10 @@ namespace Modelo
         public decimal totalGeral { get; set; }
         public bool eestadoProduto { get; set; }
         public string isentoCusto { get; set; }
+        public decimal troco { get; set; }
+        public decimal valorEntregue { get; set; }
+        public decimal imposto { get; set; }
+        public decimal desconto { get; set; }
     }
 
 }

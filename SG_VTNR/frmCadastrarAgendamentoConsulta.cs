@@ -173,7 +173,7 @@ namespace SG_VTNR
 
             dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(nome);
             // Renomear os cabeçalhos das colunas diretamente no DataGridView
-            dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
+            //dgvMostrarFuncionario.Columns["FuncionarioID"].HeaderText = "Código";
 
             //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
 

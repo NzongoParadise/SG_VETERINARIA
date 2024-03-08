@@ -35,12 +35,12 @@ C:\Users\MAURICO-PC\Documents\testeGitVS2022\DAL\obj\Debug\DAL.csproj.CoreCompil
 C:\Users\MAURICO-PC\Documents\testeGitVS2022\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\MAURICO-PC\Documents\testeGitVS2022\DAL\obj\Debug\DAL.dll
 C:\Users\MAURICO-PC\Documents\testeGitVS2022\DAL\obj\Debug\DAL.pdb
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.dll
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.pdb
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\bin\Debug\DAL.dll
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\bin\Debug\DAL.pdb
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\bin\Debug\Modelo.dll
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\bin\Debug\Modelo.pdb
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.dll
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\DAL\obj\Debug\DAL.pdb

@@ -68,7 +68,7 @@ namespace DAL
             try
             {
                 conexao.Conectar();
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
                 // Se deseja obter o ID do funcionário inserido
                  modelo.FuncionarioID = Convert.ToInt32(cmd.ExecuteScalar());
             }

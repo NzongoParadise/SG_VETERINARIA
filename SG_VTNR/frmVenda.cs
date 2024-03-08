@@ -20,6 +20,7 @@ namespace SG_VTNR
     {
         //variavel que recebe a quantidade disponivel do produto vindo da base de dados
         int qtdDisponivelBaseDados = 0;
+        decimal totalGeral=0;
         private ModeloVenda m;
 
         public frmVenda()
@@ -66,6 +67,10 @@ namespace SG_VTNR
                 //{
                 //    MessageBox.Show("Não foi possível cancelar a venda. \nContate o seu desenvolvedor.");
                 //}
+               
+            
+                var frm = new frmMostrarRelatorioVenda(6);
+                frm.ShowDialog();
             }
         }
 
@@ -205,8 +210,10 @@ namespace SG_VTNR
 
         }
 
+
         public void InserirAoCarrinho()
         {
+
             try
             {
                 if (string.IsNullOrEmpty(txtCodProduto.Text) || string.IsNullOrEmpty(txtNomeCliente.Text) || string.IsNullOrEmpty(txtNomeProduto.Text)
@@ -231,12 +238,17 @@ namespace SG_VTNR
                             if (produtoExistente != null)
                             {
                                 // Se o produto já existe, atualiza a quantidade
-                                produtoExistente.Qtd += Convert.ToInt32(txtQuantidade.Text);
+                                int novaQuantidade = Convert.ToInt32(txtQuantidade.Text);
+                                produtoExistente.Qtd += novaQuantidade;
 
-                                produtoExistente.Total = produtoExistente.precoUnitario * produtoExistente.Qtd;
+                                //produtoExistente.Total = produtoExistente.precoUnitario * produtoExistente.Qtd;
+                                //produtoExistente.Total = produtoExistente.precoUnitario * novaQuantidade;
+                                decimal novototal = produtoExistente.precoUnitario * novaQuantidade;
+                              produtoExistente.Total += novototal; 
+                           
                                 // Atualiza o SubTotal somando o Total do novo produto
                                 decimal subtotal = Decimal.Parse(txtSubtotal.Text);
-                                subtotal += produtoExistente.Total;
+                                subtotal = subtotal+novototal;
                                 txtSubtotal.Text = subtotal.ToString();
                                 AtualizarDataGridView();
                             }
@@ -357,34 +369,30 @@ namespace SG_VTNR
             {
                 // Obtém o índice da linha selecionada
                 int rowIndex = dgvCarinho.SelectedRows[0].Index;
-
-
                 // Obtém o item correspondente na listaDeDados usando o índice
                 ModeloVenda itemRemovido = listaDeDados[rowIndex];
-
 
                 // Remove o item correspondente na listaDeDados usando o índice
                 listaDeDados.RemoveAt(rowIndex);
                 // Subtrai o Total do item removido do subtotal
                 decimal subtotal = Decimal.Parse(txtSubtotal.Text);
+                decimal teste = itemRemovido.Total;
                 subtotal -= itemRemovido.Total;
                 txtSubtotal.Text = subtotal.ToString();
                 // Atualiza o DataSource do DataGridView
+                
+              
                 AtualizarDataGridView();
-
             }
         }
 
 
         private void dgvCarinho_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             string collname = dgvCarinho.Columns[e.ColumnIndex].Name;
             if (collname == "ColDeletar")
             {
-
                 EliminarColSelecionada();
-
             }
             else
             {
@@ -402,16 +410,7 @@ namespace SG_VTNR
                     txtCodProduto.Text = itemSelecionado.produtoID.ToString();
                     txtQuantidade.Text = itemSelecionado.Qtd.ToString();
                     txtTotal.Text = itemSelecionado.Total.ToString();
-
-
-
-                    // Carregue outras TextBoxes conforme necessário
-
-                    // ... Restante do seu código para carregar outras TextBoxes ...
-
-                    // Pode ser útil armazenar o índice da linha selecionada para referência futura
-                    // Pode ser usado em conjunto com o botão de "Salvar" no seu formulário de edição
-                    // para atualizar os dados na listaDeDados na posição correta
+                  
                     this.Tag = rowIndex;
                     EliminarColSelecionada();
                 }
@@ -420,35 +419,56 @@ namespace SG_VTNR
         }
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (dgvCarinho.Rows.Count == 0)
+            
+                try
                 {
-                    throw new Exception("Adicione produtos ao carrinho antes de confirmar a Venda.!!!");
+                    ModeloVenda modelo = new ModeloVenda();
+                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    BLLVenda bll = new BLLVenda(cx);
+
+                    if (dgvCarinho.Rows.Count == 0)
+                    {
+                        throw new Exception("Adicione produtos ao carrinho antes de confirmar a Venda.!!!");
+                    }
+
+                    if (listaDeDados.Count == 0)
+                    {
+                        throw new Exception("Adicione produtos ao carrinho antes de confirmar a Venda.!!!");
+                    }
+
+                    // Calcular o totalGeral para toda a venda
+                    decimal totalGeral = decimal.Parse(txtSubtotal.Text) + decimal.Parse(txtImposto.Text);
+                    foreach (var item in listaDeDados)
+                    {
+                        item.totalGeral = totalGeral;
+                        item.UsuarioID = m.UsuarioID;
+                        item.imposto = decimal.Parse(txtImposto.Text);
+                        item.desconto = decimal.Parse(txtDesconto.Text);
+                        item.troco = decimal.Parse(txtTroco.Text);
+                        item.formaPagamento = cmbFormaPagamento.Text;
+                        item.valorentregue = decimal.Parse(txtValorEntregue.Text);
+                    }
+
+                    if (string.IsNullOrWhiteSpace(cmbFormaPagamento.Text))
+                    {
+                        throw new Exception("Escolha o método de pagamento utilizado.");
+                    }
+
+                    // Inserir os dados
+                    int vendaID = bll.incluirVendaItem(listaDeDados);
+
+                    // Atualizar o vendaID no último item da listaDeDados
+                    listaDeDados.Last().vendaID = vendaID;
+
+                    MessageBox.Show(vendaID.ToString() + "\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
+
+                    frmMostrarRelatorioVenda frm = new frmMostrarRelatorioVenda(vendaID);
+                    frm.ShowDialog();
                 }
-
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                BLLVenda bll = new BLLVenda(cx);
-
-                // Calcular o totalGeral para toda a venda
-                decimal totalGeral = decimal.Parse(txtSubtotal.Text) + decimal.Parse(txtImposto.Text);
-
-                // Adicionar o totalGeral à venda
-
-                foreach (var item in listaDeDados)
+                catch (Exception erro)
                 {
-                    item.totalGeral = totalGeral;
-                    item.UsuarioID = m.UsuarioID;
+                    MessageBox.Show("Não foi possível Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
-
-                // Inserir os dados
-                bll.incluirVendaItem(listaDeDados);
-                MessageBox.Show("\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Não foi possível Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
         }
 
         private void txtSubtotal_TextChanged(object sender, EventArgs e)

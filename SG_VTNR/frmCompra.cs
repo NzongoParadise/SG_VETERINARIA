@@ -356,6 +356,11 @@ namespace SG_VTNR
                 {
                     item.totalGeral = totalGeral;
                     item.UsuarioID = m.UsuarioID;
+                    item.formaPagamento = cmbMetodoPagamento.Text;
+                    item.imposto = decimal.Parse(txtImposto.Text);
+                    item.desconto = decimal.Parse(txtDesconto.Text);
+                    item.valorEntregue =decimal.Parse(txtValorEntregue.Text);
+                    item.troco = decimal.Parse(txtTroco.Text);
                 }
                 //inserir os dados
                 bll.updateProdutoCompra(listaDeDados);

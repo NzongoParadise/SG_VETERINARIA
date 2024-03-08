@@ -59,6 +59,6 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\bin\Debug\DAL.pdb
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\bin\Debug\Modelo.pdb
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.csproj.Up2Date
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.dll
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\BLL\obj\Debug\BLL.pdb

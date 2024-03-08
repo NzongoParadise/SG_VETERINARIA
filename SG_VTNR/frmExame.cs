@@ -17,9 +17,12 @@ namespace SG_VTNR
     public partial class frmExame : Form
     {
         List<ModeloExame> ListaDeExames = new List<ModeloExame>();
+        int usuarioID;
         public frmExame()
         {
             InitializeComponent();
+
+            //usuarioID=frmLogin.get
         }
 
         private void pnlCadastrar_Paint(object sender, PaintEventArgs e)
@@ -84,14 +87,19 @@ namespace SG_VTNR
             {
                 ObsGeral = txtObsGeral.Text,
                 tipoExame = cmbTipoExame.Text,
-
                 observacoesItemExame = txtObsExame.Text,
                 funcionarioID = Convert.ToInt32(txtCodFuncionario.Text),
+                animalID=Convert.ToInt32(txtCodAnimal.Text),
                 condicaoAtualAnimal = txtCondicaoAnimal.Text,
                 diagnosticoPeliminar = txtDiagnosticoPreliminar.Text,
                 instrucoesProprietario = txtInstrucoes.Text,
                 acomanhamentoNecessario = cmbAcompNecessario.Text,
-            };
+                statusExame=cmbStatusExame.Text,
+            
+                        //public int usuarioID { get; set; }
+
+
+    };
             ListaDeExames.Add(dadosExame);
             atualizarDvgCarrinho();
 

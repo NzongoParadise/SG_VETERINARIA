@@ -20,6 +20,19 @@ namespace DAL
         {
             this.conexao = cx;
         }
+  
+        public bool verificarProprietarioAnimal(int proprietarioID)
+        {
+            string query = "SELECT 1 FROM Animal WHERE ProprietarioID = @ProprietarioID";
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            cmd.Parameters.AddWithValue("@ProprietarioID", proprietarioID);
+            conexao.Conectar();
+            object result = cmd.ExecuteScalar();
+            conexao.Desconectar();
+            return result != null;
+        }
+
+
         public void incluirProprietario(ModeloProprietario modelo)
         {
             SqlCommand cmd = new SqlCommand();

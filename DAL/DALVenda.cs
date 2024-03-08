@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelo;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DAL
 {
@@ -26,8 +27,9 @@ namespace DAL
         }
 
 
-        public void IncluirVendaItem(List<ModeloVenda> listaDeVenda)
+        public int IncluirVendaItem(List<ModeloVenda> listaDeVenda)
         {
+            int vendaID;
             using (SqlConnection conexaoPrincipal = new SqlConnection(conexao.StringConexao))
             {
                 conexaoPrincipal.Open();
@@ -35,7 +37,9 @@ namespace DAL
 
                 try
                 {
-                    int vendaID = IncluirVenda(listaDeVenda[0], transacaoPrincipal); // Assume que a lista tem pelo menos um item
+                     vendaID = IncluirVenda(listaDeVenda[0], transacaoPrincipal); // Assume que a lista tem pelo menos um item
+                    var modeloID = new ModeloVenda();
+                    modeloID.vendaID=vendaID;
 
                     //Console.WriteLine("ID retornado da venda: " + vendaID);
 
@@ -53,6 +57,7 @@ namespace DAL
                     throw new Exception("Erro ao incluir Venda e ItemVenda: " + erro.Message);
                 }
             }
+            return vendaID;
         }
 
         private int IncluirVenda(ModeloVenda modelo, SqlTransaction transacao)
@@ -66,9 +71,15 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@TotalVenda", modelo.totalGeral);
                     cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
                     cmd.Parameters.AddWithValue("@NomeCliente", modelo.nomeCliente);
+                    cmd.Parameters.AddWithValue("@Desconto", modelo.desconto);
+                    cmd.Parameters.AddWithValue("@ValorEntregue", modelo.valorentregue);
+                    cmd.Parameters.AddWithValue("@Imposto", modelo.imposto);
+                    cmd.Parameters.AddWithValue("@Troco", modelo.troco);
+                    cmd.Parameters.AddWithValue("@FormaPagamento", modelo.formaPagamento);
+
+                   
                     // Executa o comando e retorna o ID da venda inserida
                     int vendaID = Convert.ToInt32(cmd.ExecuteScalar());
-
                     return vendaID;
                 }
                 catch (Exception ex)

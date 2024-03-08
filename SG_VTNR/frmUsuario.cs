@@ -182,7 +182,7 @@ namespace SG_VTNR
             modelo.FuncionarioID = Convert.ToInt32(txtIDFuncionario.Text);
             modelo.NomeUsuario= txtNomeUsuario.Text;
             modelo.Senha = txtSenha.Text;
-            modelo.Perfil= Convert.ToString(cmbPerfil.Text);
+            modelo.Perfil= cmbPerfil.Text;
             modelo.NomeFuncionario = txtNomeFuncionario.Text;
 
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);

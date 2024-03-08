@@ -17,6 +17,8 @@ namespace SG_VTNR
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
+            //Application.Run(new teste_Imprimir());
+
         }
     }
 }

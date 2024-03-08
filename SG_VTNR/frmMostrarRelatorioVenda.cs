@@ -12,9 +12,19 @@ namespace SG_VTNR
 {
     public partial class frmMostrarRelatorioVenda : Form
     {
-        public frmMostrarRelatorioVenda()
+        int codigo;
+        public frmMostrarRelatorioVenda(int cod)
         {
+            this.codigo = cod;
             InitializeComponent();
         }
+
+        private void frmMostrarRelatorioVenda_Load(object sender, EventArgs e)
+        {
+
+         
+            this.obterDadosVendaTableAdapter.Fill(this.bD_VeterinariaDataSet.ObterDadosVenda, codigo);
+            this.reportViewer1.RefreshReport();
+          }
     }
 }

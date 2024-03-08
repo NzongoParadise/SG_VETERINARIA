@@ -223,17 +223,25 @@ namespace SG_VTNR
             }
             else if (colName == "ColDeletar")
             {
+
                 try
                 {
                     DialogResult d = MessageBox.Show("desejas realmente excluir os dados?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                     if (d.ToString() == "Yes")
                     {
-                        alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
+                        //alteraBotoes(1, perInserir, perAlterar, perExcluir, perImprimir);
                         int col = Convert.ToInt32(dgvDados.CurrentRow.Cells["ProprietarioID"].Value);
                         DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                         BLLProprietario bll = new BLLProprietario(cx);
-                        bll.Excluir(Convert.ToInt32(col));
-                        exibir();
+                        //esta verificacao serve para detetar se este proprietario testa vinculado a um animal ou nao
+                        //caso sim nao sera possivel elimnai o proprietario para respeitar a integridade referencial
+                        if (bll.verificarProprietarioAnimal(col)) {
+                            bll.Excluir(Convert.ToInt32(col));
+                            exibir();
+                        }
+                        else{
+                            MessageBox.Show("\"Não foi possivel Realizar a Operação!!!\n Existe animal que depende deste proprietario", MessageBoxButtons.OK +" Erro"+ MessageBoxIcon.Stop);
+                        }
                     }
                 }
                 catch (Exception)

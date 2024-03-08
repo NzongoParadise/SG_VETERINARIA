@@ -23,14 +23,16 @@ namespace BLL
             
             return dall.PesquisarProdutoComChave(chave);
         }
-        public void incluirVendaItem(List <ModeloVenda> listaDeDados)
+        public int incluirVendaItem(List <ModeloVenda> listaDeDados)
         {
+    
             try
             {
                 if (listaDeDados.Count>0)
                 {
+
                     DALVenda dall = new DALVenda(conexao);
-                    dall.IncluirVendaItem(listaDeDados);
+                    return dall.IncluirVendaItem(listaDeDados);
                     
                 }
                 else

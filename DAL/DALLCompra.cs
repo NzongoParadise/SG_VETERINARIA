@@ -165,9 +165,12 @@ namespace DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
-                    cmd.Parameters.AddWithValue("@DataCompra", modelo.DataCompra);
+                    cmd.Parameters.AddWithValue("@Desconto", modelo.desconto);
+                    cmd.Parameters.AddWithValue("@Imposto", modelo.imposto);
+                    cmd.Parameters.AddWithValue("@Troco", modelo.troco);
+                    cmd.Parameters.AddWithValue("@FormaPagamento", modelo.formaPagamento);
                     cmd.Parameters.AddWithValue("@TotalCompra", modelo.totalGeral);
-
+                    cmd.Parameters.AddWithValue("@ValorEntregue", modelo.valorEntregue);
                     // Executa o comando e retorna o ID da compra inserida
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }

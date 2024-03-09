@@ -12,9 +12,18 @@ namespace SG_VTNR
 {
     public partial class frmFaturaCompra : Form
     {
-        public frmFaturaCompra()
+        int codCompra;
+        public frmFaturaCompra(int cod)
         {
             InitializeComponent();
+            this.codCompra = cod;
+        }
+
+        private void frmFaturaCompra_Load(object sender, EventArgs e)
+        {
+            this.obterDadosCompraTableAdapter.Fill(this.bD_VeterinariaDataSet2.ObterDadosCompra, codCompra);
+
+            this.reportViewer1.RefreshReport();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace BLL
             return  dall.PesquisarFornecedorComChavenaCompra(chave);
         }
 
-        public void updateProdutoCompra(List<ModeloCompra> listaDeDados)
+        public int updateProdutoCompra(List<ModeloCompra> listaDeDados)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace BLL
                 {
                     DALLCompra DALLCompra = new DALLCompra(conexao);
                     ModeloCompra modeloCompra = new ModeloCompra();
-                    DALLCompra.IncluirCompraItem(listaDeDados);
+                   return DALLCompra.IncluirCompraItem(listaDeDados);
                 }
                 else
                 {

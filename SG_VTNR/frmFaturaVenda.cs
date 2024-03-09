@@ -10,21 +10,21 @@ using System.Windows.Forms;
 
 namespace SG_VTNR
 {
-    public partial class frmMostrarRelatorioVenda : Form
+    public partial class frmFaturaVenda : Form
     {
-        int codigo;
-        public frmMostrarRelatorioVenda(int cod)
+        int codigoVenda;
+        public frmFaturaVenda(int cod)
         {
-            this.codigo = cod;
             InitializeComponent();
+            codigoVenda = cod;
         }
 
-        private void frmMostrarRelatorioVenda_Load(object sender, EventArgs e)
+        private void frmFaturaVenda_Load(object sender, EventArgs e)
         {
+            this.obterDadosVendaTableAdapter.Fill(this.bD_VeterinariaDataSet.ObterDadosVenda, codigoVenda);
 
-         
-            this.obterDadosVendaTableAdapter.Fill(this.bD_VeterinariaDataSet.ObterDadosVenda, codigo);
+
             this.reportViewer1.RefreshReport();
-          }
+        }
     }
 }

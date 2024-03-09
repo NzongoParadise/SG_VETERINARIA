@@ -69,7 +69,7 @@ namespace SG_VTNR
                 //}
                
             
-                var frm = new frmMostrarRelatorioVenda(6);
+                var frm = new frmFaturaVenda(6);
                 frm.ShowDialog();
             }
         }
@@ -462,7 +462,7 @@ namespace SG_VTNR
 
                     MessageBox.Show(vendaID.ToString() + "\n \n Venda realizada com Sucesso!", "Confirmação", MessageBoxButtons.OK);
 
-                    frmMostrarRelatorioVenda frm = new frmMostrarRelatorioVenda(vendaID);
+                    frmFaturaVenda frm = new frmFaturaVenda(vendaID);
                     frm.ShowDialog();
                 }
                 catch (Exception erro)

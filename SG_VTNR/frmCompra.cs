@@ -363,9 +363,11 @@ namespace SG_VTNR
                     item.troco = decimal.Parse(txtTroco.Text);
                 }
                 //inserir os dados
-                bll.updateProdutoCompra(listaDeDados);
+                int  compraID=bll.updateProdutoCompra(listaDeDados);
 
                 MessageBox.Show("Compra realizada com sucesso!", "Confirmação", MessageBoxButtons.OK);
+                frmFaturaCompra frm = new frmFaturaCompra(compraID);
+                frm.ShowDialog();
             }
             catch (InvalidOperationException ex)
             {

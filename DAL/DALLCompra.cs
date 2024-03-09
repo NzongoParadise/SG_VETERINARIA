@@ -60,8 +60,10 @@ namespace DAL
 
         // Método na classe DALLCompra
 
-        public void IncluirCompraItem(List<ModeloCompra> listaDeCompra)
+        public int IncluirCompraItem(List<ModeloCompra> listaDeCompra)
         {
+            ModeloCompra modeloID=new ModeloCompra();
+            int compraID;
             using (SqlConnection conexaoPrincipal = new SqlConnection(conexao.StringConexao))
             {
                 conexaoPrincipal.Open();
@@ -71,13 +73,13 @@ namespace DAL
                 try
                 {
 
-                    int CompraID = IncluirCompra(listaDeCompra[0], transacaoPrincipal); // Assume que a lista tem pelo menos um item
-
+                    compraID = IncluirCompra(listaDeCompra[0], transacaoPrincipal); // Assume que a lista tem pelo menos um item
+                    modeloID.compraID= compraID;
                     //Console.WriteLine("ID retornado da venda: " + vendaID);
 
                     foreach (var modelo in listaDeCompra)
                     {
-                        IncluirItemCompra(CompraID, modelo.produtoID, modelo.Qtd, modelo.precoCompraUnitario, modelo.Total, transacaoPrincipal);
+                        IncluirItemCompra(compraID, modelo.produtoID, modelo.Qtd, modelo.precoCompraUnitario, modelo.Total, transacaoPrincipal);
                         UpdateProdutoCompra(listaDeCompra, transacaoPrincipal);
                     }
 
@@ -89,7 +91,7 @@ namespace DAL
                     throw new Exception("Erro ao incluir a Compra e ItemVenda: " + erro.Message);
                 }
             }
-
+            return compraID;
         }
 
 

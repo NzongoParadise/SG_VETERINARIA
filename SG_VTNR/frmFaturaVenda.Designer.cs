@@ -1,6 +1,6 @@
 ﻿namespace SG_VTNR
 {
-    partial class frmMostrarRelatorioVenda
+    partial class frmFaturaVenda
     {
         /// <summary>
         /// Required designer variable.
@@ -64,15 +64,15 @@
             // 
             this.obterDadosVendaTableAdapter.ClearBeforeFill = true;
             // 
-            // frmMostrarRelatorioVenda
+            // frmFaturaVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "frmMostrarRelatorioVenda";
-            this.Text = "frmMostrarRelatorioVenda";
-            this.Load += new System.EventHandler(this.frmMostrarRelatorioVenda_Load);
+            this.Name = "frmFaturaVenda";
+            this.Text = "frmFaturaVenda";
+            this.Load += new System.EventHandler(this.frmFaturaVenda_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bD_VeterinariaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obterDadosVendaBindingSource)).EndInit();
             this.ResumeLayout(false);

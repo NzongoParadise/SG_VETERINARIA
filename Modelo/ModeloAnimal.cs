@@ -9,7 +9,8 @@ namespace Modelo
 {
     public class ModeloAnimal
     {
-            private int AnimalID;
+        public int UsuarioID { get; set; }
+        private int AnimalID;
             private string Nome;
             private string Especie;
             private string Raca;

@@ -99,6 +99,7 @@
             this.btnNovo = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
@@ -272,9 +273,9 @@
             this.label12.Location = new System.Drawing.Point(24, 18);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 20);
+            this.label12.Size = new System.Drawing.Size(144, 20);
             this.label12.TabIndex = 74;
-            this.label12.Text = "codigo proprietário";
+            this.label12.Text = "Código Proprietário";
             // 
             // txtIDProp
             // 
@@ -469,7 +470,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::SG_VTNR.Properties.Resources.search_500px1;
-            this.pictureBox3.Location = new System.Drawing.Point(329, 148);
+            this.pictureBox3.Location = new System.Drawing.Point(340, 141);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(51, 36);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1257,6 +1258,26 @@
             this.btnEditar.Size = new System.Drawing.Size(172, 49);
             this.btnEditar.TabIndex = 65;
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // guna2Button3
+            // 
+            this.guna2Button3.BorderRadius = 15;
+            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
+            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
+            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(36)))), ((int)(((byte)(48)))));
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.HoverState.Parent = this.guna2Button3;
+            this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
+            this.guna2Button3.Location = new System.Drawing.Point(1143, 695);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
+            this.guna2Button3.Size = new System.Drawing.Size(172, 49);
+            this.guna2Button3.TabIndex = 66;
+            this.guna2Button3.Text = "Cancelar";
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
             // frmCadastrarAnimalteste
             // 
@@ -1267,6 +1288,7 @@
             this.Controls.Add(this.guna2ShadowPanel2);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnNovo);
+            this.Controls.Add(this.guna2Button3);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.tabControl1);
@@ -1364,5 +1386,6 @@
         private System.Windows.Forms.Label label14;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private System.Windows.Forms.Label label17;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
     }
 }

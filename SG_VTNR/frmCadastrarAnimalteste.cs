@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DAL;
+using Ferramenta;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,10 +20,12 @@ namespace SG_VTNR
 {
     public partial class frmCadastrarAnimalteste : Form
     {
+        ModeloAnimal m = new ModeloAnimal();
         private string foto;
         public frmCadastrarAnimalteste()
         {
             InitializeComponent();
+            m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
             if (pnlProprietario.Visible == false)
             {
                 pnlProprietario.Visible = true;
@@ -91,10 +95,11 @@ namespace SG_VTNR
                     DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                     BLLAnimal bll = new BLLAnimal(cx);
                     //inserir os dados
-                    bll.incluir(modelo);
+                    bll.updateAnimal(modelo);
                     MessageBox.Show(modelo.AnimalID1.ToString() + "\n \n Animal Cadastrado com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
-
+                    frmRelatorioCadastroAnimal frm = new frmRelatorioCadastroAnimal(modelo.AnimalID1);
+                    frm.ShowDialog();
 
 
                 }
@@ -104,7 +109,7 @@ namespace SG_VTNR
                     MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 }
-           
+
         }
         public bool validarCampos()
         {
@@ -442,24 +447,24 @@ private void pictureBox3_Click(object sender, EventArgs e)
              
                 txtCodigo.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Código do Animal"].Value.ToString();
                     txtNomeAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Nome do Animal"].Value.ToString();
-                    cbmEspecie.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Espécie"].Value.ToString();
+                    cbmEspecie.Text = Convert.ToString(dgvExibirAnimal.Rows[e.RowIndex].Cells["Espécie"].Value.ToString());
                     cmbRaca.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Raça"].Value.ToString();
-                    cbmCor.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Cor"].Value.ToString();
+                    cbmCor.Text = Convert.ToString(dgvExibirAnimal.Rows[e.RowIndex].Cells["Cor"].Value.ToString());
                     txtPeso.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Peso"].Value.ToString();
-                    cbmEstado.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
+                    cbmEstado.Text = Convert.ToString(dgvExibirAnimal.Rows[e.RowIndex].Cells["Estado"].Value.ToString());
                     dataNascimento.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Data de Nascimento"].Value.ToString();
-                    cbmPorte.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Porte"].Value.ToString();
+                    cbmPorte.Text = Convert.ToString(dgvExibirAnimal.Rows[e.RowIndex].Cells["Porte"].Value.ToString());
                     txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Código do Proprietário"].Value.ToString();
                     //pctAnimal.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["foto"].Value.ToString();
                     txtObs.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Observação"].Value.ToString();
                     cbmGenero.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["Sexo"].Value.ToString();
+                    txtNomeProp.Text= dgvExibirAnimal.Rows[e.RowIndex].Cells["Proprietário"].Value.ToString();
 
-                    //codigoProp =Convert.ToInt32( txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString());
-                    //txtNomeProp.Text = BuscarNomeProp();
-                    alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
-                    tabControl1.SelectTab(tabPage1);
-                }
-                if (colName == "ColDeletar")
+                //codigoProp =Convert.ToInt32( txtIDProp.Text = dgvExibirAnimal.Rows[e.RowIndex].Cells["ProprietarioID"].Value.ToString());
+                //txtNomeProp.Text = BuscarNomeProp();
+                alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
+                    tabControl1.SelectTab(tabPage2);
+                }else if (colName == "ColDeletar")
                 {
                     try
                     {
@@ -486,9 +491,62 @@ private void pictureBox3_Click(object sender, EventArgs e)
                         throw;
                     }
 
-                }
+                }else if (colName=="colImprimir")
+            {
+                int cod =Convert.ToInt32(dgvExibirAnimal.Rows[e.RowIndex].Cells["Código do Animal"].Value.ToString());
+
+                frmRelatorioCadastroAnimal frm = new frmRelatorioCadastroAnimal(cod);
+                frm.ShowDialog();
+            }
             }
 
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (validarCampos())
+
+                try
+                {
+                    ModeloAnimal modelo = new ModeloAnimal();
+                    modelo.AnimalID1 = Convert.ToInt32(txtCodigo.Text);
+                    modelo.Nome1 = (txtNomeAnimal.Text);
+                    modelo.Raca1 = cbmCor.Text;
+                    modelo.Cor1 = cmbRaca.Text;
+                    modelo.Peso1 = Convert.ToDouble(txtPeso.Text);
+                    modelo.Estado1 = cbmEstado.Text;
+                    modelo.DataNascimento1 = Convert.ToDateTime(dataNascimento.Text);
+                    modelo.Porte1 = cbmPorte.Text;
+                    modelo.ProprietarioID1 = Convert.ToInt16(txtIDProp.Text);
+                    modelo.Observacao = (txtObs.Text);
+                    modelo.Especie1 = cbmEspecie.Text;
+                    modelo.sexo1 = cbmGenero.Text;
+                    modelo.CarregaImage(this.foto);
+
+                    //modelo.Foto=
+                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    BLLAnimal bll = new BLLAnimal(cx);
+                    //inserir os dados
+                    bll.updateAnimal(modelo);
+                    MessageBox.Show(modelo.AnimalID1.ToString() + "\n \n Dados do Animal actualizado com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
+                    frmRelatorioCadastroAnimal frm = new frmRelatorioCadastroAnimal(modelo.AnimalID1);
+                    frm.ShowDialog();
+
+
+                }
+                catch (Exception erro)
+                {
+
+                    MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                }
+
+
+        }
+    }
     
 }

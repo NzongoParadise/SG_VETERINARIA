@@ -34,11 +34,13 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Cor", modelo.Cor1);
                 cmd.Parameters.AddWithValue("@peso", modelo.Peso1);
                 cmd.Parameters.AddWithValue("@Estado", modelo.Estado1);
-                cmd.Parameters.AddWithValue("@DataNascimento", modelo.DataNascimento1);
+                cmd.Parameters.AddWithValue("@DataNascimento", modelo.DataNascimento1.Date);
                 cmd.Parameters.AddWithValue("@Porte", modelo.Porte1);
                 cmd.Parameters.AddWithValue("@ProprietarioID", modelo.ProprietarioID1);
                 cmd.Parameters.AddWithValue("@observacao", modelo.Observacao);
                 cmd.Parameters.AddWithValue("@sexo", modelo.sexo1);
+                cmd.Parameters.AddWithValue("@UsuarioID",modelo.UsuarioID);
+           
                 cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
                 if (modelo.Foto == null)
                 {
@@ -65,7 +67,8 @@ namespace DAL
             }
         }
 
-        public void AtualizarAnimal(ModeloAnimal modelo)
+
+        public void updateAnimal(ModeloAnimal modelo)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjectoConexao;
@@ -73,17 +76,25 @@ namespace DAL
             cmd.CommandText = "procedure_Atualizar_Animal";
 
             cmd.Parameters.AddWithValue("@AnimalID", modelo.AnimalID1);
-            cmd.Parameters.AddWithValue("@nome", modelo.Nome1);
+            cmd.Parameters.AddWithValue("@Nome", modelo.Nome1);
             cmd.Parameters.AddWithValue("@Especie", modelo.Especie1);
             cmd.Parameters.AddWithValue("@Raca", modelo.Raca1);
             cmd.Parameters.AddWithValue("@sexo", modelo.sexo1);
             cmd.Parameters.AddWithValue("@Cor", modelo.Cor1);
-            cmd.Parameters.AddWithValue("@peso", modelo.Peso1);
+            cmd.Parameters.AddWithValue("@Peso", modelo.Peso1);
             cmd.Parameters.AddWithValue("@Estado", modelo.Estado1);
             cmd.Parameters.AddWithValue("@DataNascimento", modelo.DataNascimento1);
             cmd.Parameters.AddWithValue("@Porte", modelo.Porte1);
             cmd.Parameters.AddWithValue("@ProprietarioID", modelo.ProprietarioID1);
-            cmd.Parameters.AddWithValue("@observacao", modelo.Observacao);
+            cmd.Parameters.AddWithValue("@Observacao", modelo.Observacao);
+            cmd.Parameters.AddWithValue("@UsuarioID", modelo.UsuarioID);
+
+            SqlParameter paramAnimalIDAtualizado = new SqlParameter();
+            paramAnimalIDAtualizado.ParameterName = "@AnimalIDAtualizado";
+            paramAnimalIDAtualizado.SqlDbType = System.Data.SqlDbType.Int;
+            paramAnimalIDAtualizado.Direction = System.Data.ParameterDirection.Output;
+            cmd.Parameters.Add(paramAnimalIDAtualizado);
+
             cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
             if (modelo.Foto == null)
             {
@@ -92,19 +103,13 @@ namespace DAL
             else
             {
                 cmd.Parameters["@Foto"].Value = modelo.Foto;
-
             }
 
-            //cmd.Parameters.AddWithValue("@Foto",modelo.Foto);
-            //cmd.Parameters.AddWithValue("@foto", modelo.Foto);
-
             conexao.Conectar();
-         
-            modelo.AnimalID1 = Convert.ToInt16(cmd.ExecuteScalar());
+            cmd.ExecuteNonQuery();
+            modelo.AnimalID1 = Convert.ToInt32(cmd.Parameters["@AnimalIDAtualizado"].Value);
             conexao.Desconectar();
-
         }
-
 
 
         public void EliminarAnimal(int codigo)
@@ -152,7 +157,7 @@ namespace DAL
         public DataTable PesquisarAnimalcomChave(string nome)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT  AnimalID as 'Código do Animal', Nome as 'Nome do Animal', Especie as Espécie, Raca as Raça, Estado, DataNascimento as 'Data de Nascimento', Cor, sexo as Sexo, Porte, Peso,observacao as Observação,ProprietarioID AS 'Código do Proprietário' FROM Animal WHERE nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
+            string query = "SELECT  a.AnimalID as 'Código do Animal', a.Nome as 'Nome do Animal', a.Especie as Espécie, a.Raca as Raça, a.Estado, a.DataNascimento as 'Data de Nascimento',a.DataCdastro as 'Data Cadastro', a.Cor, a.sexo as Sexo, a.Porte, a.Peso,a.observacao as Observação,a.ProprietarioID AS 'Código do Proprietário',CONCAT(p.Nome, ' ', p.Sobrenome, ' ', p.Apelido) AS Proprietário FROM Animal a inner join proprietario p on p.ProprietarioID = a.ProprietarioID WHERE a.nome LIKE @Nome OR AnimalID = TRY_CAST(@ID AS INT)";
 
             using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao)) 
          

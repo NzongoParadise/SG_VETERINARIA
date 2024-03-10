@@ -89,6 +89,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BD_VeterinariaDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BD_VeterinariaDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_VeterinariaDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BD_VeterinariaDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_VeterinariaDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BD_VeterinariaDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_VeterinariaDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BD_VeterinariaDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_VeterinariaDataSet6.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dia.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,6 +153,12 @@
     <Compile Include="frmFaturaVenda.Designer.cs">
       <DependentUpon>frmFaturaVenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFaturaVendaTeste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFaturaVendaTeste.Designer.cs">
+      <DependentUpon>frmFaturaVendaTeste.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmIntermediarioAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +176,12 @@
     </Compile>
     <Compile Include="frmPesagem.Designer.cs">
       <DependentUpon>frmPesagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatorioCadastroAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatorioCadastroAnimal.Designer.cs">
+      <DependentUpon>frmRelatorioCadastroAnimal.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServicos.cs">
       <SubType>Form</SubType>
@@ -267,6 +299,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="faturaCompra.rdlc" />
     <EmbeddedResource Include="faturadeVenda.rdlc" />
+    <EmbeddedResource Include="faturaVendaTeste.rdlc" />
     <EmbeddedResource Include="frmAnimal.resx">
       <DependentUpon>frmAnimal.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +318,9 @@
     <EmbeddedResource Include="frmFaturaVenda.resx">
       <DependentUpon>frmFaturaVenda.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFaturaVendaTeste.resx">
+      <DependentUpon>frmFaturaVendaTeste.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIntermediarioAnimal.resx">
       <DependentUpon>frmIntermediarioAnimal.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPesagem.resx">
       <DependentUpon>frmPesagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatorioCadastroAnimal.resx">
+      <DependentUpon>frmRelatorioCadastroAnimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicos.resx">
       <DependentUpon>frmServicos.cs</DependentUpon>
@@ -355,6 +394,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="relatorioCadastroAnimal.rdlc" />
     <EmbeddedResource Include="UserControlDays.resx">
       <DependentUpon>UserControlDays.cs</DependentUpon>
     </EmbeddedResource>
@@ -390,6 +430,50 @@
     </None>
     <None Include="BD_VeterinariaDataSet2.xss">
       <DependentUpon>BD_VeterinariaDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet3.xsc">
+      <DependentUpon>BD_VeterinariaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_VeterinariaDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_VeterinariaDataSet3.xss">
+      <DependentUpon>BD_VeterinariaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet4.xsc">
+      <DependentUpon>BD_VeterinariaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_VeterinariaDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_VeterinariaDataSet4.xss">
+      <DependentUpon>BD_VeterinariaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet5.xsc">
+      <DependentUpon>BD_VeterinariaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_VeterinariaDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_VeterinariaDataSet5.xss">
+      <DependentUpon>BD_VeterinariaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet6.xsc">
+      <DependentUpon>BD_VeterinariaDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="BD_VeterinariaDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_VeterinariaDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_VeterinariaDataSet6.xss">
+      <DependentUpon>BD_VeterinariaDataSet6.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

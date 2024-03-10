@@ -69,7 +69,7 @@ namespace SG_VTNR
                 //}
                
             
-                var frm = new frmFaturaVenda(6);
+                var frm = new frmFaturaVendaTeste(22);
                 frm.ShowDialog();
             }
         }

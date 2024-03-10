@@ -23,7 +23,7 @@ namespace SG_VTNR
         //esta declaracao vai armazenar o id do funcionario nao vai ser necessario mostrar no formulario
         //mas quando tivermos para cadastrar o funcionario que realizou a vacinacao sera muito util para a identificacao
         private int FuncionarioID;
-        ModeloVacina m;
+        ModeloVacina m =new ModeloVacina();
         private List<ModeloVacina> listaDeDados = new List<ModeloVacina>();
         private string proprietarioAnimal;
         private string codAnimalDgvMostrarDado;
@@ -31,7 +31,7 @@ namespace SG_VTNR
         public frmVacinacao()
         {
             InitializeComponent();
-            m = new ModeloVacina();
+         
             m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
 
 
@@ -75,7 +75,7 @@ namespace SG_VTNR
         }
         private void txtPesquisarAnimal_TextChanged(object sender, EventArgs e)
         {
-            txtPesquisarFuncionario.Text = "";
+        
             if (string.IsNullOrWhiteSpace(txtPesquisarAnimal.Text) || string.IsNullOrEmpty(txtPesquisarAnimal.Text))
             {
                 if (pnlMostrarAnimal.Visible == true)
@@ -100,23 +100,7 @@ namespace SG_VTNR
         }
 
 
-        public void PesquisarFuncionariocomChave()
-        {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-            BLLFuncionario bll = new BLLFuncionario(cx);
-            dgvMostrarFuncionario.DataSource = bll.PesquisarFuncionariosComChaveVacina(txtPesquisarFuncionario.Text);
-             //dgvMostrarAnimal.Columns["Especie"].HeaderText = "Espécie";
-
-            dgvMostrarFuncionario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvMostrarFuncionario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvMostrarFuncionario.AutoResizeRows();
-
-            // Ajustar a altura da linha de cabeçalho
-            dgvMostrarFuncionario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-
-
-        }
+       
 
         private void btnfechararevacinacao_Click(object sender, EventArgs e)
         {
@@ -147,10 +131,7 @@ namespace SG_VTNR
             {
                 dgvSuspensoDadosAnimal.Visible = false;
             }
-            if (pnlMostrarFuncionario.Visible == true)
-            {
-                pnlMostrarFuncionario.Visible = false;
-            }
+           
             if (pnlMostrarAnimal.Visible == true)
             {
                 pnlMostrarAnimal.Visible = false;
@@ -175,28 +156,7 @@ namespace SG_VTNR
 
 
 
-        private void txtPesquisarFuncionario_TextChanged(object sender, EventArgs e)
-        {
-            txtPesquisarAnimal.Text = "";
-            if (string.IsNullOrWhiteSpace(txtPesquisarFuncionario.Text) || string.IsNullOrEmpty(txtPesquisarFuncionario.Text))
-            {
-                if (pnlMostrarFuncionario.Visible == true)
-                {
-                    pnlMostrarFuncionario.Visible = false;
-                }
-
-            }
-            else
-            {
-                if (pnlMostrarFuncionario.Visible == false)
-                {
-                    pnlMostrarFuncionario.Visible = true;
-                    PesquisarFuncionariocomChave();
-                }
-
-            }
-        }
-
+      
         private void pnlMostrarDadosPesquisa_Paint(object sender, PaintEventArgs e)
         {
 
@@ -387,26 +347,7 @@ namespace SG_VTNR
             dgvSuspensoDadosAnimal.Columns["proprietario"].HeaderText = "Proprietario";
         }
         
-        private void dgvMostrarDadosFuncionario_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvMostrarFuncionario.Rows[e.RowIndex];
-
-                this.FuncionarioID = Convert.ToInt32(dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Código Funcionário"].Value.ToString());
-                string nome = dgvMostrarFuncionario.Rows[e.RowIndex].Cells["Nome Completo"].Value.ToString();
-                txtFuncionarioID.Text = FuncionarioID.ToString();               
-                txtResPesqFuncionario.Text = nome;
-                if (pnlMostrarFuncionario.Visible==true)
-                {
-                    pnlMostrarFuncionario.Visible = false;
-                }
-
-            }
-        }
-
+        
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
@@ -585,7 +526,7 @@ namespace SG_VTNR
 
                                 ModeloVacina novoProduto = new ModeloVacina
                                 {
-                                    FuncionarioID =Convert.ToInt32(txtFuncionarioID.Text),
+                                   
                                     AnimalID = Convert.ToInt32(codAnimalDgvMostrarDado),
                                     NomeVacina = txtNomeVacina.Text,
                                     IdVacina = Convert.ToInt32(txtCodVacinaEsquema.Text),
@@ -618,7 +559,6 @@ namespace SG_VTNR
                                 {
                                     AnimalID = Convert.ToInt32(codAnimalDgvMostrarDado),
                                     //FuncionarioID = this.FuncionarioID,
-                                    FuncionarioID = Convert.ToInt32(txtFuncionarioID.Text),
                                     NomeVacina = txtNomeVacina.Text,
                                     IdVacina = Convert.ToInt32(txtCodVacinaEsquema.Text),
                                     tipoVacina = txtTipoVacina.Text,
@@ -715,13 +655,7 @@ namespace SG_VTNR
                 txtPesquisarAnimal.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtResPesqFuncionario.Text) || string.IsNullOrWhiteSpace(txtResPesqFuncionario.Text))
-            {
-                tabControl1.SelectTab(tabPage1);
-                MessageBox.Show("Informe o nome do Funcionário qua vai vacinar o animal.");
-                txtPesquisarFuncionario.Focus();
-                return false;
-            }
+           
 
             else if (string.IsNullOrEmpty(txtCodVacinaEsquema.Text) || string.IsNullOrWhiteSpace(txtCodVacinaEsquema.Text))
             {
@@ -894,6 +828,11 @@ namespace SG_VTNR
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             pnlMostrarDetalhesPagamento.Visible = false;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -490,7 +490,8 @@ create table  IItensRegistroVacina(
 	constraint fk_IDRegistroVacinacao_IItensRegistroVacina foreign key (IDRegistroVacinacao) references RegistroVacinacao (IDRegistroVacinacao),
 	CONSTRAINT fk_IdProduto_IItensRegistroVacina FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto)
 );
-	
+
+
 	CREATE PROCEDURE Insert_procedure_ItensRegistroVacina
     @IDRegistroVacinacao INT,
     @IdProduto INT,
@@ -822,9 +823,9 @@ CREATE TABLE TipoExame (
 -- Tabela de Exame
 CREATE TABLE Exame (
     IDExame INT PRIMARY KEY IDENTITY(1,1),
-    DataHora DATETIME,
-    ResultadoGeral VARCHAR(MAX),
-	 AnimalID INT,
+    DataHora DATETIME default getdate(),
+    ResultadoGeral VARCHAR(MAX), 
+	AnimalID INT,
     FuncionarioID INT,
     UsuarioID INT,
     Observacoes TEXT,
@@ -833,6 +834,7 @@ CREATE TABLE Exame (
     RecomendacoesTratamento VARCHAR(MAX),
     InstrucoesProprietario VARCHAR(MAX),
     AcompanhamentoNecessario VARCHAR(MAX),
+	StatusExame varchar(15),
      CONSTRAINT fk_RegistroExame_Funcionario FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
     CONSTRAINT fk_RegistroExame_Usuario FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID),
     CONSTRAINT fk_RegistroExame_Animal FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID)
@@ -842,7 +844,7 @@ CREATE TABLE Exame (
 CREATE TABLE ItemExame (
     ItemExameID INT PRIMARY KEY IDENTITY(1,1),
     ExameID INT,
-    TipoExameID INT,
+    TipoExameID int,
     ObservacaoItemExame VARCHAR(MAX),
     CONSTRAINT fk_ItemExame_Exame FOREIGN KEY (ExameID) REFERENCES Exame(IDExame),
 	CONSTRAINT fk_Exame_TipoExameID FOREIGN KEY (TipoExameID) REFERENCES TipoExame(TipoExameID)
@@ -886,37 +888,6 @@ CREATE TABLE Fornecedor (
 	Observacao varchar (MAX),
 	constraint fk_Fornecedor_Endereco foreign key(EnderecoID) references Endereco(EnderecoID)
 );
-
-SELECT *FROM produto
-INSERT INTO produto (NomeProduto, FornecedorID, UsuarioID, CodigodeBarra, Qtd, ValorCompra, ValorVenda, Concentracao, Dosagem, TipoProduto, CategoriaProduto, FormaFarmaceutica, Obs, NomeFornecedor, Fabricante, DataProducao, DataExpiracao, DataCadastro, FinalidadeProduto, EstadoProduto, IsentoCusto)
-VALUES
-('Ração para Cães', 17, 2, '7891234567890', 100, 10.00, 20.00, '500g', 'Concentracao1', 'Ração', 'Alimentação', 'Sólido', 'Ração para Cães de todas as raças', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Alimentação', 1, 'Não Isento a Custos'),
-('Shampoo Antipulgas', 17, 2, '7892345678901', 150, 15.00, 25.00, '250ml', 'Dosagem2', 'Shampoo', 'Higiene', 'Líquido', 'Shampoo Antipulgas para Cães e Gatos', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Higiene', 0, 'Não Isento a Custos'),
-('Coleira Antipulgas', 17, 2, '7893456789012', 200, 20.00, 30.00, 'Tamanho Único', 'Dosagem3', 'Acessório', 'Acessório', 'Outros', 'Coleira Antipulgas para Cães', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
-('Ração para Gatos', 17, 2, '7894567890123', 120, 12.00, 22.00, '400g', 'Concentracao1', 'Ração', 'Alimentação', 'Sólido', 'Ração para Gatos de todas as raças', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Alimentação', 1, 'Não Isento a Custos'),
-('Coleira para Gatos', 17, 2, '7895678901234', 180, 18.00, 28.00, 'Pequeno', 'Dosagem3', 'Acessório', 'Acessório', 'Outros', 'Coleira para Gatos ajustável', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
-('Shampoo para Gatos', 17, 2, '7896789012345', 220, 22.00, 32.00, '200ml', 'Dosagem2', 'Shampoo', 'Higiene', 'Líquido', 'Shampoo para Gatos de todas as raças', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Higiene', 0, 'Não Isento a Custos'),
-('Brinquedo para Cães', 17, 2, '7897890123456', 90, 9.00, 19.00, 'Tamanho Médio', 'Dosagem4', 'Brinquedo', 'Acessório', 'Outros', 'Brinquedo para Cães de porte médio', 'Fornecedor4', 'Fabricante4', '2020-01-01', '2021-01-01', GETDATE(), 'Entretenimento', 1, 'Não Isento a Custos'),
-('Areia Sanitária para Gatos', 17, 2, '7898901234567', 130, 13.00, 23.00, '1kg', 'Dosagem5', 'Areia Sanitária', 'Higiene', 'Sólido', 'Areia Sanitária para Gatos', 'Fornecedor5', 'Fabricante5', '2019-01-01', '2020-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos'),
-('Vacina V10 para Cães', 17, 2, '7899012345678', 50, 50.00, 100.00, '1 dose', 'Dosagem6', 'Vacina', 'Saúde', 'Injetável', 'Vacina V10 para Cães', 'Fornecedor6', 'Fabricante6', '2018-01-01', '2019-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Coleira Scalibor', 17, 2, '7890123456789', 70, 70.00, 130.00, 'Grande', 'Dosagem7', 'Coleira', 'Higiene', 'Outros', 'Coleira Scalibor para Cães', 'Fornecedor7', 'Fabricante7', '2017-01-01', '2018-01-01', GETDATE(), 'Higiene', 1, 'Não Isento a Custos');
-
-INSERT INTO produto (NomeProduto, FornecedorID, UsuarioID, CodigodeBarra, Qtd, ValorCompra, ValorVenda, Concentracao, Dosagem, TipoProduto, CategoriaProduto, FormaFarmaceutica, Obs, NomeFornecedor, Fabricante, DataProducao, DataExpiracao, DataCadastro, FinalidadeProduto, EstadoProduto, IsentoCusto)
-VALUES
-('Vacina contra Raiva para Cães', 17, 2, '7890123456780', 100, 5000.00, 10000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Raiva para Cães', 'Fornecedor1', 'Fabricante1', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Parvovirose para Cães', 17, 2, '7891234567801', 150, 5500.00, 11000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Parvovirose para Cães', 'Fornecedor2', 'Fabricante2', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Cinomose para Cães', 17, 2, '7892345678901', 200, 6000.00, 12000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Cinomose para Cães', 'Fornecedor3', 'Fabricante3', '2021-01-01', '2022-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Gripe Canina', 17, 2, '7893456789012', 120, 4000.00, 8000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Gripe Canina', 'Fornecedor4', 'Fabricante4', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Tosse dos Canis para Cães', 17, 2, '7894567890123', 180, 4500.00, 9000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Tosse dos Canis para Cães', 'Fornecedor5', 'Fabricante5', '2021-01-01', '2022-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Leucemia Felina', 17, 2, '7895678901234', 220, 5000.00, 10000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Leucemia Felina', 'Fornecedor6', 'Fabricante6', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Calicivirose Felina', 17, 2, '7896789012345', 90, 3000.00, 6000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Calicivirose Felina', 'Fornecedor7', 'Fabricante7', '2023-01-01', '2024-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Panleucopenia Felina', 17, 2, '7897890123456', 130, 3500.00, 7000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Panleucopenia Felina', 'Fornecedor8', 'Fabricante8', '2022-01-01', '2023-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Rinotraqueíte Felina', 17, 2, '7898901234567', 50, 2500.00, 5000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Rinotraqueíte Felina', 'Fornecedor9', 'Fabricante9', '2024-01-01', '2025-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Panleucopenia Felina para Gatos', 17, 2, '7899012345678', 70, 3000.00, 6000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Panleucopenia Felina para Gatos', 'Fornecedor10', 'Fabricante10', '2025-01-01', '2026-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos'),
-('Vacina contra Giárdia para Cães', 17, 2, '7890123456789', 80, 3500.00, 7000.00, '1 dose', 'Dosagem1', 'Vacina', 'Saúde', 'Injetável', 'Vacina contra Giárdia para Cães', 'Fornecedor11', 'Fabricante11', '2026-01-01', '2027-01-01', GETDATE(), 'Saúde', 1, 'Não Isento a Custos');
-
-update produto set TipoProduto ='Vacina'where IdProduto>25
-
 
 -- Tabela de Produtos
 CREATE TABLE produto(
@@ -1050,35 +1021,49 @@ BEGIN
     SET @NovoProdutoID = SCOPE_IDENTITY();
 END;
 
+select *from compra
+select *from venda 
+
+
 -- criacao da Tabela Compra
-CREATE TABLE Compra (
+CREATE  TABLE Compra(
     IDCompra INT PRIMARY KEY not null identity(1,1),
-    UsuarioID INT, -- Adicionada a referência ao Funcionario
-    DataCompra DATE,
-    TotalCompra DECIMAL(10, 2),
+    UsuarioID INT, 
+    DataCompra DATETIME default getdate(),
+	Desconto decimal(15,2),
+	Imposto decimal(15,2),
+	Troco decimal (15,2),
+	FormaPagamento varchar (30),
+    TotalCompra DECIMAL(15, 2),
+	ValorEntregue decimal(15,2),
     FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+select *from Compra
+select *from itemcompraproduto
 -- criacao do procedimento inserir compra 
-CREATE PROCEDURE Insert_procedure_Compra
+CREATE  PROCEDURE Insert_procedure_Compra
     @UsuarioID INT,
-    @DataCompra DATE,
-    @TotalCompra DECIMAL(18, 2)
+    @TotalCompra DECIMAL(18, 2),
+	@Desconto DECIMAL(18, 2),
+	@Imposto DECIMAL(18, 2),
+	@Troco DECIMAL(18, 2),
+	@FormaPagamento varchar(30),
+	@ValorEntregue DECIMAL(18, 2)
 AS
 BEGIN
     SET NOCOUNT ON;
     -- Aqui você realiza as operações necessárias, por exemplo, inserir dados na tabela Compra
-    INSERT INTO Compra (UsuarioID, DataCompra, TotalCompra)
-    VALUES (@UsuarioID, @DataCompra, @TotalCompra);
+    INSERT INTO Compra (UsuarioID,TotalCompra,Desconto,Imposto,Troco,FormaPagamento,ValorEntregue)
+    VALUES (@UsuarioID,@TotalCompra,@Desconto,@Imposto,@Troco,@FormaPagamento,@ValorEntregue);
     -- Obtém o ID da compra inserida
     DECLARE @CompraID INT;
     SET @CompraID = SCOPE_IDENTITY();
-
     -- Retorna o ID da compra
     SELECT @CompraID AS 'CompraID';
 END
-
+select *from Compra
 -- Tabela ItemCompraProduto
-CREATE TABLE ItemCompraProduto (
+CREATE  TABLE ItemCompraProduto (
     IDItemCompraProduto INT PRIMARY KEY not null identity(1,1),
     CompraID INT,
     ProdutoID INT,
@@ -1108,46 +1093,106 @@ ma
 select *from Fornecedor
 select *from produto where idproduto=2
 select *from Venda
-
+alter table venda alter column DataVenda datetime
 -- Tabela Venda
-CREATE TABLE Venda (
+CREATE  TABLE Venda (
     IDVenda INT PRIMARY KEY identity (1,1),
 	NomeCliente Varchar (100),
-    DataVenda DATE,
-    TotalVenda DECIMAL(10, 2),
-	Desconto decimal(5,2),
-	Imposto decimal(5,2),
-	Troco decimal(5,2),
+    DataVenda DATETIME,
+    TotalVenda DECIMAL(15, 2),
+	Desconto decimal(15,2),
+	Imposto decimal(15,2),
+	Troco decimal(15,2),
 	FormaPagamento varchar(30),
+	ValorEntregue decimal(15,2),
 	UsuarioID INT,-- Adicionada a referência ao Funcionario
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
 
+
 -- Tabela ItemVenda
-CREATE TABLE ItemVenda (
+CREATE  TABLE ItemVenda (
     IDItemVenda INT PRIMARY KEY identity (1,1),
     VendaID INT,
     ProdutoID INT,
     Quantidade INT,
-    PrecoUnitario DECIMAL(10, 2),
-    Total DECIMAL(10, 2),
+    PrecoUnitario DECIMAL(15, 2),
+    Total DECIMAL(15, 2),
     FOREIGN KEY (ProdutoID) REFERENCES Produto(IDProduto)
 );
 
--- Exemplo de procedimento armazenado "Insert_procedure_Venda"
-CREATE PROCEDURE Insert_procedure_Venda
-    @NomeCliente Varchar (100),
-	@DataVenda DATE,
-    @TotalVenda DECIMAL(10, 2),
-	@UsuarioID INT
+
+CREATE     PROCEDURE Insert_procedure_Venda
+    @NomeCliente VARCHAR(100),
+    @DataVenda DATEtime,
+    @TotalVenda DECIMAL(12, 2),
+    @UsuarioID INT,
+    @Desconto DECIMAL(15, 2),
+    @ValorEntregue DECIMAL(15, 2),
+    @Imposto DECIMAL(15, 2),
+    @Troco DECIMAL(15, 2),
+    @FormaPagamento varchar(30)
 AS
 BEGIN
-    INSERT INTO Venda (NomeCliente, DataVenda,TotalVenda,UsuarioID)
-    VALUES (@NomeCliente, @DataVenda, @TotalVenda,@UsuarioID);
+    INSERT INTO Venda (NomeCliente, DataVenda, TotalVenda, UsuarioID, Desconto, ValorEntregue, Imposto, Troco, FormaPagamento )
+    VALUES (@NomeCliente, @DataVenda, @TotalVenda, @UsuarioID, @Desconto, @ValorEntregue, @Imposto, @Troco, @FormaPagamento);
 
     -- Retorna o ID da venda inserida
     SELECT SCOPE_IDENTITY();
 END;
+
+
+
+
+select *from Venda
+DECLARE @IDVenda INT;
+
+EXEC Insert_procedure_Venda
+    @NomeCliente = 'Ngovo',
+    @DataVenda = '2024-03-07',
+    @TotalVenda = 100.00,
+    @UsuarioID = 2,
+    @Desconto = 10.00,
+    @ValorEntregue = 120.00,
+    @Imposto = 5.00,
+    @Troco = 10.00,
+    @FormaPagamento = cash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select *from venda
+DECLARE @IDVenda INT; -- Declara a variável para armazenar o ID da venda
+-- Executa o procedimento armazenado para inserir a venda
+EXEC Insert_procedure_Venda 
+    @NomeCliente = 'Cliente',
+    @DataVenda = '2024-03-09',
+    @TotalVenda = 100.00,
+    @UsuarioID = 1,
+    @Desconto = 10.00,
+    @ValorEntregue = 120.00,
+    @Imposto = 5.00,
+    @Troco = 10.00,
+    @FormaPagamento = 'Dinheiro',
+    @IDVenda = @IDVenda OUTPUT; -- Passa a variável como parâmetro de saída
+
+-- Retorna o ID da venda inserida
+SELECT @IDVenda = SCOPE_IDENTITY();
+
+-- Exibe o ID da venda inserida
+SELECT @IDVenda AS IDVendaInserida;
+
 --criacao do procedimento para actualizar a quantidade vendida
 CREATE PROCEDURE Update_procedure_AtualizarQuantidadeEstoque
     @ProdutoID INT,
@@ -1158,5 +1203,115 @@ BEGIN
     SET Qtd = Qtd - @Quantidade
     WHERE IDProduto = @ProdutoID;
 END
+
+
+--procedimento para consultar os dados na base de dados sobre venda
+CREATE   PROCEDURE ObterDadosVenda
+    @CodigoVenda INT
+AS
+BEGIN
+    SELECT v.IDVenda, v.NomeCliente, v.TotalVenda, v.DataVenda, v.ValorEntregue,v.Desconto, v.Imposto, v.Troco, v.FormaPagamento,
+           i.ProdutoID, p.NomeProduto, i.Quantidade, i.PrecoUnitario, i.Total,CONCAT(f.nome,' ',f.Sobrenome,' ',f.Apelido) as 'Operador'
+    FROM Venda v
+    INNER JOIN ItemVenda i ON v.IDVenda = i.VendaID
+    INNER JOIN Produto p ON i.ProdutoID = p.IdProduto
+	inner join Usuario u on v.UsuarioID=u.UsuarioID
+	inner join Funcionario f on u.FuncionarioID=f.FuncionarioID
+    WHERE v.IDVenda = @CodigoVenda;
+END
+
+exec ObterDadosVenda 22
+select *from Venda
+select *from ItemVenda
+
+
+
+create  procedure ObterDadosCompra
+    @CdogioCompra INT
+as 
+BEGIN
+
+select  c.IDCompra, c.DataCompra,c.Desconto,c.Imposto,c.Troco,c.FormaPagamento,c.TotalCompra,i.ProdutoID,i.Quantidade,i.PrecoUnitario,i.Total
+,p.NomeProduto, f.NomeFornecedor,CONCAT(fu.Nome, ' ',fu.Sobrenome,' ', fu.Apelido) as Operador,c.ValorEntregue
+
+ from Compra c INner JOIN ItemCompraProduto i on c.IDCompra=i.CompraID 
+ INNER JOIN produto p on p.IdProduto=i.ProdutoID 
+ inner join Fornecedor f on f.FornecedorID=p.FornecedorID
+ inner JOIN Usuario u on c.UsuarioID=u.UsuarioID
+ INNER JOIN Funcionario fu on fu.FuncionarioID=u.FuncionarioID
+
+ where c.IDCompra=@CdogioCompra
+ END
+
+ select *from Compra
+ select *from ItemCompraProduto
+
+exec ObterDadosVenda 20
+select *from Funcionario
+select *from Venda
+
+
+select *from Venda
+select  *from usuario u, Funcionario f where u.funcionarioid=f.FuncionarioID
+select *from usuario u inner join Funcionario f on u.FuncionarioID=f.FuncionarioID
+exec ObterDadosVenda 5
+
 ------------------------------------------------------------------
 --fim de Area de criacao de tabelas de compra e vendas da farmacia----------------------------------------------------------------------------
+select distinct p.Nome from proprietario p, Animal a where a.ProprietarioID=p.ProprietarioID
+
+select *from Venda
+select *from ItemVenda
+update venda set NomeCliente='Mauricio Filipe' where IDVenda=5
+--procedimento para consultar os dados na base de dados sobre venda
+CREATE  PROCEDURE selecionar
+
+as
+BEGIN
+    SELECT v.IDVenda, v.NomeCliente, v.TotalVenda,v.ValorEntregue, v.DataVenda, v.Desconto, v.Imposto, v.Troco, v.FormaPagamento,
+           i.ProdutoID, p.NomeProduto, i.Quantidade, i.PrecoUnitario, i.Total
+    FROM Venda v
+    INNER JOIN ItemVenda i ON v.IDVenda = i.VendaID
+    INNER JOIN Produto p ON i.ProdutoID = p.IdProduto
+END
+
+
+
+select * from venda
+-------------------------------------------------------------------------------------------------
+--testes de codigo pode eliminar a qualquer momento so estou a testa
+
+CREATE    PROCEDURE ObterDadosVendateste
+    @CodigoVenda INT
+AS
+BEGIN
+    SELECT  v.NomeCliente, v.TotalVenda, v.DataVenda, v.ValorEntregue,v.Desconto, v.Imposto, v.Troco, v.FormaPagamento,
+           i.ProdutoID, p.NomeProduto, i.Quantidade, i.PrecoUnitario, i.Total,f.nome
+    FROM Venda v
+    INNER JOIN ItemVenda i ON v.IDVenda = i.VendaID
+    INNER JOIN Produto p ON i.ProdutoID = p.IdProduto
+	inner join Usuario u on v.UsuarioID=u.UsuarioID
+	inner join Funcionario f on u.FuncionarioID=f.FuncionarioID
+	WHERE VendaID = @CodigoVenda
+--group by v.IDVenda, i.quantidade, i.precoUnitario,f.Nome,v.dataVenda, v.NomeCliente,p.NomeProduto,v.TotalVenda, v.ValorEntregue,v.Desconto,v.Imposto
+--,v.Troco,v.FormaPagamento ,i.ProdutoID, i.Total
+END
+EXEC ObterDadosVendateste 22
+CREATE  PROCEDURE ObterDadosVendateste
+(@CodigoVenda INT)
+AS
+BEGIN
+SELECT v.IDVenda, v.NomeCliente, v.TotalVenda, v.DataVenda, v.ValorEntregue, v.Desconto, v.Imposto, v.Troco, v.FormaPagamento,
+i.ProdutoID, p.NomeProduto, i.Quantidade, i.PrecoUnitario, i.Total, f.Nome AS NomeFuncionario
+FROM Venda v
+INNER JOIN ItemVenda i ON v.IDVenda = i.VendaID
+INNER JOIN Produto p ON i.ProdutoID = p.IdProduto
+INNER JOIN Usuario u ON v.UsuarioID = u.UsuarioID
+INNER JOIN Funcionario f ON u.FuncionarioID = f.FuncionarioID
+WHERE EXISTS (SELECT * FROM ItemVenda WHERE VendaID = @CodigoVenda)
+--group by v.IDVenda, i.quantidade, i.precoUnitario,f.Nome,v.dataVenda, v.NomeCliente,p.NomeProduto,v.TotalVenda, v.ValorEntregue,v.Desconto,v.Imposto
+--,v.Troco,v.FormaPagamento ,i.ProdutoID, i.Total
+END
+select *from RegistroVacinacao
+select *from IItensRegistroVacina
+select *from 

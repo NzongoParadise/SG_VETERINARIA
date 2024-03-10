@@ -184,9 +184,13 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastrarAnimalteste.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastroRaca.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCompra.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFaturaCompra.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFaturaVenda.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFaturaVendaTeste.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmIntermediarioAnimal.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmCadastrarAgendamentoConsulta.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmPesagem.resources
+C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmRelatorioCadastroAnimal.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmServicos.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmAdicionarEndereco.resources
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmExame.resources
@@ -211,5 +215,3 @@ C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.csproj.Up2Date
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.exe
 C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.pdb
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFaturaCompra.resources
-C:\Users\MAURICO-PC\Documents\GitHubVS2022_Veterinaria\SG_VTNR\obj\Debug\SG_VTNR.frmFaturaVenda.resources

@@ -73,6 +73,63 @@ namespace BLL
             DALLAnimal DALobj = new DALLAnimal(conexao);
             DALobj.IncluirAnimal(modelo);
         }
+
+        public void updateAnimal(ModeloAnimal modelo)
+        {
+            if (modelo.Nome1.Trim().Length == 0)
+            {
+                throw new Exception("O nome do animal deve ser informado!!!");
+            }
+            //if (modelo.Foto.Length == null)
+            //{
+            //    throw new Exception("O a foto do animal tem de ser carregada!!!");
+            //}
+            if (string.IsNullOrWhiteSpace(modelo.Especie1))
+            {
+                throw new Exception("O nome da espécie do animal deve ser informado!!!");
+            }
+
+            if (modelo.Especie1.Trim().Length == 0)
+            {
+                throw new Exception("O nome da especie do animal deve ser informado!!!");
+            }
+            if (modelo.Raca1.Trim().Length == 0)
+            {
+                throw new Exception("O nome da raca deve ser informado!!!");
+            }
+            if (modelo.Cor1.Trim().Length == 0)
+            {
+                throw new Exception("O a cor do animal deve ser informado!!!");
+            }
+            if (modelo.Peso1 <= 0)
+            {
+                throw new Exception("O peso do animal deve ser informado!!!");
+            }
+            if (modelo.Estado1.Trim().Length == 0)
+            {
+                throw new Exception("O estado do animal deve ser informado!!!");
+            }
+            if (modelo.Porte1.Trim().Length == 0)
+            {
+                throw new Exception("O porte do animal deve ser informado!!!");
+            }
+            if (modelo.sexo1.Trim().Length == 0)
+            {
+                throw new Exception("O Genero do animal deve ser informado!!!");
+            }
+
+
+            if (modelo.ProprietarioID1 <= 0)
+            {
+                throw new Exception("O codigo do proprietario deve ser informado!!!");
+            }
+            if (modelo.Observacao.Trim().Length == 0)
+            {
+                throw new Exception("a observacao deve  ser informado!!!");
+            }
+            DALLAnimal DALobj = new DALLAnimal(conexao);
+            DALobj.updateAnimal(modelo);
+        }
         public void AtualizarAnimal(ModeloAnimal modelo)
         {
             if (modelo.Nome1.Trim().Length == 0)
@@ -126,7 +183,7 @@ namespace BLL
                 throw new Exception("a observacao deve  ser informado!!!");
             }
             DALLAnimal DALobj = new DALLAnimal(conexao);
-            DALobj.AtualizarAnimal(modelo);
+            DALobj.updateAnimal(modelo);
         }
 
         public DataTable PesquisarAnimalcomChave(string Nome)

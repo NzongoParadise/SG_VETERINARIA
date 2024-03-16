@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdicionarEndereco));
-            this.dgvDados = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dgvMostraEndereco = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnDeletar = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnImprimir = new System.Windows.Forms.DataGridViewImageColumn();
@@ -68,76 +68,76 @@
             this.btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             this.btnEditar = new Guna.UI2.WinForms.Guna2Button();
             this.txtEnderecoID = new Guna.UI2.WinForms.Guna2TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraEndereco)).BeginInit();
             this.guna2ShadowPanel6.SuspendLayout();
             this.pnlCadastarEndreco.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvDados
+            // dgvMostraEndereco
             // 
-            this.dgvDados.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDados.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDados.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvDados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvDados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvDados.ColumnHeadersHeight = 20;
-            this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvMostraEndereco.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMostraEndereco.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMostraEndereco.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMostraEndereco.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostraEndereco.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMostraEndereco.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMostraEndereco.ColumnHeadersHeight = 20;
+            this.dgvMostraEndereco.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnDeletar,
             this.btnEdit,
             this.btnImprimir});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDados.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvDados.EnableHeadersVisualStyles = false;
-            this.dgvDados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvDados.Location = new System.Drawing.Point(14, 212);
-            this.dgvDados.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvDados.Name = "dgvDados";
-            this.dgvDados.RowHeadersVisible = false;
-            this.dgvDados.RowHeadersWidth = 62;
-            this.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDados.Size = new System.Drawing.Size(960, 326);
-            this.dgvDados.TabIndex = 1;
-            this.dgvDados.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-            this.dgvDados.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvDados.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvDados.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvDados.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvDados.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvDados.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvDados.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvDados.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvDados.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvDados.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvDados.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvDados.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvDados.ThemeStyle.HeaderStyle.Height = 20;
-            this.dgvDados.ThemeStyle.ReadOnly = false;
-            this.dgvDados.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvDados.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvDados.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvDados.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvDados.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvDados.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvDados.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellContentClick);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMostraEndereco.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvMostraEndereco.EnableHeadersVisualStyles = false;
+            this.dgvMostraEndereco.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.Location = new System.Drawing.Point(14, 212);
+            this.dgvMostraEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvMostraEndereco.Name = "dgvMostraEndereco";
+            this.dgvMostraEndereco.RowHeadersVisible = false;
+            this.dgvMostraEndereco.RowHeadersWidth = 62;
+            this.dgvMostraEndereco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostraEndereco.Size = new System.Drawing.Size(960, 326);
+            this.dgvMostraEndereco.TabIndex = 1;
+            this.dgvMostraEndereco.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvMostraEndereco.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvMostraEndereco.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvMostraEndereco.ThemeStyle.ReadOnly = false;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvMostraEndereco.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvMostraEndereco.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellContentClick);
             // 
             // btnDeletar
             // 
@@ -784,13 +784,13 @@
             this.Controls.Add(this.guna2ShadowPanel6);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.guna2Button1);
-            this.Controls.Add(this.dgvDados);
+            this.Controls.Add(this.dgvMostraEndereco);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAdicionarEndereco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEndereco";
             this.Load += new System.EventHandler(this.frmEndereco_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraEndereco)).EndInit();
             this.guna2ShadowPanel6.ResumeLayout(false);
             this.pnlCadastarEndreco.ResumeLayout(false);
             this.pnlCadastarEndreco.PerformLayout();
@@ -801,7 +801,7 @@
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2DataGridView dgvDados;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvMostraEndereco;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisar;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel6;

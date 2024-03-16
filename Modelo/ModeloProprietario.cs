@@ -11,24 +11,8 @@ namespace Modelo
     
     public class ModeloProprietario
     {
-        //public int propietarioId { get; set; }
-        //public string nome { get; set; }
-        //public string sexo { get; set; }
-        //public int enderecoID { get; set; }
-        //public string sobrenome { get; set; }
-        //public string apelido { get; set; }
-        //public string tipodocumento { get; set; }
-        //public string numIdnt { get; set; }
-        //public DateTime dataEmissao { get; set; }
-        //public DateTime dataValidade { get; set; }
-        //public string nomePai { get; set; }
-        //public string nomeMae { get; set; }
-        //public string nacionalidade { get; set; }
-        //public string descricao { get; set; }
-        //public string genero { get; set; }
-        //public DateTime datanascimento { get; set; }
 
-
+        public int usuarioID { get; set; }
         private int propietarioId;
         private String nome;
         private string sexo;

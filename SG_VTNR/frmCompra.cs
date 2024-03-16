@@ -154,12 +154,11 @@ namespace SG_VTNR
                 modelo.finalidadeProduto = finalidade;
                 if (finalidade!="Comercial")
                 {
-                    modelo.isentoCusto = "Isento a Custos";
-
+                    modelo.situacaCusto = "Isento a Custos";
                 }
                 else
                 {
-                    modelo.isentoCusto = "Não Isento a Custos";
+                    modelo.situacaCusto = "Não Isento a Custos";
                 }
                 //metedoPagamento =cmbMetodoPagamento.Text,
                 modelo.DataCadastro = DateTime.Now;
@@ -446,142 +445,148 @@ namespace SG_VTNR
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (pnlCadastrarProduto.Visible==false)
-            {
-                pnlCadastrarProduto.Visible = true;
-            }
+            //if (pnlCadastrarProduto.Visible==false)
+            //{
+            //    pnlCadastrarProduto.Visible = true;
+            //}
+            frmCadastrarProduto frm = new frmCadastrarProduto();
+            frm.ShowDialog();
         }
 
         private void guna2Button7_Click_1(object sender, EventArgs e)
         {
 
         }
-       
-
         private void btnAdicionarCarrinhoCompra_Click(object sender, EventArgs e)
         {
-            try
+             if (dataProducao.Value.Date.AddYears(1)<dataValidade.Value.Date)
             {
-                // verifica o a finalidade do produto
-                if (lblFinalidade.Text!="Comercial")
+                try
                 {
-                    if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
-                   string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text))
+                    // verifica o a finalidade do produto
+                    if (lblFinalidade.Text != "Comercial")
                     {
-                        MessageBox.Show("Preencha os Campos Obrigatórios");
-                    }
-                    else
-                    {
-                        int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
-                        // Verifica se o produto já está no carrinho
-                        ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
-                        if (produtoExistente != null)
+                        if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
+                       string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text))
                         {
-                            MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Preencha os Campos Obrigatórios");
                         }
                         else
                         {
-
-                            int qtdFormulario = Convert.ToInt32(txtQtd.Text);
-                            //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
-                            if (qtdFormulario > 0)
+                            int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
+                            // Verifica se o produto já está no carrinho
+                            ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
+                            if (produtoExistente != null)
                             {
-                                ModeloCompra novoProduto = new ModeloCompra
-                                {
-                                    NomeProduto = txtNomeProdutoCompra.Text,
-                                    produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
-                                    Qtd = Convert.ToInt32(txtQtd.Text),
-                                    precoUnitarioVenda = 0,
-                                    precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
-                                    dataProducao = dataProducao.Value,
-                                    dataExpiracao = DataExpiracao.Value,
-                                    Total = decimal.Parse(txtTotqtd.Text),
-                                    TipoProduto = txtTipoProduto.Text,
-                                    CategoriaProduto = txtCategoria.Text,
-                                    UsuarioID = m.UsuarioID,
-                                    eestadoProduto=true,
-                                    DataCompra=DateTime.Now
-                                };
-                                decimal subtotal = Decimal.Parse(txtSubTotal.Text);
-                                subtotal += novoProduto.Total;
-                                txtSubTotal.Text = subtotal.ToString();
-                                this.listaDeDados.Add(novoProduto);
-                                AtualizarDataGridView();
-                                limparCampos();
+                                MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
-                                MessageBox.Show("Quantidade Inválida!!!");
+
+                                int qtdFormulario = Convert.ToInt32(txtQtd.Text);
+                                //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                                if (qtdFormulario > 0)
+                                {
+                                    ModeloCompra novoProduto = new ModeloCompra
+                                    {
+                                        NomeProduto = txtNomeProdutoCompra.Text,
+                                        produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
+                                        Qtd = Convert.ToInt32(txtQtd.Text),
+                                        precoUnitarioVenda = 0,
+                                        precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
+                                        dataProducao = dataProducao.Value,
+                                        dataExpiracao = dataValidade.Value,
+                                        Total = decimal.Parse(txtTotqtd.Text),
+                                        TipoProduto = txtTipoProduto.Text,
+                                        CategoriaProduto = txtCategoria.Text,
+                                        UsuarioID = m.UsuarioID,
+                                        eestadoProduto = true,
+                                        DataCompra = DateTime.Now
+                                    };
+                                    decimal subtotal = Decimal.Parse(txtSubTotal.Text);
+                                    subtotal += novoProduto.Total;
+                                    txtSubTotal.Text = subtotal.ToString();
+                                    this.listaDeDados.Add(novoProduto);
+                                    AtualizarDataGridView();
+                                    limparCampos();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Quantidade Inválida!!!");
+                                }
                             }
                         }
-                    }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
-                   string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text) ||
-                   string.IsNullOrEmpty(txtValorVenda.Text))
-                    {
-                        MessageBox.Show("Preencha os Campos Obrigatórios");
                     }
                     else
                     {
-                        int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
-                        // Verifica se o produto já está no carrinho
-                        ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
-                        if (produtoExistente != null)
+                        if (string.IsNullOrEmpty(txtNomeProdutoCompra.Text) ||
+                       string.IsNullOrEmpty(txtQtd.Text) || string.IsNullOrEmpty(txtValorCompr.Text) ||
+                       string.IsNullOrEmpty(txtValorVenda.Text))
                         {
-                            MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Preencha os Campos Obrigatórios");
                         }
                         else
                         {
-                            int qtdFormulario = Convert.ToInt32(txtQtd.Text);
-                            //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
-                            if (qtdFormulario > 0)
+                            int produtoID = Convert.ToInt32(txtCodProdutoCompra.Text);
+                            // Verifica se o produto já está no carrinho
+                            ModeloCompra produtoExistente = listaDeDados.FirstOrDefault(p => p.produtoID == produtoID);
+                            if (produtoExistente != null)
                             {
-                                ModeloCompra novoProduto = new ModeloCompra
-                                {
-                                    NomeProduto = txtNomeProdutoCompra.Text,
-                                    produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
-                                    Qtd = Convert.ToInt32(txtQtd.Text),
-                                    precoUnitarioVenda = decimal.Parse(txtValorVenda.Text),
-                                    precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
-                                    dataProducao = dataProducao.Value,
-                                    dataExpiracao = DataExpiracao.Value,
-                                    Total = decimal.Parse(txtTotqtd.Text),
-                                    TipoProduto = txtTipoProduto.Text,
-                                    CategoriaProduto = txtCategoria.Text,
-                                     UsuarioID = m.UsuarioID,
-                                     eestadoProduto=true,
-                                    DataCompra = DateTime.Now
-
-                                };
-                                decimal subtotal = Decimal.Parse(txtSubTotal.Text);
-                                subtotal += novoProduto.Total;
-                                txtSubTotal.Text = subtotal.ToString();
-                                this.listaDeDados.Add(novoProduto);
-                                AtualizarDataGridView();
-                                limparCampos();
+                                MessageBox.Show("Não foi possível adicionar o produto ao carrinho novamente. Por favor, edite ou remova o produto existente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
-                                MessageBox.Show("Quantidade Inválida!!!");
+                                int qtdFormulario = Convert.ToInt32(txtQtd.Text);
+                                //verifica se o valor que esta no txtQuantidade no formulario eh maior que zero 
+                                if (qtdFormulario > 0)
+                                {
+                                    ModeloCompra novoProduto = new ModeloCompra
+                                    {
+                                        NomeProduto = txtNomeProdutoCompra.Text,
+                                        produtoID = Convert.ToInt32(txtCodProdutoCompra.Text),
+                                        Qtd = Convert.ToInt32(txtQtd.Text),
+                                        precoUnitarioVenda = decimal.Parse(txtValorVenda.Text),
+                                        precoCompraUnitario = decimal.Parse(txtValorCompr.Text),
+                                        dataProducao = dataProducao.Value,
+                                        dataExpiracao = dataValidade.Value,
+                                        Total = decimal.Parse(txtTotqtd.Text),
+                                        TipoProduto = txtTipoProduto.Text,
+                                        CategoriaProduto = txtCategoria.Text,
+                                        UsuarioID = m.UsuarioID,
+                                        eestadoProduto = true,
+                                        DataCompra = DateTime.Now
+
+                                    };
+                                    decimal subtotal = Decimal.Parse(txtSubTotal.Text);
+                                    subtotal += novoProduto.Total;
+                                    txtSubTotal.Text = subtotal.ToString();
+                                    this.listaDeDados.Add(novoProduto);
+                                    AtualizarDataGridView();
+                                    limparCampos();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Quantidade Inválida!!!");
+                                }
                             }
+
+
                         }
-
-
                     }
+
                 }
-               
+                catch (Exception erro)
+                {
+
+                    throw new Exception("Erro ao incluir os dados:" + erro.Message);
+                }
+
+
+
             }
-            catch (Exception erro)
-            {
-
-                throw new Exception("Erro ao incluir os dados:"+erro.Message);
+            else { 
+            MessageBox.Show("A data de produção tem de superior a 1 ano amail que a data de válidade", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            
-
         }
 
         private void guna2Button7_Click(object sender, EventArgs e)

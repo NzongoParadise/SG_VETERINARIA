@@ -20,12 +20,12 @@ namespace SG_VTNR
 {
     public partial class frmCadastrarAnimalteste : Form
     {
-        ModeloAnimal m = new ModeloAnimal();
+        //ModeloAnimal m = new ModeloAnimal();
         private string foto;
         public frmCadastrarAnimalteste()
         {
             InitializeComponent();
-            m.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
+       
             if (pnlProprietario.Visible == false)
             {
                 pnlProprietario.Visible = true;
@@ -90,12 +90,13 @@ namespace SG_VTNR
                     modelo.Especie1 = cbmEspecie.Text;
                     modelo.sexo1 = cbmGenero.Text;
                     modelo.CarregaImage(this.foto);
+                    modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
 
                     //modelo.Foto=
                     DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                     BLLAnimal bll = new BLLAnimal(cx);
                     //inserir os dados
-                    bll.updateAnimal(modelo);
+                    bll.incluir(modelo);
                     MessageBox.Show(modelo.AnimalID1.ToString() + "\n \n Animal Cadastrado com Sucesso!", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
                     frmRelatorioCadastroAnimal frm = new frmRelatorioCadastroAnimal(modelo.AnimalID1);
@@ -525,6 +526,7 @@ private void pictureBox3_Click(object sender, EventArgs e)
                     modelo.Especie1 = cbmEspecie.Text;
                     modelo.sexo1 = cbmGenero.Text;
                     modelo.CarregaImage(this.foto);
+                    modelo.UsuarioID = SessaoUsuario.Session.Instance.UsuID;
 
                     //modelo.Foto=
                     DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);

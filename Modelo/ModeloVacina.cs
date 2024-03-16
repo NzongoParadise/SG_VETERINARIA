@@ -8,13 +8,14 @@ namespace Modelo
 {
     public class ModeloVacina
     {
-        public int IDRegistroVacinacao { get; set; }
+        public int RegistroVacinacaoID { get; set; }
         public int AnimalID { get; set; }
         public string tipoVacina { get; set; }
         public int FuncionarioID { get; set; }
         public int IdVacina { get; set; }
         public int UsuarioID { get; set; }
         public int DoseVacina { get; set; }
+        
         public decimal qtdAdministrada { get; set; }
         public string NomeVacina { get; set; }
         public string LoteVacina { get; set; }
@@ -34,6 +35,11 @@ namespace Modelo
         public string finalidade { get; set; }
         public string IsentoCusto { get; set; }
         public decimal totalGeral { get; set; }
+        public decimal troco { get; set; }
+        public decimal valorEntregue { get; set; }
+        public decimal imposto { get; set; }
+        public decimal desconto{ get; set; }
+        public string formaPagamento { get; set; }
     }
 
 }

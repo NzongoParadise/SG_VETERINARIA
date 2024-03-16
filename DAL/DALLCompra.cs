@@ -411,7 +411,7 @@ namespace DAL
         public DataTable PesquisarFornecedorComChavenaCompra(string nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("select FornecedorID,NomeFornecedor from Fornecedor where NomeFornecedor like '%" + nome + "%' or TipoServico like '%" + nome + "%' or FornecedorID like '%" + nome + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter("select FornecedorID,NomeFornecedor,TipoServico from Fornecedor where NomeFornecedor like '%" + nome + "%' or TipoServico like '%" + nome + "%' or FornecedorID like '%" + nome + "%'", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
             return dt;
@@ -467,7 +467,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("UsuarioID", modelo.UsuarioID);
                 cmd.Parameters.AddWithValue("CodigodeBarra", modelo.CodigodeBara);
                 cmd.Parameters.AddWithValue("estadoProduto", modelo.eestadoProduto);
-                cmd.Parameters.AddWithValue("IsentoCusto", modelo.isentoCusto);
+                cmd.Parameters.AddWithValue("IsentoCusto", modelo.situacaCusto);
                 // Adiciona o parâmetro de saída para capturar o novo ID
                 SqlParameter paramNovoProdutoID = new SqlParameter("@NovoProdutoID", SqlDbType.Int);
                 paramNovoProdutoID.Direction = ParameterDirection.Output;

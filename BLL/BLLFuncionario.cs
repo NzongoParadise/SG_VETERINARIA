@@ -24,7 +24,13 @@ namespace BLL
             DALObj.EliminarFuncionario(cod);
 
         }
-        public void Incluir(ModeloFuncionario modelo)
+        public bool verificarFuncionarioUsuario(int codigo)
+        {
+            DALFuncionario DALobj = new DALFuncionario(conexao);
+            return DALobj.verificarFuncionarioUsuario(codigo);
+        }
+
+        public void IncluirFuncionario(ModeloFuncionario modelo)
         {
             if (modelo.Nome.Trim().Length == 0)
             {
@@ -208,7 +214,11 @@ namespace BLL
             DALFuncionario DALObj = new DALFuncionario(conexao);
             return DALObj.PesquisarFuncionarioComChave(nome);
         }
-
+        public DataTable PesquisarTodosFuncionarios()
+        {
+            DALFuncionario DALObj = new DALFuncionario(conexao);
+            return DALObj.PesquisarTodosFuncionario();
+        }
         public DataTable PesquisarFuncionariosComChaveVacina(string nome)
         {
             DALFuncionario DALObj = new DALFuncionario(conexao);

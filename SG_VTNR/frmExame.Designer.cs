@@ -228,7 +228,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.pnlMostrarAnimal);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.guna2ShadowPanel1);
@@ -250,7 +249,7 @@
             this.pnlMostrarAnimal.BackColor = System.Drawing.Color.Transparent;
             this.pnlMostrarAnimal.Controls.Add(this.dgvMostrarAnimal);
             this.pnlMostrarAnimal.FillColor = System.Drawing.Color.White;
-            this.pnlMostrarAnimal.Location = new System.Drawing.Point(4, 104);
+            this.pnlMostrarAnimal.Location = new System.Drawing.Point(560, 267);
             this.pnlMostrarAnimal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlMostrarAnimal.Name = "pnlMostrarAnimal";
             this.pnlMostrarAnimal.Radius = 2;
@@ -345,6 +344,7 @@
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.pnlMostrarAnimal);
             this.guna2ShadowPanel1.Controls.Add(this.pnlMostrarProprietario);
             this.guna2ShadowPanel1.Controls.Add(this.pictureBox2);
             this.guna2ShadowPanel1.Controls.Add(this.label18);

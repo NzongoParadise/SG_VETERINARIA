@@ -19,6 +19,17 @@ namespace DAL
             this.conexao = cx;
 
         }
+        public bool verificarFuncionarioUsuario(int FuncionarioID)
+        {
+            string query = "SELECT * FROM Usuario WHERE FuncionarioID = @FuncionarioID";
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            cmd.Parameters.AddWithValue("@FuncionarioID", FuncionarioID);
+            conexao.Conectar();
+            object result = cmd.ExecuteScalar();
+            conexao.Desconectar();
+            return result != null;
+        }
+
         public void EliminarFuncionario(int codigo)
         {
             SqlCommand cmd = new SqlCommand();
@@ -54,6 +65,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@EstadoCivil", modelo.EstadoCivil);
             cmd.Parameters.AddWithValue("@Observacao", modelo.Observacao);
             cmd.Parameters.AddWithValue("@EnderecoID", modelo.EnderecoID);
+            cmd.Parameters.AddWithValue("@UsuarioID", modelo.usuarioID);
             cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
             if (modelo.Foto == null)
             {
@@ -68,14 +80,12 @@ namespace DAL
             try
             {
                 conexao.Conectar();
-                //cmd.ExecuteNonQuery();
-                // Se deseja obter o ID do funcionário inserido
                  modelo.FuncionarioID = Convert.ToInt32(cmd.ExecuteScalar());
             }
             catch (SqlException ex)
             {
                 // Trate a exceção aqui
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Falha no cadastro do funcionário:"+ex.Message);
             }
             finally
             {
@@ -109,6 +119,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@EstadoCivil", modelo.EstadoCivil);
             cmd.Parameters.AddWithValue("@Observacao", modelo.Observacao);
             cmd.Parameters.AddWithValue("@EnderecoID", modelo.EnderecoID);
+            cmd.Parameters.AddWithValue("@UsuarioID", modelo.usuarioID);
             cmd.Parameters.Add("@Foto", System.Data.SqlDbType.Image);
             if (modelo.Foto == null)
             {
@@ -123,30 +134,54 @@ namespace DAL
             try
             {
                 conexao.Conectar();
-                cmd.ExecuteNonQuery();
-                // Se deseja obter o ID do funcionário inserido
                 modelo.FuncionarioID = Convert.ToInt32(cmd.ExecuteScalar());
+                conexao.Desconectar();
             }
             catch (SqlException ex)
             {
                 // Trate a exceção aqui
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro ao actualizar os dados na base de dados: "+ex.Message);
             }
             finally
             {
                 conexao.Desconectar();
             }
         }
-       
         public DataTable PesquisarFuncionarioComChave(String keyword)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(" select Nome,FuncionarioID from Funcionario where Nome like'%" + keyword.ToString() + "%'", conexao.ObjectoConexao);
+            string query = "SELECT FuncionarioID, CONCAT(Nome,' ',Sobrenome,' ', Apelido) as 'Nome Completo',Cargo, Especialidade,GrauAcademico  FROM Funcionario WHERE Nome LIKE @Keyword OR FuncionarioID = @FuncionarioID ORDER BY Nome";
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+
+            int funcionarioID;
+            if (int.TryParse(keyword, out funcionarioID))
+            {
+                cmd.Parameters.AddWithValue("@FuncionarioID", funcionarioID);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FuncionarioID", DBNull.Value);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             da.Dispose();
             return dt;
         }
-        
+
+        public DataTable PesquisarTodosFuncionario()
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT FuncionarioID as Código, CONCAT(Nome,' ',Sobrenome,' ', Apelido) as 'Nome Completo',Cargo, Especialidade,GrauAcademico as 'Grau Académico'  FROM Funcionario ORDER BY Nome";
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+        }
+
+
         public DataTable PesquisarFuncionarioComChaveVacina(String keyword)
         {
             DataTable dt = new DataTable();

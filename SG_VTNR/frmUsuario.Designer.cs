@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCadastrar = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.pnlEndereco = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.pnlMostrarFuncionarios = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.dgvFuncionario = new Guna.UI2.WinForms.Guna2DataGridView();
             this.txtPesquisarFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnGuardar = new Guna.UI2.WinForms.Guna2Button();
@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel3 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.btnDesemcriptarSenha = new Guna.UI2.WinForms.Guna2Button();
             this.cmbPerfil = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSenha = new Guna.UI2.WinForms.Guna2TextBox();
@@ -54,8 +55,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNomeUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.label39 = new System.Windows.Forms.Label();
-            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.txtNomeFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtIDFuncionario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCodigo = new Guna.UI2.WinForms.Guna2TextBox();
@@ -65,18 +66,24 @@
             this.colEditar = new System.Windows.Forms.DataGridViewImageColumn();
             this.colImprimir = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtPesquisar = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlCadastrar.SuspendLayout();
-            this.pnlEndereco.SuspendLayout();
+            this.pnlMostrarFuncionarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionario)).BeginInit();
             this.guna2ShadowPanel3.SuspendLayout();
             this.guna2ShadowPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDadosUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.guna2ShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCadastrar
             // 
             this.pnlCadastrar.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCadastrar.Controls.Add(this.pnlEndereco);
+            this.pnlCadastrar.Controls.Add(this.pnlMostrarFuncionarios);
             this.pnlCadastrar.Controls.Add(this.txtPesquisarFuncionario);
             this.pnlCadastrar.Controls.Add(this.btnGuardar);
             this.pnlCadastrar.Controls.Add(this.btnNovo);
@@ -91,7 +98,7 @@
             this.pnlCadastrar.Controls.Add(this.txtIDFuncionario);
             this.pnlCadastrar.Controls.Add(this.txtCodigo);
             this.pnlCadastrar.FillColor = System.Drawing.Color.White;
-            this.pnlCadastrar.Location = new System.Drawing.Point(188, 32);
+            this.pnlCadastrar.Location = new System.Drawing.Point(248, 319);
             this.pnlCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCadastrar.Name = "pnlCadastrar";
             this.pnlCadastrar.Radius = 5;
@@ -102,20 +109,19 @@
             this.pnlCadastrar.Visible = false;
             this.pnlCadastrar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCadastrar_Paint);
             // 
-            // pnlEndereco
+            // pnlMostrarFuncionarios
             // 
-            this.pnlEndereco.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEndereco.Controls.Add(this.dgvFuncionario);
-            this.pnlEndereco.FillColor = System.Drawing.Color.White;
-            this.pnlEndereco.Location = new System.Drawing.Point(752, 158);
-            this.pnlEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlEndereco.Name = "pnlEndereco";
-            this.pnlEndereco.Radius = 2;
-            this.pnlEndereco.ShadowColor = System.Drawing.Color.Black;
-            this.pnlEndereco.ShadowDepth = 50;
-            this.pnlEndereco.Size = new System.Drawing.Size(507, 235);
-            this.pnlEndereco.TabIndex = 59;
-            this.pnlEndereco.Visible = false;
+            this.pnlMostrarFuncionarios.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMostrarFuncionarios.Controls.Add(this.dgvFuncionario);
+            this.pnlMostrarFuncionarios.FillColor = System.Drawing.Color.White;
+            this.pnlMostrarFuncionarios.Location = new System.Drawing.Point(752, 158);
+            this.pnlMostrarFuncionarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlMostrarFuncionarios.Name = "pnlMostrarFuncionarios";
+            this.pnlMostrarFuncionarios.Radius = 2;
+            this.pnlMostrarFuncionarios.ShadowColor = System.Drawing.Color.Black;
+            this.pnlMostrarFuncionarios.ShadowDepth = 50;
+            this.pnlMostrarFuncionarios.Size = new System.Drawing.Size(507, 278);
+            this.pnlMostrarFuncionarios.TabIndex = 59;
             // 
             // dgvFuncionario
             // 
@@ -146,13 +152,14 @@
             this.dgvFuncionario.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvFuncionario.EnableHeadersVisualStyles = false;
             this.dgvFuncionario.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvFuncionario.Location = new System.Drawing.Point(7, 15);
+            this.dgvFuncionario.Location = new System.Drawing.Point(4, 8);
             this.dgvFuncionario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvFuncionario.Name = "dgvFuncionario";
+            this.dgvFuncionario.ReadOnly = true;
             this.dgvFuncionario.RowHeadersVisible = false;
             this.dgvFuncionario.RowHeadersWidth = 62;
             this.dgvFuncionario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFuncionario.Size = new System.Drawing.Size(484, 206);
+            this.dgvFuncionario.Size = new System.Drawing.Size(499, 258);
             this.dgvFuncionario.TabIndex = 56;
             this.dgvFuncionario.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvFuncionario.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -168,7 +175,7 @@
             this.dgvFuncionario.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvFuncionario.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvFuncionario.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvFuncionario.ThemeStyle.ReadOnly = false;
+            this.dgvFuncionario.ThemeStyle.ReadOnly = true;
             this.dgvFuncionario.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvFuncionario.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvFuncionario.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -204,7 +211,6 @@
             this.txtPesquisarFuncionario.Size = new System.Drawing.Size(504, 57);
             this.txtPesquisarFuncionario.TabIndex = 58;
             this.txtPesquisarFuncionario.TextChanged += new System.EventHandler(this.txtMostrarFuncionario_TextChanged);
-            this.txtPesquisarFuncionario.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPesquisarFuncionario_MouseClick);
             // 
             // btnGuardar
             // 
@@ -313,6 +319,7 @@
             // guna2ShadowPanel3
             // 
             this.guna2ShadowPanel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel3.Controls.Add(this.btnDesemcriptarSenha);
             this.guna2ShadowPanel3.Controls.Add(this.cmbPerfil);
             this.guna2ShadowPanel3.Controls.Add(this.label16);
             this.guna2ShadowPanel3.Controls.Add(this.txtSenha);
@@ -328,6 +335,24 @@
             this.guna2ShadowPanel3.ShadowDepth = 20;
             this.guna2ShadowPanel3.Size = new System.Drawing.Size(683, 224);
             this.guna2ShadowPanel3.TabIndex = 13;
+            // 
+            // btnDesemcriptarSenha
+            // 
+            this.btnDesemcriptarSenha.BorderRadius = 15;
+            this.btnDesemcriptarSenha.CheckedState.Parent = this.btnDesemcriptarSenha;
+            this.btnDesemcriptarSenha.CustomImages.Parent = this.btnDesemcriptarSenha;
+            this.btnDesemcriptarSenha.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.btnDesemcriptarSenha.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDesemcriptarSenha.ForeColor = System.Drawing.Color.White;
+            this.btnDesemcriptarSenha.HoverState.Parent = this.btnDesemcriptarSenha;
+            this.btnDesemcriptarSenha.Location = new System.Drawing.Point(538, 47);
+            this.btnDesemcriptarSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDesemcriptarSenha.Name = "btnDesemcriptarSenha";
+            this.btnDesemcriptarSenha.ShadowDecoration.Parent = this.btnDesemcriptarSenha;
+            this.btnDesemcriptarSenha.Size = new System.Drawing.Size(97, 60);
+            this.btnDesemcriptarSenha.TabIndex = 116;
+            this.btnDesemcriptarSenha.Text = "Exibir";
+            this.btnDesemcriptarSenha.Click += new System.EventHandler(this.btnDesemcriptarSenha_Click);
             // 
             // cmbPerfil
             // 
@@ -388,7 +413,7 @@
             this.txtSenha.PlaceholderText = "";
             this.txtSenha.SelectedText = "";
             this.txtSenha.ShadowDecoration.Parent = this.txtSenha;
-            this.txtSenha.Size = new System.Drawing.Size(316, 57);
+            this.txtSenha.Size = new System.Drawing.Size(175, 57);
             this.txtSenha.TabIndex = 19;
             // 
             // label2
@@ -440,8 +465,8 @@
             // guna2ShadowPanel2
             // 
             this.guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel2.Controls.Add(this.guna2Button3);
             this.guna2ShadowPanel2.Controls.Add(this.label39);
-            this.guna2ShadowPanel2.Controls.Add(this.guna2Button7);
             this.guna2ShadowPanel2.FillColor = System.Drawing.Color.White;
             this.guna2ShadowPanel2.Location = new System.Drawing.Point(0, 6);
             this.guna2ShadowPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -452,35 +477,35 @@
             this.guna2ShadowPanel2.Size = new System.Drawing.Size(1272, 69);
             this.guna2ShadowPanel2.TabIndex = 12;
             // 
+            // guna2Button3
+            // 
+            this.guna2Button3.BorderRadius = 5;
+            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
+            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
+            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button3.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button3.HoverState.Parent = this.guna2Button3;
+            this.guna2Button3.Location = new System.Drawing.Point(1217, 12);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
+            this.guna2Button3.Size = new System.Drawing.Size(42, 42);
+            this.guna2Button3.TabIndex = 134;
+            this.guna2Button3.Text = "X";
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
+            // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.DimGray;
-            this.label39.Location = new System.Drawing.Point(28, 25);
+            this.label39.Location = new System.Drawing.Point(500, 25);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(288, 29);
+            this.label39.Size = new System.Drawing.Size(338, 32);
             this.label39.TabIndex = 54;
             this.label39.Text = "CADASTRAR USUÁRIO";
-            // 
-            // guna2Button7
-            // 
-            this.guna2Button7.BorderRadius = 5;
-            this.guna2Button7.CheckedState.Parent = this.guna2Button7;
-            this.guna2Button7.CustomImages.Parent = this.guna2Button7;
-            this.guna2Button7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
-            this.guna2Button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button7.ForeColor = System.Drawing.Color.DimGray;
-            this.guna2Button7.HoverState.Parent = this.guna2Button7;
-            this.guna2Button7.Location = new System.Drawing.Point(1214, 14);
-            this.guna2Button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2Button7.Name = "guna2Button7";
-            this.guna2Button7.ShadowDecoration.Parent = this.guna2Button7;
-            this.guna2Button7.Size = new System.Drawing.Size(42, 42);
-            this.guna2Button7.TabIndex = 53;
-            this.guna2Button7.Text = "X";
-            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
             // txtNomeFuncionario
             // 
@@ -568,13 +593,13 @@
             // 
             // guna2Button1
             // 
-            this.guna2Button1.BorderRadius = 5;
+            this.guna2Button1.BorderRadius = 15;
             this.guna2Button1.CheckedState.Parent = this.guna2Button1;
             this.guna2Button1.CustomImages.Parent = this.guna2Button1;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Location = new System.Drawing.Point(18, 87);
+            this.guna2Button1.Location = new System.Drawing.Point(248, 198);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
@@ -615,13 +640,14 @@
             this.dgvDadosUsuario.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDadosUsuario.EnableHeadersVisualStyles = false;
             this.dgvDadosUsuario.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvDadosUsuario.Location = new System.Drawing.Point(18, 170);
+            this.dgvDadosUsuario.Location = new System.Drawing.Point(248, 261);
             this.dgvDadosUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDadosUsuario.Name = "dgvDadosUsuario";
+            this.dgvDadosUsuario.ReadOnly = true;
             this.dgvDadosUsuario.RowHeadersVisible = false;
             this.dgvDadosUsuario.RowHeadersWidth = 62;
             this.dgvDadosUsuario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDadosUsuario.Size = new System.Drawing.Size(1612, 609);
+            this.dgvDadosUsuario.Size = new System.Drawing.Size(1134, 410);
             this.dgvDadosUsuario.TabIndex = 13;
             this.dgvDadosUsuario.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvDadosUsuario.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -637,7 +663,7 @@
             this.dgvDadosUsuario.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvDadosUsuario.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvDadosUsuario.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvDadosUsuario.ThemeStyle.ReadOnly = false;
+            this.dgvDadosUsuario.ThemeStyle.ReadOnly = true;
             this.dgvDadosUsuario.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvDadosUsuario.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvDadosUsuario.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -653,6 +679,7 @@
             this.ColDeletar.Image = ((System.Drawing.Image)(resources.GetObject("ColDeletar.Image")));
             this.ColDeletar.MinimumWidth = 8;
             this.ColDeletar.Name = "ColDeletar";
+            this.ColDeletar.ReadOnly = true;
             // 
             // colEditar
             // 
@@ -660,6 +687,7 @@
             this.colEditar.Image = ((System.Drawing.Image)(resources.GetObject("colEditar.Image")));
             this.colEditar.MinimumWidth = 8;
             this.colEditar.Name = "colEditar";
+            this.colEditar.ReadOnly = true;
             // 
             // colImprimir
             // 
@@ -667,11 +695,12 @@
             this.colImprimir.Image = ((System.Drawing.Image)(resources.GetObject("colImprimir.Image")));
             this.colImprimir.MinimumWidth = 8;
             this.colImprimir.Name = "colImprimir";
+            this.colImprimir.ReadOnly = true;
             // 
             // txtPesquisar
             // 
             this.txtPesquisar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPesquisar.BorderRadius = 5;
+            this.txtPesquisar.BorderRadius = 15;
             this.txtPesquisar.BorderThickness = 2;
             this.txtPesquisar.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPesquisar.DefaultText = "";
@@ -684,39 +713,100 @@
             this.txtPesquisar.FocusedState.Parent = this.txtPesquisar;
             this.txtPesquisar.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPesquisar.HoverState.Parent = this.txtPesquisar;
-            this.txtPesquisar.Location = new System.Drawing.Point(1312, 87);
+            this.txtPesquisar.Location = new System.Drawing.Point(850, 198);
             this.txtPesquisar.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.PasswordChar = '\0';
             this.txtPesquisar.PlaceholderText = "";
             this.txtPesquisar.SelectedText = "";
             this.txtPesquisar.ShadowDecoration.Parent = this.txtPesquisar;
-            this.txtPesquisar.Size = new System.Drawing.Size(318, 55);
+            this.txtPesquisar.Size = new System.Drawing.Size(523, 55);
             this.txtPesquisar.TabIndex = 15;
             this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SG_VTNR.Properties.Resources.search_500px1;
+            this.pictureBox2.Location = new System.Drawing.Point(1308, 205);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(51, 40);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 133;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // guna2ShadowPanel1
+            // 
+            this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.label5);
+            this.guna2ShadowPanel1.Controls.Add(this.guna2Button2);
+            this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
+            this.guna2ShadowPanel1.Location = new System.Drawing.Point(1, 1);
+            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
+            this.guna2ShadowPanel1.Radius = 2;
+            this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.guna2ShadowPanel1.ShadowDepth = 50;
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(1981, 82);
+            this.guna2ShadowPanel1.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DimGray;
+            this.label5.Location = new System.Drawing.Point(645, 22);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(409, 32);
+            this.label5.TabIndex = 54;
+            this.label5.Text = " USUÁRIOS CADASTRADOS";
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.BorderRadius = 15;
+            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
+            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
+            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(146)))), ((int)(((byte)(254)))));
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button2.ForeColor = System.Drawing.Color.DimGray;
+            this.guna2Button2.HoverState.Parent = this.guna2Button2;
+            this.guna2Button2.Location = new System.Drawing.Point(1839, 13);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
+            this.guna2Button2.Size = new System.Drawing.Size(69, 56);
+            this.guna2Button2.TabIndex = 53;
+            this.guna2Button2.Text = "X";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1648, 866);
+            this.ClientSize = new System.Drawing.Size(1863, 866);
             this.Controls.Add(this.pnlCadastrar);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.dgvDadosUsuario);
             this.Controls.Add(this.txtPesquisar);
+            this.Controls.Add(this.guna2ShadowPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmUsuario";
             this.Text = "frmUsuario";
             this.Load += new System.EventHandler(this.frmUsuario_Load);
             this.pnlCadastrar.ResumeLayout(false);
             this.pnlCadastrar.PerformLayout();
-            this.pnlEndereco.ResumeLayout(false);
+            this.pnlMostrarFuncionarios.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionario)).EndInit();
             this.guna2ShadowPanel3.ResumeLayout(false);
             this.guna2ShadowPanel3.PerformLayout();
             this.guna2ShadowPanel2.ResumeLayout(false);
             this.guna2ShadowPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDadosUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.guna2ShadowPanel1.ResumeLayout(false);
+            this.guna2ShadowPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -737,7 +827,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtNomeUsuario;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
         private System.Windows.Forms.Label label39;
-        private Guna.UI2.WinForms.Guna2Button guna2Button7;
         private Guna.UI2.WinForms.Guna2TextBox txtCodigo;
         private Guna.UI2.WinForms.Guna2ComboBox cmbPerfil;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
@@ -746,12 +835,18 @@
         private System.Windows.Forms.DataGridViewImageColumn colEditar;
         private System.Windows.Forms.DataGridViewImageColumn colImprimir;
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisar;
-        private Guna.UI2.WinForms.Guna2ShadowPanel pnlEndereco;
+        private Guna.UI2.WinForms.Guna2ShadowPanel pnlMostrarFuncionarios;
         private Guna.UI2.WinForms.Guna2DataGridView dgvFuncionario;
         public Guna.UI2.WinForms.Guna2TextBox txtPesquisarFuncionario;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtIDFuncionario;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox txtNomeFuncionario;
+        private Guna.UI2.WinForms.Guna2Button btnDesemcriptarSenha;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
     }
 }

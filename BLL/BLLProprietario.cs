@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -76,8 +78,9 @@ namespace BLL
             DALProprietario DALobj = new DALProprietario(conexao);
            return  DALobj.verificarProprietarioAnimal(codigo);
         }
-        public void Alterar(ModeloProprietario modelo)
-        {
+        public void UpdateProprietario(ModeloProprietario modelo)
+        { 
+            try{
             if (modelo.PropietarioId <= 0)
             {
                 throw new Exception("O ID do proprietario deve ser informado!!!");
@@ -118,6 +121,10 @@ namespace BLL
             //Passa os dados para fazer a inclusao dos dados no BD
             DALProprietario DALobj = new    DALProprietario(conexao);
             DALobj.AlterarProprietario(modelo);
+            }catch (Exception ex)
+            {
+              
+            }
         }
         #endregion fim alterar proprietario
         #region Regiao exluir proprietario
@@ -142,10 +149,10 @@ namespace BLL
         }
        
 
-        public DataTable LocalizarEndereco(string nome)
+        public DataTable pesquisarEndereco(string nome)
         {
             DALProprietario DALObj = new DALProprietario(conexao);
-            return DALObj.LocalizarEndereco(nome);
+            return DALObj.pesquisarEndereco(nome);
         }
      
 

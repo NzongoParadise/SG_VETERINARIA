@@ -23,7 +23,7 @@ namespace DAL
   
         public bool verificarProprietarioAnimal(int proprietarioID)
         {
-            string query = "SELECT 1 FROM Animal WHERE ProprietarioID = @ProprietarioID";
+            string query = "SELECT * FROM Animal WHERE ProprietarioID = @ProprietarioID";
             SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
             cmd.Parameters.AddWithValue("@ProprietarioID", proprietarioID);
             conexao.Conectar();
@@ -56,7 +56,7 @@ namespace DAL
 
             conexao.Conectar();
 
-            cmd.ExecuteNonQuery();
+        
             modelo.PropietarioId = Convert.ToInt16(cmd.ExecuteScalar());
             conexao.Desconectar();
 
@@ -86,7 +86,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@descricao", modelo.Descricao);
             
             conexao.Conectar();
-            cmd.ExecuteNonQuery();
+           modelo.PropietarioId=Convert.ToInt32(cmd.ExecuteScalar());
             conexao.Desconectar();
         }
         #endregion
@@ -147,10 +147,10 @@ namespace DAL
 
 
 
-        public DataTable LocalizarEndereco(String nome)
+        public DataTable pesquisarEndereco(String nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(" select * from Endereco where Bairro like'%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter(" select * from Endereco where Bairro like '%" + nome.ToString() + "%' order by datacadstro DESC", conexao.ObjectoConexao);
             da.Fill(dt);
             da.Dispose();
             return dt;

@@ -36,7 +36,7 @@ namespace Modelo
         public int UsuarioID { get; set; }
         public decimal totalGeral { get; set; }
         public bool eestadoProduto { get; set; }
-        public string isentoCusto { get; set; }
+        public string situacaCusto { get; set; }
         public decimal troco { get; set; }
         public decimal valorEntregue { get; set; }
         public decimal imposto { get; set; }

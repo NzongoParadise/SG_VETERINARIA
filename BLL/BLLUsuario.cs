@@ -17,11 +17,12 @@ namespace BLL
         {
             this.conexao = cx;
         }
-        //public DataTable LocalizarFuncionario(string nome)
-        //{
-        //    DALFuncionario DALObj = new DALFuncionario(conexao);
-        //    return DALObj.localizarFuncionario(nome);
-        //}
+
+        public bool verificarAsociacoesUsuario(int codigo)
+        {
+            DALUsuario DALobj = new DALUsuario(conexao);
+            return DALobj.verificarAsociacoesUsuario(codigo);
+        }
         public void AlterarUsuario(ModeloUsuario modelo)
         {
             if (modelo.UsuarioID<= 0)
@@ -62,7 +63,7 @@ namespace BLL
 
 
 
-        public void Incluir(ModeloUsuario modelo)
+        public void cadastrarUsuario(ModeloUsuario modelo)
         {
             if (modelo.NomeUsuario.Trim().Length == 0)
             {
@@ -83,6 +84,7 @@ namespace BLL
             DALUsuario DALobj = new DALUsuario(conexao);
             DALobj.incluirUsuario(modelo);
         }
+
         public DataTable LocalizarUsuarioLogin(string login, String senha)
         {
             DALUsuario DALobj = new DALUsuario(conexao);

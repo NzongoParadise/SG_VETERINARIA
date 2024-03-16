@@ -12,11 +12,17 @@ namespace BLL
     {
         private DALConexao conexao;
 
-        public BLLVacina(DALConexao cx) { 
-      
+        public BLLVacina(DALConexao cx)
+        {
+
             this.conexao = cx;
         }
+        public int intervaloTempo(int produtoID)
+        {
+            DALLVacina DALLVacina = new DALLVacina(conexao);
+            return DALLVacina.intervaloTempo(produtoID);
 
+        }
         public void incluirVacinacao(List<ModeloVacina> listaDeDados)
         {
             try
@@ -40,6 +46,22 @@ namespace BLL
 
         }
 
+        public bool VerificarVacinaVencida(int animalID, int produtoID)
+        {
+            try
+            {
+
+                DALLVacina DALLVacina = new DALLVacina(conexao);
+               return DALLVacina.VerificarVacinaVencida(animalID, produtoID);
+
+            }
+            catch (Exception erro)
+            {
+
+                throw new Exception("erro ao verificar se a vacina esta vencida: " + erro.Message);
+            }
+
+        }
 
 
 

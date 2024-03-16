@@ -32,10 +32,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@Telefone2", modelo.Telefone21);
             cmd.Parameters.AddWithValue("@Municipio", modelo.Municipio1);
             cmd.Parameters.AddWithValue("@Provincia", modelo.Provincia1);
-   
-
             conexao.Conectar();
-            cmd.ExecuteNonQuery();
             modelo.EndrecoID1 = Convert.ToInt16(cmd.ExecuteScalar());
             conexao.Desconectar();
 

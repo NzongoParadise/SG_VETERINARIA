@@ -18,7 +18,9 @@ namespace SG_VTNR
     {
         public string id_endereco = "";
         public string mostrare_endereco = "";
-
+        //esta variavel perminte escolher para onde vai enviar os dados do endereco se a 
+        //chamada veio de proprietario vai enviar para proprietario caso nao vai no funcionario
+        public string vindoDE=" ";
         public frmAdicionarEndereco()
         {
             InitializeComponent();
@@ -136,9 +138,37 @@ namespace SG_VTNR
         {
             DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
             BLLEndereco bll = new BLLEndereco(cx);
-            dgvDados.DataSource = bll.Localizar(txtPesquisar.Text);
-            //CarregarTituloDgv();
-            //FormatandoDGV.
+            dgvMostraEndereco.DataSource = bll.Localizar(txtPesquisar.Text);
+
+            // Permitir que as colunas sejam redimensionadas pelos usuários
+            dgvMostraEndereco.AllowUserToResizeColumns = true;
+
+            // Ajustar o tamanho das colunas automaticamente para exibir todo o conteúdo
+            dgvMostraEndereco.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Configurar o DataGridView para quebrar as linhas
+            dgvMostraEndereco.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajustar o estilo do cabeçalho para que possa envolver o texto
+            foreach (DataGridViewColumn column in dgvMostraEndereco.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Definir altura das linhas para acomodar o conteúdo completo
+            dgvMostraEndereco.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Definir o tamanho das linhas do cabeçalho
+            dgvMostraEndereco.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMostraEndereco.ColumnHeadersHeight = 40; // Ajuste o valor conforme desejado
+
+            // Aumentar o tamanho das outras linhas
+            dgvMostraEndereco.RowTemplate.Height = 30; // Ajuste o valor conforme desejado para outras linhas
+
+            // Adicionar diferença visual na cor das linhas
+            dgvMostraEndereco.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvMostraEndereco.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+
         }
         private void guna2Button2_Click(object sender, EventArgs e)
         {
@@ -153,8 +183,8 @@ namespace SG_VTNR
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
             ModeloEndereco modelo = new ModeloEndereco();
             modelo.Bairro1 = txtBairro.Text;
             modelo.Cidade1 = txtCidade.Text;
@@ -169,19 +199,32 @@ namespace SG_VTNR
             BLLEndereco bll = new BLLEndereco(cx);
             //inserir os dados
             bll.Incluir(modelo);
-            MessageBox.Show("Cadastrado com sucesso ", modelo.EndrecoID1.ToString());
-            //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
-            LimparTela();
+                if (vindoDE == "Proprietario") {
+                    frmProprietario frm = new frmProprietario();
+                    frm.AtualizarEndereco(modelo.Provincia1,modelo.Municipio1,modelo.Bairro1,modelo.Rua1);
+                    frm.teste = modelo.Provincia1;
+                }
+                else
+                {
+                    frmFuncionario frm = new frmFuncionario();
+                    frm.AtualizarEndereco(modelo.Provincia1, modelo.Municipio1, modelo.Bairro1, modelo.Rua1);
+                    MessageBox.Show("ENVIOU PARA FUNCIONARIO" + modelo.Provincia1 + modelo.Municipio1 + modelo.Bairro1 +modelo.Rua1);
+
+                }
+                MessageBox.Show("Endereço Cadastrado com sucesso", "Confirmação", MessageBoxButtons.OK);
+
+                //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
+                LimparTela();
             exibir();
 
-            //}
-            //catch (Exception)
-            //{
+            }
+            catch (Exception erro)
+            {
 
-            //    /*    {
-            //            MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //        }*/
-            //}
+           
+                        MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                  
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -203,18 +246,17 @@ namespace SG_VTNR
                 BLLEndereco bll = new BLLEndereco(cx);
                 //inserir os dados
                 bll.Alterar(modelo);
-                MessageBox.Show("Dados Alterados com Sucesso", modelo.EndrecoID1.ToString());
+                MessageBox.Show("Dados Alterados com Sucesso","Confirmação");
                
                 //ethis.Alert("Código: " + modelo.PropietarioId.ToString() + "\n Cadastrado com sucesso!", frmAlert.enmType.Success);
                 LimparTela();
                 exibir();
 
             }
-            catch (Exception)
+            catch (Exception erro)
             {
 
-
-                throw;
+                MessageBox.Show("Não foi possivel Realizar a Operação!!! \n\nContate o Administrador do Sistema!!!\n\nErro Ocorrido:" + erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
@@ -234,7 +276,7 @@ namespace SG_VTNR
         }
         private void dgvDados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string colName = dgvDados.Columns[e.ColumnIndex].Name;
+            string colName = dgvMostraEndereco.Columns[e.ColumnIndex].Name;
 
             if (colName == "btnDeletar" && e.RowIndex >= 0)
             {
@@ -244,7 +286,7 @@ namespace SG_VTNR
 
                     if (d == DialogResult.Yes)
                     {
-                        int col = Convert.ToInt32(dgvDados.CurrentRow.Cells["EnderecoID"].Value);
+                        int col = Convert.ToInt32(dgvMostraEndereco.CurrentRow.Cells["EnderecoID"].Value);
                         DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
                         BLLEndereco bll = new BLLEndereco(cx);
                         bll.EliminarEndereco(Convert.ToInt32(col));
@@ -268,17 +310,17 @@ namespace SG_VTNR
             }
             if (colName == "btnEdit")
             {
-                txtEnderecoID.Text = dgvDados.Rows[e.RowIndex].Cells["EnderecoID"].Value.ToString();
-                txtBairro.Text = dgvDados.Rows[e.RowIndex].Cells["Bairro"].Value.ToString();
-                txtCidade.Text = dgvDados.Rows[e.RowIndex].Cells["Cidade"].Value.ToString();
-                txtRua.Text = dgvDados.Rows[e.RowIndex].Cells["Rua"].Value.ToString();
-                txtEmail.Text = dgvDados.Rows[e.RowIndex].Cells["Email"].Value.ToString();
-                txtTelefone1.Text = dgvDados.Rows[e.RowIndex].Cells["Telefone1"].Value.ToString();
-                txtTelfone2.Text = dgvDados.Rows[e.RowIndex].Cells["Telefone2"].Value.ToString();
+                txtEnderecoID.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["EnderecoID"].Value.ToString();
+                txtBairro.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Bairro"].Value.ToString();
+                txtCidade.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Cidade"].Value.ToString();
+                txtRua.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Rua"].Value.ToString();
+                txtEmail.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+                txtTelefone1.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Telefone1"].Value.ToString();
+                txtTelfone2.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Telefone2"].Value.ToString();
                
-                txtMunicipio.Text = dgvDados.Rows[e.RowIndex].Cells["Municipio"].Value.ToString();
-                txtComuna.Text = dgvDados.Rows[e.RowIndex].Cells["Comuna"].Value.ToString();
-                txtProvincia.Text = dgvDados.Rows[e.RowIndex].Cells["Provincia"].Value.ToString();
+                txtMunicipio.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Municipio"].Value.ToString();
+                txtComuna.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Comuna"].Value.ToString();
+                txtProvincia.Text = dgvMostraEndereco.Rows[e.RowIndex].Cells["Provincia"].Value.ToString();
                 alteraBotoes(3, perInserir, perAlterar, perExcluir, perImprimir);
                 if (pnlCadastarEndreco.Visible == false)
                 {

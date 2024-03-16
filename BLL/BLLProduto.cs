@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelo;
 
 namespace BLL
 {
@@ -23,5 +24,23 @@ namespace BLL
 
             return dall.PesquisarProdutoVacinaComChave(chave);
         }
+
+
+        public void CadastrarProduto(ModeloProduto modelo)
+        {
+            try
+            {
+
+                DALProduto DALLCompra = new DALProduto(conexao);
+                DALLCompra.CadastrarProduto(modelo);
+            }
+            catch (Exception erro)
+            {
+
+                throw new Exception("Erro ao incluir o produto:" + erro.Message);
+            }
+
+        }
+
     }
 }

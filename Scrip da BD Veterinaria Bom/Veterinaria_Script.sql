@@ -7,6 +7,33 @@ select *from Animal
 select *from endereco
 drop DATABASE BD_Veterinaria;
 -----------tabelas basicas ---------------
+CREATE TABLE Usuario (
+    UsuarioID INT PRIMARY KEY IDENTITY,
+    NomeUsuario VARCHAR(50) NOT NULL,
+    Senha VARCHAR(50) NOT NULL,
+    Perfil VARCHAR(50) NOT NULL,
+    FuncionarioID INT,
+    NomeFuncionario VARCHAR(100),
+    FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID)
+);
+select *from Funcionario
+CREATE  PROCEDURE insert_procedure_Usuario
+    @NomeUsuario VARCHAR(50),
+    @Senha VARCHAR(50),
+    @Perfil VARCHAR(50),
+    @FuncionarioID INT,
+    @NomeFuncionario VARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Usuario (NomeUsuario, Senha, Perfil, FuncionarioID, NomeFuncionario)
+    VALUES (@NomeUsuario, @Senha, @Perfil, @FuncionarioID, @NomeFuncionario);
+
+    SELECT SCOPE_IDENTITY();
+END;
+
+SELECT FROM
 create table Endereco(
     EnderecoID int PRIMARY key not null identity(1,1),
     Bairro varchar (15),
@@ -17,9 +44,16 @@ create table Endereco(
     Telefone2 VARCHAR(15),
     Comuna VARCHAR(25),
     Municipio VARCHAR(15),
-    Provincia VARCHAR(15)
-);
-
+    Provincia VARCHAR(15),
+	UsuarioID INT,
+	 DataCadstro datetime default getdate()
+	constraint Endereco_Usuario FOREIGN KEY (UsuarioID) references Usuario(UsuarioID)
+);select *from animal
+select a.nome,concat(p.Nome,' ',p.Sobrenome,' ',p.Apelido) FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = 27
+select *from Endereco order by datacadstro 
+select * from Endereco where Bairro like '%" + nome.ToString() + "%' order by datacadstro DESC
+select *from endereco ORDER BY DATACADSTRO asc
+select *from endereco
 go 
 CREATE PROCEDURE procedure_Atualizar_Endereco
     @EnderecoID INT,
@@ -84,24 +118,27 @@ CREATE TABLE Funcionario (
     NomeMae varchar(100),
     Cargo VARCHAR(50),
     Salario DECIMAL(10, 2),
+	 DataCadastro datetime DEFAULT getdate(),
     DataContratacao DATE,
     DataNascimento DATE,
     TipoDocumento VARCHAR(25),
     NumIdentificacao VARCHAR(50),
     DataEmissaoBI DATE,
     DataExpiracaoBI date,
+	 UsuarioID int,
     Nacionalidade VARCHAR(50),
     foto varbinary (max),
     GrauAcademico VARCHAR(50),
     EstadoCivil VARCHAR(15),
     Observacao VARCHAR(MAX),
 	EnderecoID int,
-	constraint fk_EnderecoID_Funcionario foreign key(EnderecoID) references Endereco(EnderecoID)
+	constraint fk_EnderecoID_Funcionario foreign key(EnderecoID) references Endereco(EnderecoID),
+	CONSTRAINT Usuario_Proprietario foreign key (UsuarioID)  REFERENCES Usuario(UsuarioID)
 );
 
 
 GO 
-CREATE PROCEDURE procedure_Atualizar_Funcionario
+CREATE     PROCEDURE procedure_Atualizar_Funcionario
     @FuncionarioID INT,
     @Nome VARCHAR(50),
     @Sobrenome VARCHAR(50),
@@ -112,6 +149,7 @@ CREATE PROCEDURE procedure_Atualizar_Funcionario
     @Cargo VARCHAR(50),
     @Salario DECIMAL(10, 2),
     @DataContratacao DATE,
+	@UsuarioID INT,
     @DataNascimento DATE,
     @TipoDocumento VARCHAR(25),
     @NumIdentificacao VARCHAR(50),
@@ -137,6 +175,7 @@ BEGIN
         Cargo = @Cargo,
         Salario = @Salario,
         DataContratacao = @DataContratacao,
+		@UsuarioID=@UsuarioID,
         DataNascimento = @DataNascimento,
         TipoDocumento = @TipoDocumento,
         NumIdentificacao = @NumIdentificacao,
@@ -149,10 +188,10 @@ BEGIN
         Observacao = @Observacao,
         EnderecoID = @EnderecoID
     WHERE FuncionarioID = @FuncionarioID;
+	 SELECT @FuncionarioID;
 END;
-
 GO
-CREATE PROCEDURE Insert_procedure_Funcionario
+CREATE   PROCEDURE Insert_procedure_Funcionario
     @Nome VARCHAR(50),
     @Sobrenome VARCHAR(50),
     @Apelido VARCHAR(50),
@@ -162,6 +201,7 @@ CREATE PROCEDURE Insert_procedure_Funcionario
     @Cargo VARCHAR(50),
     @Salario DECIMAL(10, 2),
     @DataContratacao DATE,
+	@UsuarioID INT,
     @DataNascimento DATE,
     @TipoDocumento VARCHAR(25),
     @NumIdentificacao VARCHAR(50),
@@ -173,13 +213,14 @@ CREATE PROCEDURE Insert_procedure_Funcionario
     @EstadoCivil VARCHAR(15),
     @Observacao VARCHAR(MAX),
     @EnderecoID INT
+
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Funcionario (Nome, Sobrenome, Apelido, sexo,NomePai, NomeMae, Cargo, Salario, DataContratacao, DataNascimento, TipoDocumento, NumIdentificacao, DataEmissaoBI, DataExpiracaoBI, Nacionalidade, foto, GrauAcademico, EstadoCivil, Observacao, EnderecoID)
-    VALUES (@Nome, @Sobrenome, @Apelido, @sexo, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
-
+    INSERT INTO Funcionario (Nome, Sobrenome, Apelido, sexo,NomePai, NomeMae, Cargo, Salario, DataContratacao,UsuarioID,DataNascimento, TipoDocumento, NumIdentificacao, DataEmissaoBI, DataExpiracaoBI, Nacionalidade, foto, GrauAcademico, EstadoCivil, Observacao, EnderecoID)
+    VALUES (@Nome, @Sobrenome, @Apelido, @sexo, @NomePai, @NomeMae, @Cargo, @Salario, @DataContratacao, @UsuarioID,@DataNascimento, @TipoDocumento, @NumIdentificacao, @DataEmissaoBI, @DataExpiracaoBI, @Nacionalidade, @Foto, @GrauAcademico, @EstadoCivil, @Observacao, @EnderecoID);
+	select  SCOPE_IDENTITY();
 END
 select *from Venda
 select *from produto
@@ -193,6 +234,7 @@ from Produto where EstadoProduto=1 and IsentoCusto='Não Isento a Custos'
 
 ----------------------tabelas relacionadas com proprietario e animais------------------------------
 -- Tabela de PROPRIETARIO
+ALTER TABLE PROPRIETARIO ADD 
 CREATE TABLE proprietario (
     ProprietarioID INT PRIMARY KEY NOT NULL identity(1,1),
     EnderecoID int,
@@ -200,14 +242,18 @@ CREATE TABLE proprietario (
     Sexo varchar(10),
     Sobrenome VARCHAR(50),
     Apelido VARCHAR(50),
+	DataNascmento date,
+	DataCadastro datetime default getdate(),
     TipoDocumento VARCHAR(50),
     NumIdent VARCHAR(25),
     DataEmisao DATE,
     DataValidade date,
     NomePai VARCHAR(100),
+	 UsuarioID int,
     NomeMae varchar(100),
     Nacionalidade VARCHAR(50),
     descricao VARCHAR(MAX),
+	CONSTRAINT Usuario_Proprietario foreign key (UsuarioID)  REFERENCES Usuario(UsuarioID),
 	constraint fk_EnderecoID_ProprietarioID foreign key(EnderecoID) references Endereco(EnderecoID)
 );
 INSERT INTO proprietario (EnderecoID, Nome, Sexo, Sobrenome, Apelido, TipoDocumento, NumIdent, DataEmisao, DataValidade, NomePai, NomeMae, Nacionalidade, descricao)
@@ -220,7 +266,7 @@ VALUES
 
 
 GO
-CREATE PROCEDURE procedure_Atualizar_Proprietario
+CREATE   PROCEDURE procedure_Atualizar_Proprietario
     @ProprietarioID INT,
     @EnderecoID INT,
     @Nome VARCHAR(100),
@@ -254,6 +300,7 @@ BEGIN
         Nacionalidade = @Nacionalidade,
         descricao = @Descricao
     WHERE ProprietarioID = @ProprietarioID;
+	 select @ProprietarioID;
 END;
 
 go
@@ -279,6 +326,7 @@ BEGIN
     VALUES (@EnderecoID, @Nome, @Sexo, @Sobrenome, @Apelido, @TipoDocumento, @NumIdent, @DataEmisao, @DataValidade, @NomePai, @NomeMae, @Nacionalidade, @Descricao);
     select @@identity;
 END;
+select *from Animal
 
 -- Tabela de Animal-------
 CREATE TABLE Animal (
@@ -286,6 +334,7 @@ CREATE TABLE Animal (
     Nome VARCHAR(50),
     Especie VARCHAR(50),
     Raca VARCHAR(50),
+	UsuarioID int,
     Cor varchar(30),
     Peso decimal (10,2),
     Estado varchar (20),
@@ -297,49 +346,70 @@ CREATE TABLE Animal (
     constraint fk_ProprietarioID_AnimalID foreign key(ProprietarioID) references Proprietario(ProprietarioID)
 );
 
+select *from Animal
 
-GO
-CREATE PROCEDURE procedure_Atualizar_Animal
-    @AnimalID INT,
+CREATE   PROCEDURE procedure_Atualizar_Animal
+    @AnimalID INT OUTPUT,
     @Nome VARCHAR(50),
     @Especie VARCHAR(50),
     @Raca VARCHAR(50),
-	@sexo VARCHAR(10),
+    @sexo VARCHAR(10),
     @Cor VARCHAR(30),
+    @UsuarioID INT,
     @Peso DECIMAL(10, 2),
     @Estado VARCHAR(20),
     @DataNascimento DATE,
     @Porte VARCHAR(30),
     @ProprietarioID INT,
     @Foto VARBINARY(MAX),
-    @Observacao VARCHAR(MAX)
+    @Observacao VARCHAR(MAX),
+    @AnimalIDAtualizado INT OUTPUT -- Parâmetro de saída para o código do animal atualizado
 AS
 BEGIN
     SET NOCOUNT ON;
 
+    DECLARE @DataCadastro DATEtime;
+
+    -- Obtém a data de cadastro atual do animal
+    SELECT @DataCadastro = DataCdastro
+    FROM Animal
+    WHERE AnimalID = @AnimalID;
+
+    -- Atualiza os campos do animal, exceto a DataCadastro
     UPDATE Animal
     SET Nome = @Nome,
         Especie = @Especie,
         Raca = @Raca,
-		sexo = @sexo,
+        sexo = @sexo,
         Cor = @Cor,
         Peso = @Peso,
         Estado = @Estado,
-        DataNascimento = @DataNascimento,
+        UsuarioID = @UsuarioID,
         Porte = @Porte,
         ProprietarioID = @ProprietarioID,
         foto = @Foto,
         observacao = @Observacao
     WHERE AnimalID = @AnimalID;
+
+    -- Restaura a DataCadastro para o valor original
+    UPDATE Animal
+    SET DataCdastro = @DataCadastro
+    WHERE AnimalID = @AnimalID;
+
+    SET @AnimalIDAtualizado = @AnimalID; -- Define o valor do código do animal atualizado
 END;
+EXEC sp_rename 'NomeDaTabela.NomeDaColunaAntiga', 'NomeDaColunaNova', 'COLUMN';
+exec sp_rename schema.animal.DataCdastro ,DataCadastro 
+EXEC sp_rename 'schema.NomeDaTabela.NomeDaColunaAntiga', 'NomeDaColunaNova', 'COLUMN';
 
 go 
-CREATE PROCEDURE Insert_procedure_Animal
+CREATE  PROCEDURE Insert_procedure_Animal
     @Nome varchar(50),
     @Especie varchar(50),
     @Raca varchar(50),
 	@sexo VARCHAR(10),
     @Cor varchar(30),
+	@UsuarioID int,
     @Peso decimal(10, 2),
     @Estado varchar(20),
     @DataNascimento date,
@@ -351,8 +421,8 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Animal (Nome, Especie, Raca, sexo, Cor, Peso, Estado, DataNascimento, Porte, ProprietarioID, foto, observacao)
-    VALUES (@Nome, @Especie, @Raca,@sexo, @Cor, @Peso, @Estado, @DataNascimento, @Porte, @ProprietarioID, @Foto, @Observacao);
+    INSERT INTO Animal (UsuarioID,Nome, Especie, Raca, sexo, Cor, Peso, Estado, DataNascimento, Porte, ProprietarioID, foto, observacao)
+    VALUES (@UsuarioID,@Nome, @Especie, @Raca,@sexo, @Cor, @Peso, @Estado, @DataNascimento, @Porte, @ProprietarioID, @Foto, @Observacao);
     select @@identity;
 END;
 
@@ -441,27 +511,38 @@ select a.Nome, p.ProprietarioID, p.Nome from proprietario p, Animal a where p.Pr
 
 ---------------------------------Inicio tabelas relacionada com a clinica ---------------
 
-CREATE TABLE RegistroVacinacao (
+CREATE   TABLE RegistroVacinacaobom (
     IDRegistroVacinacao INT PRIMARY KEY IDENTITY(1,1),
     AnimalID INT,
-	FuncionarioID INT,
 	UsuarioID int,
-	DataVacinacao DATETIME,
-	CONSTRAINT fk_AnimalID_RegistroVacinacao FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
-    CONSTRAINT fk_FuncionarioID_RegistroVacinacao FOREIGN KEY (FuncionarioID) REFERENCES Funcionario(FuncionarioID),
-	CONSTRAINT fk_UsuarioID_RegistroVacinacao FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
+	DataRegistro DATETIME default getdate(),
+	Desconto decimal(15,2),
+	Imposto decimal(15,2),
+	Troco decimal (15,2),
+	FormaPagamento varchar (30),
+    CustoTotal DECIMAL(15, 2),
+	ValorEntregue decimal(15,2),
+	NotasObservacoes varchar (MAX),
+	CONSTRAINT fk_Animal_regist FOREIGN KEY (AnimalID) REFERENCES Animal(AnimalID),
+	CONSTRAINT fk_usuario_registro FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+go 
 
-CREATE PROCEDURE  Insert_procedure_RegistroVacinacao
+CREATE   PROCEDURE  Insert_procedure_RegistroVacinacaobom
     @AnimalID INT,
-    @FuncionarioID INT,
-    @UsuarioID INT,
-    @DataVacinacao DATETIME
+	@Desconto decimal(15,2),
+	@Imposto decimal(15,2),
+	@Troco decimal (15,2),
+	@FormaPagamento varchar (30),
+    @CustoTotal DECIMAL(15, 2),
+	@ValorEntregue decimal(15,2),
+	@NotasObservacoes varchar (MAX),
+    @UsuarioID INT
 AS
 BEGIN
     -- Inserir dados na tabela RegistroVacinacao
-    INSERT INTO RegistroVacinacao (AnimalID, FuncionarioID, UsuarioID, DataVacinacao)
-    VALUES (@AnimalID, @FuncionarioID, @UsuarioID, @DataVacinacao);
+    INSERT INTO RegistroVacinacaobom (AnimalID,UsuarioID,Desconto,Imposto,Troco,FormaPagamento,CustoTotal,ValorEntregue,NotasObservacoes)
+    VALUES (@AnimalID, @UsuarioID,@Desconto,@Imposto,@Troco,@FormaPagamento,@CustoTotal,@ValorEntregue,@NotasObservacoes);
 
     -- Obter o ID gerado
 declare @IDRegistroVacinacao int;
@@ -470,77 +551,62 @@ declare @IDRegistroVacinacao int;
     SELECT @IDRegistroVacinacao AS 'IDRegistroVacinacao';
 END;
 
-	
-create table  IItensRegistroVacina(
+	sp_help itensregistrovacinabom
+
+ create     table  ItensRegistroVacinabom(
 	IDItens int primary key identity(1,1),
 	IDRegistroVacinacao INT,
 	IdProduto INT,
     DoseVacina decimal (10,2),
-	NomeVacina VARCHAR(50),
     LoteVacina VARCHAR(20),
     ViaAdministracao VARCHAR(20),
     LocalAdministracao VARCHAR(50),
-    ValidadeVacina DATE,
     ReacoesAdversas varchar (MAX),
-    ProximaDataVacinacao DATETIME,
-    VacinacaoCompleta BIT,-- deletar ou pensar
-    DataValidade DATETIME,
-    NotasObservacoes varchar (MAX),
-	CustodeCompra Varchar(50),
-	constraint fk_IDRegistroVacinacao_IItensRegistroVacina foreign key (IDRegistroVacinacao) references RegistroVacinacao (IDRegistroVacinacao),
-	CONSTRAINT fk_IdProduto_IItensRegistroVacina FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto)
+    ProximaDataVacinacao DATE,
+	constraint fk_IDRegistroVacinacao_IItensRegistroVacinacao foreign key (IDRegistroVacinacao) references RegistroVacinacaobom (IDRegistroVacinacao),
+	CONSTRAINT fk_ProdutoID_IItensRegistroVacina FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto)
 );
 
 
-	CREATE PROCEDURE Insert_procedure_ItensRegistroVacina
+SELECT *from RegistroVacinacaobom
+SELECT *from ItensRegistroVacinabom
+
+drop TABLE RegistroVacinacao 
+drop PROCEDURE  Insert_procedure_RegistroVacinacao
+drop PROCEDURE Insert_procedure_ItensRegistroVacina
+ drop  table  ItensRegistroVacinabom
+
+	CREATE    PROCEDURE Insert_procedure_ItensRegistroVacinabom
     @IDRegistroVacinacao INT,
     @IdProduto INT,
     @DoseVacina DECIMAL(10, 2),
-    @NomeVacina VARCHAR(50),
     @LoteVacina VARCHAR(20),
     @ViaAdministracao VARCHAR(20),
     @LocalAdministracao VARCHAR(50),
-    @ValidadeVacina DATE,
     @ReacoesAdversas VARCHAR(MAX),
-    @ProximaDataVacinacao DATETIME,
-    @VacinacaoCompleta BIT,
-    @DataValidade DATETIME,
-    @NotasObservacoes VARCHAR(MAX),
-    @CustodeCompra VARCHAR(50)
+    @ProximaDataVacinacao DATETIME
 AS
 BEGIN
     -- Inserir dados na tabela IItensRegistroVacina
-    INSERT INTO IItensRegistroVacina (
+    INSERT INTO ItensRegistroVacinabom (
         IDRegistroVacinacao,
         IdProduto,
         DoseVacina,
-        NomeVacina,
         LoteVacina,
         ViaAdministracao,
         LocalAdministracao,
-        ValidadeVacina,
         ReacoesAdversas,
-        ProximaDataVacinacao,
-        VacinacaoCompleta,
-        DataValidade,
-        NotasObservacoes,
-        CustodeCompra
+        ProximaDataVacinacao
     )
     VALUES (
         @IDRegistroVacinacao,
         @IdProduto,
         @DoseVacina,
-        @NomeVacina,
         @LoteVacina,
         @ViaAdministracao,
         @LocalAdministracao,
-        @ValidadeVacina,
         @ReacoesAdversas,
-        @ProximaDataVacinacao,
-        @VacinacaoCompleta,
-        @DataValidade,
-        @NotasObservacoes,
-        @CustodeCompra
+        @ProximaDataVacinacao
     );
 END;
 
@@ -916,6 +982,7 @@ CREATE TABLE produto(
 	foreign key (FornecedorID) REFERENCES Fornecedor(FornecedorID),
 	FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID)
 );
+alter table produto add IntervaloAplicacao int
 select *from produto
 sp_help produto
 alter table produto add IsentoCusto varchar(5)
@@ -945,7 +1012,7 @@ BEGIN
 END;
 
 --criacao do procedimento para inserir produto
-CREATE PROCEDURE Insert_procedure_Produto
+CREATE  PROCEDURE Insert_procedure_Produto
     @NomeProduto NVARCHAR(255),
     @FornecedorID INT,
     @UsuarioID INT,
@@ -966,7 +1033,8 @@ CREATE PROCEDURE Insert_procedure_Produto
     @FinalidadeProduto VARCHAR(20),
     @NovoProdutoID INT OUTPUT,
 	@EstadoProduto bit,
-	@IsentoCusto varchar(20)
+	@IsentoCusto varchar(20),
+	@IntervaloAplicacao int
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -991,7 +1059,8 @@ BEGIN
         DataCadastro,
         FinalidadeProduto,
 		EstadoProduto,
-		IsentoCusto 
+		IsentoCusto,
+		IntervaloAplicacao
     )
     VALUES (
         @NomeProduto,
@@ -1014,7 +1083,8 @@ BEGIN
         GETDATE(), -- DataCadastro
         @FinalidadeProduto,
 		@EstadoProduto,
-		@IsentoCusto 
+		@IsentoCusto,
+		@IntervaloAplicacao
     );
 
    -- Obtém o ID do produto recém-inserido
@@ -1264,20 +1334,21 @@ select *from Venda
 select *from ItemVenda
 update venda set NomeCliente='Mauricio Filipe' where IDVenda=5
 --procedimento para consultar os dados na base de dados sobre venda
-CREATE  PROCEDURE selecionar
 
-as
+
+CREATE    PROCEDURE ObterDadosVendat
+    @CodigoAnimal INT
+AS
 BEGIN
-    SELECT v.IDVenda, v.NomeCliente, v.TotalVenda,v.ValorEntregue, v.DataVenda, v.Desconto, v.Imposto, v.Troco, v.FormaPagamento,
-           i.ProdutoID, p.NomeProduto, i.Quantidade, i.PrecoUnitario, i.Total
-    FROM Venda v
-    INNER JOIN ItemVenda i ON v.IDVenda = i.VendaID
-    INNER JOIN Produto p ON i.ProdutoID = p.IdProduto
+    select a.AnimalID,a.Nome,CONCAT(p.Nome,' ',p.Sobrenome,' ',p.Apelido)
+		from Animal a inner join proprietario p on a.ProprietarioID=p.ProprietarioID
+		where AnimalID = @CodigoAnimal
+	
+--group by v.IDVenda, i.quantidade, i.precoUnitario,f.Nome,v.dataVenda, v.NomeCliente,p.NomeProduto,v.TotalVenda, v.ValorEntregue,v.Desconto,v.Imposto
+--,v.Troco,v.FormaPagamento ,i.ProdutoID, i.Total
 END
 
 
-
-select * from venda
 -------------------------------------------------------------------------------------------------
 --testes de codigo pode eliminar a qualquer momento so estou a testa
 
@@ -1312,6 +1383,78 @@ WHERE EXISTS (SELECT * FROM ItemVenda WHERE VendaID = @CodigoVenda)
 --group by v.IDVenda, i.quantidade, i.precoUnitario,f.Nome,v.dataVenda, v.NomeCliente,p.NomeProduto,v.TotalVenda, v.ValorEntregue,v.Desconto,v.Imposto
 --,v.Troco,v.FormaPagamento ,i.ProdutoID, i.Total
 END
-select *from RegistroVacinacao
+
+
+
+
+
+
+
+
+
+
+
+update  animal set usuarioID =2
+select *from Animal
+
+create    procedure ObterDadosAnimal
+		@CodigoAnimal int 
+
+AS
+	BEGIN
+		
+SELECT
+    a.AnimalID,
+    a.Nome,
+    CONCAT(p.Nome, ' ', p.Sobrenome, ' ', p.Apelido) AS proprietario,
+    a.Especie,
+    a.Raca,
+    a.cor,
+    a.Peso,
+    a.Estado,
+	CONCAT(f.Nome, ' ', f.Sobrenome, ' ', f.Apelido) AS Operador,
+	CONVERT(date, a.DataNascimento) AS DataNascimento,
+    CASE
+    WHEN DATEDIFF(MONTH, a.DataNascimento, GETDATE()) < 12 THEN CONCAT(DATEDIFF(MONTH, a.DataNascimento, GETDATE()), ' mes(es)')
+    ELSE CONCAT(DATEDIFF(YEAR, a.DataNascimento, GETDATE()), ' ano(s)')
+END AS Idade,
+
+
+    a.foto,
+    a.observacao,
+    a.DataCdastro,
+    a.Porte,
+    a.sexo
+FROM
+    Animal a
+    INNER JOIN proprietario p ON a.ProprietarioID = p.ProprietarioID
+	inner join Usuario u on u.UsuarioID=a.UsuarioID
+	inner join Funcionario f on f.FuncionarioID=u.FuncionarioID
+where AnimalID = @CodigoAnimal
+		end
+
+	exec ObterDadosAnimal 46
+	alter table animal add DataCdastro DATETIME default getdate()
+	alter table animal alter 
+-- Tabela de Animal-------
+CREATE TABLE Animal (
+    AnimalID INT PRIMARY KEY NOT NULL identity(1,1),
+    Nome VARCHAR(50),
+    Especie VARCHAR(50),
+    Raca VARCHAR(50),
+    Cor varchar(30),
+    Peso decimal (10,2),
+    Estado varchar (20),
+    DataNascimento DATE,
+    Porte varchar(30),
+    ProprietarioID INT,
+    foto varbinary (max),
+    observacao varchar(max),
+    constraint fk_ProprietarioID_AnimalID foreign key(ProprietarioID) references Proprietario(ProprietarioID)
+);
+
+
+
+select *from proprietario
 select *from IItensRegistroVacina
-select *from 
+select *from Animal 

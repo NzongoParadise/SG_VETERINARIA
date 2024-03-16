@@ -53,40 +53,50 @@ namespace BLL
         }
         public void Alterar(ModeloEndereco modelo)
         {
-            if (modelo.EndrecoID1<= 0)
+            try
             {
-                throw new Exception("o codigo do endereco deve ser incluido");
+                if (modelo.EndrecoID1 <= 0)
+                {
+                    throw new Exception("o codigo do endereco deve ser incluido");
+                }
+                if (modelo.Bairro1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome do Bairro deve ser incluido");
+                }
+                if (modelo.Cidade1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome da cidade deve ser incluido");
+                }
+                if (modelo.Provincia1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome da provincia deve ser incluido");
+                }
+                if (modelo.Municipio1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome do Municipio deve ser incluido");
+                }
+                if (modelo.Rua1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome da rua ser incluido");
+                }
+                if (modelo.Telefone11.Trim().Length == 0)
+                {
+                    throw new Exception("O nuemero de telefone 1 deve ser incluido");
+                }
+                if (modelo.Comuna1.Trim().Length == 0)
+                {
+                    throw new Exception("O nome da comuna deve ser incluido");
+                }
             }
-            if (modelo.Bairro1.Trim().Length == 0)
+            catch (Exception ex)
             {
-                throw new Exception("O nome do Bairro deve ser incluido");
+                // Lançando uma nova exceção com a exceção original como inner exception
+                throw new Exception("Erro ao atualizar os dados: " + ex.Message, ex);
             }
-            if (modelo.Bairro1.Trim().Length == 0)
-            {
-                throw new Exception("O nome da cidade deve ser incluido");
-            }
-            if (modelo.Provincia1.Trim().Length == 0)
-            {
-                throw new Exception("O nome da provincia deve ser incluido");
-            }
-            if (modelo.Municipio1.Trim().Length == 0)
-            {
-                throw new Exception("O nome do Municipio deve ser incluido");
-            }
-            if (modelo.Rua1.Trim().Length == 0)
-            {
-                throw new Exception("O nome da rua ser incluido");
-            }
-            if (modelo.Telefone11.Trim().Length == 0)
-            {
-                throw new Exception("O nuemero de telefone 1 deve ser incluido");
-            }
-            if (modelo.Comuna1.Trim().Length == 0)
-            {
-                throw new Exception("O nome da comuna deve ser incluido");
-            }
-            //Passa os dados para fazer a inclusao dos dados no BD
-            DALEndereco DALobj = new DALEndereco(conexao);
+        
+
+        //Passa os dados para fazer a inclusao dos dados no BD
+        DALEndereco DALobj = new DALEndereco(conexao);
             DALobj.AlterarEndereco(modelo);
         }
         public void EliminarEndereco(int cod)

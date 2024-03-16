@@ -173,7 +173,15 @@ namespace DAL
 
             return dt;
         }
+        public DataTable MostrarTodosAnimais()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select AnimalID,Nome,Especie,Raca, Cor,Estado, DataNascimento, sexo,Porte,Peso from Animal ", conexao.ObjectoConexao);
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
 
+        }
         public DataTable PesquisarAnimalcomChaveVacina(string nome)
         {
             DataTable dt = new DataTable();
@@ -192,83 +200,76 @@ namespace DAL
             return dt;
         }
 
-        public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)
+        //public string PesquisarNomeProprietarioVacinaComCodigo(int codigo)
+        //{
+        //        using (SqlCommand cmd = new SqlCommand("SELECT concat(p.Nome,' ',p.Sobrenome,' ',p.Apelido) FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo", conexao.ObjectoConexao))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Codigo", codigo);
+
+        //            {
+        //                conexao.ObjectoConexao.Close();
+        //            }
+        //        }
+
+        //    }
+
+        public string PesquisarNomeProprietarioVacinaComCodigo(int Codigo)
+{
+    string nomeProprietario = "";
+
+    string query = "SELECT concat(p.Nome,' ',p.Sobrenome,' ',p.Apelido) AS NomeCompleto FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo";
+
+    using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao))
+    {
+        cmd.Parameters.AddWithValue("@Codigo", Codigo);
+
+        try
         {
-            
-                string informacoes = string.Empty;
+            conexao.ObjectoConexao.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT p.Nome, p.Sobrenome, p.Apelido FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo", conexao.ObjectoConexao))
-                {
-                    cmd.Parameters.AddWithValue("@Codigo", codigo);
-
-                    try
-                    {
-                        conexao.ObjectoConexao.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            // Recupere os valores das colunas Nome, Sobrenome e Apelido
-                            string nome = reader["Nome"].ToString();
-                            string sobrenome = reader["Sobrenome"].ToString();
-                            string apelido = reader["Apelido"].ToString();
-
-                            // Concatene os valores
-                            informacoes = $"{nome} {sobrenome} ({apelido})";
-                        }
-
-                        reader.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        conexao.ObjectoConexao.Close();
-                    }
-                }
-
-                return informacoes;
+            if (reader.Read())
+            {
+                // Recupere o valor da coluna NomeCompleto
+                nomeProprietario = reader["NomeCompleto"].ToString();
             }
 
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            conexao.ObjectoConexao.Close();
+        }
+    }
 
-            //string nome = string.Empty;
+    return nomeProprietario;
+}
 
-            //using (SqlCommand cmd = new SqlCommand("SELECT p.Nome FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo", conexao.ObjectoConexao))
-            //{
-            //    // Substitua o parâmetro @Codigo pelo valor real que você deseja pesquisar
-            //    cmd.Parameters.AddWithValue("@Codigo", codigo);
+        public DataTable PesquisarNomeProprietarioVacinaComCodigomal(int Codigo)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT concat(p.Nome,' ',p.Sobrenome,' ',p.Apelido) FROM Proprietario p, Animal a WHERE p.ProprietarioID = a.ProprietarioID AND a.AnimalID = @Codigo";
 
-            //    try
-            //    {
-            //        conexao.ObjectoConexao.Open();
-            //        // Use ExecuteScalar para recuperar um valor único do banco de dados
-            //        object resultado = cmd.ExecuteScalar();
+            using (SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao))
 
-            //        // Verifique se o resultado não é nulo antes de atribuir à variável 'nome'
-            //        if (resultado != null)
-            //        {
-            //            nome = resultado.ToString();
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Lide com exceções aqui, como registro ou repropagação
-            //        // Não se esqueça de fechar a conexão em caso de exceção
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //    finally
-            //    {
-            //        conexao.ObjectoConexao.Close();
-            //    }
-            //}
+            {
+                cmd.Parameters.AddWithValue("@Codigo", Codigo);
 
-            //return nome;
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
         }
 
-
-
-    
     }
+
+
+}
 

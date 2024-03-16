@@ -660,6 +660,7 @@ namespace DAL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Agendamento WHERE FuncionarioID = @FuncionarioID AND DataAgendamento = @DataAgendamento AND ((HoraInicial <= @HoraInicial AND HoraFinal >= @HoraInicial) OR (HoraInicial <= @HoraFinal AND HoraFinal >= @HoraFinal))", connection);
+                  
                     command.Parameters.AddWithValue("@FuncionarioID", funcionarioID);
                     command.Parameters.AddWithValue("@DataAgendamento", dataMarcada);
                     command.Parameters.AddWithValue("@HoraInicial", horaInicial);

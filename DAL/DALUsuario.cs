@@ -27,14 +27,54 @@ namespace DAL
             cmd.Parameters.AddWithValue("@NomeUsuario", modelo.NomeUsuario);
             cmd.Parameters.AddWithValue("@Senha", modelo.Senha);
             cmd.Parameters.AddWithValue("@Perfil", modelo.Perfil);
-            cmd.Parameters.AddWithValue("FuncionarioID", modelo.FuncionarioID);
-            cmd.Parameters.AddWithValue("NomeFuncionario", modelo.NomeFuncionario);
+            cmd.Parameters.AddWithValue("@FuncionarioID", modelo.FuncionarioID);
+            cmd.Parameters.AddWithValue("@NomeFuncionario", modelo.NomeFuncionario);
             conexao.Conectar();
-            cmd.ExecuteNonQuery();
             modelo.UsuarioID = Convert.ToInt16(cmd.ExecuteScalar());
             conexao.Desconectar();
 
         }
+        public bool verificarAsociacoesUsuario(int UsuarioID)
+        {
+            string query = @"
+        IF EXISTS (
+            SELECT 1 FROM Funcionario WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Produto WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Agendamento WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Compra WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Venda WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM RegistroVacinacao WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Pesagem WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Endereco WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Proprietario WHERE UsuarioID = @UsuarioID
+            UNION ALL
+            SELECT 1 FROM Animal WHERE UsuarioID = @UsuarioID
+        )
+        BEGIN
+            SELECT 'True' AS Resultado;
+        END
+        ELSE
+        BEGIN
+            SELECT 'False' AS Resultado;
+        END";
+
+            SqlCommand cmd = new SqlCommand(query, conexao.ObjectoConexao);
+            cmd.Parameters.AddWithValue("@UsuarioID", UsuarioID);
+            conexao.Conectar();
+            object result = cmd.ExecuteScalar();
+            conexao.Desconectar();
+
+            return result != null && result.ToString() == "True";
+        }
+
 
         public void AlterarUsuario(ModeloUsuario modelo)
         {
@@ -103,7 +143,9 @@ namespace DAL
         public DataTable Localizar(String nome)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(" select * from Usuario where NomeUsuario like'%" + nome.ToString() + "%' OR UsuarioID like'%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            //SqlDataAdapter da = new SqlDataAdapter(" select UsuarioID,NomeUsuario,Perfil,funcionario from Usuario where NomeUsuario like'%" + nome.ToString() + "%' OR UsuarioID like'%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+            SqlDataAdapter da = new SqlDataAdapter(" SELECT u.UsuarioID,u.NomeUsuario,u.Perfil,u.FuncionarioID,u.NomeFuncionario from Usuario u where NomeUsuario like'%" + nome.ToString() + "%' OR u.UsuarioID like'%" + nome.ToString() + "%'", conexao.ObjectoConexao);
+           
             da.Fill(dt);
             da.Dispose();
             return dt;

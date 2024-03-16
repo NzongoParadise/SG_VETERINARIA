@@ -9,6 +9,7 @@ namespace Modelo
 {
     public class ModeloFuncionario
     {
+        public int usuarioID{ get; set; }
         private int funcionarioID;
         private string nome;
         private string sobrenome;
